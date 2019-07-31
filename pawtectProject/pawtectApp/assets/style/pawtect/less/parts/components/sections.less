@@ -18,12 +18,13 @@
     }
   }
 }
-// common styles end
 
 .main-content-wrapper {
   margin-top: 106px;
 }
+// common styles end
 
+//index page css start
 .i-top-fold {
 }
 
@@ -292,3 +293,62 @@
     }
   }
 }
+
+//index page css end
+
+//contact page css start
+.cont-top-wrapper {
+  h1 {
+    color: @light-color;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    text-align: center;
+    z-index: 1;
+    font-size: 38px;
+    margin-top: @space * 3;
+  }
+}
+.overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.contact-box-wrapper {
+  margin-top: -240px;
+  margin-bottom: @space * 5;
+  max-width: 1000px;
+  .center-block();
+  h5 {
+    color: @light-color;
+  }
+}
+.gmap_canvas,
+.mapouter {
+  width: 100% !important;
+}
+.contact-box {
+  background-color: @light-color;
+  height: 365px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+}
+.contact-box {
+  label {
+    display: none;
+  }
+  textarea {
+    height: 80px;
+  }
+  input,
+  textarea {
+    border-radius: 0px;
+  }
+}
+.contact-form-box {
+  padding: @space * 2 (@space * 3) + 4 @space + 4;
+}
+//contact page css end
