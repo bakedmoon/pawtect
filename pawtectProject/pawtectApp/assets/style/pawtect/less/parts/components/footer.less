@@ -4,18 +4,38 @@
 // ----------------------------- Footer
 footer {
   background-color: #001b2d;
+  padding: @space + @space / 2 0px;
 }
 
 .copy-text {
-  font-size: 12px;
+  font-size: 11px;
   color: @light-color;
+  margin-top: (@space * 5) + 4;
 }
 
 .footer-list {
   li {
+    padding-bottom: 4px;
     a {
       color: @light-color;
       font-size: @font-size-small - 2;
+      i {
+        font-size: @font-size;
+        vertical-align: middle;
+      }
+      span {
+        vertical-align: middle;
+        padding-left: @space / 2;
+      }
     }
   }
+}
+.footer-heading {
+  color: @light-color;
+  margin-bottom: @space;
+  font-size: @font-size-small;
+}
+
+.u-footer-list-margin-top {
+  margin-top: (@space * 3) - 6;
 }
