@@ -2,11 +2,20 @@
 <div class="main-content-wrapper">
   <div class="wrapper">
     <div class="i-top-fold relative">
-      <img
+    {% if imageUrl %}
+    <img
+        src="{{imageUrl}}"
+        alt="top-bg-img"
+        class="i-top-fold-bg-img"
+      />
+    {% else %} 
+        <img
         src="https://www.aspca.org/sites/default/files/general-pet-care_facebook.jpg"
         alt="top-bg-img"
         class="i-top-fold-bg-img"
       />
+    {% endif %}
+      
       <div class="i-top-fold-carousel-box">
         <h6>
           First time in India,<br class="hidden-xs" />Medical cover for your

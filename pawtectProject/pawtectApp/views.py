@@ -5,14 +5,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib import messages
-
+from .models import Settings
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
 
 
 
 def index(request):
-    return render(request, 'pawtectApp/index.html')
+    try:
+        settings = Settings.objects.get(key='home_banner_image')
+        url = settings.value['url']
+        return render(request, 'pawtectApp/index.html',{'imageUrl':url})
+    except Settings.DoesNotExist:
+        return render(request, 'pawtectApp/index.html',{})
 
 def reg(request):
     return render(request, 'pawtectApp/registration.html')
@@ -47,7 +52,8 @@ def register(request):
                           {'user_form':user_form,
                            'profile_form':profile_form,
                            'registered':registered})
-def user_login(request):
+def login(request):
+    form = UserForm()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -64,15 +70,18 @@ def user_login(request):
             print("They used username: {} and password: {}".format(username,password))
             return HttpResponse("Invalid login details given")
     else:
-        return render(request, 'pawtectApp/login.html', {})
+        return render(request, 'pawtectApp/login.html', {'form':form})
 
 
 
 def contact(request):
+    print(request.method)
     if request.method == 'GET':
+        print("INSIDE IF")
         form = ContactForm()
         return render(request,'pawtectApp/contact.html',{'form': form})
     else:
+        print("INSIDE ELSE")
         form = ContactForm(request.POST)
         print("THE REQUESTED BODY IS==>>",request.POST)
         if form.is_valid():
@@ -82,11 +91,12 @@ def contact(request):
             message = form.cleaned_data['Message']
             subject = "Someone Contact Us!"
             try:
-                send_mail(subject, message, from_email, ['Sagar Jadhav<sagar.crive@gmail.com>'])
+                send_mail(subject, message, from_email, ['Sagar Jadhav<sagar@bakedmoon.studio>'])
             except BadHeaderError:
                 messages.error(request,"Something went wrong try again.")
             sendMailToUser(from_email,name)
-            messages.success(request,"Mail Send Successfully.")
+            messages.success(request,"Mail Successfully Sent.")
+            return HttpResponseRedirect(reverse('contact'))
 
     return render(request, "pawtectApp/contact.html", {'form': form})
 
@@ -95,5 +105,5 @@ def sendMailToUser(toEmail,name):
     message = "We are contact u in short time"
     fromEmail = "sagar.crive@gmail.com"
     toEmail = toEmail
-    send_mail(subject, message,'', [toEmail])
+    send_mail(subject, message,'Sagar Jadhav<sagar.crive@gmail.com>', [toEmail])
     
