@@ -1,0 +1,269 @@
+//
+// Utility classes
+// --------------------------------------------------
+
+.absolute-center{
+  margin: auto;position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+// Floats
+// -------------------------
+
+.clearfix {
+  .clearfix();
+}
+.center-block {
+  .center-block();
+}
+.pull-right {
+  float: right;
+}
+.pull-left {
+  float: left;
+}
+.pull-none{
+  float: none;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+.mob-pull-none{
+  @media(max-width:480px){
+    float: none;
+    margin-top: @space/3;
+  }
+}
+
+.u-form-width{
+  max-width: 70%;
+  .center-block();
+}
+
+// Toggling content
+// -------------------------
+
+// Note: Deprecated .hide in favor of .hidden or .sr-only (as appropriate) in v3.0.1
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+  opacity: 1;
+}
+.invisible {
+  visibility: hidden;
+}
+
+.text-hide {
+  .text-hide();
+}
+
+.width-full{
+  width: 100% !important;
+}
+
+.relative{
+  position: relative;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.display-block{
+  display: block !important;
+}
+
+// Hide from screenreaders and browsers
+//
+// Credit: HTML5 Boilerplate
+
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+
+// For Affix plugin
+// -------------------------
+
+.affix {
+  position: fixed;
+}
+
+// --------------- margin and padding none
+.margin-h-none{
+  .margin-left-none();
+  .margin-right-none();
+}
+
+.margin-v-none{
+  .margin-top-none();
+  .margin-bottom-none();
+}
+
+.margin-bottom-none{
+  margin-bottom: 0px !important;
+}
+.margin-top-none{
+  margin-top: 0px !important;
+}
+.margin-left-none{
+  margin-left: 0px !important;
+}
+.margin-right-none{
+  margin-right: 0px !important;
+}
+
+.padd-bottom-none{
+  padding-bottom: 0px !important;
+}
+.padd-top-none{
+  padding-top: 0px !important;
+}
+.padd-left-none{
+  padding-left: 0px !important;
+}
+.padd-right-none{
+  padding-right: 0px !important;
+}
+
+.padd-h-none{
+  .padd-left-none();
+  .padd-right-none();
+}
+
+.padd-v-none{
+  .padd-top-none();
+  .padd-bottom-none();
+}
+
+.padd-none{
+  .padd-bottom-none;
+  .padd-top-none;
+  .padd-left-none;
+  .padd-right-none;
+}
+
+// ----------------------- Text
+.success-color{
+  color: @success-color;
+}
+.dark-color{
+  color: @dark-color;
+}
+.light-dark-color{
+  color: @light-dark-color !important;
+}
+
+.light-color{
+  color: @light-color;
+}
+.gray-color{
+  color: @gray-color;
+}
+.dark-gray-color{
+  color: darken(@gray-color, 30%);
+}
+.warning-color{
+  color: @warning-color;
+}
+.error-color{
+  color: @error-color;
+}
+.primary-color{
+  color: @primary-color;
+}
+.secondary-color{
+  color: @secondary-color;
+}
+.brand-color{
+  color: @brand-color;
+}
+.ambience-color{
+  color: @ambience-color;
+}
+.success-color{
+  color: @success-color !important;
+}
+.u-icon-color{
+  color: #707F9E !important;
+}
+
+.thin, .light{
+  font-weight: 300;
+}
+.bold, .b{
+  font-weight: bold !important;
+}
+.small{
+  font-size: @font-size-small - 2;
+}
+.i, .italic{
+  font-style: italic;
+}
+
+// ------------------------ Backgrounds
+
+.danger-bg{
+  background-color: @danger-color;
+  border-color: @danger-color !important;
+}
+.primary-bg{
+  background-color: @primary-color;
+  border-color: @primary-color !important;
+}
+.success-bg{
+  background-color: @success-color;
+  border-color: @success-color !important;
+}
+
+.light-bg{
+  background-color: @light-color;
+}
+
+.danger-bg,
+.primary-bg,
+.success-bg{
+  color: @light-color;
+}
+
+// ------------------------- Util code
+.space{
+  margin-top: @space/2;
+  margin-bottom: @space/2;
+}
+.space-lg{
+  .margin-v();
+}
+.space-xl{
+  .margin-v(@space * 2, @space * 2);
+}
+.min-space{
+  margin-top: @space/4;
+}
+.no-pointer{ // no pointer events
+  pointer-events: none;
+  opacity: 0.7;
+}
+.border-none{
+  border: none !important;
+}
+.no-border-a{
+  border-bottom: none !important;
+  &:hover{
+    border-bottom: none !important;
+  }
+} // important for a where we don't need border
+
+// --------------------------------- for removing uppercase texts
+.text-transform-none{
+  text-transform: none !important;
+}

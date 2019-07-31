@@ -1,0 +1,255 @@
+// This file contains variables. Changing here will effect globally - @jay
+// Core Colors (colors used on website)
+// Core style (body, link, color, font)
+// Extra components (carets)
+// Z-index
+// Disabled colors
+// Buttons
+// View Port
+// Grid System
+// Tooltips - JS
+// Labels
+// Modals - JS
+// Alerts - JS
+// Progress - JS
+// List group item
+// Badges
+
+// ------------------------------------------------------------------- CORE COLORS
+
+@gray-color: #f8f8f8;
+@grey-color: @gray-color;
+@brand-color: #fb9f2b; // main CTA color
+@light-color: #fff; // white color - #fff;
+@dark-color: #202223; // used in as text
+@ambience-color: #636d80; // used mostly in backdrop and setting up the ambience
+@light-dark-color: lighten(@dark-color, 18%);
+@input-border-color: #d8d8d8;
+
+@dark-gray-color: darken(@gray-color, 18%);
+@primary-color: @brand-color;
+@secondary-color: #4a90e2;
+@success-color: #69d574; // Green color use for success msg // red color use for error msg
+@danger-color: #cd5959; // red color used for danger stat
+@error-color: @danger-color;
+@warning-color: #cdbf47; // warning color use for warning or simple notations
+
+@disabled-color: @dark-gray-color;
+
+@bg-color: @light-color;
+@fb-color: #3d5a96;
+@google-color: #d9343b;
+
+// ------------------------------------------------------------------- CORE STYLE
+
+@body-bg: @bg-color; // Main body gray color - #f0f0f0;
+@link-color: @primary-color;
+@link-hover-color: darken(@primary-color, 20%);
+@text-color: @light-dark-color;
+@font-size: 16px;
+@font-size-small: @font-size - 2;
+@font-size-large: @font-size + 4;
+@font-family-1: "Open Sans", sans-serif; // primary family font
+@line-height: 1.428571429; // 20 / 14
+@line-height-computed: floor((@font-size * @line-height)); // ~20px
+@space: 16px;
+
+// ------------------------------------------------------------------- header
+
+@header-height: @space * 4;
+@header-responsive-height: @space * 3;
+
+// ------------------------------------------------------------------- Extra components
+@caret-border-width: 4px;
+@caret-border-width-large: @caret-border-width + 1;
+
+// ------------------------------------------------------------------- Z-index
+@zindex-extra-small: 10;
+@zindex-small: 20;
+@zindex-medium: 30;
+@zindex-large: 40;
+@zindex-extra-large: 50;
+
+@zindex-xs: @zindex-extra-small;
+@zindex-sm: @zindex-small;
+@zindex-md: @zindex-medium;
+@zindex-lg: @zindex-large;
+@zindex-xl: @zindex-extra-large;
+
+// ------------------------------------------------------------------- Disabled Colors
+
+@cursor-disabled: not-allowed;
+@disabled-input-bg: @disabled-color;
+@disabled-button-bg: @disabled-color;
+
+// ------------------------------------------------------------------- BUTTONS
+@btn-primary-color: @light-color;
+@btn-primary-bg: @primary-color;
+@btn-hover-primary-bg: darken(@primary-color, 15%);
+
+@btn-secondary-color: @light-color;
+@btn-secondary-bg: @secondary-color;
+@btn-hover-secondary-bg: darken(@secondary-color, 15%);
+
+@btn-success-color: @light-color;
+@btn-success-bg: @success-color;
+@btn-hover-success-bg: darken(@success-color, 5%);
+
+@btn-danger-color: @light-color;
+@btn-danger-bg: @danger-color;
+@btn-hover-danger-bg: darken(@danger-color, 5%);
+
+@btn-warning-color: @light-color;
+@btn-warning-bg: @warning-color;
+@btn-hover-warning-bg: darken(@warning-color, 5%);
+
+@btn-disabled-color: lighten(@dark-color, 30%);
+@btn-disabled-bg: darken(@gray-color, 30%);
+
+// ------------------------------------------------------------------- Input
+@input-height: 40px;
+@small-input-height: 33px;
+
+// ------------------------------------------------------------------- Viewport
+
+// -------------------------- For phone
+@screen-xs: 480px;
+@screen-extra-small: @screen-xs;
+@screen-phone: @screen-xs;
+
+// -------------------------- For Tablet
+@screen-sm: 768px;
+@screen-small: @screen-sm;
+@screen-tablet: @screen-sm;
+@screen-tab: @screen-tablet;
+
+// ------------------------- For desktops
+@screen-md: 992px;
+@screen-medium: @screen-md;
+@screen-desktop: @screen-md;
+
+// ------------------------ for laptops
+@screen-lg: 1200px;
+@screen-large: @screen-lg;
+@screen-laptop: @screen-lg;
+
+// ----------------------- For large screens
+@screen-extra-lg: 1400px;
+@screen-extra-large: @screen-extra-lg;
+
+// ---------------------- Max values so media queries don't overlap with each other.
+@screen-extra-small-max: (@screen-xs - 1);
+@screen-phone-max: @screen-extra-small-max;
+
+@screen-small-max: (@screen-sm - 1);
+@screen-tab-max: @screen-small-max;
+
+@screen-medium-max: (@screen-md - 1);
+@screen-desktop-max: @screen-medium-max;
+
+@screen-large-max: (@screen-lg - 1);
+@screen-laptop-max: @screen-large-max;
+
+// ------------------------------------------------------------------- Grid system
+@grid-columns: 12; // Number of columns in the system
+@grid-gutter: @space; // padding between columns. Get divided in half as left and right.
+@grid-float-breakpoint: @screen-small; // Point when mobile menu will appear.
+
+// --------------------- .wrapper max-width limits
+@wrapper-tablet: (720px + @grid-gutter);
+@wrapper-tab: @wrapper-tablet;
+@wrapper-small: @wrapper-tab;
+
+@wrapper-desktop: (940px + @grid-gutter);
+@wrapper-medium: @wrapper-desktop;
+
+@wrapper-laptop: (1140px + @grid-gutter);
+@wrapper-large: @wrapper-laptop;
+
+// -------------------------------------------- Side-panel and main-panel
+@side-panel-width: 260px;
+@panel-color: @light-dark-color; // used specificaly in panels
+@side-panel-width-small: 67px;
+
+// ----------------------------------------------------------------- ToolTips - JS
+@tooltip-max-width: 200px;
+@tooltip-color: @light-color;
+@tooltip-bg: rgba(0, 0, 0, 0.8);
+@tooltip-opacity: 0.9;
+@tooltip-arrow-width: 5px;
+@tooltip-arrow-bg: @tooltip-bg;
+@tooltip-arrow-color: @tooltip-bg;
+
+// ----------------------------------------------------------------- Labels
+@label-primary-bg: @primary-color;
+@label-secondary-bg: @secondary-color;
+@label-dark-bg: @dark-color;
+@label-success-bg: @success-color;
+@label-error-bg: @error-color;
+@label-warning-color: @warning-color;
+
+@label-color: @light-color;
+
+// ----------------------------------------------------------------- Modals - JS
+@modal-inner-padding: @space / 2;
+@modal-title-padding: @space / 2;
+@modal-content-bg: @light-color;
+@modal-backdrop-bg: darken(@ambience-color, 20%);
+@modal-backdrop-opacity: 0.95;
+@modal-footer-bg: @gray-color;
+
+@modal-large: 900px;
+@modal-lg: 900px;
+@modal-medium: 600px;
+@modal-md: @modal-medium;
+@modal-sm: 600px;
+@modal-small: 300px;
+@modal-sm: 300px;
+
+// ---------------------------------------------------------------- Alerts - JS
+@alert-dark-bg: @dark-color;
+@alert-success-bg: @success-color;
+@alert-danger-bg: @error-color;
+@alert-primary-bg: @primary-color;
+@alert-secondary-bg: @secondary-color;
+@alert-warning-bg: @warning-color;
+@alert-success-border: @alert-success-bg;
+@alert-dark-border: @alert-dark-bg;
+@alert-danger-border: @alert-danger-bg;
+@alert-primary-border: @alert-primary-bg;
+@alert-secondary-border: @alert-secondary-bg;
+@alert-warning-border: @alert-warning-bg;
+
+@alert-padding: @space;
+
+// --------------------------------------------------------------- Progress - JS
+
+// ------------- Progress base bg color
+@progress-dark-bg: @dark-color;
+@progress-gray-bg: @gray-color;
+@progress-light-bg: @light-color;
+
+// ------------- Progress bar color
+@progress-bar-success: @success-color;
+@progress-bar-warning: @warning-color;
+@progress-bar-error: @error-color;
+@progress-bar-primary: @primary-color;
+@progress-bar-secondary: @secondary-color;
+
+// -------------------------------------------------------------- List group item
+@list-group-bg: @light-color;
+@list-group-border: darken(@gray-color, 5%);
+@list-group-hover-bg: @gray-color;
+@list-group-active-bg: @dark-gray-color;
+@list-group-disabled-bg: @disabled-color;
+
+// -------------------------------------------------------------- Badges
+@badge-light-bg: @gray-color;
+@badge-dark-bg: lighten(@dark-color, 10%);
+@badge-border-light-color: darken(@gray-color, 20%);
+@badge-border-dark-color: @dark-color;
+@badge-light-color: darken(@gray-color, 20%);
+@badge-dark-color: @dark-color;
+
+// ------------------------------------------------------------- Dropdown
+@dropdown-border-radius: 8px;

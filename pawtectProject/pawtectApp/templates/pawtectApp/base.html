@@ -1,33 +1,76 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Pawtect</title>
-    <link rel="icon" type="image/png" href="https://img.icons8.com/ios/100/000000/cat-footprint.png" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-   
-</head>
-  <body>
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <ul class="nav navbar-nav">
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://img.icons8.com/ios/100/000000/cat-footprint.png"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <!-- Owl Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="/assets/style/vendor/owl-carousel/owl.carousel.min.css"
+    />
 
-          <li><a class="navbar-brand" href="{% url 'index' %}">Pawtect</a></li>
-          <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
-          <li><a class="navbar-link" href="{% url 'pawtectApp:register' %}">Register</a></li>
-          <li><a class="navbar-link" href="{% url 'pawtectApp:contact' %}">Contact</a></li>     
-         
-          {% if user.is_authenticated %}
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <li><a class="navbar-link" href="{% url 'pawtectApp:user_login' %}">Login</a></li>
-          {% endif %}
-</ul>
+    <!-- common style -->
+    <link rel="stylesheet" href="/assets/style/pawtect/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="wrapper">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none">
+          <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
+            <a href="">
+              <img
+                src="assets/img/brand/main-logo.png"
+                alt="main-logo"
+                class="main-logo"
+              />
+            </a>
+          </div>
+          <div class="col-lg-10 col-md-8 col-sm-8 hidden-xs">
+            <ul class="header-list">
+              <li class="active"><a href="">Home</a></li>
+              <li><a href="">Plans</a></li>
+              <li><a href="">Get Quote</a></li>
+              <li><a href="">Review</a></li>
+              <li><a href="">About us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs padd-right-none">
+          <ul class="header-right-list pull-right">
+            <li class="header-right-list-icons">
+              <a href=""><i class="fa fa-phone" aria-hidden="true"></i></a>
+            </li>
+            <li class="header-right-list-icons mail-icon">
+              <a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a href="">
+                <button class="btn ghost-btn-grey">Login</button>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <button class="btn btn-primary">Sign up</button>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </nav>
-    <div class="container">
-    {% block body_block %}
-    {% endblock %}
-    </div>
+    </header>
+    <script src="/assets/js/vendor/jquery.min.js"></script>
+    <script src="/assets/js/vendor/owl.carousel.min.js"></script>
+    {% block body_block %} {% endblock %}
   </body>
 </html>

@@ -1,0 +1,59 @@
+.accordion {
+  max-width: 550px;
+  margin: 1em auto;
+
+  .accordion__question {
+    
+    &:last-child {
+      border-bottom: 1px solid @light-color;  
+    }
+  }
+  
+  .accordion__header {
+    border-top: 1px solid @light-color;
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 0.031em;
+    line-height: 2.3;
+    padding: 0.5em 1em;
+    width: 100%;
+    
+    &:hover,
+    &:focus {
+      span {
+        color: @light-color;  
+      }
+    }
+    
+    &.is-active {
+      span {
+        color: @light-color;
+        &:before {
+          content: "\e0c4"; 
+        }
+      }
+    }
+    
+    span {
+      display: inline-block;
+      color: @gray-color;
+      line-height: 2.3;
+      float: right;
+    }
+  }
+  
+  .accordion__heading {
+    display: inline-block;
+    margin: 0;
+  }
+  
+  .accordion__content {
+    display: none;
+    padding: 1em;
+  }
+}
+
+
+
+//------------------------- accordian student browse courses
+

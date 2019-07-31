@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pawtectApp',
     'rest_framework',
-
-    
 ]
 
 MIDDLEWARE = [
@@ -54,7 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'pawtectProject.urls'
-DJSMS_BACKEND = 'djsms.backends.FileBasedBackend'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,9 +78,9 @@ WSGI_APPLICATION = 'pawtectProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
+        'NAME': 'pawtect',
+        'USER': 'doced',
+        'PASSWORD': 'welcome1',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -121,12 +119,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', '')
-EMAIL_HOST = os.environ.get('EMAIL_HOST', '')
-EMAIL_PORT = os.environ.get('EMAIL_PORT', '')
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-EMAIL_USE_TLS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -134,3 +126,4 @@ EMAIL_USE_TLS = True
 STATIC_URL = '/static/'
 
 LOGIN_URL = '/pawtectApp/user_login/'
+ASSETS = os.path.join(BASE_DIR, 'pawtectApp/assets')

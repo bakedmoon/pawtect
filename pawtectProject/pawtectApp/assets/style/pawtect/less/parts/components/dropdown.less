@@ -1,0 +1,376 @@
+// Main Dropdown wrapper
+
+.c-dropdown {
+  position: relative;
+  text-align: left;
+  text-align: left;
+  z-index: 1;
+  a {
+    padding-top: 0 !important;
+  }
+} // c-dropdown
+
+.c-dropdown__list {
+  //margin: 5px 0 0 0;
+  padding: 0;
+  overflow: auto;
+  max-height: 116px;
+  list-style: none;
+  position: absolute;
+  top: 125%;
+  left: 0px;
+  width: 100%;
+  opacity: 0;
+  visibility: visible;
+  //border-radius: 3px;
+  background: #fff;
+  border: solid 1px #efefef;
+  transition: opacity 0.25s linear, top 0.25s linear;
+  z-index: 11;
+  // box-shadow: 0px 4px 22px rgba(0,0,0,0.06);
+
+  display: none;
+  .c-dropdown.is-open & {
+    opacity: 1;
+    visibility: visible;
+    top: 100%;
+    display: block;
+  }
+} // list
+
+.c-dropdown__item {
+  padding: @space / 2;
+  font-size: @font-size;
+  line-height: 20px;
+  cursor: pointer;
+  color: #4a4d4f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.25s linear;
+  border-bottom: 1px solid #efefef;
+  &:last-child {
+    border-bottom: none;
+  }
+  &:hover {
+    background-color: @gray-color;
+  }
+}
+
+/**
+ * Component: Button
+ * --------------------------------------------------
+ */
+
+.c-button {
+  -webkit-appearance: none;
+  margin: 0;
+  //box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.06);
+  border: 1px solid #efefef;
+  overflow: visible;
+  font: inherit;
+  text-transform: none;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+  user-select: none;
+  &:hover,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/**
+ * Component: Button
+ * Modifier: Dropdown
+ * --------------------------------------------------
+ */
+
+.c-button--dropdown {
+  padding: 9px 34px 8px 10px;
+  font-size: @font-size;
+  background-color: @light-color;
+  color: #4a4d4f;
+  line-height: 20px;
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.2s linear;
+  span {
+    color: #d8d8d8;
+  }
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    width: 7px;
+    height: 7px;
+    border: 1px solid #8e9091;
+    transform: rotate(44deg);
+    border-top: none;
+    border-left: none;
+  }
+}
+
+.breadcrumb-list {
+  .c-dropdown {
+    margin-left: 0;
+    z-index: 1;
+  }
+  .c-button--dropdown {
+    width: 160px;
+    color: #9499a8;
+    &:hover {
+      color: darken(#9499a8, 10%);
+    }
+    &:after {
+      border-top-color: lighten(#9499a8, 5%);
+    }
+  } // dropdown
+
+  .c-dropdown__item {
+    width: 100%;
+
+    &:before {
+      display: none;
+    }
+  }
+} // .breadcrumb-list
+
+//------------dropdown on header in every page
+
+.dropbtn {
+  color: @light-color;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  i {
+    font-size: 12px;
+    padding: 0px 5px;
+  }
+}
+
+.white-top-dropdown {
+  i {
+    background: transparent;
+    color: @light-color;
+    opacity: 0.8;
+  }
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  margin-top: 15px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: lighten(@dark-color, 40%) !important;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid lighten(@dark-color, 80%);
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}
+
+//.dropdown a:hover {}
+
+.show {
+  display: block;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 46px;
+  margin-right: -14px;
+  right: 0;
+  z-index: @zindex-extra-small;
+  display: none;
+  background-color: @light-color;
+  box-shadow: 4px 10px 9px 0 rgba(0, 0, 0, 0.08);
+  background-color: @light-color;
+  border: 1px solid #d8d8d8;
+  background-clip: padding-box;
+  .border-radius(4px);
+  padding: @space / 2 0px;
+  width: 118px;
+  .transition();
+
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  > li {
+    display: block;
+    padding: @space / 4 @space - 4 !important;
+  } // li
+
+  > li > a {
+    display: block;
+    //padding: @space - 4 0px;
+    //padding: @space/4 @space * 2;
+    padding-bottom: 0px;
+    font-size: @font-size-small;
+    clear: both;
+    line-height: @line-height;
+    color: #777d85;
+    white-space: nowrap; // prevent links from randomly breaking onto new lines
+    //border-bottom: 1px solid @gray-color;
+    display: block;
+  }
+  > li:last-child > a {
+    border-bottom: none;
+  }
+
+  &:before {
+    content: " ";
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #d8d8d8;
+    top: 0;
+    margin-top: -7px;
+    transform: rotate(45deg);
+    right: 0;
+    margin-right: 22px;
+    border-right: none;
+    border-bottom: none;
+    background: @light-color;
+  }
+} // dropdown menu
+
+// Hover/Focus state
+.dropdown-menu > li {
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    color: lighten(@dark-color, 30%);
+    background-color: lighten(@gray-color, 2%);
+  }
+}
+
+// Active state
+.dropdown-menu > .active > a {
+  &,
+  &:hover,
+  &:focus {
+    color: darken(@link-color, 10%);
+    text-decoration: none;
+    outline: 0;
+    background-color: lighten(@gray-color, 5%);
+  }
+}
+
+// Disabled state
+//
+// Gray out text and ensure the hover/focus state remains gray
+
+.dropdown-menu > .disabled > a {
+  &,
+  &:hover,
+  &:focus {
+    color: @disabled-color;
+  }
+
+  // Nuke hover/focus effects
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    background-color: transparent;
+    background-image: none; // Remove CSS gradient
+    .reset-filter();
+    cursor: @cursor-disabled;
+  }
+} // dropdown disabled
+
+// @media (min-width: @grid-float-breakpoint) {
+//   .navbar-right {
+//     .dropdown-menu {
+//       .dropdown-menu-right();
+//     }
+//     // Necessary for overrides of the default right aligned menu.
+//     // Will remove come v4 in all likelihood.
+//     .dropdown-menu-left {
+//       .dropdown-menu-left();
+//     }
+//   }
+// }
+
+.breadcrumb-list {
+  .c-dropdown {
+    margin-left: 0;
+    z-index: 1;
+  }
+  .c-button--dropdown {
+    width: 160px;
+    color: #9499a8;
+    &:hover {
+      color: darken(#9499a8, 10%);
+    }
+    &:after {
+      border-top-color: lighten(#9499a8, 5%);
+    }
+  } // dropdown
+
+  .c-dropdown__item {
+    width: 100%;
+
+    &:before {
+      display: none;
+    }
+  }
+} // .breadcrumb-list
+
+//-------------------------------dropdown on consult page end
+
+//------------------------------dropdown on detail page css end
+
+.doctor-view-col-right-list .dropdown-menu {
+  li {
+    display: block;
+    position: relative;
+    span {
+      vertical-align: middle;
+      padding-left: @space / 2;
+      font-size: @font-size-small - 2;
+      color: #616263;
+    }
+  }
+  //width: 350px;
+}
+.doctor-view-col-share-list {
+  //width: 350px;
+  //margin-right: -72px !important;
+  img {
+    vertical-align: middle;
+    //padding-top: @space/4;
+  }
+  li {
+    //padding: 0px 16px !important;
+  }
+}

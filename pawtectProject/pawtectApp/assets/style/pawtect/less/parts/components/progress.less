@@ -1,0 +1,76 @@
+.progress {
+  width: 280px;
+  display: table;
+  table-layout: fixed;
+  padding: 0;
+  margin: 0;
+  margin-left: -(@space + 4);
+  &.student-sinup-progress{
+    width: 370px;
+  }
+}
+.progress__step {
+  display: table-cell;
+  text-align: center;
+  vertical-align: top;
+  position: relative;
+  &:before{
+    content: "";
+    display: block;
+    .circle(32px);
+    margin: 4px auto;
+    background-color: @light-color;
+    font-weight: bold;
+    font-size: @font-size;
+    padding-top: @space/4 - 2;
+    border: 1px solid #d8d8d8;
+  }
+  
+}
+
+.progress__step:not(:first-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.3em;
+    left: -50%;
+    width: 100%;
+    height: .2em;
+    z-index: -1;
+    background-color: #efefef;
+    border:none;
+  }
+
+.progress--counter .progress__step {
+  counter-increment: step-number;
+  line-height: 1.85em;
+  color: #8e9091;
+  font-size: @font-size-small;
+  &:before{
+    content: counter(step-number);
+  }
+}
+
+
+
+/* the active step */
+.progress__step.progress__step--active{
+  &:before {
+    background-color: @brand-color;
+    position: relative;
+    z-index: 3;
+  }
+  
+}
+.currnet_progress_step{
+   color: @brand-color !important;
+}
+.progress__step--active {
+ 
+  &.progress__step::before{
+    color: @light-color;
+  }
+  &.progress__step::after{
+    background-color: @brand-color;
+
+  }
+}

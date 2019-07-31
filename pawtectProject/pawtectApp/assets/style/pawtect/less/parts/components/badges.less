@@ -1,0 +1,42 @@
+.badge, .tag{
+	display: inline-block;
+	.min-width;
+	padding: 3px 7px;
+	font-size: @font-size-small;
+	font-weight: 400;
+	.border-radius(20px);
+	text-align: center;
+	line-height: @line-height;
+	white-space: nowrap;
+	vertical-align: baseline;
+  cursor: default;
+	// Empty badges collapse automatically (not available in IE8)
+	&:empty {
+		display: none;
+	}
+
+  // Quick fix for badges in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+  .btn-xs & {
+    top: 0;
+    padding: 1px 5px;
+  }
+  a&{
+    &:hover,
+    &:focus{
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.badge + .badge, .tag + .tag{
+  margin-left: @space/5;
+}
+
+.badge-gray, .tag-gray{
+  .badge-variant(@gray-color; darken(@gray-color, 20%));
+}

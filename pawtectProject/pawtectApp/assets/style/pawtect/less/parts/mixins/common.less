@@ -1,0 +1,195 @@
+// This mixin file contains all the core mixins
+// Changes here will effect on multiple place - @jay
+
+// Box Model
+// font weight
+// display
+// overlay
+// text align
+// Box Shadow
+// Center Block Element
+// Object Fit
+// Backface
+// Size (width, height)
+// calc
+// opacity
+// Visibility
+// Text overflow (ellipsis...)
+// User Select
+// Placeholder
+// Image Grayscale
+// reset gradient filter (IE)
+
+
+// ---------------------------------------------------------- Box Sizing
+.box-sizing(@boxmodel: border-box) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+
+
+// ---------------------------------------------------------- Box Shadow
+.box-shadow(@x: 0, @y: 0, @blur: 3px, @color: darken(@gray-color, 10%)) {
+  -webkit-box-shadow: @arguments; // iOS <4.3 & Android <4.1
+  -moz-box-shadow: @arguments;
+          box-shadow: @arguments;
+}
+
+
+// ---------------------------------------------------------- Center Block Element
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.absolute-center(@width, @height){
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  max-width: @width;
+  max-height: @height;
+}
+
+
+// ---------------------------------------------------------- Object Fit
+.object-fit(@fit: cover){
+  -webkit-object-fit: @fit;
+     -moz-object-fit: @fit;
+       -o-object-fit: @fit;
+          object-fit: @fit;
+}
+
+// ---------------------------------------------------------- Backface
+.backface-visibility(@visibility: hidden){
+  -webkit-backface-visibility: @visibility;
+     -moz-backface-visibility: @visibility;
+          backface-visibility: @visibility;
+}
+
+
+// ---------------------------------------------------------- Size (width, height)
+.size(@width; @height) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size; @size);
+}
+.circle(@size){
+  .square(@size);
+  .border-radius(50%);
+}
+
+.min-width(@width: 10px){
+	min-width: @width;
+	width: auto;
+}
+.min-height(@height: 10px){
+	min-height: @height;
+	height: auto;
+}
+.max-width(@width){
+  max-width: @width;
+  .center-block();
+}
+.max-height(@height){
+  max-height: @height;
+  overflow-y: auto;
+}
+
+
+
+// Calc() property
+.width-calc(@value){
+  width: -webkit-calc(~"100% -" @value);
+  width: -moz-calc(~"100% -" @value);
+  width: -o-calc(~"100% -" @value);
+  width: calc(~"100% -" @value);
+}
+.height-calc(@value){
+  height: -webkit-calc(~"100vh -" @value);
+  height: -moz-calc(~"100vh -" @value);
+  height: -o-calc(~"100vh -" @value);
+  height: calc(~"100vh -" @value);
+  overflow-y: auto;
+}
+
+
+// ---------------------------------------------------------- Opacity
+.opacity(@opacity) {
+  opacity: @opacity;
+  // IE8 filter
+  @opacity-ie: (@opacity * 100);
+  filter: ~"alpha(opacity=@{opacity-ie})";
+}	
+
+
+// ---------------------------------------------------------- Visibility
+
+.visibility-hide(){
+  display: none;
+  .opacity(0);
+  visibility: hidden;
+}
+
+.visibility-show(){
+  display: inline-block;
+  .opacity(1);
+  visibility: visible;
+}
+
+
+// ---------------------------------------------------------- Text Overflow (Ellipsis)
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+// -------------------------------------------------------- User Select
+
+// User select
+// For selecting text on the page
+
+.user-select(@select: none) {
+  -webkit-user-select: @select;
+     -moz-user-select: @select;
+      -ms-user-select: @select; // IE10+
+          user-select: @select;
+}
+
+// ------------------------------------------------------- Placeholder text
+
+.placeholder(@color: @dark-color) {
+  // Firefox
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder { color: @color; }
+  &::-webkit-input-placeholder  { color: @color; }
+}
+
+
+// --------------------------------------------------------- Image Grayscale
+.grayscale(@value: 1) {
+  -webkit-filter: grayscale(@value);
+  -moz-filter: grayscale(@value);
+  -o-filter: grayscale(@value);
+  -ms-filter: grayscale(@value);
+  filter: grayscale(@value);
+}
+
+
+
+// --------------------------------------------------------- Reset Gradient Filter
+// When you need to remove a gradient background, do not forget to use this to reset
+// the IE filter for IE9 and below.
+
+.reset-filter() {
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(enabled = false)"));
+}

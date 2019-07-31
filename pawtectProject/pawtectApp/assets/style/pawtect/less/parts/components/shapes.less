@@ -1,0 +1,15 @@
+.triangle{
+	&.top { .triangle(top, @space, @space/2, @dark-gray-color) }
+	&.bottom { .triangle(bottom, @space, @space/2, @dark-gray-color) }
+	&.right { .triangle(right, @space, @space/2, @dark-gray-color) }
+	&.left { .triangle(left, @space, @space/2, @dark-gray-color) }
+}
+
+.up-voted{
+	.triangle.top { .triangle(top, @space, @space/2, @success-color) }
+}
+
+.down-voted{
+	.triangle.bottom { .triangle(bottom, @space, @space/2, @error-color) }
+}
+

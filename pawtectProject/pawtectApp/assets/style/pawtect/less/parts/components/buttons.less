@@ -1,0 +1,174 @@
+.btn {
+  //display: inline-block;
+  margin-bottom: 0;
+  min-height: @input-height;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+  border: 1px solid transparent;
+  background-color: transparent;
+  white-space: nowrap;
+  user-select: none;
+  //text-transform: uppercase;
+  word-spacing: 0.3;
+
+  .transition;
+  .button-size(6px; 15px; @font-size; 1.4; 4px);
+  &,
+  &:active,
+  &.active {
+    &:focus,
+    &.focus {
+      outline: none;
+    }
+  }
+  &:hover,
+  &:focus,
+  &.focus {
+    text-decoration: none;
+    //box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.18);
+  }
+  &:active,
+  &.active {
+    outline: 0;
+    background-image: none;
+    .box-shadow(inset 0 3px 5px rgba(0, 0, 0, 0.125));
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: @disabled-color;
+    color: darken(@disabled-color, 20%);
+    border-color: @disabled-color;
+    cursor: @cursor-disabled;
+    pointer-events: none;
+    .opacity(0.65);
+    .box-shadow(none);
+  }
+}
+
+// ------------------------------------------------------------- Buttons styles
+
+.btn-primary {
+  .button-variant(@btn-primary-color; @btn-primary-bg);
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
+}
+
+//.btn-secondary-light{
+//	.button-variant(@btn-secondary-light-color; @btn-secondary-light-bg);
+//	text-shadow: 0px 0px 2px @secondary-color;
+//}
+
+//.btn-light{
+//	.button-variant(darken(@dark-gray-color, 20%); @gray-color);
+//	&:hover{
+//		color: @dark-color;
+//	}
+//}
+
+// ----------------------------------------------------------- Ghost Button styles
+
+.ghost-btn-orange {
+  .ghost-button-variant(#e88353);
+  .button-size(6px; 32px; @font-size + 2; 1.4; 4px);
+}
+
+.ghost-btn-grey {
+  .ghost-button-variant(#b7b7b7);
+  // .button-size(6px; 32px; @font-size + 2; 1.4; 4px);
+  border-style: dashed;
+}
+.ghost-btn-light-gray {
+  .ghost-button-variant(#8e9091);
+  border-width: 1px;
+  .button-size(6px; 32px; @font-size + 2; 1.4; 4px);
+}
+// ---------------------------------------------------------- Button Input
+// We use this button inline with input so input and buttons have same height
+
+//.btn-input{
+//	height: @input-height;
+//}
+
+// ---------------------------------------------------------- Link Buttons
+
+//.btn-link{
+//	color: @link-color;
+//	font-weight: 400;
+//	.border-radius(0);
+//
+//	&,
+//	&.active,
+//	&:active,
+//	&[disabled],
+//	fieldset[disabled] & {
+//		background-color: transparent;
+//		.box-shadow(none);
+//	}
+//
+//  &,
+//  &:hover,
+//  &:focus,
+//  &:active {
+//    border-color: transparent;
+//  }
+//
+//  &:hover,
+//  &:focus {
+//    color: @link-hover-color;
+//    text-decoration: none;
+//    background-color: transparent;
+//  }
+//
+//  &[disabled],
+//  fieldset[disabled] & {
+//    &:hover,
+//    &:focus {
+//      color: @disabled-button-bg;
+//      text-decoration: none;
+//    }
+//  }
+//}
+
+// ----------------------------------------------------------- Button Sizes
+
+.btn-lg,
+.btn-large {
+  .button-size(10px, 40px, @font-size, 1.33, 4px);
+}
+.btn-sm,
+.btn-small {
+  min-height: 33px;
+  .button-size(4px, 10px, @font-size-small - 1, 1.5, 4px);
+}
+.btn-xs,
+.btn-extra-small {
+  .button-size(1px, 5px, @font-size-small, 1.5, 4px);
+}
+.btn-extra-large {
+  .button-size(8px, 0px, @font-size, 1.5, 4px);
+}
+.btn-btm-large {
+  .button-size(8px, 0px, @font-size, 1.5, 0px);
+}
+// ---------------------------------------------------------- Button Block
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-top: @space / 2;
+}
+
+//.btn-block + .btn-block{
+//	margin-top: @space/3;
+//}
+// Specificity overrides
+//input[type="submit"],
+//input[type="reset"],
+//input[type="button"] {
+//  &.btn-block {
+//    width: 100%;
+//  }
+//}

@@ -5,14 +5,14 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib import messages
-from twilio.rest import Client
+
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
 
 
 
 def index(request):
-    return render(request, 'pawtectApp/login.html')
+    return render(request, 'pawtectApp/index.html')
 
 def reg(request):
     return render(request, 'pawtectApp/registration.html')
@@ -56,7 +56,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return render(request,'pawtectApp/onboard.html')
+                # return render(request,'pawtectApp/onboard.html')
             else:
                 return HttpResponse("Your account was inactive.")
         else:

@@ -1,0 +1,1434 @@
+// Contains code of responsive site - @Jay
+
+@media (max-width: 767px) and (min-width: 320px) {
+  body {
+    font-size: @font-size-small;
+  }
+  .tab-head-secondary {
+    li {
+      padding: 5px 0;
+      min-width: @space;
+    }
+  } // tab head secondary
+  .btn {
+    .button-size(8px; 12px; @font-size; 1.3; 3px);
+    .min-width(120px);
+    //width: 100%;
+  }
+  .ghost-btn-orange {
+    .min-width(80px);
+  }
+  h1,
+  .h1 {
+    font-size: @font-size + 8;
+  }
+  h2,
+  .h2 {
+    font-size: @font-size + 6;
+  }
+  h3,
+  .h3 {
+    font-size: @font-size + 4;
+  }
+  h4,
+  .h4 {
+    font-size: @font-size + 2;
+  }
+  h5,
+  .h5 {
+    font-size: @font-size;
+  }
+  h6,
+  .h6 {
+    font-size: @font-size-small;
+  }
+  .fixed-wrapper {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .justified {
+    .input-brick {
+      border-right: none;
+      display: block;
+      margin-bottom: @space;
+      input,
+      &:last-child input {
+        .border-radius(3px);
+      }
+    } // input-brick
+    li {
+      display: block;
+    }
+  } // justified
+
+  //index page mobile responsive start
+  .main-logo {
+    // margin-top: 13px;
+  }
+  footer {
+    border-top: 1px solid #e9e9e9;
+  }
+  .u-mob-login-header {
+    position: absolute;
+    right: 44px;
+    top: 4px;
+    display: block;
+  }
+  .i-top-fold-content-wrapper {
+    margin-top: @space * 2;
+    text-align: center;
+  }
+  .login-header-inp-wrapper {
+    // display: none;
+    .size(40px, 40px);
+    line-height: 35px;
+    .border-radius(4px);
+    text-align: center;
+    border: 1px solid #efefef;
+    float: right;
+    input {
+      display: none;
+    }
+  }
+  .u-mob-profile-dropdown {
+    position: absolute;
+    right: @space * 3;
+    top: 4px;
+    border-left: none;
+    .social-dropdown-toggle {
+      right: 0;
+      left: auto;
+      top: 126px;
+      li {
+        padding: 6px 12px;
+      }
+    }
+  }
+  .bg-arrow:after {
+    top: 7px;
+  }
+  .main-logo {
+    max-width: 94px;
+    margin-top: 6px;
+  }
+  .u-mob-main-logo-m {
+    margin-top: 13px;
+  }
+  .profile-header {
+    color: #616263;
+    &:focus,
+    &:hover {
+      color: #616263;
+    }
+  }
+  .login-header-inp-search-icon {
+    position: relative;
+    right: 0;
+    top: 0;
+    max-width: 16px;
+  }
+  .i-top-fold-wrapper {
+    padding-top: 52px;
+  }
+  .i-top-fold-input-wrap {
+    border: none;
+    display: block;
+    margin-right: 0px;
+    font-size: @font-size;
+  }
+  .i-top-fold-search-wrapper {
+    height: auto;
+    width: 100%;
+    button {
+      margin-top: 0px;
+      margin-left: 0px;
+      z-index: 0;
+    }
+    .i-top-search-dr-course-input {
+      width: 100%;
+      .border-radius(4px);
+      border: solid 1px #efefef;
+      height: 51px !important;
+      margin-bottom: @space;
+    }
+    .c-dropdown {
+      border: solid 1px #efefef;
+      .border-radius(4px);
+      margin-bottom: @space;
+    }
+  }
+  .i-top-city-dropdown {
+    width: 100%;
+    .c-button--dropdown {
+      margin-left: 0px;
+      font-size: @font-size;
+      padding: 0px @space - 4;
+      line-height: 51px;
+      &:after {
+        top: 20px;
+        right: 12px;
+        width: 8px;
+        height: 8px;
+      }
+      span {
+        font-size: @font-size;
+        vertical-align: unset;
+      }
+    }
+    .c-dropdown__list {
+      left: 0px;
+    }
+  }
+  .i-top-fold-list {
+    margin-top: @space * 3;
+    text-align: center;
+    li {
+      padding-right: 0px;
+      padding-left: 0px;
+      width: 32%;
+      h5 {
+        font-size: 10px;
+      }
+    }
+  }
+  .i-top-fold-list-counter {
+    font-size: @space + @space / 2;
+  }
+  .i-top-fold-list-plus-sign {
+    font-size: @space + 4;
+  }
+  .i-dr-stud-right-content {
+    margin-top: @space * 4;
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .can-toggle {
+    margin-left: auto;
+    margin-right: auto;
+    span:nth-child(1) {
+      margin-left: -46px;
+    }
+  }
+  .i-dr-student-counter-list {
+    li {
+      width: 49%;
+      padding-right: 0px;
+      span {
+        font-size: @font-size * 4;
+      }
+      img {
+        margin-top: -32px;
+        max-height: 36px;
+      }
+      p {
+        font-size: @font-size-small;
+        max-width: 100%;
+      }
+    }
+  }
+  .how-works-help-section {
+    padding: @space - 4;
+    font-size: @font-size;
+  }
+  .i-top-course-slider-heading {
+    text-align: center;
+  }
+  .i-top-course-slider {
+    margin-top: @space * 3;
+  }
+  .i-bottom-fold {
+    margin-top: @space * 6;
+  }
+  .slider-arrow-btn {
+    min-width: auto !important;
+    img {
+      width: 8px;
+    }
+  }
+  .slider-prev-btn {
+    left: 0px;
+  }
+  .slider-next-btn {
+    right: 0px;
+  }
+  .u-mob-invisible-foo-para {
+    display: none;
+  }
+  .i-footer-links {
+    padding-top: @space + 4;
+    padding-bottom: @space + 4;
+    float: none;
+    li {
+      padding-left: 0px;
+      padding-right: @space;
+    }
+  }
+  //index page mobile responsive end
+
+  //register page mobile responsive start
+  .header-right-section {
+    li {
+      font-size: 14px;
+      padding: 5px 6px;
+    }
+  }
+  .reg-user-type-wrapper {
+    border: none;
+  }
+  .reg-user-type-wrapper {
+    li {
+      background-color: @light-color !important;
+      display: inline-block;
+      border: none;
+      padding-left: 0px;
+      padding-right: 0px;
+      width: 100%;
+    }
+  }
+  .reg-user-type-wrapper {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  //register page mobile responsive end
+
+  //login page mobile responsive start
+  .signup-heading-section {
+    text-align: center;
+  }
+  .u-mob-padd-lr-16 {
+    padding-left: @space;
+    padding-right: @space;
+  }
+  .u-mob-padd-lr-8 {
+    padding-left: @space / 2;
+    padding-right: @space / 2;
+  }
+  .u-mob-padd-l-16 {
+    padding-left: @space;
+  }
+  .u-mob-padd-r-16 {
+    padding-right: @space;
+  }
+  .u-mob-padd-lr-none {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .u-mob-padd-l-none {
+    padding-left: 0px !important;
+  }
+  .u-mob-padd-r-none {
+    padding-right: 0px !important;
+  }
+  .u-mob-padd-t-none {
+    padding-top: 0px;
+  }
+  .u-mob-text-align-center {
+    text-align: center;
+  }
+  .u-mob-float-none {
+    float: none !important;
+  }
+  //login page mobile responsive end
+
+  //signup page mobile responsive start
+  .signup-sticky-bottom {
+    width: 100%;
+    padding: @space / 2 0px;
+  }
+  .progress {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: @space * 2;
+    // width: 240px;
+  }
+
+  .signup-user-profile-wrapper {
+    text-align: center;
+  }
+  .signup-upload-right-sec {
+    display: block !important;
+    padding-left: 0px;
+    padding-top: @space - 4;
+  }
+  .signup-profile-browse input {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+  .signup-profile-browse a span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .signup-country-code {
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .modal-dialog.modal-large {
+    width: auto;
+    margin: 10px;
+  }
+  .modal-cancel-btn {
+    min-width: auto;
+    img {
+      max-width: 16px;
+    }
+  }
+  .add-edu-details-modal-content {
+    max-width: 100%;
+    padding-left: @space;
+    padding-right: @space;
+  }
+  .date-picker-icon {
+    min-width: auto !important;
+  }
+  .delete-details-col-content {
+    padding-left: @space;
+    padding-right: @space;
+  }
+  .signup-col-edit-delete-icons {
+    text-align: right !important;
+  }
+  .signup-work-duration-section {
+    margin-top: @space - 4;
+  }
+  .signup-add-education-section {
+    text-align: center;
+  }
+
+  //signup page mobile responsive end
+
+  //course page mobile responsive start
+
+  .h-tab_tab-head {
+    li {
+      overflow: initial;
+      &:first-child {
+        margin-left: 0px;
+      }
+    }
+  }
+  .profile-top-left-content {
+    padding-left: 0px;
+  }
+
+  //course page mobile responsive end
+
+  //profile page mobile responsive start
+  .doced-content-wrapper {
+    padding-top: 52px;
+  }
+
+  .profile-top-right-section {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-top: @space * 2;
+  }
+  .profile-user-image {
+    .circle(64px);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .profile-top-left-width {
+    width: 100%;
+  }
+  .profile-right-e-share-list {
+    padding: 0px;
+    margin-top: -4px;
+    li {
+      a {
+        img {
+          max-height: 28px;
+        }
+      }
+    }
+  }
+  .profile-right-info-list {
+    padding: 0;
+    li {
+      img {
+        top: 2px;
+      }
+    }
+  }
+
+  //profile page mobile responsive end
+
+  //profile page edit mobile responsive start
+  .dr-profile-tabs-wrapper {
+    padding-top: 52px;
+  }
+
+  .doctor-profile-bg-gray {
+    h1 {
+      margin: @space * 2 0px @space / 2;
+    }
+  }
+
+  .vertical-tabs {
+    margin-left: 0;
+  }
+
+  .tabs {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0px;
+    margin-right: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #e9e9e9;
+      bottom: 2px;
+      right: 0px;
+      left: 0px;
+    }
+    li {
+      display: inline-block;
+      position: relative;
+      margin: @space / 2;
+      &:first-child {
+        margin-left: 0px;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -6px;
+        left: 0px;
+        right: 0px;
+      }
+      &.active {
+        i {
+          display: none !important;
+        }
+
+        &:after {
+          background-color: #4a4d4f;
+          z-index: 1;
+        }
+      }
+      a {
+        padding: 0px;
+        border-bottom: none;
+      }
+    }
+  }
+  .tabs-content {
+    max-width: 100%;
+    padding-left: 0;
+    .content {
+      margin-top: 0px;
+    }
+  }
+  .tabs-content-heading {
+    border-bottom: none;
+  }
+  .tabs-content-heading {
+    margin-bottom: 0px;
+  }
+  .student-signup-skills-col-para {
+    margin: @space - 2 0px;
+  }
+  //profile page edit mobile responsive end
+
+  //course page mobile responsive start
+
+  .right-panel-browsing {
+    margin-left: 0;
+    width: 100%;
+    .right-browse-main {
+      padding-right: 0;
+      padding-bottom: @space * 6;
+      margin-top: @space + @space / 2;
+    }
+  }
+  .browse-heading-course {
+    display: none;
+  }
+  .u-mob-course-fixed-top {
+    position: fixed;
+    z-index: 1;
+    background: @light-color;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    padding: @space - 4 0px @space - 2;
+    border-top: 1px solid #efefef;
+  }
+  .wrapper-dropdown-3 {
+    span {
+      position: inherit;
+      float: none;
+      bottom: 0px !important;
+      margin-right: 0px;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+  }
+  .wrapper-dropdown-3 {
+    .dropdown1 {
+      bottom: 100%;
+      text-align: left;
+      &:before {
+        display: none;
+      }
+      &:after {
+        content: "";
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        left: 54px;
+        border-bottom: 1px solid #d8d8d8;
+        border-right: 1px solid #d8d8d8;
+        background: #fff;
+        margin-top: -4px;
+        top: 100%;
+        transform: rotate(45deg);
+      }
+    }
+    span {
+      &:after {
+        display: none;
+      }
+    }
+  }
+  .u-mob-course-sort-dropdown {
+    bottom: auto !important;
+    margin-top: 12px;
+    &:before {
+      content: "";
+      display: block !important;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      left: auto !important;
+      right: 28px !important;
+      border-bottom: 1px solid #d8d8d8;
+      border-right: 1px solid #d8d8d8;
+      background: #fff;
+      margin-top: -4px;
+      bottom: 100%;
+      transform: rotate(45deg);
+      top: -1px !important;
+    }
+    &:after {
+      display: none;
+    }
+  }
+  .s-browse-left-panel {
+    display: none;
+    width: 100%;
+    bottom: 0;
+    position: fixed !important;
+    height: 0px;
+    box-shadow: none;
+    transition: height 0.3s ease-in-out;
+    .full-width-btn {
+      position: fixed;
+      bottom: 0px;
+      border-top: solid 1px #efefef;
+      padding: @space - 4 0px;
+      background-color: #f9f9f9;
+    }
+    .accordian {
+      .accordian--item {
+        padding: @space / 2 @space;
+        &:last-child {
+          padding-bottom: @space * 3;
+        }
+        .full-datepick-block {
+          display: flex;
+          .signup-input-wrap-left {
+            position: relative;
+            width: 100%;
+            .date1-picker-icon {
+              min-width: 26px;
+              top: 0;
+              bottom: 0;
+            }
+          }
+        }
+      }
+    }
+    .apply-btn {
+      color: #e88353;
+    }
+  }
+  .u-mob-bottom-filter-tab {
+    img {
+      width: 12px;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+  }
+  .open-u-mob-bottom-filter-tab {
+    display: block;
+    height: calc(100% - 52px);
+  }
+
+  #apply_button {
+    margin-top: 0px;
+    font-size: 16px;
+    background: transparent;
+    border: none;
+  }
+  .u-mob-border-right {
+    border-right: 1px solid #efefef;
+  }
+  .u-mob-hide-cancel-btn {
+    display: none;
+  }
+  .u-mob-show-cancel-btn {
+    display: inline-block;
+  }
+  //course page mobile responsive end
+
+  //course details mobile responsive start
+
+  .view-details-schedule-first {
+    .schedule-second {
+      li {
+        width: auto;
+        margin-right: @space + 2;
+      }
+    }
+  }
+  .foot-note {
+    span {
+      padding-bottom: @space + 4;
+    }
+  }
+
+  .listed-courses {
+    span {
+      margin: 0px;
+    }
+  }
+  .profile-top-left-content {
+    margin-top: -1px;
+    padding-left: @space / 2;
+    h3 {
+      margin: 0px;
+    }
+  }
+  .profile-top-left-section {
+    padding-top: @space * 2;
+    text-align: center;
+  }
+  .profile-top-info-section {
+    padding-bottom: @space - 4;
+    border-bottom: 1px solid #efefef;
+  }
+  .d-view-right-part {
+    padding-left: 0px;
+  }
+  .d-view-left-part {
+    .right-d-course {
+      top: auto;
+      bottom: 16px;
+    }
+    .left-d-course {
+      width: 100%;
+    }
+  }
+  .rightprofile-course {
+    width: 100%;
+    float: none;
+    text-align: center;
+    img {
+      float: none;
+    }
+    .profile-details-course {
+      float: none;
+      padding-left: 0px;
+      width: 100%;
+    }
+  }
+  .d-view-left-part {
+    margin-top: @space / 2;
+    margin-bottom: @space * 2;
+    ul {
+      padding-left: 0px !important;
+    }
+    .gallery {
+      margin-bottom: 56px;
+    }
+  }
+
+  .gallery-items {
+    margin-left: 0px;
+  }
+  .rightprofile-course {
+    h4 {
+      text-align: center;
+    }
+  }
+  .u-applied-box {
+    width: 100%;
+  }
+  .dr-profile-course-col {
+    width: 100%;
+  }
+  //course details mobile responsive end
+
+  //about us mobile responsive start
+
+  .text-professional {
+    padding: @space;
+  }
+  .about-us-text {
+    padding: 0px;
+  }
+  .team-work img {
+    height: 130px;
+  }
+  .signup-right-section {
+    padding-top: @space * 5;
+  }
+  //about us mobile responsive end
+
+  //dr course mobile responsive start
+  .u-mob-hide-view-btn {
+    display: none;
+  }
+  .u-mob-visible-view-btn {
+    display: inline-block;
+    min-width: auto !important;
+    font-size: 14px;
+  }
+  .doctor-view-main-panel {
+    width: 100%;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    right: 0;
+  }
+  .doctor-view-content-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .doctor-view-col-bottom-text {
+    padding-top: 7px;
+    font-size: 12px;
+  }
+  .u-mob-dr-content-btn-wrap {
+    margin-top: 12px;
+  }
+  .doctor-view-content-heading {
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .u-mob-dr-view-sort {
+    float: right;
+    vertical-align: middle;
+    display: inline-block;
+    margin-top: 3px;
+  }
+  .u-mob-bottom-fixed-dr-view-tab {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 1;
+  }
+  .doctor-view-content-cols {
+    padding: @space;
+  }
+  .dr-view-side-panel-list {
+    text-align: center;
+    border-top: 1px solid #efefef;
+    li {
+      background-color: #fff !important;
+      border-bottom: none;
+      padding: 16px 0px !important;
+      width: 49%;
+      display: inline-block;
+      &:first-child {
+        border-right: 1px solid #efefef;
+      }
+    }
+  }
+  //dr course mobile responsive end
+
+  //student list mobile responsive start
+  .applied-courses {
+    .student-listing {
+      display: inline-block;
+      width: auto;
+      vertical-align: middle;
+      margin-right: @space - 2;
+      float: none;
+      &:last-child {
+        float: right;
+      }
+      &:first-child {
+        width: auto;
+      }
+    }
+  }
+  //student list mobile responsive end
+
+  //student list modal mobile responsive start
+  .student-rejection {
+    float: none;
+    text-align: center;
+    img {
+      margin-left: auto;
+      margin-right: auto;
+      float: none;
+      .circle(64px);
+    }
+    .rejection-left-details {
+      float: none;
+    }
+  }
+  .rejection-right-details {
+    img {
+      .size(16px, 16px);
+    }
+  }
+  .d-student-view-main {
+    padding: @space;
+  }
+  #d-student-rejection-modal .modal-large {
+    margin: 10px;
+  }
+  .d-student-rejection-modal-content {
+    padding: @space;
+  }
+  //student list modal mobile responsive end
+} // @media - phone
+
+@media (min-width: 768px) and (max-width: 991px) {
+  body {
+    font-size: @font-size - 1;
+  }
+  .btn {
+    .button-size(8px; 16px; @font-size - 1; 1.3; 4px);
+    .min-width(120px);
+  }
+  h1,
+  .h1 {
+    font-size: @font-size + 9;
+  }
+  h2,
+  .h2 {
+    font-size: @font-size + 7;
+  }
+  h3,
+  .h3 {
+    font-size: @font-size + 5;
+  }
+  h4,
+  .h4 {
+    font-size: @font-size + 3;
+  }
+  h5,
+  .h5 {
+    font-size: @font-size + 1;
+  }
+  h6,
+  .h6 {
+    font-size: @font-size - 1;
+  }
+  .fixed-wrapper {
+    padding-left: @space;
+    padding-right: @space;
+  }
+  .tab-head-secondary {
+    li {
+      padding: 0;
+      margin-right: @space / 2;
+      min-width: @space;
+      height: @space - 7;
+    }
+  } // tab head secondary
+  //index page tab responsive start
+  footer {
+    border-top: 1px solid #e9e9e9;
+  }
+  .main-logo {
+    margin-top: 12px;
+  }
+  .u-tab-main-logo-m {
+    margin-top: @space / 2 - 2;
+  }
+  .header-right-section li {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+  .social-dropdown-toggle li {
+    padding: 6px 12px;
+  }
+  .i-top-fold-content-wrapper {
+    margin-top: @space * 3;
+    text-align: center;
+  }
+  .i-top-fold-search-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .i-top-fold-list {
+    text-align: center;
+    margin-top: @space * 3;
+    li {
+      text-align: center;
+      width: 32%;
+    }
+  }
+  .i-dr-stud-right-content {
+    margin-top: @space * 5;
+    text-align: center;
+  }
+  .can-toggle {
+    margin-right: auto;
+    margin-left: auto;
+    span:nth-child(1) {
+      margin-left: -46px;
+    }
+  }
+  .i-dr-student-counter-list {
+    li {
+      padding-right: 0px;
+      width: 49%;
+      p {
+        max-width: 100%;
+      }
+    }
+  }
+  .slider-arrow-btn {
+    min-width: auto;
+  }
+  .slider-next-btn {
+    right: 0px;
+  }
+  .slider-prev-btn {
+    left: 0px;
+  }
+  .i-top-course-slider {
+    margin-top: @space * 4;
+  }
+  .i-bottom-fold {
+    margin-top: @space * 6;
+  }
+  .u-mob-invisible-foo-para {
+    display: none;
+  }
+  .footer-copy-right-text {
+    text-align: center;
+    margin-top: @space * 2;
+  }
+  .u-tab-center-copy-text {
+    text-align: center;
+  }
+  //index page tab responsive end
+
+  //signup page tab responsive start
+  .signup-sticky-bottom {
+    width: 100%;
+    padding: @space / 2 0px;
+  }
+  .progress {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: @space * 2;
+  }
+  .signup-user-profile-wrapper {
+    text-align: center;
+  }
+  .signup-upload-right-sec {
+    display: block !important;
+    padding-left: 0px;
+    padding-top: @space - 4;
+  }
+  .signup-profile-browse input {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+  .signup-profile-browse a span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .signup-country-code {
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .date-picker-icon {
+    min-width: auto !important;
+    padding: 8px 12px !important;
+  }
+  .modal-dialog.modal-large {
+    width: auto;
+    margin: 10px;
+  }
+  .modal-cancel-btn {
+    min-width: auto;
+    img {
+      max-width: 16px;
+    }
+  }
+  .signup-add-education-section {
+    text-align: center;
+  }
+  .signup-col-edit-delete-icons {
+    text-align: right !important;
+  }
+  .signup-work-duration-section {
+    margin-top: @space - 4;
+  }
+  .u-col-tab-md-left-padd-none {
+    padding-left: 0px !important;
+  }
+  //signup page tab responsive end
+
+  //register page tab reponsive start
+  .doc-radio-label {
+    font-size: 14px;
+    vertical-align: text-bottom;
+  }
+  //register page tab responsive end
+
+  //profile page edit mobile responsive start
+  .dr-profile-tabs-wrapper {
+    padding-top: 52px;
+  }
+
+  .doctor-profile-bg-gray {
+    h1 {
+      margin: @space * 2 0px @space / 2;
+    }
+  }
+
+  .vertical-tabs {
+    margin-left: 0;
+  }
+
+  .tabs {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0px;
+    margin-right: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #e9e9e9;
+      bottom: 2px;
+      right: 0px;
+      left: 0px;
+    }
+    li {
+      display: inline-block;
+      position: relative;
+      margin: @space;
+      &:first-child {
+        margin-left: 0px;
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: -14px;
+        left: 0px;
+        right: 0px;
+      }
+      &.active {
+        i {
+          display: none !important;
+        }
+
+        &:after {
+          background-color: #4a4d4f;
+          z-index: 1;
+        }
+      }
+      a {
+        padding: 0px;
+        border-bottom: none;
+      }
+    }
+  }
+  .tabs-content {
+    max-width: 100%;
+    padding-left: 0;
+    .content {
+      margin-top: 0px;
+    }
+  }
+  .tabs-content-heading {
+    border-bottom: none;
+  }
+  .tabs-content-heading {
+    margin-bottom: 0px;
+  }
+  //profile page edit mobile responsive end
+
+  //course details pages tab responsive start
+
+  .s-browse-left-panel {
+    width: 290px;
+    .accordian {
+      .accordian--item {
+        padding: @space / 2 @space + 2;
+      }
+    }
+    .browse-heading {
+      padding: @space / 2 @space + 2;
+    }
+  }
+  .right-panel-browsing {
+    margin-left: 290px;
+    width: calc(100% - 280px);
+  }
+  .foot-note {
+    span {
+      vertical-align: middle;
+      padding-top: 3px;
+    }
+    .right-btns {
+      vertical-align: middle;
+      a:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+  .s-browse-left-panel {
+    .full-width-btn {
+      // position: fixed;
+    }
+  }
+  //course details pages tab responsive end
+
+  //about us tab responsive start
+
+  .about-us-text {
+    padding: 0px;
+  }
+
+  .text-professional {
+    padding: @space;
+  }
+
+  //about us tab responsive end
+
+  //dr course tab responsive start
+  .doctor-view-side-panel {
+    width: 280px;
+  }
+  .doctor-view-main-panel {
+    width: calc(100% - 280px);
+    margin-left: 280px;
+  }
+  .doctor-view-content-wrapper {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .u-mob-dr-content-btn-wrap {
+    margin-top: 8px;
+  }
+  //dr course tab responsive end
+
+  //student-list tab responsive start
+  .applied-courses {
+    .student-listing {
+      a {
+        img {
+          width: 28px;
+          height: 28px;
+          &:first-child {
+            margin-right: 6px;
+          }
+        }
+      }
+    }
+  }
+
+  .applied-courses {
+    .student-listing {
+      .profile-pic {
+        margin-left: 54px;
+      }
+    }
+  }
+} // @media - tab
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .col-lg-1,
+  .col-lg-10,
+  .col-lg-11,
+  .col-lg-12,
+  .col-lg-2,
+  .col-lg-3,
+  .col-lg-4,
+  .col-lg-5,
+  .col-lg-6,
+  .col-lg-7,
+  .col-lg-8,
+  .col-lg-9,
+  .col-md-1,
+  .col-md-10,
+  .col-md-11,
+  .col-md-12,
+  .col-md-2,
+  .col-md-3,
+  .col-md-4,
+  .col-md-5,
+  .col-md-6,
+  .col-md-7,
+  .col-md-8,
+  .col-md-9,
+  .col-sm-1,
+  .col-sm-10,
+  .col-sm-11,
+  .col-sm-12,
+  .col-sm-2,
+  .col-sm-3,
+  .col-sm-4,
+  .col-sm-5,
+  .col-sm-6,
+  .col-sm-7,
+  .col-sm-8,
+  .col-sm-9,
+  .col-xs-1,
+  .col-xs-10,
+  .col-xs-11,
+  .col-xs-12,
+  .col-xs-2,
+  .col-xs-3,
+  .col-xs-4,
+  .col-xs-5,
+  .col-xs-6,
+  .col-xs-7,
+  .col-xs-8,
+  .col-xs-9 {
+    padding-left: @grid-gutter / 2;
+    padding-right: @grid-gutter / 2;
+  }
+  .main-header {
+    margin-bottom: @space / 2;
+  }
+  h1,
+  h2,
+  h3 {
+    margin-top: @space / 3;
+    margin-bottom: @space / 3;
+  }
+  h4,
+  h5,
+  h6 {
+    margin-top: @space / 4;
+    margin-bottom: @space / 4;
+  }
+  .tab-head {
+    height: 26px;
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+  .accordion-header {
+    font-size: inherit;
+    .accordion-head {
+      padding: @space / 2;
+      padding-right: @space;
+      &:after {
+        right: @space / 3;
+      }
+    } // accordion head
+  } // accordion header
+  .justified li:last-child {
+    //border-right: 1px solid #ebebeb;
+  }
+  .header-list li {
+    margin: 4px 10px;
+  }
+  //index page responsive start
+  .i-dr-student-counter-list {
+    li {
+      padding-right: @space * 6;
+    }
+  }
+  //index page responsive end
+  //signup page tab responsive start
+  .signup-sticky-bottom {
+    width: 100%;
+    padding: @space / 2 0px;
+  }
+  .progress {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: @space * 2;
+  }
+  .signup-user-profile-wrapper {
+    text-align: center;
+  }
+  .signup-upload-right-sec {
+    display: block !important;
+    padding-left: 0px;
+    padding-top: @space - 4;
+  }
+  .signup-profile-browse input {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+  }
+  .signup-profile-browse a span {
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .signup-country-code {
+    padding: 10px;
+    margin-top: 20px;
+  }
+  .signup-work-duration-section {
+    margin-top: @space - 4;
+  }
+  .u-col-tab-md-left-padd-none {
+    padding-left: 0px !important;
+  }
+  //signup page tab responsive end
+
+  //student profile responsive start
+  .tabs {
+    margin-left: -278px;
+  }
+  .vertical-tabs {
+    margin-left: 278px;
+  }
+  //student profile responsive end
+} // @media
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .header-list li {
+    margin: 4px 10px;
+  }
+}

@@ -1,0 +1,218 @@
+// This file contains panel setting including side-panel and main-panel - @jay
+
+.main-panel, .side-panel{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	height: 100%;
+	height: 100vh;
+	overflow-y: auto;
+	width: 100%;
+	.transition();
+}
+
+
+// ----------------------------- side panel
+.side-panel{
+	width: @side-panel-width;
+	background-color: @panel-color;
+	color: lighten(@panel-color, 35%);
+	//padding: @space/2 (@space * 2);
+}
+.side-panel-brand{
+		opacity: 0.4;
+		.transition();
+		text-align: center;
+		img{
+			max-height: @space * 2;
+			margin: @space/2 (@space * 2);
+		}
+		&:hover{
+			opacity: 0.7;
+		}
+
+		&.mini-brand{
+			opacity: 1;
+			.grayscale();
+			&:hover{
+				.grayscale(0);
+			}
+		}
+	} // side-panel-brand
+
+	.side-panel-options{
+		margin-top: @space * 2;
+		li{
+			padding: @space/2 (@space * 2);
+			text-transform: uppercase;
+			.transition();
+			position: relative;
+			cursor: pointer;
+			i{
+				font-size: 20px;
+				margin-right: @space;
+			} // i
+			&:hover{
+				color: lighten(@dark-gray-color, 35%);
+			}
+			&.active{
+				color: @light-color;
+				&::after{
+					content: "";
+					position: absolute;
+					right: 0;
+					top: 50%;
+					margin-top: -(5px);
+					.triangle(left, 6px, 6px, @bg-color)					
+				}
+			} // .active
+		} // li
+	}  // side panel options
+
+	.notif-bubble{
+		.border-radius(30px);
+		padding: 1px 5px;
+		.min-width(18px);
+		background-color: @brand-color;
+		color: @light-color;
+		vertical-align: top;
+		font-size: 80%;
+		position: absolute;
+		right: @space * 2;
+		&::after{
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: -2px;
+			margin-top: -3px;
+			.triangle(left, 3px, 3px, @brand-color)
+		}
+	} // notif-bubble
+
+	.logout-option{
+		position: absolute;
+		left: @space * 2;
+		bottom: @space;
+		text-transform: uppercase;
+		font-size: 90%;
+		a{
+			color: lighten(@panel-color, 35%);
+			&:hover{
+				color: darken(@gray-color, 15%);
+			}
+		} // a
+	} // logout-option
+
+	.panel-tab-text{ // text beside icons
+		vertical-align: middle;
+		.opacity(1);
+	}
+
+
+// ----------------------------- main panel
+.main-panel{
+	background-color: @bg-color;
+}
+	.main-panel-logo{
+		position: absolute;
+		top: 20px;
+	}
+	.main-panel-text{
+		position: absolute;
+		bottom: 0px;
+		color: @light-color;
+	}
+//.main-panel{
+//	.width-calc(@side-panel-width);
+//}
+
+// ----------------------------- hide-panel
+// ----------------------------- to hide and show panel - links
+
+.hide-panel{
+	position: absolute;
+	right: 0;
+	bottom: 40px;
+	border-radius: 50px 0px 0px 50px;
+	background-color: rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	.size(100px, 35px);
+	.transition();
+
+	i{
+		vertical-align: sub;
+		margin-right: 8px;
+		margin-left: 20px;
+	}
+
+	&:hover{
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+} // hide-panel
+
+.mini-brand{
+	display: none;
+	.opacity(0);
+}
+
+.icon-maximize{
+	display: none;
+	.opacity(0);
+}
+
+.minimize{ // class to toggle on .side-panel to minimize the panel
+	.side-panel{
+		width: @side-panel-width-small;
+		.large-brand{
+			display: none;
+			.opacity(0);
+		}
+
+		.mini-brand{
+			display: inline-block;
+			.opacity(1);
+		}
+
+		.panel-tab-text{
+			display: none;
+			.opacity(0);
+		}
+
+		.side-panel-brand{
+			img{
+				margin: @space/2 @space;
+			}
+		} // .side-panel-brand
+
+		.side-panel-options{
+			li{
+				padding: @space/2 (@space + 4);
+			}
+		} // side-panel-options
+
+		.logout-option{
+			bottom: @space/2;
+			left: @space - 2;
+			a:first-child{
+				display: none;
+			}
+		}
+
+		.icon-maximize{
+			display: inline-block;
+			.opacity(1);
+		}
+
+		.icon-minimize{
+			display: none;
+			.opacity(0);
+		}
+
+		.hide-panel{
+			width: @side-panel-width-small;
+			.border-radius(1px);
+			bottom: 40px;
+		}
+
+	} // side-panel
+} // .minimize

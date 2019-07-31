@@ -1,0 +1,108 @@
+.justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  // border: 1px solid @dark-gray-color;
+  // border-collapse: separate;
+  > .btn {
+    float: none;
+    display: table-cell;
+    width: 50%;
+    //border-right: 1px solid darken(@gray-color, 2%);
+    .border-radius();
+    &:last-child{
+      border-right: none;
+    } // last-child
+
+    &.btn-option{
+      border-radius: 50px 0px 0px 50px;
+      &:last-child{
+        border-radius: 0px 50px 50px 0px;
+      }
+    } // btn-option
+  }
+  > .btn-group .btn {
+    width: 100%;
+  }
+  a, li{
+    
+    padding: @space/2 + @space/4;
+
+  } // li,a
+  li, .input-brick{
+    display: table-cell;
+    //text-align: center;
+    //border-right: 1px solid @dark-gray-color;
+    &:last-child{
+      border-right: none;
+    }
+  } // li, .input-brick
+
+  .input-brick:hover{color: @dark-gray-color;}
+
+  .social-brick{
+    cursor: pointer;
+    width: initial;
+    .transition();
+    &:first-child{
+      .border-left-radius(3px);
+    }
+
+    &:last-child{
+      .border-right-radius(3px);
+    }
+  } // social-brick
+
+  .social-facebook{
+    background-color: #3b5998;
+    &:hover{
+      background-color: darken(#3b5998, 15%);
+    }
+  } // social-fb
+  .social-instagram{
+    background-color: #3F729B;
+    &:hover{
+      background-color: darken(#3F729B, 15%);
+    }
+  } // social-insta
+  .social-google{
+    background-color: #DC4E41;
+    &:hover{
+      background-color: darken(#DC4E41, 15%);
+    }
+  } // social-insta
+
+
+  .social-facebook,
+  .social-instagram,
+  .social-google{
+    color: @light-color;
+    &:hover{
+      color: @light-color;
+    }
+  } // social
+
+
+  .input-brick{ // input area with equal width
+    border-right: 2px solid transparent;
+    input{
+      border-radius: 3px 0px 0px 3px;
+    }
+    &:last-child{
+      border-right: none;
+
+      input{
+        border-radius: 0px 3px 3px 0px;
+      }
+    } // :last-child
+  } // input-brick
+
+  > .btn-group .dropdown-menu {
+    left: auto;
+  }
+
+} // justified
+
+.tab-head.justified{
+  border-top: none;
+}
