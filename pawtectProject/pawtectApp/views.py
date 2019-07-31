@@ -52,7 +52,8 @@ def register(request):
                           {'user_form':user_form,
                            'profile_form':profile_form,
                            'registered':registered})
-def user_login(request):
+def login(request):
+    form = UserForm()
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -69,7 +70,7 @@ def user_login(request):
             print("They used username: {} and password: {}".format(username,password))
             return HttpResponse("Invalid login details given")
     else:
-        return render(request, 'pawtectApp/login.html', {})
+        return render(request, 'pawtectApp/login.html', {'form':form})
 
 
 
