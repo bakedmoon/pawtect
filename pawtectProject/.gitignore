@@ -1,0 +1,5 @@
+.env
+__pycache__
+*.pyc
+pawtectProject/__pycache__/
+pawtectApp/migrations
