@@ -103,3 +103,15 @@ def sendMailToUser(toEmail,name):
     toEmail = toEmail
     send_mail(subject, message,'Sagar Jadhav<sagar.crive@gmail.com>', [toEmail])
     
+
+def plans(request):
+    return render(request,'pawtectApp/plans.html')
+
+def review(request):
+    return render(request,'pawtectApp/review.html')
+
+def aboutUs(request):
+    return render(request,'pawtectApp/aboutUs.html')
+
+def quotation(request):
+    return render(request,'pawtectApp/quotation.html')
