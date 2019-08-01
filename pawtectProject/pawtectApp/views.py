@@ -57,20 +57,15 @@ def login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print("USERNAME IS==>>",username,password)
+        
         user = authenticate(username=username, password=password)
         if user:
-            if user.is_active:
-                login(request,user)
-                # return render(request,'pawtectApp/onboard.html')
-            else:
-                return HttpResponse("Your account was inactive.")
+            return HttpResponseRedirect(reverse('plans'))
         else:
-            print("Someone tried to login and failed.")
-            print("They used username: {} and password: {}".format(username,password))
-            return HttpResponse("Invalid login details given")
+            messages.error(request,"Something went wrong try again.")
+            return HttpResponseRedirect(reverse('login'))
     else:
-        return render(request, 'pawtectApp/login.html', {'form':form})
+        return render(request, 'pawtectApp/login.html')
 
 
 
@@ -80,7 +75,7 @@ def contact(request):
         return render(request,'pawtectApp/contact.html',{'form': form})
     else:
         form = ContactForm(request.POST)
-        print("THE REQUESTED BODY IS==>>",request.POST)
+       
         if form.is_valid():
             name = form.cleaned_data['Full_Name']
             Mobile_Number = form.cleaned_data['Mobile_Number']
@@ -93,7 +88,7 @@ def contact(request):
                 messages.error(request,"Something went wrong try again.")
             sendMailToUser(from_email,name)
             messages.success(request,"Mail Send Successfully.")
-
+            return HttpResponseRedirect(reverse('contact'))
     return render(request, "pawtectApp/contact.html", {'form': form})
 
 def sendMailToUser(toEmail,name):
@@ -121,3 +116,4 @@ def ter_of_use(request):
 
 def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
+

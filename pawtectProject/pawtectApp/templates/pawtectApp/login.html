@@ -1,18 +1,72 @@
-{% comment %} {% extends "pawtectApp/base.html" %} {% endcomment %}
+<!Doctype html>
+<html>
+<head>
+<title>Pawtect</title>
+ <link rel="stylesheet" href="/assets/style/pawtect/css/style.css" />
+<style>
+body{
+  margin:0;
+  padding:0;
+  background:url("https://wallpapercave.com/wp/sYqvBTj.jpg");
+  background-size:cover;
+  font-family:sans-serif;
+}
 
- {% block body_block %}
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Login here :</h1>
-<form method="post" action="{% url 'login' %}">
-          {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login">
-        {% if message %}
-        <span style="color:red">{{message}}</span>
-        {% endif %}
-        
+.loginbox{
+  width:420px;
+  height:400px;
+  color:#fff;
+  top:50%;
+  left:50%;
+  right:50%
+  opacity: 0.3;
+  position:absolute;
+  filter: alpha(opacity=30);
+  transform:translate(-50%,-50%);
+  box-sizing:border-box;
+  background: rgba(255, 255, 255, 0.6);
+   display:flex;
+  justify-content:center;
+  align-items:center;
+ flex-direction:column;
+}
+
+.avatar{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+ 
+}
+
+.login-form{
+  padding: 32px;
+  width: 100%;
+}
+
+</style>
+</head>
+<body>
+<div class="loginbox">
+<img src="https://wallpapercave.com/wp/sYqvBTj.jpg" class="avatar">
+<h2>Login</h2>
+
+<form method="post" class="login-form" action="{% url 'login' %}">
+{% csrf_token %}
+{% if messages %}
+{% for message in  messages%}
+<span style="color:red">{{message}}</span>
+{% endfor %}
+{% endif %}
+<p class="margin-bottom-none">Username</p>
+<input type="text" name="username" placeholder="Enter Username">
+<p class="margin-bottom-none">Password</p>
+<input type="password" name="password" placeholder"Enter Password">
+<br>
+</br>
+<div class="text-center">
+  <button type="submit" class="btn btn-primary">Login</button>
+</div>
 </form>
 </div>
-  </div>
-{% endblock %}
+</body>
+</html>
