@@ -28,7 +28,7 @@
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none">
           <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
-            <a href="">
+            <a href="{% url 'index' %}">
               <img
                 src="/assets/img/brand/main-logo.png"
                 alt="main-logo"
@@ -38,7 +38,7 @@
           </div>
           <div class="col-lg-10 col-md-8 col-sm-8 hidden-xs">
             <ul class="header-list">
-              <li class="active"><a href="">Home</a></li>
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
               <li><a href="{% url 'plans' %}">Plans</a></li>
               <li><a href="{% url 'quotation' %}">Get Quote</a></li>
               <li><a href="{% url 'review' %}">Review</a></li>

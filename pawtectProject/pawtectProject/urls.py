@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^review/',views.review,name='review'),
     url(r'^quotation/',views.quotation,name='quotation'),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
+    url(r'^terms/',views.ter_of_use,name='terms'),
+    url(r'^privacy/',views.privacy_policy,name='privacy'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^assets/(?P<path>.*)$', serve,{'document_root': settings.ASSETS}),
 ]

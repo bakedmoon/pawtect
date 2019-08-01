@@ -115,3 +115,9 @@ def aboutUs(request):
 
 def quotation(request):
     return render(request,'pawtectApp/quotation.html')
+
+def ter_of_use(request):
+    return render(request,'pawtectApp/terms.html')
+
+def privacy_policy(request):
+    return render(request,'pawtectApp/privacy.html')

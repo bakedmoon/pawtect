@@ -342,7 +342,7 @@
   <footer>
     <div class="wrapper">
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-        <a href="">
+        <a href="{% url 'index' %}">
           <img src="/assets/img/brand/main-logo.png" class="main-logo" />
         </a>
         <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
@@ -351,17 +351,17 @@
       <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
         <h6 class="footer-heading">Company</h6>
         <ul class="footer-list padd-left-none">
-          <li><a href="">Home</a></li>
-          <li><a href="">Plans</a></li>
-          <li><a href="">Get Quote</a></li>
-          <li><a href="">About Us</a></li>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'plans' %}">Plans</a></li>
+          <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+          <li><a href="{% url 'aboutUs' %}">About Us</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
         <ul class="footer-list u-footer-list-margin-top  padd-left-none">
-          <li><a href="">Terms of Usage</a></li>
-          <li><a href="">Privacy Policy</a></li>
-          <li><a href="">Contact Us</a></li>
+          <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+          <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+          <li><a href="{% url 'contact' %}">Contact Us</a></li>
         </ul>
       </div>
       <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
