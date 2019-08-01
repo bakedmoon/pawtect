@@ -12,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request, 'pawtectApp/index.html',{})
     try:
         settings = Settings.objects.get(key='home_banner_image')
         url = settings.value['url']
