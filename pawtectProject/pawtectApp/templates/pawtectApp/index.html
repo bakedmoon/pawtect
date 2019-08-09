@@ -2,20 +2,16 @@
 <div class="main-content-wrapper">
   <div class="wrapper">
     <div class="i-top-fold relative">
-    {% if imageUrl %}
-    <img
-        src="{{imageUrl}}"
+      {% if imageUrl %}
+      <img src="{{ imageUrl }}" alt="top-bg-img" class="i-top-fold-bg-img" />
+      {% else %}
+      <img
+        src="/assets/img/index/top-fold/pawtect-web-banner.jpg"
         alt="top-bg-img"
         class="i-top-fold-bg-img"
       />
-    {% else %} 
-        <img
-        src="https://www.aspca.org/sites/default/files/general-pet-care_facebook.jpg"
-        alt="top-bg-img"
-        class="i-top-fold-bg-img"
-      />
-    {% endif %}
-      
+      {% endif %}
+
       <div class="i-top-fold-carousel-box">
         <h6>
           First time in India,<br class="hidden-xs" />Medical cover for your
@@ -222,7 +218,7 @@
         <div class="item">
           <div class="i-testimonial-items relative">
             <img
-              src="https://www.reddogbetty.com/wp-content/uploads/2016/09/Pet-Care-Professional.jpg"
+              src="/assets/img/index/testimonial/image_shivan_rocky.png"
               class="i-testimonial-auth-img"
             />
             <div class="i-testimonial-descrip">
@@ -241,7 +237,7 @@
         <div class="item">
           <div class="i-testimonial-items relative">
             <img
-              src="https://www.reddogbetty.com/wp-content/uploads/2016/09/Pet-Care-Professional.jpg"
+              src="/assets/img/index/testimonial/image_shivan_rocky.png"
               class="i-testimonial-auth-img"
             />
             <div class="i-testimonial-descrip">
@@ -260,7 +256,7 @@
         <div class="item">
           <div class="i-testimonial-items relative">
             <img
-              src="https://www.reddogbetty.com/wp-content/uploads/2016/09/Pet-Care-Professional.jpg"
+              src="/assets/img/index/testimonial/image_shivan_rocky.png"
               class="i-testimonial-auth-img"
             />
             <div class="i-testimonial-descrip">
@@ -279,7 +275,7 @@
         <div class="item">
           <div class="i-testimonial-items relative">
             <img
-              src="https://www.reddogbetty.com/wp-content/uploads/2016/09/Pet-Care-Professional.jpg"
+              src="/assets/img/index/testimonial/image_shivan_rocky.png"
               class="i-testimonial-auth-img"
             />
             <div class="i-testimonial-descrip">
@@ -312,7 +308,12 @@
               Vetina Products, Vet's fee & Lab charges with our partners.
             </p>
           </div>
-          <div class="col-lg-4"></div>
+          <div class="col-lg-4">
+            <img
+              src="/assets/img/index/bottom-fold/vetcoin.png"
+              class="vetcoin-img"
+            />
+          </div>
         </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -392,6 +393,37 @@
             >
           </li>
         </ul>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+        <div class="mapouter">
+          <div class="gmap_canvas">
+            <iframe
+              width="100%"
+              height="100%"
+              id="gmap_canvas"
+              src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+            ></iframe
+            ><a
+              href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
+            ></a>
+          </div>
+          <style>
+            .mapouter {
+              position: relative;
+              text-align: right;
+              height: 100%;
+            }
+            .gmap_canvas {
+              overflow: hidden;
+              background: none !important;
+              height: 100%;
+            }
+          </style>
+        </div>
       </div>
     </div>
   </footer>
