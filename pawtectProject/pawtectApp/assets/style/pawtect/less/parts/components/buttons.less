@@ -56,7 +56,18 @@
   .button-variant(@btn-primary-color; @btn-primary-bg);
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
 }
-
+.btn-priamry-link {
+  color: #f49e22;
+  margin-top: @space - 4;
+  margin-bottom: @space / 2;
+  span,
+  img {
+    vertical-align: middle;
+  }
+  span {
+    padding-left: 4px;
+  }
+}
 //.btn-secondary-light{
 //	.button-variant(@btn-secondary-light-color; @btn-secondary-light-bg);
 //	text-shadow: 0px 0px 2px @secondary-color;
@@ -138,6 +149,11 @@
 .btn-lg,
 .btn-large {
   .button-size(10px, 40px, @font-size, 1.33, 4px);
+}
+.btn-md,
+.btn-medium {
+  min-height: 40px;
+  .button-size(4px, 20px, @font-size-small - 1, 1.5, 4px);
 }
 .btn-sm,
 .btn-small {
