@@ -83,7 +83,20 @@
     }
   }
 }
-
+.i-top-fold-logo-list {
+  padding-right: 16px;
+  li {
+    padding-left: 16px;
+    p {
+      font-size: 12px;
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+    img {
+      max-height: 24px;
+    }
+  }
+}
 .i-top-carousel-box-list {
   margin-top: @space + 2;
   li {
@@ -257,12 +270,16 @@
 .i-bottom-pitch-box {
   border: 1px solid #e9e9e9;
   .border-radius(6px);
+  min-height: 187px;
   h6 {
     color: @dark-color;
   }
 }
 
 .i-bottom-fold-list {
+  position: relative;
+  margin-right: @space + 2;
+  margin-top: @space;
   li {
     i {
       display: inline-block;
@@ -285,6 +302,19 @@
     font-size: @font-size-small - 2;
   }
 }
+.i-bottom-fold-right-bg {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  transform: scale(1.02);
+}
+.i-bottom-pitch-fold-right {
+  // background-image: url("/assets/img/index/bottom-fold/phone.png");
+  // background-repeat: no-repeat;
+  // background-position: left;
+}
 .i-bottom-fold-list {
   li {
     padding-bottom: @space / 2;
@@ -292,6 +322,12 @@
       padding-left: 8px;
     }
   }
+}
+
+.vetcoin-img {
+  max-height: 130px;
+  float: right;
+  margin-right: 16px;
 }
 
 //index page css end
@@ -375,3 +411,62 @@
     color: #fb9f2b;
   }
 }
+
+//login page css start
+.login-container {
+  padding-top: 106px;
+}
+.login-left-section {
+  position: fixed;
+  top: 106px;
+  left: 0px;
+  bottom: 0px;
+  width: 50%;
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.login-right-section {
+  overflow-y: auto;
+  padding-bottom: @space * 4;
+}
+.login-right-section-heading,
+.login-right-section-para {
+  color: #1e1e1e;
+}
+.login-right-section-heading {
+  margin-top: @space * 4;
+}
+.login-right-box {
+  input {
+    margin-bottom: @space;
+  }
+}
+
+.login-right-section-para {
+  margin-bottom: @space * 2;
+}
+.login-bottom-btn {
+  width: 220px;
+  margin-top: @space;
+}
+
+.u-col-padd-left-6 {
+  padding-left: 6px;
+}
+.u-col-padd-right-6 {
+  padding-right: 6px;
+}
+.login-otp-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  input {
+    .size(36px, 36px) !important;
+    margin: 0px 6px;
+  }
+}
+//login page css end
