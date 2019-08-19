@@ -1,14 +1,19 @@
 from __future__ import unicode_literals
 from django.shortcuts import render,redirect
-from .forms import UserForm,UserProfileInfoForm,ContactForm
+from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
+from django.db.models import Q
+import threading
 from django.contrib import messages
-from .models import Settings
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.models import User
+from .models import Settings,UserProfileInfo
+from .controller.UserController import UserController
+from . import utils
+from . import const
 
 
 def index(request):
@@ -20,17 +25,44 @@ def index(request):
     except Settings.DoesNotExist:
         return render(request, 'pawtectApp/index.html',{})
 
-def reg(request):
-    return render(request, 'pawtectApp/registration.html')
+def signup(request):
+    if request.method == 'POST':
+        ctrl = UserController()
+        if request.POST['password'] == request.POST['password2']:
+            existUser = User.objects.filter(Q(email=request.POST['email']) | Q(username=request.POST['mobile'])).exists()
+            if existUser:
+                messages.error(request,'User already exist for email or mobile number.')
+                return HttpResponseRedirect(reverse('register'))
+            else:
+                usersignup = ctrl.userSignup(request.POST)
+                return render(request,'pawtectApp/signup.html',{'is_otpModal':True,'mobileNumber':request.POST['mobile']})
+        else:
+            messages.error(request,'Password not match.')
+            return HttpResponseRedirect(reverse('register'))
+    else:
+        return render(request,'pawtectApp/signup.html',{'is_otpModal':False})
 
-@login_required
-def special(request):
-    return HttpResponse("You are logged in !")
 
-@login_required
+def otp(request):
+    if request.method == 'POST':
+        ctrl = UserController()
+        num1 = request.POST['num1']
+        num2 = request.POST['num2']
+        num3 = request.POST['num3']
+        num4 = request.POST['num4']
+        num5 = request.POST['num5']
+        num6 = request.POST['num6']
+        mobile = request.POST['mobile']
+        otp = num1+num2+num3+num4+num5+num6
+        userotp=ctrl.otpVerify(otp,mobile)
+        return HttpResponseRedirect(reverse('plans'))
+
+
+
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+    
 def register(request):
     registered = False
     if request.method == 'POST':
@@ -49,29 +81,25 @@ def register(request):
     else:
         user_form = UserForm()
         profile_form = UserProfileInfoForm()
-    return render(request,'pawtectApp/registration.html',
+    return render(request,'pawtectApp/signup.html',
                           {'user_form':user_form,
                            'profile_form':profile_form,
                            'registered':registered})
 def login(request):
     form = UserForm()
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        print("USERNAME IS==>>",username,password)
-        user = authenticate(username=username, password=password)
+        username = request.POST.get('username','')
+        password = request.POST.get('password','')
+        
+        user =auth.authenticate(username=username, password=password)
         if user:
-            if user.is_active:
-                login(request,user)
-                # return render(request,'pawtectApp/onboard.html')
-            else:
-                return HttpResponse("Your account was inactive.")
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('plans'))
         else:
-            print("Someone tried to login and failed.")
-            print("They used username: {} and password: {}".format(username,password))
-            return HttpResponse("Invalid login details given")
+            messages.error(request,"Something went wrong try again.")
+            return HttpResponseRedirect(reverse('login'))
     else:
-        return render(request, 'pawtectApp/login.html', {'form':form})
+        return render(request, 'pawtectApp/login.html')
 
 
 
@@ -81,20 +109,22 @@ def contact(request):
         return render(request,'pawtectApp/contact.html',{'form': form})
     else:
         form = ContactForm(request.POST)
-        print("THE REQUESTED BODY IS==>>",request.POST)
+       
         if form.is_valid():
             name = form.cleaned_data['Full_Name']
             Mobile_Number = form.cleaned_data['Mobile_Number']
-            from_email = form.cleaned_data['Email']
+            to_email = form.cleaned_data['Email']
             message = form.cleaned_data['Message']
             subject = "Someone Contact Us!"
             try:
-                send_mail(subject, message, from_email, ['Sagar Jadhav<sagar@bakedmoon.studio>'])
+                send_mail(subject, message, '', [const.ADMIN_MAIL])
             except BadHeaderError:
                 messages.error(request,"Something went wrong try again.")
-            sendMailToUser(from_email,name)
+            userMail = threading.Thread(target=utils.sendMailToUser, args=(to_email,name))
+            userMail.start()
+            userMail.join()
             messages.success(request,"Mail Send Successfully.")
-
+            return HttpResponseRedirect(reverse('contact'))
     return render(request, "pawtectApp/contact.html", {'form': form})
 
 def sendMailToUser(toEmail,name):
