@@ -1,18 +1,1 @@
-{% comment %} {% extends "pawtectApp/base.html" %} {% endcomment %}
-
- {% block body_block %}
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Login here :</h1>
-<form method="post" action="{% url 'login' %}">
-          {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Login">
-        {% if message %}
-        <span style="color:red">{{message}}</span>
-        {% endif %}
-        
-</form>
-</div>
-  </div>
-{% endblock %}
+{% extends "pawtectApp/coming-soon.html" %}

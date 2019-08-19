@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Pawtect</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://img.icons8.com/ios/100/000000/cat-footprint.png"
+    />
+
+    <!-- Owl Stylesheets -->
+    <link
+      rel="stylesheet"
+      href="/assets/style/vendor/owl-carousel/owl.carousel.min.css"
+    />
+    <!-- <link rel="stylesheet" href="/assets/style/vendor/style.css" /> -->
+    <link rel="stylesheet" href="/assets/style/vendor/custom_bootstrap.css" />
+    <link rel="stylesheet" href="/assets/style/vendor/normalize.css" />
+    <link rel="stylesheet" href="/assets/style/vendor/fontawesome.css" />
+    <link rel="stylesheet" href="/assets/style/vendor/elegant.css" />
+    <link rel="stylesheet" href="/assets/style/vendor/animate.css" />
+    <link rel="stylesheet" href="/assets/style/vendor/slick.css" />
+    <!-- <link rel="stylesheet" href="/assets/style/vendor/scroll.css" /> -->
+    <!-- <link rel="stylesheet" href="/assets/style/vendor/icomoon.css" /> -->
+    <link
+      rel="stylesheet"
+      href="/assets/style/vendor/jquery.fancybox.min.css"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <!-- common style -->
+    <link rel="stylesheet" href="/assets/style/pawtect/css/style.css" />
+  </head>
+  <body>
+    <header class="home-header">
+      <div class="wrapper">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none">
+          <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
+            <a href="{% url 'index' %}">
+              <img
+                src="/assets/img/brand/Pawtect-logo.jpg"
+                alt="main-logo"
+                class=""
+              />
+            </a>
+          </div>
+          <div class="col-lg-10 col-md-8 col-sm-8 hidden-xs">
+            <ul class="header-list">
+              <li class="active"><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'plans' %}">Plans</a></li>
+              <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+              <li><a href="{% url 'review' %}">Review</a></li>
+              <li><a href="{% url 'aboutUs' %}">About us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs padd-right-none">
+          <ul class="header-right-list pull-right">
+            <li class="header-right-list-icons">
+              <a href=""><i class="fa fa-phone" aria-hidden="true"></i></a>
+            </li>
+            <li class="header-right-list-icons mail-icon">
+              <a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a>
+            </li>
+            <li>
+              <a href="{% url 'login' %}">
+                <button class="btn ghost-btn-grey">Login</button>
+              </a>
+            </li>
+            <li>
+              <a href="{% url 'register' %}">
+                <button class="btn btn-primary">Sign up</button>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content-wrapper home-content-wrapper">
+      <div class="slider">
+        <div class="full-fluid">
+          <div class="slider_wrapper">
+            <div
+              class="slider-block"
+              style="background-image: url('/assets/img/home/slider-images/slider_background_1.jpg')"
+            >
+              <div class="slider-content">
+                <div class="container">
+                  <div class="row align-items-center justify-content-center">
+                    <div class="col-12 col-md-5 col-xl-6"></div>
+                    <div class="col-12 col-md-6">
+                      <div
+                        class="slider-img"
+                        data-animation="zoomIn"
+                        data-delay=".1s"
+                      >
+                        <img
+                          src="/assets/img/home/slider-images/slider_subbackground_1.png"
+                          alt=""
+                        />
+                        <div class="prallax-img">
+                          <div id="img-block">
+                            <img
+                              class="img"
+                              src="/assets/img/home/slider-images/slider_img_1.png"
+                              alt=""
+                              data-depth="1"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="slider-block"
+              style="background-image: url('/assets/img/home/slider-images/slider_background_2.jpg')"
+            >
+              <div class="slider-content">
+                <div class="container">
+                  <div class="row align-items-center justify-content-center">
+                    <div class="col-12 col-md-5 col-xl-6"></div>
+                    <div class="col-12 col-md-6">
+                      <div
+                        class="slider-img"
+                        data-animation="zoomIn"
+                        data-delay=".1s"
+                      >
+                        <img
+                          src="/assets/img/home/slider-images/slider_subbackground_1.png"
+                          alt=""
+                        />
+                        <img
+                          class="img"
+                          src="/assets/img/home/slider-images/slider_img_2.png"
+                          alt=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="i-top-fold-carousel-box">
+          <h6>
+            First time in India,<br class="hidden-xs" />Medical cover for your
+            pet.
+          </h6>
+          <div class="owl-carousel owl-theme" id="owl-carousel1">
+            <div class="item">
+              <ul class="i-top-carousel-box-list padd-left-none">
+                <li>95% of pets medical expenses reimbursed</li>
+                <li>
+                  Service charges starting Rs 122 per month for Red ribbon Plan
+                </li>
+                <li>Medical cover upto 1,50,000.</li>
+                <li>Coverage for all unexpected injuries and illnesses</li>
+              </ul>
+            </div>
+            <div class="item">
+              <ul class="i-top-carousel-box-list padd-left-none">
+                <li>No more worries of unforeseen medical expenses</li>
+                <li>
+                  Treatment at Any clinic anywhere in India
+                </li>
+                <li>
+                  Service charges starting Rs 233 per month for yellow ribbon
+                  Plan
+                </li>
+                <li>Online admission ,Payment and claim Settlement.</li>
+                <li>
+                  Payment through Debit card ,Credit card,Net banking,UPI
+                  ,Wallets etc
+                </li>
+              </ul>
+            </div>
+            <div class="item">
+              <ul class="i-top-carousel-box-list padd-left-none">
+                <li>Multi pet discount of 10% on Service charges .</li>
+                <li>
+                  Healthy pet discount of 5% on annual premium
+                </li>
+                <li>
+                  Service charges starting Rs 303 per month for Blue ribbon Plan
+                </li>
+                <li>
+                  Payment through Debit card ,Credit card,Net banking,UPI
+                  ,Wallets etc
+                </li>
+              </ul>
+            </div>
+            <div class="item">
+              <ul class="i-top-carousel-box-list padd-left-none">
+                <li>
+                  Get your pet covered for Major illness, soft tissue surgery,
+                  Accidental and third party liability.
+                </li>
+                <li>
+                  Microchipping of Pet is mandatory.
+                </li>
+                <li>
+                  Register your pet and get 500 vet coins.
+                </li>
+                <li>
+                  Get Upto 15 % no claim bonus
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button class="btn btn-small btn-primary">Get Quote</button>
+        </div>
+      </div>
+
+      <div class="wrapper">
+        <div class="top-fold-bottom-logo-wrap">
+          <ul class="i-top-fold-logo-list pull-right">
+            <li class="inline-block text-center">
+              <p>Secured by</p>
+              <img
+                src="/assets/img/index/top-fold-bottom-logo/Vetina_logo.png"
+              />
+            </li>
+            <li class="inline-block text-center">
+              <p>Powered by</p>
+              <img src="/assets/img/index/top-fold-bottom-logo/digit.svg" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="i-why-need-section clearfix">
+          <div class="section-heading">
+            <h3>Why do you need PawTect?</h3>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="i-why-need-cols">
+              <img src="/assets/img/index/why-need-section/icon1.png" />
+              <p>Treatment at any <br class="hidden-xs" />clinic in India</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="i-why-need-cols">
+              <img src="/assets/img/index/why-need-section/icon2.png" />
+              <p>
+                Secure your pet with upto<br class="hidden-xs" />
+                Rs. 1,50,000 mediclaim
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="i-why-need-cols">
+              <img src="/assets/img/index/why-need-section/icon3.png" />
+              <p>
+                Policy can be transferred<br class="hidden-xs" />
+                to the new owner*
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="i-why-need-cols">
+              <img src="/assets/img/index/why-need-section/icon4.png" />
+              <p>
+                Online admission, payment<br class="hidden-xs" />
+                and claim settlement
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="i-why-need-cols">
+              <img src="/assets/img/index/why-need-section/icon5.png" />
+              <p>
+                Coverage for all unexpected<br class="hidden-xs" />
+                injuries and illnesses
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div class="i-why-need-cols">
+              <img src="/assets/img/index/why-need-section/icon6.png" />
+              <p>
+                Tension free you and<br class="hidden-xs" />
+                protected pet
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="i-step-section clearfix">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="i-step-section-box i-step-left-section-box">
+              <div class="i-step-counter-col">
+                <span class="i-step-counter">1</span>
+                <div class="i-step-counter-col-descrip">
+                  <h6 class="margin-v-none">
+                    <img src="/assets/img/index/i-step-icons/1.png" /><span
+                      >Register your pet</span
+                    >
+                  </h6>
+                  <p>
+                    Enter all the necessary details about your pet and register
+                    it. We will verify and sign you up.
+                  </p>
+                </div>
+              </div>
+
+              <div class="i-step-counter-col">
+                <span class="i-step-counter">2</span>
+                <div class="i-step-counter-col-descrip">
+                  <h6 class="margin-v-none">
+                    <img src="/assets/img/index/i-step-icons/2.png" /><span
+                      >Select the right plan</span
+                    >
+                  </h6>
+                  <p>
+                    We have different plan to cover the medical expense. Select
+                    the right plan and make online payment.
+                  </p>
+                </div>
+              </div>
+
+              <div class="i-step-counter-col">
+                <span class="i-step-counter">3</span>
+                <div class="i-step-counter-col-descrip">
+                  <h6 class="margin-v-none">
+                    <img src="/assets/img/index/i-step-icons/3.png" /><span
+                      >Protect your pet</span
+                    >
+                  </h6>
+                  <p class="margin-bottom-none">
+                    Protect your pet against all the medical expenses respective
+                    to plan you have chosen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="i-step-section-box i-step-right-section-box">
+              <div class="i-step-right-section-box-content">
+                <h6 class="margin-top-none">Simple and Stress-free claims</h6>
+                <p>
+                  We make it easy to submit invoices when you need us, so you
+                  can focus on the important things - snuggles and belly rubs.
+                  Just submit your invoice online or by email, we'll take it
+                  from there!
+                </p>
+                <button class="btn btn-small btn-primary">
+                  Learn about claims
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="i-testimonial-section">
+          <div class="section-heading">
+            <h3>What our customer says</h3>
+          </div>
+          <div class="owl-carousel owl-theme fixed-wrapper" id="owl-carousel2">
+            <div class="item">
+              <div class="i-testimonial-items relative">
+                <img
+                  src="/assets/img/index/testimonial/image_shivan_rocky.png"
+                  class="i-testimonial-auth-img"
+                />
+                <div class="i-testimonial-descrip">
+                  <p>
+                    PawTect has saved us couple of times in past. Rocky was
+                    suffering through Cryptococcosis. Treatment was quite rare
+                    and costly. Thanks to PawTect Medical Cover. Must have for
+                    pets.
+                  </p>
+                  <div class="i-testimonial-author-details">
+                    <p class="margin-v-none">Shivam and Rocky</p>
+                    <p class="margin-v-none">New Delhi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="i-testimonial-items relative">
+                <img
+                  src="/assets/img/index/testimonial/image_shivan_rocky.png"
+                  class="i-testimonial-auth-img"
+                />
+                <div class="i-testimonial-descrip">
+                  <p>
+                    PawTect has saved us couple of times in past. Rocky was
+                    suffering through Cryptococcosis. Treatment was quite rare
+                    and costly. Thanks to PawTect Medical Cover. Must have for
+                    pets.
+                  </p>
+                  <div class="i-testimonial-author-details">
+                    <p class="margin-v-none">Shivam and Rocky</p>
+                    <p class="margin-v-none">New Delhi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="i-testimonial-items relative">
+                <img
+                  src="/assets/img/index/testimonial/image_shivan_rocky.png"
+                  class="i-testimonial-auth-img"
+                />
+                <div class="i-testimonial-descrip">
+                  <p>
+                    PawTect has saved us couple of times in past. Rocky was
+                    suffering through Cryptococcosis. Treatment was quite rare
+                    and costly. Thanks to PawTect Medical Cover. Must have for
+                    pets.
+                  </p>
+                  <div class="i-testimonial-author-details">
+                    <p class="margin-v-none">Shivam and Rocky</p>
+                    <p class="margin-v-none">New Delhi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="i-testimonial-items relative">
+                <img
+                  src="/assets/img/index/testimonial/image_shivan_rocky.png"
+                  class="i-testimonial-auth-img"
+                />
+                <div class="i-testimonial-descrip">
+                  <p>
+                    PawTect has saved us couple of times in past. Rocky was
+                    suffering through Cryptococcosis. Treatment was quite rare
+                    and costly. Thanks to PawTect Medical Cover. Must have for
+                    pets.
+                  </p>
+                  <div class="i-testimonial-author-details">
+                    <p class="margin-top-none">Shivam and Rocky</p>
+                    <p class="margin-v-none">New Delhi</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="i-bottom-pitch-fold clearfix">
+          <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <div class="i-bottom-pitch-box i-bottom-pitch-fold-left clearfix">
+              <div class="col-lg-8">
+                <h6>Register your pet now and earn vetCoins</h6>
+                <p>
+                  VetCoin is a unique reward points offered by Vetina. Signup
+                  today and earn 500 bonus VetCoins.
+                </p>
+                <p>
+                  VetCoins can be used to pay service charges for Medical cover,
+                  Vetina Products, Vet's fee & Lab charges with our partners.
+                </p>
+              </div>
+              <div class="col-lg-4">
+                <img
+                  src="/assets/img/index/bottom-fold/vetcoin.png"
+                  class="vetcoin-img"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <div
+              class="i-bottom-pitch-box i-bottom-pitch-fold-right clearfix relative"
+            >
+              <img
+                src="/assets/img/index/bottom-fold/phone.png"
+                class="i-bottom-fold-right-bg"
+              />
+              <div class="pull-right">
+                <h6>We are right here to help you</h6>
+                <ul class="i-bottom-fold-list padd-left-none">
+                  <li>
+                    <i class="fa fa-phone" aria-hidden="true"></i
+                    ><span>07506562266</span>
+                  </li>
+                  <li>
+                    <i class="fa fa-phone" aria-hidden="true"></i
+                    ><span>+9120 26633615</span>
+                  </li>
+                  <li>
+                    <i class="fa fa-envelope" aria-hidden="true"></i
+                    ><span>customerservice@petregistry.co.in</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="wrapper">
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <a href="{% url 'index' %}">
+              <img src="/assets/img/brand/logo_white.png" class="main-logo" />
+            </a>
+            <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
+          </div>
+
+          <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <h6 class="footer-heading">Company</h6>
+            <ul class="footer-list padd-left-none">
+              <li><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'plans' %}">Plans</a></li>
+              <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+              <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <ul class="footer-list u-footer-list-margin-top  padd-left-none">
+              <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+              <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+              <li><a href="{% url 'contact' %}">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <h6 class="footer-heading">Follow Us</h6>
+            <ul class="footer-list padd-left-none">
+              <li>
+                <a
+                  ><i class="fa fa-facebook-square" aria-hidden="true"></i
+                  ><span>Facebook</span></a
+                >
+              </li>
+              <li>
+                <a
+                  ><i class="fa fa-twitter-square" aria-hidden="true"></i
+                  ><span>Twitter</span></a
+                >
+              </li>
+              <li>
+                <a
+                  ><i class="fa fa-instagram" aria-hidden="true"></i
+                  ><span>Instagram</span></a
+                >
+              </li>
+              <li>
+                <a
+                  ><i class="fa fa-linkedin-square" aria-hidden="true"></i
+                  ><span>Linkedin</span></a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="mapouter">
+              <div class="gmap_canvas">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  id="gmap_canvas"
+                  src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  frameborder="0"
+                  scrolling="no"
+                  marginheight="0"
+                  marginwidth="0"
+                ></iframe
+                ><a
+                  href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
+                ></a>
+              </div>
+              <style>
+                .mapouter {
+                  position: relative;
+                  text-align: right;
+                  height: 100%;
+                }
+                .gmap_canvas {
+                  overflow: hidden;
+                  background: none !important;
+                  height: 100%;
+                }
+              </style>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/assets/js/vendor/jquery-ui.min.js"></script>
+    <script src="/assets/js/vendor/jquery.countdown.min.js"></script>
+    <script src="/assets/js/vendor/slick.min.js"></script>
+    <script src="/assets/js/vendor/jquery.easing.js"></script>
+    <script src="/assets/js/vendor/jquery.scrollUp.min.js"></script>
+    <script src="/assets/js/vendor/jquery.zoom.min.js"></script>
+    <script src="/assets/js/vendor/parallax.js"></script>
+    <script src="/assets/js/vendor/jquery.fancybox.js"></script>
+    <script src="/assets/js/vendor/numscroller-1.0.js"></script>
+    <script src="/assets/js/vendor/vanilla-tilt.min.js"></script>
+    <script src="/assets/js/vendor/main.js"></script>
+    <!-- <script src="/assets/js/vendor/jquery.min.js"></script> -->
+    <script src="/assets/js/vendor/owl.carousel.min.js"></script>
+    <script>
+      var sence = document.getElementById("img-block");
+      var parallaxInstance = new Parallax(sence, {
+        hoverOnly: true
+      });
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        $("#owl-carousel1").owlCarousel({
+          loop: true,
+          items: 1,
+          margin: 10,
+          nav: true,
+          responsive: {
+            0: {
+              items: 1
+            },
+            600: {
+              items: 1
+            },
+            1000: {
+              items: 1
+            }
+          }
+        });
+
+        $("#owl-carousel2").owlCarousel({
+          loop: true,
+          items: 1,
+          margin: 10,
+          nav: true,
+          responsive: {
+            0: {
+              items: 1
+            },
+            600: {
+              items: 1
+            },
+            1000: {
+              items: 1
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+<div class="login-container">
+  <div class="col-lg-6 col-md-6 col-sm-6 hiddein-xs padd-h-none">
+    <div class="login-left-section">
+      <img
+        src="/assets/img/login/login-left-section-bg-img/login_left_bg-img@3x.png"
+        alt="login-left-section-bg"
+        class="login-left-section-bg-img"
+      />
+    </div>
+  </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <div class="login-right-section">
+      {% if not is_otpModal %}
+        <div class="wrapper">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <h1 class="login-right-section-heading">Sign Up</h1>
+                <p class="login-right-section-para">Your dog's safety is your responsibility!</p>
+              </div>
+              <form method="post" action="{% url 'register' %}">
+              <span id="errorId">
+               {% if messages %}
+                {% for message in  messages%}
+                <span style="color:red">{{message}}</span>
+                {% endfor %}
+                {% endif %}
+                </span>
+              {% csrf_token %}
+              <div class="login-right-box">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 ">
+                  <input type="text" name="fname" placeholder="First Name *"  class="input-small" required/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 ">
+                  <input type="text" name="lname" placeholder="Last Name *" class="input-small" required/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 ">
+                  <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small" required/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 ">
+                  <input type="email" name="email" placeholder="Email ID *" class="input-small" required/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 ">
+                  <input type="password" name="password" placeholder="Password *" class="input-small"  required/>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 ">
+                  <input
+                    type="password"
+                    name="password2"
+                    placeholder="Confirm Password *" class="input-small"
+                  />
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                  <button class="btn btn-md btn-primary login-bottom-btn" type="submit">Continue</button>
+                </div>
+              </div>
+              </form>
+        </div>
+        {% endif %}
+      {% if is_otpModal %}
+      <form method="post" action="{% url 'otp' %}">
+      {% csrf_token %}
+        <div class="wrapper">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <h1 class="login-right-section-heading">OTP</h1>
+              <p class="login-right-section-para">An OTP has been sent to your mobile number</p>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="login-otp-wrapper">
+                <input type="text" name="num1">
+                <input type="text" name="num2">
+                <input type="text" name="num3">
+                <input type="text" name="num4">
+                <input type="text" name="num5">
+                <input type="text" name="num6">
+                <input type="hidden" name="mobile" value={{mobileNumber}}>
+              </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <button class="btn btn-small btn-priamry-link">
+                <img src="/assets/img/login/repeat-icon/repeat.png">
+                <span>Resend OTP</span>
+              </button>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <button class="btn btn-md btn-primary login-bottom-btn" type="submit">Sign Up</button>
+            </div>
+        </div>
+         </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+setTimeout(()=>{
+  document.getElementById('errorId').style.display ='none'
+},2000)
+</script>
+{% endblock %}

@@ -219,13 +219,13 @@ input[type="number"] {
   .size(100%, 40px);
   background-color: @light-color;
   color: #4a4d4f;
-  border: solid 1px #efefef;
+  border: solid 1px #dbdbdb;
   padding: 6px 12px;
   .transition;
   font-weight: normal;
   position: relative;
   .border-radius(4px);
-  .placeholder(@color:#d8d8d8);
+  .placeholder(@color:#cccccc);
   &:hover {
     border-color: darken(@dark-gray-color, 15%);
   }
@@ -233,6 +233,10 @@ input[type="number"] {
     border-color: @secondary-color;
     color: @ambience-color;
     outline: none;
+  }
+  &.input-small {
+    .size(100%, 36px);
+    font-size: @font-size-small;
   }
 } // input/textarea
 
