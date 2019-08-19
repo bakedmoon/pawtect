@@ -93,9 +93,10 @@ window.onload = function () {
 				prevArrow: '<button type="button" class="slick-prev"><i class="arrow_carrot-left"></i></button>',
 				nextArrow: '<button type="button" class="slick-next"><i class="arrow_carrot-right"></i></button>',
 				infinite: true,
+				autoplay: true,
 				fade: true,
 				// autoplay: true,
-				speed: 800,
+				speed: 2000,
 				cssEase: 'ease-out',
 			})
 
