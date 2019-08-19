@@ -9,6 +9,7 @@ from pawtectApp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',views.index,name='index'),
+    url(r'^home/$',views.home,name='home'),
     url(r'^contact/',views.contact,name='contact'),
     url(r'^register/',views.register,name='register'),
     url(r'^login/',views.login,name='login'),

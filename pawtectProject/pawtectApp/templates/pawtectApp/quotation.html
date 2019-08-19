@@ -1,1 +1,470 @@
-{% extends "pawtectApp/coming-soon.html" %}
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper">
+  <div class="wrapper">
+    <div class="get-quote-top-section">
+      <h1 class="text-center margin-top-none">Get Quote</h1>
+      <div class="get-quote-top-col-wrapper clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-h-none">
+          <div class="get-quote-top-filter inline-block text-center ">
+            <img src="/assets/img/get-quote/filter-icon.svg" />
+          </div>
+          <div
+            class="c-dropdown js-dropdown i-top-city-dropdown inline-block"
+            id="select_dog_age"
+          >
+            <input
+              type="hidden"
+              name="Framework"
+              id="search_city"
+              class="js-dropdown__input"
+            />
+            <span class="c-button c-button--dropdown  js-dropdown__current"
+              ><span>Select dog's age</span></span
+            >
+            <ul class="c-dropdown__list">
+              <li class="c-dropdown__item" data-dropdown-value="delhi">
+                Delhi
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="bangalore">
+                Bangalore
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="mumbai">
+                Mumbai
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="pune">Pune</li>
+            </ul>
+            <!-- End of c-dropdown__list -->
+          </div>
+          <!-- End of c-dropdown -->
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <div
+            class="c-dropdown js-dropdown i-top-city-dropdown"
+            id="select_dog_breed"
+          >
+            <input
+              type="hidden"
+              name="Framework"
+              id="search_city"
+              class="js-dropdown__input"
+            />
+            <span class="c-button c-button--dropdown  js-dropdown__current"
+              ><span>Select dog's breed</span></span
+            >
+            <ul class="c-dropdown__list">
+              <li class="c-dropdown__item" data-dropdown-value="delhi">
+                Delhi
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="bangalore">
+                Bangalore
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="mumbai">
+                Mumbai
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="pune">Pune</li>
+            </ul>
+            <!-- End of c-dropdown__list -->
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none">
+          <div
+            class="c-dropdown js-dropdown i-top-city-dropdown"
+            id="select_cover_amt"
+          >
+            <input
+              type="hidden"
+              name="Framework"
+              id="search_city"
+              class="js-dropdown__input"
+            />
+            <span class="c-button c-button--dropdown  js-dropdown__current"
+              ><span>Select coverage amount</span></span
+            >
+            <ul class="c-dropdown__list">
+              <li class="c-dropdown__item" data-dropdown-value="delhi">
+                Delhi
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="bangalore">
+                Bangalore
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="mumbai">
+                Mumbai
+              </li>
+              <li class="c-dropdown__item" data-dropdown-value="pune">Pune</li>
+            </ul>
+            <!-- End of c-dropdown__list -->
+          </div>
+        </div>
+        <div
+          class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper"
+        >
+          <button class="btn btn-primary">Apply</button>
+          <button class="btn ghost-btn-light-gray pull-right">Clear All</button>
+        </div>
+      </div>
+    </div>
+    <div class="get-quote-features-section">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-ribbon text-center">
+          <img src="/assets/img/get-quote/ribbons/red-aids.svg" />
+          <span>Red Ribbon</span>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 40,000</h2>
+            <button class="btn btn-primary pull-right">₹ 1,460/year</button>
+          </div>
+        </div>
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 1,00,000</h2>
+            <button class="btn btn-primary pull-right">₹ 2,084/year</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 60,000</h2>
+            <button class="btn btn-primary pull-right">₹ 1,613/year</button>
+          </div>
+        </div>
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 1,50,000</h2>
+            <button class="btn btn-primary pull-right">₹ 2,639/year</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <h3>Features</h3>
+          <ul class="get-quote-fea-cols-list padd-left-none">
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Major Soft Tissues Surgery</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Major Illness</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Third Party Liability</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/cross-icon.svg" /><span
+                >Accidental Injuries</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <p class="margin-v-none get-quote-features-bottom-note">
+          Note: 10% discount for buying plans for multiple pets
+        </p>
+      </div>
+    </div>
+
+    <div class="get-quote-features-section">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-ribbon text-center">
+          <img src="/assets/img/get-quote/ribbons/yellow-aids.svg" />
+          <span>Yellow Ribbon</span>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 40,000</h2>
+            <button class="btn btn-primary pull-right">₹ 2,793/year</button>
+          </div>
+        </div>
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 1,00,000</h2>
+            <button class="btn btn-primary pull-right">₹ 4,055/year</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 60,000</h2>
+            <button class="btn btn-primary pull-right">₹ 3,102/year</button>
+          </div>
+        </div>
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 1,50,000</h2>
+            <button class="btn btn-primary pull-right">₹ 5,176/year</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <h3>Features</h3>
+          <ul class="get-quote-fea-cols-list padd-left-none">
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Major Soft Tissues Surgery</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Major Illness</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Third Party Liability</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/cross-icon.svg" /><span
+                >Accidental Injuries</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <p class="margin-v-none get-quote-features-bottom-note">
+          Note: 10% discount for buying plans for multiple pets
+        </p>
+      </div>
+    </div>
+
+    <div class="get-quote-features-section">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-ribbon text-center">
+          <img src="/assets/img/get-quote/ribbons/blue-aids.svg" />
+          <span>Blue Ribbon</span>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 40,000</h2>
+            <button class="btn btn-primary pull-right">₹ 3,638/year</button>
+          </div>
+        </div>
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 1,00,000</h2>
+            <button class="btn btn-primary pull-right">₹ 5,305/year</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 60,000</h2>
+            <button class="btn btn-primary pull-right">₹ 4,046/year</button>
+          </div>
+        </div>
+        <div class="get-quote-fea-cols">
+          <p class="margin-top-none">Coverage Amount</p>
+          <div class="get-quote-fea-cols-bottom">
+            <h2 class="h1 margin-v-none inline-block">₹ 1,50,000</h2>
+            <button class="btn btn-primary pull-right">₹ 6,787/year</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols">
+          <h3>Features</h3>
+          <ul class="get-quote-fea-cols-list padd-left-none">
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Major Soft Tissues Surgery</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Major Illness</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/checkmark-icon.svg" /><span
+                >Third Party Liability</span
+              >
+            </li>
+            <li>
+              <img src="/assets/img/get-quote/cross-icon.svg" /><span
+                >Accidental Injuries</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <p class="margin-v-none get-quote-features-bottom-note">
+          Note: 10% discount for buying plans for multiple pets
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrapper">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <a href="{% url 'index' %}">
+        <img src="/assets/img/brand/logo_white.png" class="main-logo" />
+      </a>
+      <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
+    </div>
+
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <h6 class="footer-heading">Company</h6>
+      <ul class="footer-list padd-left-none">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'plans' %}">Plans</a></li>
+        <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+        <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <ul class="footer-list u-footer-list-margin-top  padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <h6 class="footer-heading">Follow Us</h6>
+      <ul class="footer-list padd-left-none">
+        <li>
+          <a
+            ><i class="fa fa-facebook-square" aria-hidden="true"></i
+            ><span>Facebook</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-twitter-square" aria-hidden="true"></i
+            ><span>Twitter</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-instagram" aria-hidden="true"></i
+            ><span>Instagram</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-linkedin-square" aria-hidden="true"></i
+            ><span>Linkedin</span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe
+            width="100%"
+            height="100%"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe
+          ><a
+            href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
+          ></a>
+        </div>
+        <style>
+          .mapouter {
+            position: relative;
+            text-align: right;
+            height: 100%;
+          }
+          .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 100%;
+          }
+        </style>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  (function($, window, document, undefined) {
+    var $html = $("html");
+
+    city_click = function(e) {
+      e.preventDefault();
+      var that = $("#select_dog_age");
+      var that1 = $("#select_dog_breed");
+      var that2 = $("#select_cover_amt");
+      if (!$(that).hasClass("is-open")) {
+        $(".c-dropdown.js-dropdown.is-open").removeClass("is-open");
+        $(that).addClass("is-open");
+      } else {
+        $(that).removeClass("is-open");
+      }
+    };
+
+    $html.on("click.ui.dropdown", ".js-dropdown", function(e) {
+      city_click(e);
+    });
+
+    $html.on(
+      "click.ui.dropdown",
+      ".js-dropdown [data-dropdown-value]",
+      function(e) {
+        e.preventDefault();
+        var $item = $(this);
+        var $dropdown = $item.parents(".js-dropdown");
+        $dropdown.find(".js-dropdown__input").val($item.data("dropdown-value"));
+        $dropdown.find(".js-dropdown__current").text($item.text());
+      }
+    );
+
+    $html.on("click.ui.dropdown", function(e) {
+      var $target = $(e.target);
+      if ($target.hasClass("search-btn")) {
+        return;
+      }
+      if (!$target.parents().hasClass("js-dropdown")) {
+        $(".js-dropdown").removeClass("is-open");
+      }
+    });
+  })(jQuery, window, document);
+</script>
+{% endblock %}
