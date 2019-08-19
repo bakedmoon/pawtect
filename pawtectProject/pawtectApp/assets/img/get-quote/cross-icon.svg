@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+    <defs>
+        <style>
+            .cls-1{fill:#ffd2d2}.cls-2{fill:#8c0606}
+        </style>
+    </defs>
+    <g id="Group_41" data-name="Group 41" transform="translate(-871.949 -344.949)">
+        <circle id="Ellipse_2" cx="8" cy="8" r="8" class="cls-1" data-name="Ellipse 2" transform="translate(871.949 344.949)"/>
+        <g id="cancel_2_" data-name="cancel (2)" transform="translate(877 349.999)">
+            <g id="Group_40" data-name="Group 40" transform="translate(0 .001)">
+                <path id="Path_5" d="M3.331 3l2.6-2.6A.234.234 0 0 0 5.6.069L3 2.669.4.069A.234.234 0 0 0 .068.4l2.6 2.6-2.6 2.6a.234.234 0 0 0 .332.332l2.6-2.6 2.6 2.6a.234.234 0 1 0 .331-.332z" class="cls-2" data-name="Path 5" transform="translate(0 -.001)"/>
+            </g>
+        </g>
+    </g>
+</svg>
