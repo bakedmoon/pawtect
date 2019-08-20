@@ -13,17 +13,18 @@
       <div class="login-right-section">
       {% if not is_otpModal %}
         <div class="wrapper">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center relative">
                 <h1 class="login-right-section-heading">Sign Up</h1>
                 <p class="login-right-section-para">Your dog's safety is your responsibility!</p>
               </div>
-              <form method="post" action="{% url 'register' %}">
-              <span id="errorId">
-               {% if messages %}
+              <form method="post" action="{% url 'register' %}" class="relative">
+              
+              <span class="error-text" id="errorId">
+                {% if messages %}
                 {% for message in  messages%}
-                <span style="color:red">{{message}}</span>
+                <span>{{message}}</span>
                 {% endfor %}
-                {% endif %}
+                {% endif %} 
                 </span>
               {% csrf_token %}
               <div class="login-right-box">
@@ -67,13 +68,13 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="login-otp-wrapper">
-                <input type="text" name="num1">
-                <input type="text" name="num2">
-                <input type="text" name="num3">
-                <input type="text" name="num4">
-                <input type="text" name="num5">
-                <input type="text" name="num6">
-                <input type="hidden" name="mobile" value={{mobileNumber}}>
+                <input type="text" class="inputs" name="num1" maxlength="1">
+                <input type="text" class="inputs" name="num2" maxlength="1">
+                <input type="text" class="inputs" name="num3" maxlength="1">
+                <input type="text" class="inputs" name="num4" maxlength="1">
+                <input type="text" class="inputs" name="num5" maxlength="1">
+                <input type="text" class="inputs" name="num6" maxlength="1">
+                <input type="hidden" class="inputs" name="mobile" value={{mobileNumber}}>
               </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
@@ -96,5 +97,15 @@
 setTimeout(()=>{
   document.getElementById('errorId').style.display ='none'
 },2000)
+
+$(".inputs").keyup(function () {
+    if (this.value.length == this.maxLength) {
+      var $next = $(this).next('.inputs');
+      if ($next.length)
+          $(this).next('.inputs').focus();
+      else
+          $(this).blur();
+    }
+});
 </script>
 {% endblock %}

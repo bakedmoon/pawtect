@@ -25,6 +25,15 @@ def index(request):
     except Settings.DoesNotExist:
         return render(request, 'pawtectApp/index.html',{})
 
+def home(request):
+    return render(request, 'pawtectApp/home.html',{})
+    try:
+        settings = Settings.objects.get(key='home_banner_image')
+        url = settings.value['url']
+        return render(request, 'pawtectApp/home.html',{'imageUrl':url})
+    except Settings.DoesNotExist:
+       return render(request, 'pawtectApp/home.html',{})
+
 def signup(request):
     if request.method == 'POST':
         ctrl = UserController()
