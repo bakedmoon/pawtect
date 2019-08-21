@@ -11,7 +11,7 @@
           </div>
           <div
             class="c-dropdown js-dropdown i-top-city-dropdown inline-block pull-right"
-            id="select_dog_age"
+            id="select_dog_age" onclick="getFunction(0)"
           >
             <input
               type="hidden"
@@ -41,7 +41,7 @@
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div
             class="c-dropdown js-dropdown i-top-city-dropdown"
-            id="select_dog_breed"
+            id="select_dog_breed" onclick="getFunction(1)"
           >
             <input
               type="hidden"
@@ -70,7 +70,7 @@
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none">
           <div
             class="c-dropdown js-dropdown i-top-city-dropdown"
-            id="select_cover_amt"
+            id="select_cover_amt" onclick="getFunction(2)"
           >
             <input
               type="hidden"
@@ -99,7 +99,7 @@
         <div
           class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper"
         >
-          <button class="btn btn-primary">Apply</button>
+          <a href="{% url 'search' %}"><button class="btn btn-primary">Apply</button></a>
           <button class="btn ghost-btn-light-gray pull-right">Clear All</button>
         </div>
       </div>
@@ -111,38 +111,18 @@
           <span>Red Ribbon</span>
         </div>
       </div>
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 40,000</h2>
-            <button class="btn btn-primary pull-right">₹ 1,460/year</button>
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 padd-h-none">
+      {% for red_ribbon in plans %}
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+          <div class="get-quote-fea-cols">
+            <p class="margin-top-none">Coverage Amount</p>
+            <div class="get-quote-fea-cols-bottom">
+              <h2 class="h1 margin-v-none inline-block">₹ {{red_ribbon.amount}}</h2>
+              <button class="btn btn-primary pull-right">₹ 1,460/year</button>
+            </div>
           </div>
         </div>
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 1,00,000</h2>
-            <button class="btn btn-primary pull-right">₹ 2,084/year</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 60,000</h2>
-            <button class="btn btn-primary pull-right">₹ 1,613/year</button>
-          </div>
-        </div>
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 1,50,000</h2>
-            <button class="btn btn-primary pull-right">₹ 2,639/year</button>
-          </div>
-        </div>
+      {% endfor %}
       </div>
 
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
@@ -420,8 +400,8 @@
     </div>
   </div>
 </footer>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% comment %} 
 <script type="text/javascript">
   (function($, window, document, undefined) {
     var $html = $("html");
@@ -465,5 +445,26 @@
       }
     });
   })(jQuery, window, document);
+</script> {% endcomment %}
+<script>
+function getFunction(type){
+  switch(type){
+    case 0:
+     var element = document.getElementById("select_dog_age");
+     element.classList.toggle("is-open");
+     break;
+
+     case 1:
+     var element1 = document.getElementById("select_dog_breed");
+     element1.classList.toggle("is-open");
+     break;
+
+     case 2:
+     var element2 = document.getElementById("select_cover_amt");
+     element2.classList.toggle("is-open");
+     break;
+  }
+}
+
 </script>
 {% endblock %}

@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Settings,UserProfileInfo
+from .models import Settings,UserProfileInfo,Plans
 from .controller.UserController import UserController
 from . import utils
 from . import const
@@ -154,8 +154,16 @@ def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
 def quotation(request):
-    return render(request,'pawtectApp/quotation.html')
+    plans = Plans.objects.all()
+    print("THE PLANSA ARE===>>>",type(plans))
+    # for i in plans:
+    #     print("THE PLANSA ARE===>>>",i)
+    return render(request,'pawtectApp/quotation.html',{'plans':plans})
 
+def search(request):
+    plans = Plans.objects.filter(amount__icontains=40000)
+    return render(request,'pawtectApp/quotation.html',{'plans':plans})
+    
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
 

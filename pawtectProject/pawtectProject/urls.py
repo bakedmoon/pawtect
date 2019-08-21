@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^home/$',views.home,name='home'),
     url(r'^contact/',views.contact,name='contact'),
     url(r'^register/',views.signup,name='register'),
+    url(r'^search/',views.search,name="search"),
     url(r'^login/',views.login,name='login'),
     url(r'^plans/',views.plans,name='plans'),
     url(r'^otp/',views.otp,name='otp'),

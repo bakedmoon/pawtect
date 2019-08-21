@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pawtect',
-        'USER': 'doced',
-        'PASSWORD': 'welcome1',
+        'USER': 'pawtectapp',
+        'PASSWORD': 'pawtect',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -132,3 +132,14 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/pawtectApp/user_login/'
 ASSETS = os.path.join(BASE_DIR, 'pawtectApp/assets')
+
+
+
+# {
+# "features":{
+#     "Major Soft Tissues Surgery":True,
+#     "Accidenatl Injuries":False,
+#    "Third Party Liability":True,
+#    "Major Illness":True
+#    }
+# }
