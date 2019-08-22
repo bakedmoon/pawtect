@@ -14,7 +14,7 @@ from .models import Settings,UserProfileInfo,Plans
 from .controller.UserController import UserController
 from . import utils
 from . import const
-
+from . import config
 
 def index(request):
     return render(request, 'pawtectApp/index.html',{})
@@ -154,7 +154,9 @@ def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
 def quotation(request):
-    return render(request,'pawtectApp/quotation.html')
+    plan = Plans.objects.all().values()
+    print("THE DATA COME HERE IS==>>",request.GET)
+    return render(request,'pawtectApp/quotation.html',{"plans":plan})
 
 def search(request):
     plans = Plans.objects.filter(amount__icontains=40000)

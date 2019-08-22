@@ -28,9 +28,7 @@
         <div
           class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper"
         >
-          <a href="{% url 'search' %}"
-            ><button class="btn btn-primary">Apply</button></a
-          >
+        <button class="btn btn-primary" id="searchId">Apply</button>
           <button class="btn ghost-btn-light-gray pull-right">Clear All</button>
         </div>
       </div>
@@ -333,65 +331,66 @@
     </div>
   </div>
 </footer>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
   $(function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
+    var ages = [
+      "8 Weeks - 2 years",
+      "2 Years - 4 Years",
+      "4 years - 6 Years",
     ];
+
+    var breeds=[
+    "Hound Cross",
+    "Indian Mongrel",
+    "Indian Pariah Cross",
+    "Irish Setter Cross",
+    "Rampur Hound",
+    "Terrier Cross",
+    "Afghan Hound",
+    "Golden Retriever",
+    "Husky",
+    "Irish Setter"
+   ];
+
+   var amounts = [
+   "40000",
+   "60000",
+   "100000",
+   "150000"
+   ]
+
     $("#tags").autocomplete({
-      source: availableTags
+      source: ages
     });
     $("#tags1").autocomplete({
-      source: availableTags
+      source: breeds
     });
     $("#tags2").autocomplete({
-      source: availableTags
+      source: amounts
     });
   });
 </script>
-
+ 
 <script>
-  function getFunction(type) {
-    switch (type) {
-      case 0:
-        var element = document.getElementById("select_dog_age");
-        element.classList.toggle("is-open");
-        break;
+var query = ''
+ $("#searchId").click(()=>{
+   age = $("#tags").val()
+   breed = $("#tags1").val()
+   amount = $("#tags2").val()
 
-      case 1:
-        var element1 = document.getElementById("select_dog_breed");
-        element1.classList.toggle("is-open");
-        break;
+   if(age.length >= 1){
+     query += '&age='+age
+   }
+   if(breed.length >= 1){
+     query += '&breed='+breed
+   }
+   if(amount.length >= 1){
+     query += '&amount='+amount
+   }
 
-      case 2:
-        var element2 = document.getElementById("select_cover_amt");
-        element2.classList.toggle("is-open");
-        break;
-    }
-  }
+  location.href="/quotation/" + query
+ })
 </script>
 {% endblock %}
