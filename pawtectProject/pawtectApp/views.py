@@ -154,11 +154,7 @@ def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
 def quotation(request):
-    plans = Plans.objects.all()
-    print("THE PLANSA ARE===>>>",type(plans))
-    # for i in plans:
-    #     print("THE PLANSA ARE===>>>",i)
-    return render(request,'pawtectApp/quotation.html',{'plans':plans})
+    return render(request,'pawtectApp/quotation.html')
 
 def search(request):
     plans = Plans.objects.filter(amount__icontains=40000)
