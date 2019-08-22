@@ -41,13 +41,21 @@ class Age(models.Model):
 
     def __str__(self):
         return self.age_range
+
+class Type(models.Model):
+    name = models.CharField(max_length=50,blank=True, null=True)
+    icon = models.CharField(max_length=50,blank=True, null=True)
+    features = JSONField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
     
 class Plans(UpdateBaseModel):
     category = models.CharField(max_length=100, blank=True, null=True)
-    type = models.CharField(max_length=50,blank=True, null=True)
+    type = models.ForeignKey(Type, blank=True, null=True,on_delete=models.CASCADE)
     name = models.CharField(max_length=100,blank=True, null=True)
+    features = JSONField(blank=True, null=True)
     amount = models.IntegerField(default=0)
-    features = JSONField(blank=True,null=True)
     age = models.ManyToManyField(Age)
 
     def __str__(self):
