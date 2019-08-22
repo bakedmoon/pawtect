@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 padd-h-none">
-        {% for red_ribbon in plans %}
+        {% for red_ribbon in red_plans %}
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
           <div class="get-quote-fea-cols">
             <p class="margin-top-none">Coverage Amount</p>
@@ -98,39 +98,17 @@
           <span>Yellow Ribbon</span>
         </div>
       </div>
+      {% for yellow_ribbon in yellow_plans %}
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
         <div class="get-quote-fea-cols">
           <p class="margin-top-none">Coverage Amount</p>
           <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 40,000</h2>
+            <h2 class="h1 margin-v-none inline-block">₹ {{ yellow_ribbon.amount }}</h2>
             <button class="btn btn-primary pull-right">₹ 2,793/year</button>
           </div>
         </div>
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 1,00,000</h2>
-            <button class="btn btn-primary pull-right">₹ 4,055/year</button>
-          </div>
-        </div>
       </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 60,000</h2>
-            <button class="btn btn-primary pull-right">₹ 3,102/year</button>
-          </div>
-        </div>
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 1,50,000</h2>
-            <button class="btn btn-primary pull-right">₹ 5,176/year</button>
-          </div>
-        </div>
-      </div>
+    {% endfor %}
 
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
         <div class="get-quote-fea-cols get-quote-fea-details">
@@ -173,39 +151,17 @@
           <span>Blue Ribbon</span>
         </div>
       </div>
+      {% for blue_ribbon in blue_plans %}
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
         <div class="get-quote-fea-cols">
           <p class="margin-top-none">Coverage Amount</p>
           <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 40,000</h2>
+            <h2 class="h1 margin-v-none inline-block">₹ {{blue_ribbon.amount}}</h2>
             <button class="btn btn-primary pull-right">₹ 3,638/year</button>
           </div>
         </div>
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 1,00,000</h2>
-            <button class="btn btn-primary pull-right">₹ 5,305/year</button>
-          </div>
-        </div>
       </div>
-
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 60,000</h2>
-            <button class="btn btn-primary pull-right">₹ 4,046/year</button>
-          </div>
-        </div>
-        <div class="get-quote-fea-cols">
-          <p class="margin-top-none">Coverage Amount</p>
-          <div class="get-quote-fea-cols-bottom">
-            <h2 class="h1 margin-v-none inline-block">₹ 1,50,000</h2>
-            <button class="btn btn-primary pull-right">₹ 6,787/year</button>
-          </div>
-        </div>
-      </div>
+  {% endfor %}
 
       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
         <div class="get-quote-fea-cols get-quote-fea-details">
@@ -374,7 +330,7 @@
 </script>
  
 <script>
-var query = ''
+var query = '?pawtect-quote=1'
  $("#searchId").click(()=>{
    age = $("#tags").val()
    breed = $("#tags1").val()

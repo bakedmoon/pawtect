@@ -5,3 +5,5 @@ def sendMailToUser(toEmail,name):
     message = "We will contact you in few moments"
     toEmail = toEmail
     send_mail(subject, message,'',[toEmail])
+
+

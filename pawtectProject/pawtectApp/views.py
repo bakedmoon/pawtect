@@ -154,13 +154,28 @@ def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
 def quotation(request):
-    plan = Plans.objects.all().values()
-    print("THE DATA COME HERE IS==>>",request.GET)
-    return render(request,'pawtectApp/quotation.html',{"plans":plan})
+    # Get All Plans
+    plan = Plans.objects.all()
 
-def search(request):
-    plans = Plans.objects.filter(amount__icontains=40000)
-    return render(request,'pawtectApp/quotation.html',{'plans':plans})
+    # Search Query Set
+    query_filter = (Q(amount__icontains=request.GET.get('amount','')))
+    plan = Plans.objects.filter(query_filter)
+    print("THE FILTER PLANS ARE==>>",plan)
+    
+    # Get Specific Plans
+    red = []
+    yellow = []
+    blue = []
+    for ribbon in plan:
+        if ribbon.type.name == 'Red Ribbon':
+            red.append(ribbon)
+        if ribbon.type.name == 'Yellow Ribbon':
+            yellow.append(ribbon)
+        if ribbon.type.name == 'Blue Ribbon':
+            blue.append(ribbon)
+
+    
+    return render(request,'pawtectApp/quotation.html',{"plans":plan,"red_plans":red,'yellow_plans':yellow,'blue_plans':blue})
     
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
