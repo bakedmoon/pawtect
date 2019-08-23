@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^otp/',views.otp,name='otp'),
     url(r'^review/',views.review,name='review'),
     url(r'^quotation/',views.quotation,name='quotation'),
+    url(r'^get-filter-quote-data/',views.get_filter_quote_data,name="get-filter-quote-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
     url(r'^terms/',views.ter_of_use,name='terms'),
     url(r'^privacy/',views.privacy_policy,name='privacy'),

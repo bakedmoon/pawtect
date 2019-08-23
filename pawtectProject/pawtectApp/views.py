@@ -8,13 +8,12 @@ from django.db.models import Q
 import threading
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import Settings,UserProfileInfo,Plans
+from .models import Settings,UserProfileInfo,Plans,Age,Type
 from .controller.UserController import UserController
 from . import utils
 from . import const
-from . import config
+
 
 def index(request):
     return render(request, 'pawtectApp/index.html',{})
@@ -154,31 +153,30 @@ def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
 def quotation(request):
-    # Get All Plans
-    plan = Plans.objects.all()
+    query_filter =  {}
+    type_dict = {}
 
-    # Search Query Set
-    query_filter = (Q(amount__icontains=request.GET.get('amount','')))
-    plan = Plans.objects.filter(query_filter)
-    print("THE FILTER PLANS ARE==>>",plan)
-    
-    # Get Specific Plans
-    red = []
-    yellow = []
-    blue = []
-    for ribbon in plan:
-        if ribbon.type.name == 'Red Ribbon':
-            red.append(ribbon)
-        if ribbon.type.name == 'Yellow Ribbon':
-            yellow.append(ribbon)
-        if ribbon.type.name == 'Blue Ribbon':
-            blue.append(ribbon)
+    types = Type.objects.all()
+    age_group = Age.objects.all()
 
-    
-    return render(request,'pawtectApp/quotation.html',{"plans":plan,"red_plans":red,'yellow_plans':yellow,'blue_plans':blue})
+    query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
+    print("QUERY IS",query_filter)
+    for t in types:
+        plans = Plans.objects.filter(**query_filter,type_id=t.id)
+        type_dict[t.name] = {'type':t,'plans':plans}
+
+    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items})
     
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
 
 def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
+
+
+def get_filter_quote_data(request):
+        if request.method == 'GET':
+            breed = utils.default_data()
+            return HttpResponse(breed) 
+        else:
+            return HttpResponse("Request method is not a GET")
