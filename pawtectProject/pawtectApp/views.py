@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 from django.shortcuts import render,redirect
 from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse,JsonResponse
 from django.urls import reverse
 from django.db.models import Q
-import threading
+import threading,json
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
@@ -160,7 +160,7 @@ def quotation(request):
     age_group = Age.objects.all()
 
     query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
-    print("QUERY IS",query_filter)
+    
     for t in types:
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
         type_dict[t.name] = {'type':t,'plans':plans}
@@ -177,6 +177,8 @@ def privacy_policy(request):
 def get_filter_quote_data(request):
         if request.method == 'GET':
             breed = utils.default_data()
-            return HttpResponse(breed) 
+            age_group = Age.objects.values()
+            list_result = [entry for entry in age_group]
+            return JsonResponse({"breed":breed,"ages":list_result})
         else:
             return HttpResponse("Request method is not a GET")

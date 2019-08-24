@@ -194,21 +194,20 @@
 <script>
   $(function() {
     var breedData = []
+    var agesGroup = []
     $.ajax(
     {
         type:"GET",
         url: "/get-filter-quote-data",
         success: function( data ) 
         {
-           breedData = JSON.parse(data)
+          breedData = JSON.parse(data.breed)
+          for(let ages of data.ages){
+            agesGroup.push(ages.age_range)
+          }
         }
      })
 
-    let ages = [
-      "8 Weeks - 2 years",
-      "2 Years - 4 Years",
-      "4 years - 6 Years",
-    ];
 
     let amounts = [
     "40000",
@@ -221,7 +220,7 @@
    setTimeout(()=>{
    
     $("#tags").autocomplete({
-      source: ages
+      source: agesGroup
     });
 
     $("#tags1").autocomplete({
@@ -233,19 +232,9 @@
     });
     
    },500)
-
-   
-
-    
   });
 </script>
- <script type="text/javascript">
-    function setData(){
- 
-    }
-   
-setData()
-</script>
+
 <script>
 var query = '?pawtect-quote=1'
  $("#searchId").click(()=>{
