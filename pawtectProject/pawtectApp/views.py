@@ -153,16 +153,27 @@ def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
 def quotation(request):
-    query_filter =  {}
+    query_filter = Q()
     type_dict = {}
-
+    breedInfo = ''
     types = Type.objects.all()
     age_group = Age.objects.all()
 
-    query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
+    if 'breed' in request.GET:
+        breeds = Plans.objects.filter(name__icontains=request.GET['breed'])
+        for c in breeds:
+            query_filter &= Q(category__icontains=c.category)
+            
+    if 'amount' in request.GET:
+        query_filter &= Q(amount__icontains=request.GET['amount'])
+
+    if 'age' in request.GET:
+        query_filter &= Q(age__age_range__icontains=request.GET['age'])
+
+    # query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
     
     for t in types:
-        plans = Plans.objects.filter(**query_filter,type_id=t.id)
+        plans = Plans.objects.filter(query_filter,type_id=t.id)
         type_dict[t.name] = {'type':t,'plans':plans}
 
     return render(request,'pawtectApp/quotation.html',{"types":type_dict.items})
