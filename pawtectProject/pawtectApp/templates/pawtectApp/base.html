@@ -14,6 +14,7 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
     <!-- Owl Stylesheets -->
     <link
       rel="stylesheet"
@@ -28,9 +29,9 @@
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none">
           <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
-            <a href="">
+            <a href="{% url 'index' %}">
               <img
-                src="assets/img/brand/main-logo.png"
+                src="/assets/img/brand/main-logo.png"
                 alt="main-logo"
                 class="main-logo"
               />
@@ -38,11 +39,11 @@
           </div>
           <div class="col-lg-10 col-md-8 col-sm-8 hidden-xs">
             <ul class="header-list">
-              <li class="active"><a href="">Home</a></li>
-              <li><a href="">Plans</a></li>
-              <li><a href="">Get Quote</a></li>
-              <li><a href="">Review</a></li>
-              <li><a href="">About us</a></li>
+              <li class="{% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url 'index' %}">Home</a></li>
+              <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
+              <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
+              <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
+              <li class="{% if request.resolver_match.url_name == "aboutUs" %}active{% endif %}"><a href="{% url 'aboutUs' %}">About us</a></li>
             </ul>
           </div>
         </div>
@@ -56,12 +57,12 @@
               <a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a>
             </li>
             <li>
-              <a href="">
+              <a href="{% url 'login' %}">
                 <button class="btn ghost-btn-grey">Login</button>
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="{% url 'register' %}">
                 <button class="btn btn-primary">Sign up</button>
               </a>
             </li>
@@ -71,6 +72,7 @@
     </header>
     <script src="/assets/js/vendor/jquery.min.js"></script>
     <script src="/assets/js/vendor/owl.carousel.min.js"></script>
+    
     {% block body_block %} {% endblock %}
   </body>
 </html>

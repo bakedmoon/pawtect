@@ -35,7 +35,7 @@
   &.active {
     outline: 0;
     background-image: none;
-    .box-shadow(inset 0 3px 5px rgba(0, 0, 0, 0.125));
+    // .box-shadow(inset 0 3px 5px rgba(0, 0, 0, 0.125));
   }
   &.disabled,
   &[disabled],
@@ -54,9 +54,20 @@
 
 .btn-primary {
   .button-variant(@btn-primary-color; @btn-primary-bg);
-  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
+  // box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
 }
-
+.btn-priamry-link {
+  color: #f49e22;
+  margin-top: @space - 4;
+  margin-bottom: @space / 2;
+  span,
+  img {
+    vertical-align: middle;
+  }
+  span {
+    padding-left: 4px;
+  }
+}
 //.btn-secondary-light{
 //	.button-variant(@btn-secondary-light-color; @btn-secondary-light-bg);
 //	text-shadow: 0px 0px 2px @secondary-color;
@@ -82,9 +93,9 @@
   border-style: dashed;
 }
 .ghost-btn-light-gray {
-  .ghost-button-variant(#8e9091);
+  .ghost-button-variant(#cccccc);
+  border-color: #cccc;
   border-width: 1px;
-  .button-size(6px; 32px; @font-size + 2; 1.4; 4px);
 }
 // ---------------------------------------------------------- Button Input
 // We use this button inline with input so input and buttons have same height
@@ -139,10 +150,15 @@
 .btn-large {
   .button-size(10px, 40px, @font-size, 1.33, 4px);
 }
+.btn-md,
+.btn-medium {
+  min-height: 40px;
+  .button-size(4px, 20px, @font-size-small - 1, 1.5, 4px);
+}
 .btn-sm,
 .btn-small {
   min-height: 33px;
-  .button-size(4px, 10px, @font-size-small - 1, 1.5, 4px);
+  .button-size(4px, 20px, @font-size-small - 1, 1.5, 4px);
 }
 .btn-xs,
 .btn-extra-small {

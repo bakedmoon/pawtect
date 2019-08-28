@@ -25,7 +25,7 @@ SECRET_KEY = 'gdyk8)l(8^ps4smz69ekfn(5a5eldqhrn3*py#3!+#1rk9$!+0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'pawtect',
-        'USER': 'doced',
-        'PASSWORD': 'welcome1',
+        'USER': 'pawtectapp',
+        'PASSWORD': 'pawtect',
         'HOST': 'localhost',
         'PORT': 5432,
     }
@@ -118,7 +118,12 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sagar.crive@gmail.com'
+EMAIL_HOST_PASSWORD = 'Sagar@973065'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -127,3 +132,4 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/pawtectApp/user_login/'
 ASSETS = os.path.join(BASE_DIR, 'pawtectApp/assets')
+

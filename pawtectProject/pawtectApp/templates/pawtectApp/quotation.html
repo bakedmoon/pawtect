@@ -1,0 +1,258 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper">
+  <div class="wrapper">
+    <div class="get-quote-top-section">
+      <h1 class="text-center margin-top-none">Get Quote</h1>
+      <div class="get-quote-top-col-wrapper clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-h-none">
+          <div class="get-quote-top-filter inline-block text-center ">
+            <img src="/assets/img/get-quote/filter-icon.svg" />
+          </div>
+          <div class="ui-widget inline-block pull-right" id="select_dog_age">
+            <input id="tags" placeholder="Select dog's age" />
+          </div>
+
+          <!-- End of c-dropdown -->
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="ui-widget inline-block pull-right" id="select_dog_breed">
+            <input id="tags1" placeholder="Select dog's breed" />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none">
+          <div class="ui-widget inline-block pull-right" id="select_cover_amt">
+            <input id="tags2" placeholder="Select coverage amount" />
+          </div>
+        </div>
+        <div
+          class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper"
+        >
+        <button class="btn btn-primary" id="searchId">Apply</button>
+          <button class="btn ghost-btn-light-gray pull-right">Clear All</button>
+        </div>
+      </div>
+    </div>
+    {% for t  in types  %}
+   
+  
+  
+    <div>{{t.type.name}}</div>
+      {% for plan in t.plans %}
+          <h2>{{plan.name}}</h2>
+      {% endfor %}
+    {% endfor %}
+    {% for key,value in types %}
+     {% if value.plans|length > 0%}
+    <div class="get-quote-features-section">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-ribbon text-center">
+          <img src="/assets/img/get-quote/ribbons/red-aids.svg" />
+          <span>{{value.type.name}}</span>
+        </div>
+      </div>
+     
+     
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 padd-h-none">
+      {% for plan in value.plans %}
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+          <div class="get-quote-fea-cols">
+            <p class="margin-top-none">Coverage Amount</p>
+            <div class="get-quote-fea-cols-bottom">
+              <h2 class="h1 margin-v-none inline-block">
+                ₹ {{plan.amount}}
+              </h2>
+              <button class="btn btn-primary pull-right">₹ 1,460/year</button>
+            </div>
+          </div>
+        </div>
+         {% endfor %}
+      </div>
+     
+
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+        <div class="get-quote-fea-cols get-quote-fea-details">
+          <h3>Features</h3>
+          <ul class="get-quote-fea-cols-list padd-left-none">
+          {% for key,value in value.type.features.features.items %}
+            <li>
+            {% if value %}
+              <img src="/assets/img/get-quote/checkmark-icon.svg" />
+              {% else %}
+              <img src="/assets/img/get-quote/cross-icon.svg" />
+              {% endif %}
+              <span
+                >{{key}}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <p class="margin-v-none get-quote-features-bottom-note">
+          Note: 10% discount for buying plans for multiple pets
+        </p>
+      </div>
+    </div>
+  {% endif %}
+    {% endfor %}
+
+   
+  </div>
+</div>
+
+<footer>
+  <div class="wrapper">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <a href="{% url 'index' %}">
+        <img src="/assets/img/brand/logo_white.png" class="main-logo" />
+      </a>
+      <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
+    </div>
+
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <h6 class="footer-heading">Company</h6>
+      <ul class="footer-list padd-left-none">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'plans' %}">Plans</a></li>
+        <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+        <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <ul class="footer-list u-footer-list-margin-top  padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <h6 class="footer-heading">Follow Us</h6>
+      <ul class="footer-list padd-left-none">
+        <li>
+          <a
+            ><i class="fa fa-facebook-square" aria-hidden="true"></i
+            ><span>Facebook</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-twitter-square" aria-hidden="true"></i
+            ><span>Twitter</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-instagram" aria-hidden="true"></i
+            ><span>Instagram</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-linkedin-square" aria-hidden="true"></i
+            ><span>Linkedin</span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe
+            width="100%"
+            height="100%"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe
+          ><a
+            href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
+          ></a>
+        </div>
+        <style>
+          .mapouter {
+            position: relative;
+            text-align: right;
+            height: 100%;
+          }
+          .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 100%;
+          }
+        </style>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+  $(function() {
+    var breedData = []
+    var agesGroup = []
+    $.ajax(
+    {
+        type:"GET",
+        url: "/get-filter-quote-data",
+        success: function( data ) 
+        {
+          breedData = JSON.parse(data.breed)
+          for(let ages of data.ages){
+            agesGroup.push(ages.age_range)
+          }
+        }
+     })
+
+
+    let amounts = [
+    "40000",
+    "10000",
+    "60000",
+    "150000"
+    ]
+
+  
+   setTimeout(()=>{
+   
+    $("#tags").autocomplete({
+      source: agesGroup
+    });
+
+    $("#tags1").autocomplete({
+      source: breedData
+    });
+
+    $("#tags2").autocomplete({
+      source: amounts
+    });
+    
+   },500)
+  });
+</script>
+
+<script>
+var query = '?pawtect-quote=1'
+ $("#searchId").click(()=>{
+   age = $("#tags").val()
+   breed = $("#tags1").val()
+   amount = $("#tags2").val()
+
+   if(age.length >= 1){
+     query += '&age='+age
+   }
+   if(breed.length >= 1){
+     query += '&breed='+breed
+   }
+   if(amount.length >= 1){
+     query += '&amount='+amount
+   }
+
+  location.href="/quotation/" + query
+ })
+</script>
+{% endblock %}
