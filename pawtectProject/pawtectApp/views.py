@@ -191,6 +191,12 @@ def pet_profile(request):
 def user_profile(request):
     return render(request,'pawtectApp/user-profile.html')
 
+def my_pets(request):
+    return render(request,'pawtectApp/my-pets.html')
+
+def my_vetcoins(request):
+    return render(request,'pawtectApp/my-vetcoins.html')
+
 
 
 

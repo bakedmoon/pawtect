@@ -1058,3 +1058,81 @@ ul.dropdown-menu {
   .object-fit(cover);
 }
 //my pet profile page css end
+
+//inside my pet page css start
+.my-pet-col-wrapper {
+  margin-top: (@space * 3) + 4;
+}
+
+.my-pet-cols {
+  border: 1px solid #e5e5e5;
+  .border-radius(8px);
+  padding: @space * 3 @space - 4 @space - 4 @space;
+}
+
+.my-pet-col-list {
+  li {
+    padding-bottom: @space;
+    p,
+    span {
+      font-size: @font-size-small;
+    }
+    span {
+      color: #999999;
+      padding-bottom: @space / 2 - 2;
+    }
+    p {
+      color: #1e1e1e;
+      margin: 0px;
+    }
+  }
+}
+
+.my-pet-col-pet-pro-wrap {
+  margin-top: -19px;
+  img {
+    .circle(56px);
+    .object-fit(cover);
+  }
+  span {
+    min-width: 150px;
+    height: 35px;
+    line-height: 35px;
+    font-size: @font-size-small;
+    color: #1e1e1e;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    .border-radius(42px);
+  }
+}
+
+//inside my pet page css end
+
+//my vet coins page css start
+.my-vetcoins-table {
+  width: 650px;
+  margin: auto;
+  border: 1px solid #dbdbdb;
+  .border-radius(4px);
+  tr {
+    border-bottom: 1px solid #dbdbdb;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  th,
+  td {
+    text-align: left;
+    padding: @space;
+    color: #1e1e1e;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+}
+
+.my-vet-coin-description {
+  width: 32%;
+}
+
+//my vet coins page css end
