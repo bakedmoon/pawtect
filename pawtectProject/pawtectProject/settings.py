@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'pawtectProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pawtect',
-        'USER': 'pawtectapp',
+        'NAME': 'pawtectapp',
+        'USER': 'pawtect',
         'PASSWORD': 'pawtect',
         'HOST': 'localhost',
         'PORT': 5432,
