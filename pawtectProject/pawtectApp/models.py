@@ -1,11 +1,20 @@
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import JSONField,ArrayField
 from django.contrib.auth.models import User
 from django.utils import timezone
 
 class UserProfileInfo(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     mobile = models.IntegerField(blank=True, null=True)
+    gender = models.CharField(max_length=50,blank=True, null=True)
+    address1= models.CharField(max_length=100,blank=True, null=True)
+    address2= models.CharField(max_length=100,blank=True, null=True)
+    area= models.CharField(max_length=50,blank=True, null=True)
+    city= models.CharField(max_length=50,blank=True, null=True)
+    country= models.CharField(max_length=100,blank=True, null=True)
+    pincode=models.IntegerField(blank=True, null=True)
+    profession= ArrayField(models.CharField(max_length=50, blank=True, null=True))
+
 
     def __str__(self):
          return self.user.username
@@ -60,3 +69,21 @@ class Plans(UpdateBaseModel):
 
     def __str__(self):
         return self.category
+
+class Pet(UpdateBaseModel):
+    name = models.CharField(max_length=50,blank=True, null=True)
+    picture = models.CharField(max_length=50, blank=True, null=True)
+    microchip_Number = models.CharField(max_length=50,blank=True, null=True)
+    species = models.CharField(max_length=100, blank=True, null=True)
+    breed = models.CharField(max_length=100,blank=True, null=True)
+    birthDate = models.DateTimeField(auto_now=False)
+    gender = models.CharField(max_length=50,blank=True, null=True)
+    consult_ClinicName = models.CharField(max_length=100,blank=True, null=True)
+    consult_Email = models.EmailField(max_length=254,blank=True, null=True)
+    consult_VetNumber = models.IntegerField(blank=True, null=True)
+    consult_VetAddress = models.CharField(max_length=100,blank=True, null=True)
+    question_answer = JSONField()
+    user = models.ForeignKey(UserProfileInfo, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.name

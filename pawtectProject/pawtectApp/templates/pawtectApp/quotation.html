@@ -83,7 +83,7 @@
         <div class="get-quote-fea-cols get-quote-fea-details">
           <h3>Features</h3>
           <ul class="get-quote-fea-cols-list padd-left-none">
-            {% for key,value in value.type.features.features.items %}
+          {% for key,value in value.type.features.items %}
             <li>
               {% if value %}
               <img src="/assets/img/get-quote/checkmark-icon.svg" />
@@ -226,11 +226,11 @@
     </div>
   </div>
 </footer>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+
+{% comment %} <script src="https://code.jquery.com/jquery-2.2.4.min.js"
 		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 		crossorigin="anonymous"></script>
-<script src="/assets/js/vendor/modal.js"></script>
+<script src="/assets/js/vendor/modal.js"></script> {% endcomment %}
 <script>
   $(function() {
     var breedData = [];
