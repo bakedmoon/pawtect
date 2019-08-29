@@ -362,6 +362,11 @@
   vertical-align: middle;
   padding: @space / 2 0px;
   margin: 0px @space / 2 + 2;
+  &.active {
+    &:after {
+      top: -19px;
+    }
+  }
 }
 
 .nav .button-dropdown {
@@ -409,6 +414,10 @@
     display: block;
     &:last-child {
       border-bottom: none;
+    }
+    &:hover,
+    &:focus {
+      background-color: transparent;
     }
   }
   &:before {

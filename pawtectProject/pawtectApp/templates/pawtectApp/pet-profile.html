@@ -4,8 +4,8 @@
     <li class="light-list"><h2 class="h1 margin-v-none">My Pets</h2></li>
     <li><h2 class="h1 margin-v-none">Jacky</h2></li>
   </ul>
-  <div class="profile-form-wrapper">
-    <form>
+  <div class="profile-form-wrapper mb-48 clearfix">
+    <form class="clearfix">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="upload-profile-wrap text-center p-tb-20">
           <div class="relative">
@@ -39,7 +39,7 @@
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <div class="ui-widget small-ui-widget inline-block pull-right relative">
+        <div class="ui-widget width-full small-ui-widget inline-block pull-right relative">
           <input
             id="pet_profile_species"
             placeholder="Species"
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
-        <div class="ui-widget small-ui-widget inline-block pull-right relative">
+        <div class="ui-widget width-full small-ui-widget inline-block pull-right relative">
           <input
             id="pet_profile_breed"
             placeholder="Breed"
@@ -66,7 +66,14 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input type="text" placeholder="Birth Date *" class="input-small" />
+        <input
+          type="date"
+          data-placeholder="Birth Date *"
+          required
+          aria-required="true"
+          placeholder="Birth Date *"
+          class="input-small"
+        />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <div class="ui-widget relative">
@@ -82,7 +89,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
-          type="number"
+          type="text"
           placeholder="Consulting vet / Clinic name"
           class="input-small"
         />
@@ -96,7 +103,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
-          type="email"
+          type="text"
           placeholder="Consulting vet number"
           class="input-small"
         />
@@ -118,6 +125,21 @@
   </div>
 </div>
 
+<div class="clearfix"></div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright 2019 © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+      <ul class="footer-list2 pull-right">
+        <li><a href="">Terms of Usage</a></li>
+        <li><a href="">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
 <script>
   $(function() {
     var breedData = []
