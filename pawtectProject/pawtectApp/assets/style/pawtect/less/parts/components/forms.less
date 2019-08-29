@@ -213,6 +213,7 @@ input[type="text"],
 textarea,
 select,
 input[type="password"],
+input[type="date"],
 input[type="email"],
 input[type="tel"],
 input[type="number"] {
@@ -241,6 +242,21 @@ input[type="number"] {
     font-size: @font-size-small;
   }
 } // input/textarea
+input[type="date"]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+  color: #cccccc;
+}
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  display: none;
+}
+
+::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+  color: transparent;
+}
 select {
   -webkit-appearance: none;
   appearance: none;
