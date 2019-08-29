@@ -1,0 +1,154 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+<div class="main-content-wrapper">
+  <ul class="breadcrumb-list text-center">
+    <li class="light-list"><h2 class="h1 margin-v-none">My Pets</h2></li>
+    <li><h2 class="h1 margin-v-none">Jacky</h2></li>
+  </ul>
+  <div class="profile-form-wrapper">
+    <form>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="upload-profile-wrap text-center p-tb-20">
+          <div class="relative">
+            <img
+              src="/assets/img/common-images/avatar.png"
+              class="upload-profile-img"
+            />
+          </div>
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="img-upload-input"
+          /><label for="file" class="pt-4"
+            ><img src="/assets/img/common-icons/camera.svg" /><span
+              >Change Image</span
+            ></label
+          >
+        </div>
+        <!-- End of settings-general-image -->
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
+        <input type="text" placeholder="Pet Name" class="input-small" />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
+        <input
+          type="number"
+          placeholder="Microchip number"
+          class="input-small"
+        />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
+        <div class="ui-widget small-ui-widget inline-block pull-right relative">
+          <input
+            id="pet_profile_species"
+            placeholder="Species"
+            class="input-small"
+          />
+          <img
+            src="/assets/img/common-icons/expand-button.svg"
+            class="dropdown-arrow"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
+        <div class="ui-widget small-ui-widget inline-block pull-right relative">
+          <input
+            id="pet_profile_breed"
+            placeholder="Breed"
+            class="input-small"
+          />
+          <img
+            src="/assets/img/common-icons/expand-button.svg"
+            class="dropdown-arrow"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
+        <input type="text" placeholder="Birth Date *" class="input-small" />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
+        <div class="ui-widget relative">
+          <select placeholder="Gender" class="input-small margin-bottom-none">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+          <img
+            src="/assets/img/common-icons/expand-button.svg"
+            class="dropdown-arrow"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
+        <input
+          type="number"
+          placeholder="Consulting vet / Clinic name"
+          class="input-small"
+        />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
+        <input
+          type="email"
+          placeholder="Consulting vet email"
+          class="input-small"
+        />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
+        <input
+          type="email"
+          placeholder="Consulting vet number"
+          class="input-small"
+        />
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
+        <input
+          type="email"
+          placeholder="Consulting vet address"
+          class="input-small"
+        />
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+        <div class="profile-bottom-btn-wrap pull-right">
+          <button class="btn ghost-btn-light-gray btn-md">Cancel</button>
+          <button class="btn btn-primary btn-md">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    $("#pet_profile_species").autocomplete({
+      source: availableTags
+    });
+    $("#pet_profile_breed").autocomplete({
+      source: availableTags
+    });
+  });
+</script>
+
+{% endblock %}

@@ -14,7 +14,10 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
+    <link
+      href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
+      rel="Stylesheet"
+    />
     <!-- Owl Stylesheets -->
     <link
       rel="stylesheet"
@@ -25,7 +28,7 @@
     <link rel="stylesheet" href="/assets/style/pawtect/css/style.css" />
   </head>
   <body>
-    <header>
+    <!-- <header>
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none">
           <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
@@ -69,10 +72,114 @@
           </ul>
         </div>
       </div>
+    </header> -->
+
+    <header>
+      <div class="wrapper">
+        <div
+          class="col-lg-4 col-md-2 col-sm-2 col-xs-2 padd-h-none d-flex align-center"
+        >
+          <a href="{% url 'index' %}">
+            <img
+              src="/assets/img/brand/Pawtect-Logo.jpg"
+              alt="main-logo"
+              class="main-logo"
+            />
+          </a>
+          <div class="header-search-inp-wrap relative inline-block ml-20">
+            <img
+              src="/assets/img/common-icons/searching-magnifying-glass.svg"
+              class="search-icon absolute left-center ml-12"
+            />
+            <input
+              type="text"
+              placeholder="Search anything..."
+              class="margin-bottom-none"
+            />
+          </div>
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs padd-right-none">
+          <ul class="header-list nav pull-right">
+            <li>
+              <span class="header-vetcoin-tag">40 Vetcoins Available</span>
+            </li>
+            <li><a href="">My Pawtect Proposals</a></li>
+            <li class="active"><a href="">My Pets</a></li>
+            <li class="button-dropdown relative">
+              <a href="javascript:void(0)" class="dropdown-toggle">
+                <img
+                  src="/assets/img/common-icons/avatar.svg"
+                  class="header-profile-pic mr-4"
+                />
+                <img
+                  src="/assets/img/common-icons/show-more-button-with-three-dots.svg"
+                />
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#">
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    My Vetcoins Statement
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </header>
     <script src="/assets/js/vendor/jquery.min.js"></script>
     <script src="/assets/js/vendor/owl.carousel.min.js"></script>
-    
+
+    <script>
+      jQuery(document).ready(function(e) {
+        function t(t) {
+          e(t).bind("click", function(t) {
+            t.preventDefault();
+            e(this)
+              .parent()
+              .fadeOut();
+          });
+        }
+        e(".dropdown-toggle").click(function() {
+          var t = e(this)
+            .parents(".button-dropdown")
+            .children(".dropdown-menu")
+            .is(":hidden");
+          e(".button-dropdown .dropdown-menu").hide();
+          e(".button-dropdown .dropdown-toggle").removeClass("active");
+          if (t) {
+            e(this)
+              .parents(".button-dropdown")
+              .children(".dropdown-menu")
+              .toggle()
+              .parents(".button-dropdown")
+              .children(".dropdown-toggle")
+              .addClass("active");
+          }
+        });
+        e(document).bind("click", function(t) {
+          var n = e(t.target);
+          if (!n.parents().hasClass("button-dropdown"))
+            e(".button-dropdown .dropdown-menu").hide();
+        });
+        e(document).bind("click", function(t) {
+          var n = e(t.target);
+          if (!n.parents().hasClass("button-dropdown"))
+            e(".button-dropdown .dropdown-toggle").removeClass("active");
+        });
+      });
+    </script>
     {% block body_block %} {% endblock %}
   </body>
 </html>

@@ -211,12 +211,14 @@ textarea + legend {
 // --------------------- Main input design
 input[type="text"],
 textarea,
+select,
 input[type="password"],
 input[type="email"],
 input[type="tel"],
 input[type="number"] {
   font-size: @font-size-small;
   .size(100%, 40px);
+  margin-bottom: @space;
   background-color: @light-color;
   color: #4a4d4f;
   border: solid 1px #dbdbdb;
@@ -239,7 +241,13 @@ input[type="number"] {
     font-size: @font-size-small;
   }
 } // input/textarea
-
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+select::-ms-expand {
+  display: none;
+}
 // ------------------- transparent inputs
 // overcoming to default settings with !important
 .trans-form {

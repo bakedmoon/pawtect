@@ -20,7 +20,7 @@
 }
 
 .main-content-wrapper {
-  margin-top: 106px;
+  margin-top: @space * 6;
 }
 .home-content-wrapper {
   margin-top: 76px;
@@ -512,26 +512,41 @@
 #select_dog_age {
   width: 230px;
 }
-#select_dog_breed,
-#select_cover_amt {
+
+.ui-widget {
   width: 100%;
-}
-.ui-widget input {
-  width: 100%;
-  height: 40px;
-  border-radius: 4px;
-  border: 1px solid #dbdbdb;
-  padding: 6px 12px;
-  font-size: 14px;
-  color: #000;
-  .placeholder(#d8d8d8);
-  &:hover {
-    border-color: darken(@dark-gray-color, 15%);  
-  }
-  &:focus {
-    border-color: @secondary-color;
+  margin-bottom: @space;
+  input {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #dbdbdb;
+    padding: 6px 12px;
+    font-size: 14px;
     color: #000;
-    outline: none;
+    .placeholder(#d8d8d8);
+    &:hover {
+      border-color: darken(@dark-gray-color, 15%);
+    }
+    &:focus {
+      border-color: @secondary-color;
+      color: #000;
+      outline: none;
+    }
+  }
+  &.small-ui-widget {
+    height: 36px;
+    input {
+      height: 100%;
+    }
+  }
+  .dropdown-arrow {
+    position: absolute;
+    top: 0;
+    right: 12px;
+    bottom: 0;
+    height: 6px;
+    margin: auto;
   }
 }
 .ui-menu {
@@ -966,3 +981,80 @@ ul.dropdown-menu {
 }
 
 // loader css end
+
+//my pet profile page css start
+.breadcrumb-list {
+  li {
+    display: inline-block;
+    position: relative;
+    padding: 0px @space + 3;
+    &.light-list {
+      color: #999999;
+      h2 {
+        font-weight: 300;
+      }
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border: 2px solid #999999;
+      top: 6px;
+      bottom: 0px;
+      right: -5px;
+      margin-top: auto;
+      margin-bottom: auto;
+      border-left: transparent;
+      border-bottom: transparent;
+      transform: rotate(45deg);
+    }
+    &:last-child {
+      &:after {
+        display: none;
+      }
+    }
+  }
+}
+
+.profile-form-wrapper {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-upload-input {
+  // change image button - hidden input
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+
+  span {
+    vertical-align: middle;
+  }
+} //img-upload-input
+
+.img-upload-input + label {
+  display: inline-block;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid transparent;
+  .transition();
+  vertical-align: middle;
+  span {
+    vertical-align: middle;
+    font-size: @font-size-small;
+    color: #3fa6f1;
+    padding-left: @space / 2;
+  }
+} //img-upload-input  label
+
+.upload-profile-img {
+  .circle(56px);
+  .object-fit(cover);
+}
+//my pet profile page css end

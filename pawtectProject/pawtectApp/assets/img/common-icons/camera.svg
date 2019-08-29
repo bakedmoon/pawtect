@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="14.4" viewBox="0 0 16 14.4">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{clip-path:url(#clip-path)}.cls-3{fill:#3fa6f1}
+        </style>
+        <clipPath id="clip-path">
+            <path d="M0 0h16v14.4H0z" class="cls-1"/>
+        </clipPath>
+    </defs>
+    <g id="camera" class="cls-2">
+        <g id="camera-alt">
+            <path id="Union_5" d="M1.6 14.4A1.6 1.6 0 0 1 0 12.8V3.2a1.6 1.6 0 0 1 1.6-1.6h2.56L5.6 0h4.8l1.44 1.6h2.56A1.6 1.6 0 0 1 16 3.2v9.6a1.6 1.6 0 0 1-1.6 1.6zM4 8a4 4 0 1 0 4-4 3.961 3.961 0 0 0-4 4zm1.44 0A2.56 2.56 0 1 1 8 10.56 2.56 2.56 0 0 1 5.44 8z" class="cls-3" data-name="Union 5"/>
+        </g>
+    </g>
+</svg>

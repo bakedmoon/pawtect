@@ -184,6 +184,14 @@ def ter_of_use(request):
 def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
 
+def pet_profile(request):
+    return render(request,'pawtectApp/pet-profile.html')
+
+def user_profile(request):
+    return render(request,'pawtectApp/user-profile.html')
+
+
+
 
 def get_filter_quote_data(request):
         if request.method == 'GET':
