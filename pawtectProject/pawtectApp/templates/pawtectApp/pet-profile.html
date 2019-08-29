@@ -28,13 +28,14 @@
         <!-- End of settings-general-image -->
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input type="text" placeholder="Pet Name" class="input-small" />
+        <input type="text" placeholder="Pet Name" name="name" class="input-small" />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
           type="number"
           placeholder="Microchip number"
           class="input-small"
+          name="microchipNumber"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
@@ -43,6 +44,7 @@
             id="pet_profile_species"
             placeholder="Species"
             class="input-small"
+            name="species"
           />
           <img
             src="/assets/img/common-icons/expand-button.svg"
@@ -115,9 +117,20 @@
     </form>
   </div>
 </div>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script>
   $(function() {
+    var breedData = []
+    $.ajax(
+    {
+        type:"GET",
+        url: "/get-filter-quote-data",
+        success: function( data ) 
+        {
+          breedData = JSON.parse(data.breed)
+        }
+     })
+
     var availableTags = [
       "ActionScript",
       "AppleScript",
@@ -145,9 +158,13 @@
     $("#pet_profile_species").autocomplete({
       source: availableTags
     });
-    $("#pet_profile_breed").autocomplete({
-      source: availableTags
+
+    setTimeout(()=>{
+      $("#pet_profile_breed").autocomplete({
+      source: breedData
     });
+    },500)
+    
   });
 </script>
 
