@@ -8,9 +8,6 @@
 // .modal-content   - actual modal w/ bg and corners and shit
 
 // Kill the scroll on the body
-.modal-open {
-  overflow: hidden;
-}
 
 // Container that the modal scrolls within
 .modal {
@@ -34,6 +31,10 @@
     //.transition;
   }
   &.in .modal-dialog { .translate(0, 0) }*/
+  &.modal-open {
+    display: block;
+    overflow: hidden;
+  }
 }
 .modal-open .modal {
   overflow-x: hidden;
@@ -81,7 +82,7 @@
   top: 0;
   right: 0;
   left: 0;
-  background-color: @modal-backdrop-bg;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: @zindex-extra-small;
   height: 100vh;
   height: 100%;
