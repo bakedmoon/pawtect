@@ -197,6 +197,9 @@ def my_pets(request):
 def my_vetcoins(request):
     return render(request,'pawtectApp/my-vetcoins.html')
 
+def my_proposal(request):
+    return render(request,'pawtectApp/my-proposal.html')
+
 
 
 

@@ -1090,19 +1090,27 @@ ul.dropdown-menu {
 
 .my-pet-col-pet-pro-wrap {
   margin-top: -19px;
-  img {
-    .circle(56px);
-    .object-fit(cover);
-  }
+}
+.my-pet-col-pet-pro-img {
+  .circle(56px);
+  .object-fit(cover);
+}
+
+.my-pet-col-pet-pro-details {
+  min-width: 150px;
+  height: 35px;
+  line-height: 32px;
+  font-size: @font-size-small;
+  color: #1e1e1e;
+  font-weight: bold;
+  background-color: #f2f2f2;
+  .border-radius(42px);
+  padding-right: @space / 2 - 2;
   span {
-    min-width: 150px;
-    height: 35px;
-    line-height: 35px;
-    font-size: @font-size-small;
-    color: #1e1e1e;
-    font-weight: bold;
-    background-color: #f2f2f2;
-    .border-radius(42px);
+    vertical-align: middle;
+  }
+  &.large-width-details {
+    min-width: 180px;
   }
 }
 
@@ -1136,3 +1144,146 @@ ul.dropdown-menu {
 }
 
 //my vet coins page css end
+
+//my proposal page css start
+.my-proposal-tab-list {
+  li {
+    display: inline-block;
+    height: 24px;
+    line-height: 22px;
+    padding: 0px @space - 4;
+    font-size: @font-size-small - 2;
+    color: #1e1e1e;
+    border: 1px solid #cccccc;
+    .border-radius(30px);
+    text-align: center;
+    margin-right: @space / 4;
+    cursor: pointer;
+    &.selected {
+      background-color: #f49e22;
+      color: @light-color;
+      border: 1px solid #f49e22;
+    }
+  }
+}
+.scale-anm {
+  transform: scale(1);
+}
+
+.my-pet-col-help-icon {
+  vertical-align: top;
+}
+
+.my-pet-col-label {
+  font-size: @font-size-small;
+}
+
+.my-pet-col-plan-fee {
+  background-color: #f8f8f8;
+  .border-radius(8px);
+  border: 1px solid #e5e5e5;
+  padding: 10px 12px;
+  font-size: @font-size-small;
+  span:nth-child(2) {
+    color: #999;
+  }
+}
+
+.my-pet-col-right-box {
+  border: 1px solid #e5e5e5;
+  background-color: #f8f8f8;
+  .border-radius(8px);
+  padding: @space - 4;
+  h6 {
+    font-size: @font-size-small;
+  }
+}
+
+.my-pet-col-que-section {
+  height: 192px;
+  overflow-y: auto;
+}
+.my-pet-col-que-ans-count {
+  vertical-align: middle;
+  font-size: @font-size-small;
+  color: #999;
+}
+.my-pet-col-ques {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: @space;
+  margin-bottom: @space;
+  p {
+    font-size: @font-size-small;
+    margin-bottom: @space - 4;
+    &:first-child {
+      margin-top: @space - 4;
+    }
+  }
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: @space / 4;
+    padding-bottom: 0px;
+  }
+}
+.my-proposal-plan-summary-col {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: @light-color;
+  .border-radius(8px);
+  padding: @space - 4;
+  font-size: @font-size-small;
+  h6 {
+    font-size: @font-size-small;
+  }
+}
+
+.my-proposal-plan-fee-list {
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: @space;
+    span {
+      &:nth-child(2) {
+        color: #999999;
+      }
+    }
+  }
+}
+.my-pet-col-referral-section {
+  a {
+    text-decoration: underline;
+  }
+  &.show-referral-inp-section {
+    .my-pet-col-referral-inp-wrap {
+      display: block;
+    }
+    a {
+      display: none;
+    }
+  }
+}
+.input-cancel-btn {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  .border-radius(50px);
+  border: 1px solid #ccc;
+  line-height: 15px;
+  margin-right: @space / 2;
+  img {
+    height: 8px;
+  }
+  input {
+    padding-right: @space * 2;
+  }
+}
+.my-pet-col-referral-inp-wrap {
+  display: none;
+}
+.my_proposal_terms_checkbox {
+  a {
+    color: #3fa6f1;
+    text-decoration: underline;
+  }
+}
+//my proposal page css end

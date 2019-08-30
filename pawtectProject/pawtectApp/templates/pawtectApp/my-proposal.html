@@ -1,0 +1,477 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper">
+  <div class="wrapper">
+    <h1>My Pawtect Proposals</h1>
+    <p class=>
+      We have created a Pawtect plan proposal for you and have included all your
+      pets registered with us in proposal for your convenience.
+    </p>
+
+    <div class="my-proposal-content-wrapper clearfix mt-20">
+      <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 padd-left-none">
+        <ul class="toolbar mb-48 my-proposal-tab-list padd-left-none">
+          <li class="fil-cat selected" href="" data-rel="all">
+            All
+          </li>
+          <li class="fil-cat" data-rel="jacky">Jacky</li>
+          <li class="fil-cat" data-rel="bruno">Bruno</li>
+        </ul>
+
+        <div style="clear:both;"></div>
+        <div id="portfolio">
+          
+          <div class="tile scale-anm jacky all">
+            <div class="my-pet-cols clearfix relative mr-8 mb-48 p-16">
+              <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16 ">
+                <img
+                  src="/assets/img/my-pet/jacky-images/jacky.png"
+                  class="absolute left-center my-pet-col-pet-pro-img"
+                />
+                <div class="my-pet-col-pet-pro-details large-width-details inline-block ml-32 pl-32 ">
+                  <span class="">Jacky</span>
+                  <div class="inline-block pull-right">
+                    <button class="btn btn-link">
+                      <img src="/assets/img/common-icons/edit-icon.svg">
+                    </button>
+                    <button class="btn btn-link">
+                      <img src="/assets/img/common-icons/delete-icon.svg">
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 padd-left-none pt-32">
+                <label class="my-pet-col-label">Plans *</label>
+                <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
+                  <li>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" name="ribbon-types" checked="checked">
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/red-ribbon.svg">
+                          <span>Red Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" name="ribbon-types" >
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/yellow-ribbon.svg">
+                          <span>Yellow Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" name="ribbon-types" >
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/blue-ribbon.svg">
+                          <span>Blue Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                  </li>
+                </ul>
+                <lable class="my-pet-col-label">Coverage amount *</lable>
+                <div class="ui-widget relative width-full mt-8" id="select_dog_age">
+                  <input id="my-pet-col-cover-amt" placeholder="Select cover amount" />
+                  <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+                </div>
+                <div class="my-pet-col-plan-fee mb-4">
+                  <span>Plan Fees</span>
+                  <span class="pull-right">₹ 0</span>
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd-h-none">
+                <div class="my-pet-col-right-box">
+                  <h6 class="inline-block margin-v-none">Health Information *</h6>
+                  <div class="inline-block pull-right">
+                    <img src="/assets/img/common-icons/circle-with-check-symbol.svg">
+                    <span class="my-pet-col-que-ans-count">2/4</span>
+                  </div>
+                  <div class="my-pet-col-que-section width-full">
+                    <div class="my-pet-col-ques">
+                      <p>Has your pet ever been diagnosed with cancer or 
+                          a heart condition?</p>
+                      
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">Yes</span>
+                        </div> 
+                      </label>
+                    
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" checked="checked">
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">No</span>
+                        </div> 
+                      </label>
+                    </div>
+
+                    <div class="my-pet-col-ques">
+                      <p>Has your pet been treated for any illness and or 
+                          injury in the last one year?</p>
+                      
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">Yes</span>
+                        </div> 
+                      </label>
+                    
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">No</span>
+                        </div> 
+                      </label>
+                    </div>
+                    <div class="my-pet-col-ques">
+                        <p>Has your pet ever been diagnosed with cancer or 
+                            a heart condition?</p>
+                        
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">Yes</span>
+                          </div> 
+                        </label>
+                      
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark "></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">No</span>
+                          </div> 
+                        </label>
+                      </div>
+  
+                      <div class="my-pet-col-ques">
+                        <p>Has your pet been treated for any illness and or 
+                            injury in the last one year?</p>
+                        
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">Yes</span>
+                          </div> 
+                        </label>
+                      
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">No</span>
+                          </div> 
+                        </label>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+
+          <div class="tile scale-anm bruno all">
+            <div class="my-pet-cols clearfix relative mr-8 mb-48 p-16">
+              <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16 ">
+                <img
+                  src="/assets/img/my-pet/bruno-images/bruno.png"
+                  class="absolute left-center my-pet-col-pet-pro-img"
+                />
+                <div class="my-pet-col-pet-pro-details large-width-details inline-block ml-32 pl-32 ">
+                  <span class="">Bruno</span>
+                  <div class="inline-block pull-right">
+                    <button class="btn btn-link">
+                      <img src="/assets/img/common-icons/edit-icon.svg">
+                    </button>
+                    <button class="btn btn-link">
+                      <img src="/assets/img/common-icons/delete-icon.svg">
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 padd-left-none pt-32">
+                <label class="my-pet-col-label">Plans *</label>
+                <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
+                  <li>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" name="ribbon-types" >
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/red-ribbon.svg">
+                          <span>Red Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" name="ribbon-types" >
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/yellow-ribbon.svg">
+                          <span>Yellow Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" name="ribbon-types" >
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/blue-ribbon.svg">
+                          <span>Blue Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                  </li>
+                </ul>
+                <lable class="my-pet-col-label">Coverage amount *</lable>
+                <div class="ui-widget relative width-full mt-8" id="select_dog_age">
+                  <input id="my-pet-col-cover-amt" placeholder="Select cover amount" />
+                  <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+                </div>
+                <div class="my-pet-col-plan-fee mb-4">
+                  <span>Plan Fees</span>
+                  <span class="pull-right">₹ 0</span>
+                </div>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd-h-none">
+                <div class="my-pet-col-right-box">
+                  <h6 class="inline-block margin-v-none">Health Information *</h6>
+                  <div class="inline-block pull-right">
+                    <img src="/assets/img/common-icons/circle-with-check-symbol.svg">
+                    <span class="my-pet-col-que-ans-count">2/4</span>
+                  </div>
+                  <div class="my-pet-col-que-section width-full">
+                    <div class="my-pet-col-ques">
+                      <p>Has your pet ever been diagnosed with cancer or 
+                          a heart condition?</p>
+                      
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">Yes</span>
+                        </div> 
+                      </label>
+                    
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">No</span>
+                        </div> 
+                      </label>
+                    </div>
+
+                    <div class="my-pet-col-ques">
+                      <p>Has your pet been treated for any illness and or 
+                          injury in the last one year?</p>
+                      
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">Yes</span>
+                        </div> 
+                      </label>
+                    
+                      <label class="radio-button-wrapper inline-block">
+                        <input type="radio" name="pet_health-ans" >
+                        <span class="checkmark small-checkmark"></span>
+                        <div class="radio-button-label inline-block">
+                          <span class="padd-left-none">No</span>
+                        </div> 
+                      </label>
+                    </div>
+                    <div class="my-pet-col-ques">
+                        <p>Has your pet ever been diagnosed with cancer or 
+                            a heart condition?</p>
+                        
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">Yes</span>
+                          </div> 
+                        </label>
+                      
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">No</span>
+                          </div> 
+                        </label>
+                      </div>
+  
+                      <div class="my-pet-col-ques">
+                        <p>Has your pet been treated for any illness and or 
+                            injury in the last one year?</p>
+                        
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">Yes</span>
+                          </div> 
+                        </label>
+                      
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" name="pet_health-ans" >
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">No</span>
+                          </div> 
+                        </label>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 padd-h-none">
+        <div class="my-proposal-plan-summary-col">
+          <h6 class="margin-v-none">Plan Fees Summary</h6>
+          <ul class="my-proposal-plan-fee-list padd-left-none mt-16">
+            <li>
+              <span>Total Plan Fees</span>
+              <span>₹ 0</span>
+            </li>
+            <li>
+              <span>Multiple Pet Discount (10%)</span>
+              <span>- ₹ 0</span>
+            </li>
+            <li>
+              <span>GST</span>
+              <span>₹ 0</span>
+            </li>
+            <li>
+              <span>Vetcoins</span>
+              <span>- ₹ 40</span>
+            </li>
+          </ul>
+          <!-- add class show-referral-inp-section to my-pet-col-referral-section to enable referral input field -->
+          <div class="my-pet-col-referral-section">
+            <a href="">Have a referral code?</a>
+            <div class="my-pet-col-referral-inp-wrap">
+              <label>Referral Code</label>
+              <div class="relative">
+                <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none">
+                <button class="btn btn-link input-cancel-btn absolute right-center">
+                  <img src="/assets/img/common-icons/close-button.svg" >
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="my-pet-col-plan-fee mt-16">
+            <span>Net Payable</span>
+            <span class="pull-right">₹ 0</span>
+          </div>
+          <div class="my_proposal_terms_checkbox">
+            <label class="checkbox-container">
+              <input type="checkbox" name="accept_policy">
+              <span class="checkbox-checkmark"></span>
+              <span>I have read and agreed with <a href="">Terms and 
+                  Conditions</a>  of Pawtect Plan</span>
+            </label>
+          </div>
+          <button class="btn btn-primary btn-md width-full mt-12">Proceed to Payment</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- tab js start -->
+
+<script>
+  $(function() {
+    var selectedClass = "";
+    $(".fil-cat").click(function() {
+      $(".fil-cat").removeClass("selected");
+      $(this).addClass("selected");
+      selectedClass = $(this).attr("data-rel");
+      $("#portfolio").fadeTo(100, 0.1);
+      $("#portfolio .tile")
+        .not("." + selectedClass)
+        .fadeOut()
+        .removeClass("scale-anm");
+      setTimeout(function() {
+        $("." + selectedClass)
+          .fadeIn()
+          .addClass("scale-anm");
+        $("#portfolio").fadeTo(300, 1);
+      }, 300);
+    });
+  });
+</script>
+<!-- tab js end -->
+
+
+<script>
+    $(function() {
+      var breedData = []
+      $.ajax(
+      {
+          type:"GET",
+          url: "/get-filter-quote-data",
+          success: function( data ) 
+          {
+            breedData = JSON.parse(data.breed)
+          }
+       })
+  
+      var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme"
+      ];
+      $("#my-pet-col-cover-amt").autocomplete({
+        source: availableTags
+      });
+  
+      
+      
+    });
+  </script>
+{% endblock %}

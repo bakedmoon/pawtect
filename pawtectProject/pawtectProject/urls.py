@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^user_profile/',views.user_profile,name='user_profile'),
     url(r'^my_pets/',views.my_pets,name='my_pets'),
     url(r'^my_vetcoins/',views.my_vetcoins,name='my_vetcoins'),
+    url(r'^my_proposal/',views.my_proposal,name='my_proposal'),
     url(r'^get-filter-quote-data/',views.get_filter_quote_data,name="get-filter-quote-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
     url(r'^terms/',views.ter_of_use,name='terms'),
