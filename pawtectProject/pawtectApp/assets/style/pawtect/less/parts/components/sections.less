@@ -1057,6 +1057,11 @@ ul.dropdown-menu {
   .circle(56px);
   .object-fit(cover);
 }
+.profile-bottom-btn-wrap {
+  .btn {
+    min-width: 125px;
+  }
+}
 //my pet profile page css end
 
 //inside my pet page css start
@@ -1287,3 +1292,32 @@ ul.dropdown-menu {
   }
 }
 //my proposal page css end
+
+//user propfile page css start
+.user-pro-owner-type {
+  li {
+    display: inline-block;
+    background-color: #1e1e1e;
+    color: @light-color;
+    height: 25px;
+    line-height: 24px;
+    font-size: @font-size-small - 2;
+    .border-radius(30px);
+    padding: 0px @space - 4;
+    margin-right: @space / 4;
+    margin-bottom: @space / 2;
+    span {
+      vertical-align: middle;
+    }
+    img {
+      padding-left: @space / 4 + 2;
+      cursor: pointer;
+    }
+  }
+}
+
+.user-pro-ref-id {
+  color: #999999;
+  font-size: @font-size-small;
+}
+//user profile page css end
