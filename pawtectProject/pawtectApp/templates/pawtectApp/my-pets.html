@@ -6,38 +6,39 @@
       <h1>My Pets</h1>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
-      <button class="btn btn-primary btn-md pull-right">Add New Pet</button>
+      <a href="{% url 'my_pets_new' %}"><button class="btn btn-primary btn-md pull-right">Add New Pet</button></a>
     </div>
 
     <div class="clearfix"></div>
 
     <div class="my-pet-col-wrapper">
+    {% for pet in pets %}
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
         <div class="my-pet-cols clearfix relative mr-8 mb-16">
           <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16">
             <img
-              src="/assets/img/my-pet/jacky-images/jacky.png"
-              class="absolute left-center"
-            />
-            <span class="ml-32 pl-32">Jacky</span>
+              src="{{pet.picture}}"
+              class="absolute left-center" />
+            
+            <span class="ml-32 pl-32">{{pet.name}}</span>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
             <ul class="my-pet-col-list padd-left-none">
               <li>
                 <span>Species</span>
-                <p>Feline/Cat</p>
+                <p>{{pet.species}}</p>
               </li>
               <li>
                 <span>Microchip No</span>
-                <p>28374232</p>
+                <p>{{pet.microchip_Number}}</p>
               </li>
               <li>
                 <span>Consulting Veterinarian</span>
-                <p>Dr. Nilima Paranjape</p>
+                <p>{{pet.consult_Name}}</p>
               </li>
               <li>
                 <span>Contact Number</span>
-                <p>9820049512</p>
+                <p>{{pet.consult_mobileNumber}}</p>
               </li>
             </ul>
           </div>
@@ -45,26 +46,26 @@
             <ul class="my-pet-col-list padd-left-none">
               <li>
                 <span>Breed Name</span>
-                <p>American Bobtail</p>
+                <p>{{pet.breed}}</p>
               </li>
               <li>
                 <span>Gender</span>
-                <p>Female</p>
+                <p>{{pet.gender}}</p>
               </li>
               <li>
                 <span>Clinic Name</span>
-                <p>Nilimas Veterinary Clinic</p>
+                <p>{{pet.consult_Address}}</p>
               </li>
               <li>
                 <span>Email Id</span>
-                <p>vetnilima@gmail.com</p>
+                <p>{{pet.consult_Email}}</p>
               </li>
             </ul>
           </div>
           <div class="clearfix"></div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
             <div class="pull-right mt-8">
-              <button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button>
+              <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button>
               <button class="btn btn-md btn-primary ml-8">Get Quote</button>
               <div
                 class="button-dropdown my-pet-col-dropdown relative inline-block ml-8"
@@ -93,8 +94,8 @@
           </div>
         </div>
       </div>
-
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+{% endfor %}
+      {% comment %} <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
         <div class="my-pet-cols clearfix relative ml-8 mb-16">
           <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16">
             <img
@@ -174,7 +175,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> {% endcomment %}
     </div>
   </div>
 </div>
@@ -182,7 +183,7 @@
 <footer class="footer2">
   <div class="wrapper">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
-      <p class="copy-text2 margin-v-none">Copyright 2019 © Vetina</p>
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
       <ul class="footer-list2 pull-right">

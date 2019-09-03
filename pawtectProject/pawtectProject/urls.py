@@ -3,9 +3,11 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path
 from django.conf.urls import url,include
+from django.conf.urls.static import static
 from pawtectProject  import settings
 from django.views.static import serve
 from pawtectApp import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$',views.index,name='index'),
@@ -17,9 +19,11 @@ urlpatterns = [
     url(r'^otp/',views.otp,name='otp'),
     url(r'^review/',views.review,name='review'),
     url(r'^quotation/',views.quotation,name='quotation'),
-    url(r'^pet_profile/',views.pet_profile,name='pet_profile'),
     url(r'^user_profile/',views.user_profile,name='user_profile'),
-    url(r'^my_pets/',views.my_pets,name='my_pets'),
+    url(r'^account/my-pets/$',views.my_pets,name='my-pets'),
+    url(r'^account/my-pets/new/$',views.my_pets_new,name='my_pets_new'),
+    url(r'^account/my-pets/(?P<petId>[0-9]+)/edit/$',views.my_pets_edit,name='my-pets-edit'),
+    url(r'^account/my-pets/(?P<petId>[0-9]+)/delete/$',views.my_pets_delete,name='my_pets_delete'),
     url(r'^my_vetcoins/',views.my_vetcoins,name='my_vetcoins'),
     url(r'^get-filter-quote-data/',views.get_filter_quote_data,name="get-filter-quote-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
@@ -27,4 +31,8 @@ urlpatterns = [
     url(r'^privacy/',views.privacy_policy,name='privacy'),
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^assets/(?P<path>.*)$', serve,{'document_root': settings.ASSETS}),
+    url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

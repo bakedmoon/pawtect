@@ -3,7 +3,7 @@ from django.contrib.postgres.fields import JSONField,ArrayField
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-class UserProfileInfo(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     mobile = models.IntegerField(blank=True, null=True)
     gender = models.CharField(max_length=50,blank=True, null=True)
@@ -72,18 +72,18 @@ class Plans(UpdateBaseModel):
 
 class Pet(UpdateBaseModel):
     name = models.CharField(max_length=50,blank=True, null=True)
-    picture = models.CharField(max_length=50, blank=True, null=True)
+    picture = models.CharField(max_length=500, blank=True, null=True)
     microchip_Number = models.CharField(max_length=50,blank=True, null=True)
     species = models.CharField(max_length=100, blank=True, null=True)
     breed = models.CharField(max_length=100,blank=True, null=True)
-    birthDate = models.DateTimeField(auto_now=False)
+    birthDate = models.DateField(auto_now=False)
     gender = models.CharField(max_length=50,blank=True, null=True)
-    consult_ClinicName = models.CharField(max_length=100,blank=True, null=True)
+    consult_Name = models.CharField(max_length=100,blank=True, null=True)
     consult_Email = models.EmailField(max_length=254,blank=True, null=True)
-    consult_VetNumber = models.IntegerField(blank=True, null=True)
-    consult_VetAddress = models.CharField(max_length=100,blank=True, null=True)
-    question_answer = JSONField()
-    user = models.ForeignKey(UserProfileInfo, on_delete=models.CASCADE)
+    consult_mobileNumber = models.CharField(max_length=30,blank=True, null=True)
+    consult_Address = models.CharField(max_length=500,blank=True, null=True)
+    question_answer = JSONField(blank=True, null=True)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name

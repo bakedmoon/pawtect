@@ -130,6 +130,7 @@ EMAIL_HOST_PASSWORD = 'Sagar@973065'
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/pawtectApp/user_login/'
+LOGIN_URL = '/pawtectApp/login/'
 ASSETS = os.path.join(BASE_DIR, 'pawtectApp/assets')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
