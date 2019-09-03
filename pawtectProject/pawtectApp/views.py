@@ -1,19 +1,24 @@
 from __future__ import unicode_literals
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse,JsonResponse
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.core.files.storage import FileSystemStorage
 import threading,json
-from django.contrib import messages
+from django.contrib import messages,auth
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
-from .models import Settings,UserProfileInfo,Plans,Age,Type
+from .models import Settings,UserProfile,Plans,Age,Type,Pet
 from .controller.UserController import UserController
+from .controller.PetsController import PetsController
 from . import utils
 from . import const
 
+    
 
 def index(request):
     return render(request, 'pawtectApp/index.html',{})
@@ -63,7 +68,7 @@ def otp(request):
         mobile = request.POST['mobile']
         otp = num1+num2+num3+num4+num5+num6
         userotp=ctrl.otpVerify(otp,mobile)
-        return HttpResponseRedirect(reverse('plans'))
+        return HttpResponseRedirect(reverse('my-pets'))
 
 
 
@@ -71,46 +76,27 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
     
-# def register(request):
-#     registered = False
-#     if request.method == 'POST':
-#         user_form = UserForm(data=request.POST)
-#         profile_form = UserProfileInfoForm(data=request.POST)
-#         if user_form.is_valid() and profile_form.is_valid():
-#             user = user_form.save()
-#             user.set_password(user.password)
-#             user.save()
-#             profile = profile_form.save(commit=False)
-#             profile.user = user
-#             profile.save()
-#             registered = True
-#         else:
-#             print(user_form.errors,profile_form.errors)
-#     else:
-#         user_form = UserForm()
-#         profile_form = UserProfileInfoForm()
-#     return render(request,'pawtectApp/signup.html',
-#                           {'user_form':user_form,
-#                            'profile_form':profile_form,
-#                            'registered':registered})
+
 def login(request):
-    return render(request, 'pawtectApp/login.html')
-    # form = UserForm()
-    # if request.method == 'POST':
-    #     username = request.POST.get('username','')
-    #     password = request.POST.get('password','')
+    if request.method == 'POST':
+        username = request.POST.get('username','')
+        password = request.POST.get('password','')
         
-    #     user =auth.authenticate(username=username, password=password)
-    #     if user:
-    #         auth.login(request, user)
-    #         return HttpResponseRedirect(reverse('plans'))
-    #     else:
-    #         messages.error(request,"Something went wrong try again.")
-    #         return HttpResponseRedirect(reverse('login'))
-    # else:
-    #     return render(request, 'pawtectApp/login.html')
+        user =auth.authenticate(username=username, password=password)
+        if user:
+            auth.login(request, user)
+            return HttpResponseRedirect(reverse('my-pets'))
+        else:
+            messages.error(request,"Something went wrong try again.")
+            return HttpResponseRedirect(reverse('login'))
+    else:
+        return render(request, 'pawtectApp/login.html')
 
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('login'))
 
 def contact(request):
     if request.method == 'GET':
@@ -185,22 +171,78 @@ def ter_of_use(request):
 def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
 
-def pet_profile(request):
-    return render(request,'pawtectApp/pet-profile.html')
 
+# Edit User 
+@login_required(login_url='/login/')
 def user_profile(request):
-    return render(request,'pawtectApp/user-profile.html')
+    userId = request.user.id
+    user = UserProfile.objects.get(user_id=request.user.id)
+    if request.method == "GET":
+        print("USER IS HERE-->>",user.user.first_name)
+        return render(request,'pawtectApp/user-profile.html',{'user':user})
+    elif request.method == "POST":
+        ctrl = UserController()
+        myfile = user.avatar
+        print("AVATAR IS",myfile)
+        uploadImage = False
+        if request.FILES:
+            myfile = request.FILES["avatar"]
+            uploadImage = True
+        user_profile = ctrl.userProfile(request.POST,userId,myfile,uploadImage)
+        return HttpResponseRedirect(reverse("my-pets"))
 
+
+    
+@login_required(login_url='/login/')
 def my_pets(request):
-    return render(request,'pawtectApp/my-pets.html')
+    user_profile = request.user.userprofile
+    pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+    return render(request,"pawtectApp/my-pets.html",{"pets":pets})
+
+@login_required(login_url='/login/')
+def my_pets_new(request):
+    user_profile = request.user.userprofile
+    if request.method == "GET":
+        return render(request,"pawtectApp/pet-profile.html",{})
+    elif request.method == "POST":
+        ctrl = PetsController()
+        myfile = request.FILES["picture"]
+        create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
+        return HttpResponseRedirect(reverse("my-pets"))
+    return render(request,"pawtectApp/pet-profile.html",{})
+
+
+@login_required(login_url='/login/')
+def my_pets_edit(request,petId):
+    if request.method == "GET":
+       pet = Pet.objects.get(id=petId)
+       return render(request,"pawtectApp/pet-profile.html",{"pet":pet})
+    if request.method == "POST":
+        user_profile = request.user.userprofile
+        pet = Pet.objects.get(id=petId)
+        print("PET PICTURE--->>>",pet.picture)
+        myfile = pet.picture
+        uploadImage = False
+        ctrl = PetsController()
+        if request.FILES:
+            myfile = request.FILES["picture"]
+            uploadImage = True
+        update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
+        return HttpResponseRedirect(reverse('my-pets'))
+    
+@login_required(login_url='/login/')
+def my_pets_delete(request,petId):
+    if request.method == "POST":
+        user_profile = request.user.userprofile
+        pet = Pet.objects.get(id=petId)
+        pet.delete()
+        return HttpResponseRedirect(reverse('my-pets'))
 
 def my_vetcoins(request):
     return render(request,'pawtectApp/my-vetcoins.html')
 
 def my_proposal(request):
     return render(request,'pawtectApp/my-proposal.html')
-
-
 
 
 def get_filter_quote_data(request):

@@ -2,57 +2,57 @@
 <div class="main-content-wrapper">
   <ul class="breadcrumb-list text-center">
     <li class="light-list"><h2 class="h1 margin-v-none">My Pets</h2></li>
-    <li><h2 class="h1 margin-v-none">Jacky</h2></li>
+    {% if pet %}
+    <li><h2 class="h1 margin-v-none">{{pet.name}}</h2></li>
+    {% endif %}
   </ul>
   <div class="profile-form-wrapper mb-48 clearfix">
-    <form class="clearfix">
+    <form class="clearfix" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="upload-profile-wrap text-center p-tb-20">
           <div class="relative">
             <img
-              src="/assets/img/common-images/avatar.png"
+             {% if pet %}src="{{pet.picture}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %} 
               class="upload-profile-img"
-            />
+              id="image"
+             required />
           </div>
           <input
             type="file"
-            name="file"
-            id="file"
+            name="picture"
+            id="picture"
             class="img-upload-input"
-          /><label for="file" class="pt-4"
+          /><label for="picture" class="pt-4"
             ><img src="/assets/img/common-icons/camera.svg" /><span
               >Change Image</span
-            ></label
-          >
+            ></label>
+          
         </div>
         <!-- End of settings-general-image -->
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input
-          type="text"
-          placeholder="Pet Name"
-          name="name"
-          class="input-small"
-        />
+        <input type="text" placeholder="Pet Name" id="name" name="name" class="input-small" value="{{pet.name}}" required/>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
           type="number"
           placeholder="Microchip number"
           class="input-small"
-          name="microchipNumber"
-        />
+          id="microchipNumber"
+          name="microchip_Number" value="{{pet.microchip_Number}}" required />
+        
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <div
           class="ui-widget width-full small-ui-widget inline-block pull-right relative"
         >
           <input
-            id="pet_profile_species"
+            id="species"
             placeholder="Species"
             class="input-small"
-            name="species"
-          />
+            name="species" value="{{pet.species}}"
+           required/>
           <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -67,7 +67,9 @@
             id="pet_profile_breed"
             placeholder="Breed"
             class="input-small"
-          />
+            name="breed" value="{{pet.breed}}"
+            required/>
+          
           <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -76,19 +78,22 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
-          type="date"
-          data-placeholder="Birth Date *"
-          required
+          type="text"
+          id="date"
+          name="birthDate"
           aria-required="true"
-          placeholder="Birth Date *"
-          class="input-small"
+          placeholder="Enter Birthdate"
+          value="{{pet.birthDate | date:"F j, Y"}}"
+          required
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <div class="ui-widget relative">
-          <select placeholder="Gender" class="input-small margin-bottom-none">
-            <option>Male</option>
-            <option>Female</option>
+          <select placeholder="Gender" name="gender" class="input-small margin-bottom-none" value="{{pet.gender}}">
+            {% if not pet.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
+            {% if  pet.gender %}<option>Select Gender</option>{% endif %}
+            <option value="male"  {% if pet.gender == 'male' %}selected {% endif %} >Male</option>
+            <option value="female" {% if pet.gender == 'female' %}selected {% endif %}>Female</option>
           </select>
           <img
             src="/assets/img/common-icons/expand-button.svg"
@@ -99,36 +104,48 @@
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
           type="text"
+          id="clinic_name"
+          name="consult_Name"
           placeholder="Consulting vet / Clinic name"
           class="input-small"
+          value="{{pet.consult_Name}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
           type="email"
+          id="clinic_email"
+          name="consult_Email"
           placeholder="Consulting vet email"
           class="input-small"
+          value="{{pet.consult_Email}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
           type="text"
-          placeholder="Consulting vet number"
+          id="clinic_mobileNumber"
+          name="consult_mobileNumber"
+          placeholder="Consulting mobile number"
           class="input-small"
+          value="{{pet.consult_mobileNumber}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
-          type="email"
+          type="text"
+          id="clinic_address"
+          name="consult_Address"
           placeholder="Consulting vet address"
           class="input-small"
+          value="{{pet.consult_Address}}"
         />
       </div>
       <div class="clearfix"></div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-16">
         <div class="profile-bottom-btn-wrap pull-right">
           <button class="btn ghost-btn-light-gray btn-md">Cancel</button>
-          <button class="btn btn-primary btn-md ml-8">Save</button>
+          <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
         </div>
       </div>
     </form>
@@ -140,12 +157,12 @@
 <footer class="footer2">
   <div class="wrapper">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
-      <p class="copy-text2 margin-v-none">Copyright 2019 © Vetina</p>
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
       <ul class="footer-list2 pull-right">
-        <li><a href="">Terms of Usage</a></li>
-        <li><a href="">Privacy Policy</a></li>
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
       </ul>
     </div>
   </div>
@@ -161,7 +178,7 @@
       }
     });
 
-    var availableTags = [
+    var species = [
       "ActionScript",
       "AppleScript",
       "Asp",
@@ -185,16 +202,40 @@
       "Scala",
       "Scheme"
     ];
-    $("#pet_profile_species").autocomplete({
-      source: availableTags
+    $("#species").autocomplete({
+      source: species
     });
 
     setTimeout(() => {
       $("#pet_profile_breed").autocomplete({
         source: breedData
       });
-    }, 500);
+
+    $("#date").datepicker({
+      dateFormat: "MM d, yy"
+    });
+    
+  },500)
+    
   });
+</script>
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#image').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#picture").change(function() {
+  readURL(this);
+});
+
 </script>
 
 {% endblock %}

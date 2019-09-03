@@ -6,21 +6,23 @@
       <h1 class="margin-bottom-none">My Profile</h1>
       <p class="user-pro-ref-id mt-12">My Reference ID: 23y9238</p>
     </div>
-    <form class="clearfix">
+    <form class="clearfix" method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="upload-profile-wrap text-center p-tb-20">
           <div class="relative">
             <img
-              src="/assets/img/common-images/avatar.png"
+            {% if user %}src="{{user.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
               class="upload-profile-img"
+              id="image"
             />
           </div>
           <input
             type="file"
-            name="file"
-            id="file"
+            name="avatar"
+            id="avatar"
             class="img-upload-input"
-          /><label for="file" class="pt-4"
+          /><label for="avatar" class="pt-4"
             ><img src="/assets/img/common-icons/camera.svg" /><span
               >Change Image</span
             ></label
@@ -34,6 +36,7 @@
           placeholder="First Name"
           name="fname"
           class="input-small"
+          value="{{user.user.first_name}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -42,14 +45,16 @@
           placeholder="Last Name"
           class="input-small"
           name="lname"
+          value="{{user.user.last_name}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
-          type="number"
+          type="text"
           placeholder="Mobile Number"
           class="input-small"
-          name="mob_no"
+          name="mobile"
+          value="{{user.mobile}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -57,14 +62,17 @@
           type="email"
           placeholder="Email"
           class="input-small"
-          name="mail_id"
+          name="email"
+          value="{{user.user.email}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <div class="ui-widget relative">
-          <select placeholder="Gender" class="input-small margin-bottom-none">
-            <option>Male</option>
-            <option>Female</option>
+          <select placeholder="Gender" name="gender" class="input-small margin-bottom-none" value="{{user.gender}}">
+          {% if not user.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
+            {% if  user.gender %}<option>Select Gender</option>{% endif %}
+            <option value="male" {% if user.gender == 'male' %}selected {% endif %}>Male</option>
+            <option value="female" {% if user.gender == 'female' %}selected {% endif %}>Female</option>
           </select>
           <img
             src="/assets/img/common-icons/expand-button.svg"
@@ -77,11 +85,12 @@
           type="text"
           placeholder="Address"
           class="input-small"
-          name="address"
+          name="address1"
+          value="{{user.address1}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input type="text" placeholder="Area" class="input-small" name="area" />
+        <input type="text" placeholder="Area" class="input-small" name="area" value="{{user.area}}" />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
@@ -89,6 +98,7 @@
           placeholder="Pincode"
           class="input-small"
           name="pincode"
+          value="{{user.pincode}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
@@ -96,7 +106,8 @@
           type="text"
           placeholder="City"
           class="input-small"
-          name="user_city"
+          name="city"
+          value="{{user.city}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -225,7 +236,7 @@
             <option value="Hong Kong">Hong Kong</option>
             <option value="Hungary">Hungary</option>
             <option value="Iceland">Iceland</option>
-            <option value="India">India</option>
+            <option value="India" selected>India</option>
             <option value="Indonesia">Indonesia</option>
             <option value="Iran, Islamic Republic of"
               >Iran, Islamic Republic of</option
@@ -243,8 +254,8 @@
             <option value="Kenya">Kenya</option>
             <option value="Kiribati">Kiribati</option>
             <option value="Korea, Democratic People's Republic of"
-              >Korea, Democratic People's Republic of</option
-            >
+              >Korea, Democratic People's Republic of</option>
+            
             <option value="Korea, Republic of">Korea, Republic of</option>
             <option value="Kuwait">Kuwait</option>
             <option value="Kyrgyzstan">Kyrgyzstan</option>
@@ -377,9 +388,9 @@
             <option value="Tunisia">Tunisia</option>
             <option value="Turkey">Turkey</option>
             <option value="Turkmenistan">Turkmenistan</option>
-            <option value="Turks and Caicos Islands"
-              >Turks and Caicos Islands</option
-            >
+            <option value="Turks and Caicos Islands">
+              Turks and Caicos Islands</option>
+            
             <option value="Tuvalu">Tuvalu</option>
             <option value="Uganda">Uganda</option>
             <option value="Ukraine">Ukraine</option>
@@ -460,7 +471,7 @@
         </button>
         <div class="profile-bottom-btn-wrap pull-right inline-block">
           <button class="btn ghost-btn-light-gray btn-md">Cancel</button>
-          <button class="btn btn-primary btn-md ml-8">Save</button>
+          <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
         </div>
       </div>
     </form>
@@ -470,12 +481,12 @@
 <footer class="footer2">
   <div class="wrapper">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
-      <p class="copy-text2 margin-v-none">Copyright 2019 © Vetina</p>
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
       <ul class="footer-list2 pull-right">
-        <li><a href="">Terms of Usage</a></li>
-        <li><a href="">Privacy Policy</a></li>
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
       </ul>
     </div>
   </div>
@@ -501,6 +512,24 @@
       source: availableTags
     });
   });
+</script>
+<script>
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#image').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#avatar").change(function() {
+  readURL(this);
+});
+
 </script>
 
 {% endblock %}
