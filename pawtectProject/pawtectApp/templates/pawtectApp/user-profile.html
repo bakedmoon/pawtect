@@ -6,7 +6,7 @@
       <h1 class="margin-bottom-none">My Profile</h1>
       <p class="user-pro-ref-id mt-12">My Reference ID: 23y9238</p>
     </div>
-    <form class="clearfix" method="post"  enctype="multipart/form-data">
+    <form class="clearfix" enctype="multipart/form-data">
     {% csrf_token %}
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="upload-profile-wrap text-center p-tb-20">
@@ -35,6 +35,7 @@
           type="text"
           placeholder="First Name"
           name="fname"
+          id="fname"
           class="input-small"
           value="{{user.user.first_name}}"
         />
@@ -45,6 +46,7 @@
           placeholder="Last Name"
           class="input-small"
           name="lname"
+          id="lname"
           value="{{user.user.last_name}}"
         />
       </div>
@@ -54,6 +56,7 @@
           placeholder="Mobile Number"
           class="input-small"
           name="mobile"
+          id="mobile"
           value="{{user.mobile}}"
         />
       </div>
@@ -63,12 +66,13 @@
           placeholder="Email"
           class="input-small"
           name="email"
+          id="email"
           value="{{user.user.email}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <div class="ui-widget relative">
-          <select placeholder="Gender" name="gender" class="input-small margin-bottom-none" value="{{user.gender}}">
+          <select placeholder="Gender" name="gender" id="gender" class="input-small margin-bottom-none" value="{{user.gender}}">
           {% if not user.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
             {% if  user.gender %}<option>Select Gender</option>{% endif %}
             <option value="male" {% if user.gender == 'male' %}selected {% endif %}>Male</option>
@@ -86,11 +90,12 @@
           placeholder="Address"
           class="input-small"
           name="address1"
+          id="address1"
           value="{{user.address1}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input type="text" placeholder="Area" class="input-small" name="area" value="{{user.area}}" />
+        <input type="text" placeholder="Area" class="input-small" name="area" id="area" value="{{user.area}}" />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
@@ -98,6 +103,7 @@
           placeholder="Pincode"
           class="input-small"
           name="pincode"
+          id="pincode"
           value="{{user.pincode}}"
         />
       </div>
@@ -107,6 +113,7 @@
           placeholder="City"
           class="input-small"
           name="city"
+          id="city"
           value="{{user.city}}"
         />
       </div>
@@ -437,31 +444,7 @@
             class="dropdown-arrow"
           />
         </div>
-        <ul class="user-pro-owner-type padd-left-none">
-          <li>
-            <span>Pet Owner</span>
-            <img src="/assets/img/common-icons/close-button-light.svg" />
-          </li>
-          <li>
-            <span>Groomer</span>
-            <img src="/assets/img/common-icons/close-button-light.svg" />
-          </li>
-          <li>
-            <span>Groomer</span>
-            <img src="/assets/img/common-icons/close-button-light.svg" />
-          </li>
-          <li>
-            <span>Groomer</span>
-            <img src="/assets/img/common-icons/close-button-light.svg" />
-          </li>
-          <li>
-            <span>Groomer</span>
-            <img src="/assets/img/common-icons/close-button-light.svg" />
-          </li>
-          <li>
-            <span>Groomer</span>
-            <img src="/assets/img/common-icons/close-button-light.svg" />
-          </li>
+        <ul class="user-pro-owner-type padd-left-none" id="professionId">
         </ul>
       </div>
       <div class="clearfix"></div>
@@ -471,7 +454,7 @@
         </button>
         <div class="profile-bottom-btn-wrap pull-right inline-block">
           <button class="btn ghost-btn-light-gray btn-md">Cancel</button>
-          <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
+          <button class="btn btn-primary btn-md ml-8" type="button" id="userProfileId">Save</button>
         </div>
       </div>
     </form>
@@ -513,16 +496,20 @@
     });
   });
 </script>
+
 <script>
+var imageUrl = ''
 function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     
     reader.onload = function(e) {
       $('#image').attr('src', e.target.result);
+      imageUrl = e.target.result
     }
     
-    reader.readAsDataURL(input.files[0]);
+    let avatar = reader.readAsDataURL(input.files[0]);
+    
   }
 }
 
@@ -530,6 +517,74 @@ $("#avatar").change(function() {
   readURL(this);
 });
 
+var professions = new Array();
+var timeOutFunc = setTimeout(()=>{
+$(document).ready(function(){
+  $('form').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
+  
+    $('body').on("keyup",'#pet_user_type', function(event){
+        if(event.which == 13){
+          let profession = $("#pet_user_type").val()
+          if(profession){
+            $('#professionId').append('<li><span>' + profession + '</span><img onclick="removeFromDepartment(this)" src="/assets/img/common-icons/close-button-light.svg" /></label>')
+            professions.push(profession)
+            $("#pet_user_type").val('')
+          }
+        }
+    });
+});
+    clearTimeout(timeOutFunc)
+},2000)
+
+function removeFromDepartment(element){
+  const g = document.getElementById('professionId');
+for (let i = 0, len = g.children.length; i < len; i++)
+{
+    g.children[i].onclick = function(){
+      console.log("INDEX IS->>",i)
+       g.removeChild(g.childNodes[i]);
+    }
+  }
+}
+
+$("#userProfileId").click((e)=>{
+  e.preventDefault()
+  let fileImage = $('#avatar').val()
+  var filename = fileImage.replace(/^.*\\/, "");
+  console.log("THE profession ARRAY IS-->>>",filename)
+  let dataToSend = {}
+  dataToSend.fname = $('#fname').val()
+  dataToSend.lname = $('#lname').val()
+  dataToSend.email = $('#email').val()
+  dataToSend.avatar = filename
+  dataToSend.mobile = $('#mobile').val()
+  dataToSend.gender = $('#gender').val()
+  dataToSend.address1 = $('#address1').val()
+  dataToSend.area = $('#area').val()
+  dataToSend.city = $('#city').val()
+  dataToSend.country = $('#country').val()
+  dataToSend.pincode = $('#pincode').val()
+  dataToSend.professionData = professions
+  let response = $.ajax({
+    type: 'POST',
+    url: '/user_profile/',
+    data: dataToSend,
+    });
+
+    response.done(()=>{
+      location.href="/account/my-pets/"
+    })
+
+    response.fail(()=>{
+      alert("Error")
+    })
+    
+})
 </script>
 
 {% endblock %}

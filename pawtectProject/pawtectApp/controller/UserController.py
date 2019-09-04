@@ -14,14 +14,14 @@ class UserController():
         return user
 
     def userProfile(self,userInfo,userId,myfile,uploadImage):
-        print("USER INFO",userInfo)
+        print("THE AVATAR IS HERE-->>>",userInfo['avatar'])
         user = User.objects.get(pk=userId)
         user.first_name = userInfo['fname']
         user.last_name = userInfo['lname']
         user.email = userInfo['email']
         user.save()
         if uploadImage:
-            imageUrl = make_image_url(myfile)
+            imageUrl = userInfo['avatar']
         else:
             imageUrl = myfile
         userprofile  = UserProfile.objects.get(user_id=userId)

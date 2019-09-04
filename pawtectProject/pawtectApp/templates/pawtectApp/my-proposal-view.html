@@ -5,23 +5,23 @@
     <h1>My Pawtect Proposals</h1>
     <p class=>
       We have created a Pawtect plan proposal for you and have included all your
-      pets registered with us in proposal for your convenience.
+      pets registered with us in proposal for your convenience.{{pet}}
     </p>
 
     <div class="my-proposal-content-wrapper clearfix mt-20">
       <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 padd-left-none">
         <ul class="toolbar mb-48 my-proposal-tab-list padd-left-none">
-          <li class="fil-cat selected" href="" data-rel="all">
+         <a href="{% url 'my_proposal' %}"> <li class="fil-cat" href="" data-rel="all">
             All
-          </li>
-          {% for pet in pets %}
-         <li class="fil-cat" data-rel="jacky"><a href="{% url 'my_proposal_view' pet.id%}">{{pet.name}}</a></li>
-          {% endfor %}
+          </li></a>
+          {% if pet %}
+         <a href="{% url 'my_proposal_view' pet.id%}"> <li class="fil-cat selected" >{{pet.name}}</li>
+         {% endif %}
         </ul>
 
         <div style="clear:both;"></div>
         <div id="portfolio">
-           {% for pet in pets %}
+          
           <div class="tile scale-anm jacky all">
             <div class="my-pet-cols clearfix relative mr-8 mb-48 p-16">
            
@@ -187,7 +187,6 @@
               
             </div>
           </div>
-      {% endfor %}
         </div>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 padd-h-none">

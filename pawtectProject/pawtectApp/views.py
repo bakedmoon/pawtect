@@ -4,7 +4,7 @@ from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse,JsonResponse
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
@@ -173,7 +173,9 @@ def privacy_policy(request):
 
 
 # Edit User 
+
 @login_required(login_url='/login/')
+@csrf_exempt
 def user_profile(request):
     userId = request.user.id
     user = UserProfile.objects.get(user_id=request.user.id)
@@ -181,12 +183,13 @@ def user_profile(request):
         print("USER IS HERE-->>",user.user.first_name)
         return render(request,'pawtectApp/user-profile.html',{'user':user})
     elif request.method == "POST":
+        print("INSIDE USER PROFILE VIEW->>")
         ctrl = UserController()
         myfile = user.avatar
         print("AVATAR IS",myfile)
         uploadImage = False
-        if request.FILES:
-            myfile = request.FILES["avatar"]
+        if request.POST['avatar']:
+            myfile = request.POST['avatar']
             uploadImage = True
         user_profile = ctrl.userProfile(request.POST,userId,myfile,uploadImage)
         return HttpResponseRedirect(reverse("my-pets"))
@@ -232,17 +235,27 @@ def my_pets_edit(request,petId):
     
 @login_required(login_url='/login/')
 def my_pets_delete(request,petId):
-    if request.method == "POST":
-        user_profile = request.user.userprofile
-        pet = Pet.objects.get(id=petId)
-        pet.delete()
-        return HttpResponseRedirect(reverse('my-pets'))
+    print("PET ID IS HERE-->>>",petId)
+    try:
+        if petId:
+            pet = Pet.objects.get(id=petId)
+            print("PET INFO INSIDE DELETE FUNCTION IS==>>>",pet)
+            pet.delete()
+            return HttpResponseRedirect(reverse('my_proposal'))
+    except Pet.DoesNotExist as e:
+        return HttpResponseRedirect(reverse('my_proposal'))
 
+
+@login_required(login_url='/login/')
 def my_vetcoins(request):
     return render(request,'pawtectApp/my-vetcoins.html')
 
+
+@login_required(login_url='/login/')
 def my_proposal(request):
-    return render(request,'pawtectApp/my-proposal.html')
+    user_profile = request.user.userprofile
+    pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+    return render(request,"pawtectApp/my-proposal.html",{"pets":pets})
 
 
 def get_filter_quote_data(request):
@@ -253,3 +266,10 @@ def get_filter_quote_data(request):
             return JsonResponse({"breed":breed,"ages":list_result})
         else:
             return HttpResponse("Request method is not a GET")
+
+def my_proposal_view(request,petId):
+    print("INSIDE PROPOSAL VIEW-->>",petId)
+    if petId:
+        pet = Pet.objects.get(id=petId)
+        print("THE PET IN PROPOSAL VIEW==>>",pet)
+        return render(request,"pawtectApp/my-proposal-view.html",{'pet':pet})
