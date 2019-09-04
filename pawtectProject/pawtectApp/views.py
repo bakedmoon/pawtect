@@ -182,6 +182,9 @@ def quotation(request):
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
 
+def pawtect_terms(request):
+    return render(request,'pawtectApp/pawtect-terms.html')
+
 def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
 
@@ -199,6 +202,9 @@ def my_vetcoins(request):
 
 def my_proposal(request):
     return render(request,'pawtectApp/my-proposal.html')
+
+def page_not_found(request):
+    return render(request,'pawtectApp/404.html')
 
 
 

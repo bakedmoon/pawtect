@@ -1321,3 +1321,105 @@ ul.dropdown-menu {
   font-size: @font-size-small;
 }
 //user profile page css end
+
+//terms and conditions css start
+.pt-terms-list {
+  padding-left: @space + 2;
+  li {
+    list-style-type: initial;
+    // font-size: @font-size-small;
+    padding-top: @space;
+    padding-bottom: @space;
+    text-align: justify;
+  }
+}
+
+.pt-privacy-que-list {
+  li {
+    list-style-type: initial;
+    // padding-bottom: @space;
+  }
+}
+.pt-privacy-wrapper {
+  p {
+    margin-bottom: @space + @space / 2;
+  }
+}
+//terms and conditions css end
+
+//pawtect terms and conditions css start
+.pt-tc-left-panel {
+  position: fixed;
+  width: 280px;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: @light-color;
+  .border-radius(4px);
+  padding: @space - 4;
+  margin-bottom: @space * 2;
+  // left: 0px;
+}
+.pt-tc-left-panel-list {
+  li {
+    border-bottom: 1px solid #e5e5e5;
+    padding-top: @space / 2;
+    padding-bottom: @space / 2;
+    a {
+      color: #999;
+    }
+    &.active {
+      a {
+        color: #000;
+      }
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+.pt-tc-right-panel {
+  width: calc(100% - 300px);
+  // border: 1px solid #e2e2e2;
+  background-color: #ffffff;
+  margin-left: @space;
+}
+.pt-tc-right-cols {
+  .border-radius(4px);
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: @space;
+  padding: @space * 4;
+  font-size: @font-size-small;
+}
+.pt-tc-def-list {
+  li {
+    padding-bottom: @space - 4;
+  }
+}
+
+.pt-tc-def-bottom-heading {
+  font-size: @font-size-small;
+}
+
+.pt-cancel-table {
+  width: 100%;
+  td,
+  th {
+    width: 50%;
+  }
+}
+//pawtect terms and conditions css end
+
+//404 page css start
+.pt-404-wrapper {
+  justify-content: center;
+  align-items: center;
+  margin-top: @space * 6;
+  margin-bottom: @space;
+  h1 {
+    font-size: 160px;
+  }
+  img {
+    max-height: 300px;
+  }
+}
+
+//404 page css end

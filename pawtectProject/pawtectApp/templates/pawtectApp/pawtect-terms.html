@@ -1,0 +1,949 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper">
+  <div class="wrapper">
+    <div class="pt-tc-left-panel pull-right">
+      <ul id="pt_left_panel_list" class="pt-tc-left-panel-list padd-left-none">
+        <li class="pt_left_panel_list_option active">
+          <a href="#tab1">Definitions</a>
+        </li>
+        <li class="pt_left_panel_list_option"><a href="#tab2">Coverage</a></li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab3">Renewable additional plan charges/discounting</a>
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab4"
+            >Discounts on plan charges applicable under these plans</a
+          >
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab5">Deductions applicable under these plans</a>
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab6">General conditions applicable under these plans</a>
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab7">General Exclusions</a>
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab8">Specific Exclusion</a>
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab9">Cancellation By You</a>
+        </li>
+        <li class="pt_left_panel_list_option">
+          <a href="#tab10">Claim Process</a>
+        </li>
+      </ul>
+    </div>
+    <div class="pt-tc-right-panel pull-right">
+      <div class="pt-tc-right-cols" id="tab1">
+        <h5 class="margin-v-none">DEFINITIONS</h5>
+        <ul class="pt-tc-def-list pt-number-list pl-16 pt-16">
+          <li>
+            <b>Accidental Injury</b> means sudden, unforeseen and involuntary
+            event caused by external, visible andviolent means leading to bodily
+            harm, excluding illness or disease solely and directly caused by
+            it,which is verified and certified by a licensed veterinarian as
+            mentioned in Section 2 of this Plan.
+          </li>
+          <li>
+            <b>Breed</b> a specific group of domestic animals having homogeneous
+            appearance (phenotype), homogeneousbehaviour, and/or other
+            characteristics that distinguish it from other organisms of the same
+            species
+          </li>
+          <li>
+            <b>Healthy Pet Discount</b> is a discount given to the pet owner on
+            renewal of plan document if the planholder has not made any claim in
+            the expiring policy document.
+          </li>
+          <li>
+            <b>Consultation/Examination</b> Fee A fee charged by a licensed
+            veterinarian to meet with a pet ownerto discuss the facts of his or
+            her pet’s case that leads to diagnosis of an injury, illness or
+            disease asmentioned under this plan.
+          </li>
+          <li>
+            <b>Emergency / Emergency Care</b> means management for an illness or
+            injury which results in symptomswhich occur suddenly and
+            unexpectedly and requires immediate care by a Licensed Veterinarian
+            toprevent death or serious long-term impairment of your Pet’s
+            health.
+          </li>
+          <li><b>Discount</b> is a deduction in the base plan charges.</li>
+          <li>
+            <b>Courtesy Period</b> shall mean an extra 15 days granted to the
+            Pet Owner after the expiry date of theplan to renew the plan for the
+            next plan period.
+          </li>
+          <li>
+            <b>Home visits</b> Means visits to your vet outside of normal
+            surgery hours for treatment unless your vetconsiders your pet can’t
+            be moved or couldn’t wait until normal surgery hours to be seen.
+          </li>
+          <li>
+            <b>Hospitalization</b> means admission in a Hospital for ‘In-pet
+            Care’.
+          </li>
+          <li>
+            <b>In-pet Care</b> or Medical treatment means treatment for which
+            the covered pet has to stay in a hospital fora covered event and or
+            has to undergo treatment or procedure without having to stay in the
+            hospital.
+          </li>
+          <li>
+            <b>Laboratory Tests</b> are tests conducted under controlled,
+            scientific conditions in a laboratory or similarsetting where a test
+            (such as a blood test or urinalysis procedure) is performed by a
+            licensed medicallaboratorian on a specimen taken from the pet.
+          </li>
+          <li>
+            <b>Licensed Veterinarian/ Veterinarian/Vet</b> means a person who
+            holds a valid registration from theVeterinary Council of India (VCI)
+            Or state veterinary Council and is thereby entitled to practice
+            veterinarymedicine within its jurisdiction; and is acting within its
+            scope and jurisdiction of license. LicensedVeterinarian should not
+            be the Pet Owner himself/herself or close member of the family of
+            the pet owner.
+          </li>
+          <li>
+            <b>Major illness means</b> the diseases or the disease conditions or
+            the syndromes as mentioned in Section1 of this Plan.
+          </li>
+          <li>
+            <b>Major Soft Tissue Surgeries</b> means any surgical procedures as
+            mentioned in Section 4 of this Plan.
+          </li>
+          <li>
+            <b>Medical Expenses</b> means those expenses that a covered pet
+            owner has necessarily and actuallyincurred for medical treatment of
+            his / her pet on account of Illness or Accident on the advice of
+            alicensed veterinarian, as long as these are no more than what would
+            have been payable if the Pet hadhad not been covered under the plan
+            and no more than other hospitals or veterinarian in the samelocality
+            would have charged for the same medical treatment.
+          </li>
+          <li>
+            <b>Multiple Pet means</b> a pet Owner having more than one Pet
+            Covered under any of the Vetina Pawtect Plan.
+          </li>
+          <li>
+            <b>Normal Surgery Hours</b> shall mean the Vet’s regular hours as
+            per their hospital/clinic/practice time.
+          </li>
+          <li>
+            <b>Notification of Claim</b> means the process of intimating a claim
+            to us through any of the recognizedmodes of communication.
+          </li>
+          <li>
+            <b>Pet</b> is the beneficiary covered under this plan on the payment
+            of plan charges.
+          </li>
+          <li>
+            <b>Pet Owner</b> means the pet owner as mentioned in the plan
+            summary.
+          </li>
+          <li><b>Plan</b> means the Plan Summary and the Plan Wordings.</li>
+          <li>
+            <b>Plan Charges</b> shall mean the amount paid by the pet owner
+            towards availing the plan for his/her petfor the duration as per the
+            plan summary.
+          </li>
+          <li>
+            <b>Plan Limit</b> means the amount as stated in the Plan Summary
+            against the Section/Cover for each petcovered under it.
+          </li>
+          <li>
+            <b>Plan Period</b> means the period between the commencement date
+            and the expiry date specified in thePlan Summary and includes both
+            the commencement date as well as the expiry date.
+          </li>
+          <li>
+            <b>Pre-Existing Disease</b> means any condition, ailment or injury
+            or related condition(s) for which therewere signs or symptoms and /
+            or were diagnosed and / or for which medical advice / treatment
+            wasreceived prior to the first Plan issued by the us and renewed
+            continuously thereafter.
+          </li>
+          <li>
+            <b>Reasonable and Customary Charges</b> means the charges for
+            services, which are the standardcharges for the specific provider
+            and consistent with the prevailing charges in the geographical
+            areafor identical or similar services, taking into account the
+            nature of the illness / injury involved.
+          </li>
+          <li>
+            <b>Surgery or Surgical Procedure</b> means manual and / or operative
+            procedure (s) required for treatmentof an illness or injury,
+            correction of deformities and defects, diagnosis and cure of
+            diseases, relief fromsuffering and prolongation of life, performed
+            in a hospital or day care centre by a licensed veterinarian.
+          </li>
+          <li>
+            <b>Third Party</b> any individual or a party who is not a family
+            member, business associate or an employeeof the pet owner and is not
+            directly part of this contract as mentioned in Section 3of this
+            Plan.
+          </li>
+          <li>
+            <b>Unproven/Experimental treatment</b> means the treatment including
+            drug or experimental therapywhich is not based on established
+            medical practice in India, is treatment experimental or unproven.
+          </li>
+          <li>
+            <b>You, Your, Yours, Yourself, Plan-holder, Person(s) means</b> the
+            Individual Pet Owner whose pet will betreated as a beneficiary under
+            this plan.
+          </li>
+        </ul>
+
+        <table class="pt-table-border pt-tc-plan-types-table mt-20">
+          <tr class="pt-table-filled-row">
+            <th colspan="3">Plan Types</th>
+          </tr>
+          <tr class="pt-table-filled-row">
+            <th colspan="3">
+              You can choose one of the below plans for Your Pet.
+            </th>
+          </tr>
+          <tr>
+            <th>Blue Ribbon Plan</th>
+            <th>Yellow Ribbon Plan</th>
+            <th>Red Ribbon Plan</th>
+          </tr>
+          <tr>
+            <td>Section 1 Major Illness Cover</td>
+            <td>Section 2 Accidental Injuries Cover</td>
+            <td>Section 1 Major Illness Cover</td>
+          </tr>
+          <tr>
+            <td>Section 2 Accidental Injuries Cover</td>
+            <td>Section 3 Third Party Liability Cover</td>
+            <td>Section 3 Third Party Liability Cover</td>
+          </tr>
+          <tr>
+            <td>Section 3 Third Party Liability Cover</td>
+            <td>Section 4 Major Soft Tissue Surgeries Cover</td>
+            <td>Section 4 Major Soft Tissue Surgeries Cover</td>
+          </tr>
+          <tr>
+            <td>Section 4 Major Soft Tissue Surgeries Cover</td>
+          </tr>
+        </table>
+
+        <h6 class="pt-tc-def-bottom-heading mt-16">
+          The plan selected by You will be shown in the Plan Summary and
+          available coverage will depend onselected plan as per above section.
+        </h6>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab2">
+        <h5 class="margin-v-none">COVERAGE</h5>
+        <h6 class="mt-16">Section 1: Major illness Cover</h6>
+        <p class="mb-24">
+          If Your pet is diagnosed as suffering from any of the Major illness or
+          undergoing Specialised Therapy asspecified below, during the Plan
+          Period, we will pay You all the Reasonable and Customary Charges
+          thatare Medically Necessary and Incurred by You up to the plan limit
+          mentioned in Your Plan Summary.
+        </p>
+        <p><b>Provided that,</b></p>
+        <ol class="pt-letter-list pl-16">
+          <li class="pb-12">
+            We will not make any payment if Your Pet is diagnosed as suffering
+            from a Pre-existing Major Illness orany illness not mentioned in the
+            list, and is hospitalized within 30 days from the commencement date
+            ofthe first Plan with us.
+          </li>
+          <li class="pb-12">
+            No Claim under this section shall be admissible if the Major Illness
+            is a consequence of or arising out ofany pre-existing
+            condition/disease.
+          </li>
+        </ol>
+        <p><b>What we will cover:</b></p>
+        <ul class="pt-bullet-list">
+          <li>Consultation /Examination fee of a Licensed Veterinarian</li>
+          <li>Emergency Care provided by a Licensed Veterinarian</li>
+          <li>Surgeries carried out by a Licensed Veterinarian</li>
+          <li>
+            Laboratory Tests for diagnosis as advised by your Veterinarian
+          </li>
+          <li>X-Rays, MRI, CT SCAN for diagnosis</li>
+          <li>
+            Hospitalization / Boarding charges at a Licensed Veterinary Hospital
+          </li>
+          <li>Legally prescribed drugs and medications by your Veterinarian</li>
+        </ul>
+        <p class="mt-24">
+          We will not pay for any expense that is not related to a Major
+          illness.Major Illness or specialized therapy shall mean any of the
+          following defined as below:
+        </p>
+        <table class="pt-table-border pt-tc-cov-table mt-32">
+          <tr>
+            <th>Sr. No.</th>
+            <th>Category</th>
+            <th>Specifications</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Cancer and Tumour</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>All cancers (Malignant ones)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Cardiovascular system</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Arteriosclerosis</li>
+                <li>Atrial fibrillation</li>
+                <li>Cardiac arrhythmia</li>
+                <li>Cardiomyopathy</li>
+                <li>Congestive heart failure</li>
+                <li>Endocarditis/ Myocardial effusion/ Myocarditis</li>
+                <li>Mitral valve insufficiency</li>
+                <li>Thrombosis</li>
+                <li>Pericardial Effusion</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Haematological Systems</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Haemophilia</li>
+                <li>Leukaemia</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Respiratory Systems</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Emphysema</li>
+                <li>Pleural effusion</li>
+                <li>Pyothorax</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Gastro-intestinal disorders</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Liver failure/cirrhosis</li>
+                <li>Insulinoma</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Urinary systems disorders</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Acute and chronic renal failure</li>
+                <li>Nephritis/ pyelonephritis</li>
+                <li>Urinary calculi</li>
+                <li>Kidney stone</li>
+                <li>Cystitis</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Lymphoid Systems</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Splenic cancer (Malignant)</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Specialized therapy</td>
+            <td>
+              <ul class="pt-bullet-list pl-16">
+                <li>Stem cell therapy (Cover up to 40% of plan limit)</li>
+                <li>
+                  Laser therapy (Only for Post-surgical cases and accidental
+                  injuries)
+                </li>
+                <li>
+                  Platelet Rich Plasma (PRP) Therapy (Only for accidental
+                  injuriesand renal failure and other illnesses listed above)
+                </li>
+                <li>
+                  Blood Transfusion (Only for accidental injuries or illnesses
+                  listedabove)
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <div class="mt-32">
+          <h6>Section 2: Accidental Injury Cover</h6>
+          <p>
+            If your pet is undergoing any treatment due to an accidental injury
+            during the Plan Period, we will payYou all Reasonable and Customary
+            Charges that are Medically Necessary and Incurred by You
+            duringhospitalization up to the plan limit mentioned in Your Plan
+            Summary.
+          </p>
+          <p class="mt-24"><b>Provided that,</b></p>
+          <ol class="pt-letter-list pl-16">
+            <li class="pb-12">
+              We will not make any payment if Your Pet has met with an accident
+              and is hospitalized within 14 daysfrom the commencement date of
+              the first Plan with us.
+            </li>
+            <li class="pb-12">
+              No Claim under this section shall be admissible if the accidental
+              injury claim is a consequence of anypre-existing
+              condition/disease.
+            </li>
+          </ol>
+          <p><b>What we will cover:</b></p>
+          <ul class="pt-bullet-list">
+            <li>Consultation /examination fee of a Licensed Veterinarian</li>
+            <li>Emergency Care provided by a Licensed Veterinarian</li>
+            <li>Surgeries carried out by a Licensed Veterinarian</li>
+            <li>
+              Laboratory Tests for diagnosis as advised by your Licensed
+              Veterinarian
+            </li>
+            <li>X-Rays MRI, CT SCAN for diagnosis</li>
+            <li>
+              Hospitalization / boarding charges at a Licensed Veterinary
+              Hospital
+            </li>
+            <li>
+              Legally prescribed drugs and medications by your Licensed
+              Veterinarian
+            </li>
+            <li>
+              All major surgeries on hind limb and fore limb under general
+              anaesthesia
+            </li>
+            <li>Amputation of limb</li>
+          </ul>
+        </div>
+
+        <div class="mt-32">
+          <h6>Section 3: Third Party Liability Cover</h6>
+          <p>
+            If you become legally liable to pay for any bodily injury and/or
+            property damage to any third party dueto your Pet’s action during
+            the Plan Period, we will cover you up to the plan limit mentioned in
+            Your PlanSummary.
+          </p>
+          <p>
+            We will only accept a claim if the liability has been decided by a
+            competent judicial authority falling underthe Jurisdiction of India.
+          </p>
+        </div>
+
+        <div class="mt-32">
+          <h6>Section 4: Major Soft Tissue Surgeries Cover</h6>
+          <p>
+            If Your pet is undergoing any Surgical Procedures as specified
+            below, during the Plan Period, we will payYou all Reasonable and
+            Customary Charges that are Medically Necessary and Incurred by You
+            duringhospitalization up to the plan limit as per the Plan Summary.
+          </p>
+          <p class="mt-24"><b>Provided that,</b></p>
+          <ol class="pt-letter-list pl-16">
+            <li>
+              We will not make any payment if Your Pet is undergoing any of the
+              following surgeries and/ or ishospitalized within 30 days from the
+              commencement date of the first Plan with us.
+            </li>
+            <li>
+              No Claim under this option shall be admissible if the Surgical
+              Procedure is a consequence of orarising out of any pre-existing
+              condition/disease.
+            </li>
+          </ol>
+
+          <p><b>What we will cover:</b></p>
+          <ul class="pt-bullet-list">
+            <li>Consultation /examination fee of a Licensed Veterinarian</li>
+            <li>Emergency Care provided by a Licensed Veterinarian</li>
+            <li>Surgeries carried out by a Licensed Veterinarian</li>
+            <li>
+              Laboratory Tests for diagnosis as advised by your Licensed
+              Veterinarian
+            </li>
+            <li>X-Rays, MRI, CT SCAN for Diagnosis</li>
+            <li>
+              Hospitalization / Boarding charges at a Licensed Veterinary
+              Hospital
+            </li>
+            <li>
+              Legally prescribed drugs and medications by your Licensed
+              Veterinarian
+            </li>
+          </ul>
+          <p class="mt-24">
+            Major Soft tissue surgeries means the following major surgeries,
+            which Pet have undergone during the PlanPeriod to have suffered from
+            and which requires Hospitalisation and are specifically defined as
+            below:
+          </p>
+          <ol class="pt-number-list">
+            <li>Gastric torsion</li>
+            <li>Intussusception</li>
+            <li>Splenic torsion</li>
+            <li>Megacolon</li>
+            <li>Pyloric stenosis</li>
+            <li>Malignant gastric / intestinal tumours</li>
+            <li>4th/5th rib removal / Pericardial drainage</li>
+            <li>Diaphragmatic hernia</li>
+            <li>
+              Any kind of surgical intervention on kidney/ urinary bladder/
+              urethra/ureter under generalAnaesthesia
+            </li>
+            <li>Aural haematoma</li>
+            <li>
+              Surgical intervention on Eye under general Anaesthesia (Only for
+              penetrating injuries to eyeball)
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab3">
+        <h5 class="margin-v-none">
+          RENEWAL ADDITIONAL PLAN CHARGES/ DISCOUNTING
+        </h5>
+        <ul class="pt-bullet-list mt-16 pl-16">
+          <li>
+            A discount of 5% on base Plan Charges will be applicable at the time
+            of renewal of this plan subjectto no claims being made in the
+            expiring plan. This discount will increase by 5% for each claim
+            freerenewal subject to maximum of 15% discount.
+          </li>
+          <li>
+            10% additional plan charges on the base plan charges will be levied
+            on renewing a plan, if a claimhas been made in the expiring plan.
+          </li>
+        </ul>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab4">
+        <h5 class="margin-v-none">
+          DISCOUNTS ON PLAN CHARGES APPLICABLE UNDERTHESE PLANS
+        </h5>
+        <ul class="pt-bullet-list mt-16 pl-16">
+          <li>
+            10% Discount shall be made applicable on the base rate for owner of
+            multiple pets covered underthis plan.
+          </li>
+          <li>
+            2% discount on the base rate will be made available if the Pet owner
+            provides on-line access to us ofthe medical records of the pet.
+          </li>
+        </ul>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab5">
+        <h5 class="margin-v-none">DEDUCTIONS APPLICABLE UNDER THESE PLANS</h5>
+        <ul class="pt-bullet-list mt-16 pl-16">
+          <li>
+            If your pet is less than 8 years of age at the time of a claim
+            event, we will deduct INR 1000 or 5% ofclaim amount (whichever is
+            higher) from each admissible claim.
+          </li>
+          <li>
+            We will pay 75% of the admissible claim amount if your pet is over 8
+            years of age at the time of theclaim event.
+          </li>
+        </ul>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab6">
+        <h5 class="margin-v-none">
+          GENERAL CONDITIONS APPLICABLE UNDER THESEPLANS
+        </h5>
+        <p>
+          Throughout the Plan period, the below mentioned steps are to be
+          adhered:
+        </p>
+        <ul class="pt-bullet-list pl-16">
+          <li>
+            Your pet must be fitted with a microchip and you must provide
+            microchip details along with all therelevant data of you and your
+            pet which would be part of your plan summary including photographsof
+            your pet while taking the plan for identification purposes.
+          </li>
+          <li>
+            For Renal Conditions, Liver Failure, tendon rupture, cruciate
+            ligament injuries Permanent locomotorsdisability, we will pay a
+            onetime lump sum Benefit of 50% of Plan Limit and the plan will
+            cease toexist with no further renewal options.
+          </li>
+          <li>
+            Your pet must be over 8 weeks and under 6 years of age to be
+            eligible for coverage under this plan,on taking the plan for the
+            first time.
+          </li>
+          <li>
+            Renewal of plans will not be allowed for pets beyond 10 years of
+            completed age.
+          </li>
+          <li>
+            Coverage of this plan will be in the geographical bounds of India
+            only.
+          </li>
+          <li>Maintain your pet’s health and well-being.</li>
+          <li>
+            Provide a secure and safe environment for your pet to prevent
+            injury, illness, theft or straying.
+          </li>
+          <li>
+            Control your pet to prevent injury to a person or another animal and
+            damage or destruction to anyproperty.
+          </li>
+          <li>
+            Your pet must be kept vaccinated against distemper, hepatitis,
+            leptospirosis, parvovirus, Rabies,kennel cough and Corona vaccines
+            of good branded companies, complying with WHO norms for manufacture
+            and testing.
+          </li>
+          <li>
+            Your pet must have regular de-worming and flea treatments and should
+            be provided with a healthy diet.
+          </li>
+          <li>
+            You must take any actions recommended by a vet to prevent or reduce
+            the risk of injury/illness.
+          </li>
+          <li>
+            If your pet is unwell /injured, you must arrange for a vet to
+            examine and treat your pet as soon as possible.
+          </li>
+          <li>
+            Your pet is covered under this plan only on payment of the plan
+            charges.
+          </li>
+          <li>
+            Your plan will be in force from the plan start date and remain in
+            force till plan end date as mentionedin your plan summary. After
+            expiry, you will need to renew this plan to continue with coverages
+            for your pet.
+          </li>
+          <li>
+            In case of non-renewal on time i.e before the expiry of the plan
+            including the Courtesy Period, the Petowner will have to take out
+            fresh policy where health pet discount (if any) shall be denied.
+          </li>
+          <li>
+            In the event, you decide to transfer the ownership to your family
+            member or relative, or any otherperson you must inform us about the
+            same, within 7 working days of such transfer. We will updatethe
+            terms and conditions along with other relevant documents to reflect
+            the same. In case, we arenot informed about the ownership transfer,
+            the coverages will discontinue.
+          </li>
+          <li>
+            You may also nominate an immediate family member of yours to claim
+            on behalf of you, only if youare critically ill or injured.
+          </li>
+          <li>
+            In case you have obtained option of paying premium using EMI
+            (equated monthly instalments) Youmust make payment of instalments,
+            failing which, the policy cover will become null and void and
+            noclaims will be admissible.
+          </li>
+          <li>You must agree:</li>
+          <ol class="pt-number-list padd-left-none p-tb-8">
+            <li>
+              To give us all relevant and material information, documents and
+              access to all relevant and materialmedical records of the covered
+              Pet, so that we may administer your plan and deal with your
+              claims.
+            </li>
+            <li>
+              That your vet has your permission to give us all relevant and
+              material information that we ask forabout your covered pet. If a
+              charge is made for this, you must pay for the charge.
+            </li>
+          </ol>
+          <li>
+            At no point in time, shall the total claims payable during the plan
+            period, exceed the total Plan Limitas mentioned in the Plan Summary.
+          </li>
+        </ul>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab7">
+        <h5 class="margin-v-none">GENERAL EXCLUSIONS</h5>
+        <ol class="pt-number-list pl-16 pt-16">
+          <li>
+            Preventive, routine treatments, examinations or check-ups,
+            vaccinations, tick, flea and mites orde-worming treatments, wound
+            dressing, General skin/Eyes/Dental, ortho, routine check-upand
+            problems, clipping nails, bathing, de matting, spaying or
+            castrating/neutering, any inheritedconditions or diseases, any
+            congenital anomaly, cosmetic surgeries, and dental scaling of your
+            petare not covered under this Plan.
+          </li>
+          <li>
+            In case the regular upkeep of the pet is not maintained in the form
+            of vaccinations, regular check-ups,grooming and routine treatments
+            as necessary, any claims arising due to lack of such care shall
+            bedenied.
+          </li>
+          <li>
+            No Claim shall be admissible if the Surgical Procedure is a
+            consequence of or arising out of any pre-existing condition/disease.
+          </li>
+          <li>
+            Any other condition that is not mentioned above, will not be covered
+            under this plan.
+          </li>
+          <li>Any Homeopathic and Herbal medications.</li>
+          <li>Any Treatment or prescription by a non-licensed Veterinarian.</li>
+          <li>
+            Any treatment that is in any way connected with your pet being
+            pregnant, subsequent complications,termination of pregnancy, giving
+            birth, or rearing puppies.
+          </li>
+          <li>
+            Your plan will not cover any pre-existing injury or illness, before
+            your cover started.
+          </li>
+          <li>
+            The treatment of or training for diagnosed behavioural problems.
+          </li>
+          <li>
+            Home visits or visits to your vet outside of normal surgery hours
+            for treatment unless your vet considers your pet can’t be moved or
+            couldn’t wait until normal surgery hours to be seen
+          </li>
+          <li>Food, even if prescribed/recommended by a vet.</li>
+          <li>
+            Supplements and probiotics, any medical or tracking device, pet
+            accessories. These are products youcan purchase without a
+            prescription. We don’t pay for these even if prescribed/recommended
+            by a vet.
+          </li>
+          <li>
+            Malicious or wilful injury or neglect or gross negligence to your
+            pet caused by you or your agent oryour employees or members of your
+            family.
+          </li>
+          <li>
+            Injury or illness due to endangering event like an organized fight.
+          </li>
+          <li>
+            Any dogs classified as dangerous dogs by State or Central Government
+            Authority.
+          </li>
+          <li>
+            The confiscation or destruction of your pet by Government or Public
+            Authorities, or under applicableIndian Laws.
+          </li>
+          <li>Any claim occurring outside the geographical limits of India.</li>
+          <li>
+            Any claim for cost or fees for procedure/surgery for experimental or
+            unproven treatment.
+          </li>
+          <li>
+            Any charge or fees made by your Vet to complete a claim form or to
+            provide information to supportyour claim.
+          </li>
+          <li>
+            In case there is a transfer of ownership but we have not been
+            informed about the same.
+          </li>
+          <li>
+            Any liability which is covered/insured under any other liability
+            plan.
+          </li>
+          <li>
+            Treatment for teeth or gums if they’re damaged due to tooth decay,
+            dental or gum disease.
+          </li>
+          <li>
+            If your pet is used for guarding commercial property or used for
+            hunting and such similar purposes
+          </li>
+          <li>
+            Pet is in the premises where alcohol is commercially sold and
+            consumed.
+          </li>
+          <li>
+            Any damage or injury caused to human or to the animal under section
+            377 of the Indian penal code.
+          </li>
+          <li>
+            Any injuries or Damage caused by war, invasion, act of foreign enemy
+            hostilities or war likeoperations (whether war be declared or not),
+            civil war, mutiny, civil commotion assuming theproportions of or
+            amounting to a popular rising, military rising, rebellion,
+            revolution, insurrection ormilitary or usurped power.
+          </li>
+          <li>
+            Any injuries or illnesses or diseases directly or indirectly caused
+            to the Pet by ionizing radiations orcontamination by radioactivity
+            from any nuclear fuel or from any nuclear waste from the
+            combustionof nuclear fuel the radioactive toxic, explosive or other
+            hazardous properties of any explosive nuclearassembly or nuclear
+            component thereof.
+          </li>
+          <li>
+            If any claim under this Plan is in any respect fraudulent or
+            unfounded, all benefits paid and/or payablein relation to that claim
+            shall be forfeited and (if appropriate) recovered. In addition, all
+            covers withrespect to the Pet owner shall be cancelled from Plan
+            Period commencement date without any refundof Plan Charges.
+          </li>
+        </ol>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab8">
+        <h5 class="margin-v-none">SPECIFIC EXCLUSION</h5>
+        <h6 class="pt-tc-def-bottom-heading pt-8"><b>Yellow Ribbon Plan</b></h6>
+        <ul class="pt-bullet-list">
+          <li>
+            Section 1 Major Illness Cover will become an exclusion due to
+            non-selection and any Major SoftTissue Surgery that needs to be
+            carried out as a consequence of this Illness or condition, shall
+            alsoform part of the exclusion for this policy.
+          </li>
+        </ul>
+
+        <h6 class="pt-tc-def-bottom-heading pt-12"><b>Red Ribbon Plan</b></h6>
+        <ul class="pt-bullet-list">
+          <li>
+            Section 2 Accidental Injury Cover will become an exclusion due to
+            non-selection and any Major SoftTissue Surgery that needs to be
+            carried out as a consequence of this Injury, shall also form part
+            ofthe exclusion for this policy.
+          </li>
+        </ul>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab9">
+        <h5 class="margin-v-none">CANCELLATION BY YOU</h5>
+        <p>
+          You can choose to cancel the plan by giving us a 15 days’ notice
+          period. This is provided there is no claim underthe policy. The plan
+          holder shall be entitled for plan charge refund as per the scale
+          provided in table below.
+        </p>
+        <table class="pt-table-border pt-cancel-table">
+          <tr>
+            <th>Period in Risk</th>
+            <th>Premium Refund</th>
+          </tr>
+          <tr>
+            <td>Within 3 months</td>
+            <td>65.00%</td>
+          </tr>
+          <tr>
+            <td>Exceeding 3 months but less than 6 months</td>
+            <td>45.00%</td>
+          </tr>
+          <tr>
+            <td>Exceeding 6 months but less than 9 months</td>
+            <td>25.00%</td>
+          </tr>
+          <tr>
+            <td>Exceeding 9 months</td>
+            <td>0.00%</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="pt-tc-right-cols" id="tab10">
+        <h5 class="margin-v-none">CLAIM PROCESS</h5>
+        <h6 class="pt-tc-def-bottom-heading pt-8">
+          Claims Notification and Procedure
+        </h6>
+        <ul class="pt-roman-list pl-16 pt-16">
+          <li>
+            In the event of any accidental injury or illness or condition that
+            may result in a claim under this plan, thebelow procedure should be
+            followed:
+            <ul class="pt-bullet-list pt-12">
+              <li>
+                Any claim to be reported within 24 hours from date of diagnosis
+                (for illness) or date of incident (forinjuries).
+              </li>
+              <li>
+                The customer must keep all the reports of diagnosis that has led
+                to the treatment.
+              </li>
+              <li>
+                The treatment shouldbe video recorded along with the pet, the
+                date and the microchip number onthe scanner visible clearly in
+                the video (approximately 2 minutes of the treatmnet).
+              </li>
+            </ul>
+          </li>
+          <li>
+            Reimbursement Facility can be availed from a licensed hospital
+            within India of Your Choice Wherein Youwill have to make the payment
+            directly to the Hospital and submit the documents to us for
+            processingthe reimbursement of the claim amount (within 30 days of
+            completion of treatment).
+          </li>
+          <li>
+            n case of a claim arising due to injury to a third party because of
+            your pet, you will need to inform uswithin 24 hours of such claim
+            being intimated to you.We shall have the rights to investigate the
+            facts of the case at its own expense and the Pet Owner
+            shallco-operate with the us for all such matters. We, based on the
+            data collected via this investigation shallmake recommendations to
+            the Pet Owner and their legal representatives who are expected to
+            followthrough on them in the court. Any additional such legal
+            expenses paid by the pet owner in course of thisaction will be paid
+            by us within the plan limits.
+          </li>
+          <li>
+            You can reach out to us for settling your losses at
+            <span class="brand-color">1800 103 4448</span> or write to us at
+            <a href="">hello@godigit.com</a>
+          </li>
+        </ul>
+
+        <h6 class="pt-tc-def-bottom-heading mt-24">
+          Claim Documents Required
+        </h6>
+        <ul class="pt-bullet-list pt-12">
+          <li>
+            <b>Section 1, Section 2 and Section 4: -</b> Photograph of the pet
+            immediately before the treatment andPhotograph of the Pet post
+            treatment, a video recording approximately 2 minutes long of the
+            actualtreatment, Medical bills/ Invoice and Medical Report /
+            History, Diagnostic Reports in original.
+          </li>
+          <li><b>Section 3: -</b> Court’s Order Statement and FIR</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    $("#pt_left_panel_list li").click(function() {
+      // remove classes from all
+      $("#pt_left_panel_list li").removeClass("active");
+      // add class to the one we clicked
+      $(this).addClass("active");
+    });
+  });
+</script>
+
+{% endblock %}

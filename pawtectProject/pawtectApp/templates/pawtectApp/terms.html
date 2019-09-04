@@ -1,1 +1,210 @@
-{% extends "pawtectApp/base.html" %}
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper mb-48">
+  <div class="wrapper">
+    <h2 class="mb-32">Terms And Conditions</h2>
+
+    <div>
+      <p>
+        Please read this agreement carefully before sign up or otherwise using
+        this site. When you sign up it means you accept all of these terms the
+        same as if you signed this agreement, even if you have not read them. If
+        you do not agree to all of these terms, exit this web site.
+      </p>
+      <ul class="pt-terms-list">
+        <li>
+          Use of this site. You agree to abide by this Terms of Use Agreement,
+          as may be amended from time to time (“Agreement”). This Agreement and
+          the related Privacy Policy constitutes the entire and only agreement
+          between us and you, and supersedes all prior or contemporaneous
+          agreements, representations, warranties and understandings with
+          respect to this Site, the content, products or services provided by or
+          through this Site, and the subject matter of this Agreement. The
+          information and features included in this Site have been compiled from
+          a variety of sources, are for informational purposes only, and are
+          subject to change at any time without notice.
+        </li>
+        <li>
+          No government affiliation. This Site is not owned or operated by, nor
+          affiliated with the Government. This site is an independent
+          organization providing pet registry, lost and found, expert advice,
+          near by me and insurance services, and is not affiliated with any
+          government agency. We do not certify or authorize anyone to use Pet
+          Registry.
+        </li>
+        <li>
+          Copyrights and trademarks. The content, information, organization,
+          graphics, designs, compilation, digital conversion and other materials
+          published on or used on this Site, including, but not limited to,
+          articles, opinions, text, directories, guides, photographs,
+          illustrations, images, as well as the trademarks, logos, domain names,
+          trade names, service marks, and any other forms of intellectual
+          property (collectively, “Materials”) are owned by the Company, its
+          affiliates, partners and others, and are protected by law.
+        </li>
+        <li>
+          Third-party and affiliated websites. We have no control over, and no
+          liability for any third party websites or materials, including
+          advertisers. We work with a number of partners or affiliates,
+          including advertisers, for whom we have placed links on this Site to
+          their websites. We have no control over the content and performance of
+          these partner and affiliate sites and make no guarantees,
+          representations or warranties about the accuracy, currency, content,
+          or quality of information provided by such sites, any products or
+          services provided by such websites, any results that may be obtained
+          from using such websites, the legality of the products or services
+          provided by such sites, or the privacy or other practices of such
+          websites, and we assume no responsibility for unintended,
+          objectionable, inaccurate, misleading, or unlawful content that may
+          reside on those sites. unless expressly so stated, the inclusion of a
+          linked site is for your convenience only and is not intended and
+          should not be construed as an endorsement or recommendation of the
+          linked site or its content.
+        </li>
+        <li>
+          Warranty disclaimer. The site and all services and information are
+          provided on an “as is” and “as available” basis, and the company
+          expressly disclaims all warranties of any kind, express or implied,
+          including, without limitation, any implied warranties of
+          merchantability, fitness for a particular purpose, and
+          non-infringement.
+        </li>
+        <li>
+          Limitation of liability. The company and any related entities shall
+          not be liable for damages caused or allegedly caused by any failure of
+          performance, error, omission, interruption, deletion, defect, failure
+          of delivery of merchandise, delay in operation or transmission,
+          computer virus, communications line failure, theft or destruction or
+          unauthorized access to, alteration of, or unlawful use of records,
+          whether for breach of contract, tortuous behavior, negligence, or
+          under any other cause of action or theory.
+        </li>
+        <li>
+          Indemnification. You agree to indemnify, defend and hold harmless the
+          company, its affiliates, and their respective officers, directors,
+          employees, agents and representatives from and against any and all
+          liability and costs (including, without limitation, attorneys’ fees)
+          incurred by them in connection with any claim, threatened claim,
+          damages, or other loss arising out of your breach of these terms of
+          use or the representations, warranties and covenants contained herein
+          or a claim by a third party that is based on your use of this site
+          and/or your use of the material in violation of these terms or for
+          infringement of any intellectual property rights.
+        </li>
+        <li>
+          Comments and inquiries. Any response from the Company to any inquiries
+          are for information and educational purposes only and should not be
+          interpreted as advice of any type.
+        </li>
+        <li>
+          Notices. Communications made through this Site or the Site’s e-mail or
+          messaging system shall in no way be deemed to constitute legal notice
+          to the Company or any of its officers, employees, agents or
+          representatives, such as where notice to the Company is required by
+          contracts, or any Government laws, rules, or regulations.
+        </li>
+        <li>
+          Privacy policy. We respect your privacy. A complete statement of our
+          current Privacy Policy can be found by clicking here. The Company’s
+          privacy policy is expressly incorporated into this Agreement by this
+          reference.
+        </li>
+        <li>
+          Acknowledgement. By accessing this site or using the information or
+          services available through this site, you acknowledge that you have
+          read this agreement and agree to be bound thereby.
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrapper">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <a href="{% url 'index' %}">
+        <img src="/assets/img/brand/logo_white.png" class="main-logo" />
+      </a>
+      <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
+    </div>
+
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <h6 class="footer-heading">Company</h6>
+      <ul class="footer-list padd-left-none">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'plans' %}">Plans</a></li>
+        <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+        <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <ul class="footer-list u-footer-list-margin-top  padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+      <h6 class="footer-heading">Follow Us</h6>
+      <ul class="footer-list padd-left-none">
+        <li>
+          <a
+            ><i class="fa fa-facebook-square" aria-hidden="true"></i
+            ><span>Facebook</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-twitter-square" aria-hidden="true"></i
+            ><span>Twitter</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-instagram" aria-hidden="true"></i
+            ><span>Instagram</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-linkedin-square" aria-hidden="true"></i
+            ><span>Linkedin</span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe
+            width="100%"
+            height="100%"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe
+          ><a
+            href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
+          ></a>
+        </div>
+        <style>
+          .mapouter {
+            position: relative;
+            text-align: right;
+            height: 100%;
+          }
+          .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 100%;
+          }
+        </style>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock %}

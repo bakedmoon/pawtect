@@ -25,7 +25,9 @@ urlpatterns = [
     url(r'^get-filter-quote-data/',views.get_filter_quote_data,name="get-filter-quote-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
     url(r'^terms/',views.ter_of_use,name='terms'),
+    url(r'^pawtect_terms/',views.pawtect_terms,name='pawtect_terms'),
     url(r'^privacy/',views.privacy_policy,name='privacy'),
     url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^page_not_found/$',views.page_not_found,name='404'),
     url(r'^assets/(?P<path>.*)$', serve,{'document_root': settings.ASSETS}),
 ]
