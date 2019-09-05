@@ -19,7 +19,7 @@ from . import utils
 from . import const
 
     
-
+# Landing Page
 def index(request):
     return render(request, 'pawtectApp/index.html',{})
     try:
@@ -28,6 +28,7 @@ def index(request):
         return render(request, 'pawtectApp/index.html',{'imageUrl':url})
     except Settings.DoesNotExist:
         return render(request, 'pawtectApp/index.html',{})
+
 
 def home(request):
     return render(request, 'pawtectApp/home.html',{})
@@ -38,6 +39,8 @@ def home(request):
     except Settings.DoesNotExist:
        return render(request, 'pawtectApp/home.html',{})
 
+
+# Register/Signup User
 def signup(request):
     if request.method == 'POST':
         ctrl = UserController()
@@ -70,13 +73,8 @@ def otp(request):
         userotp=ctrl.otpVerify(otp,mobile)
         return HttpResponseRedirect(reverse('my-pets'))
 
-
-
-def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('index'))
     
-
+# User Login
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username','')
@@ -92,12 +90,13 @@ def login(request):
     else:
         return render(request, 'pawtectApp/login.html')
 
-
+# User Logout
 @login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
 
+# Contact 
 def contact(request):
     if request.method == 'GET':
         form = ContactForm()
@@ -121,13 +120,6 @@ def contact(request):
             messages.success(request,"Mail Send Successfully.")
             return HttpResponseRedirect(reverse('contact'))
     return render(request, "pawtectApp/contact.html", {'form': form})
-
-def sendMailToUser(toEmail,name):
-    subject = "Thanks for contact us!"
-    message = "We are contact u in short time"
-    fromEmail = "sagar.crive@gmail.com"
-    toEmail = toEmail
-    send_mail(subject, message,'Sagar Jadhav<sagar.crive@gmail.com>', [toEmail])
     
 
 def plans(request):
@@ -139,28 +131,21 @@ def review(request):
 def aboutUs(request):
     return render(request,'pawtectApp/aboutUs.html')
 
+
+# Search Quotation Details
 def quotation(request):
-    query_filter = Q()
+    query_filter = {}
     type_dict = {}
     breedInfo = ''
     types = Type.objects.all()
     age_group = Age.objects.all()
 
-    if 'breed' in request.GET:
-        breeds = Plans.objects.filter(name__icontains=request.GET['breed'])
-        for c in breeds:
-            query_filter &= Q(category__icontains=c.category)
-            
-    if 'amount' in request.GET:
-        query_filter &= Q(amount__icontains=request.GET['amount'])
-
-    if 'age' in request.GET:
-        query_filter &= Q(age__age_range__icontains=request.GET['age'])
-
-    # query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
+    # Set for get parmeter which we want search in model
+    query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
     
+    # Take type for fiter search result with types.(RED,YELLOW,BLUE)
     for t in types:
-        plans = Plans.objects.filter(query_filter,type_id=t.id)
+        plans = Plans.objects.filter(**query_filter,type_id=t.id)
         type_dict[t.name] = {'type':t,'plans':plans}
 
     return render(request,'pawtectApp/quotation.html',{"types":type_dict.items})
@@ -172,36 +157,36 @@ def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
 
 
-# Edit User 
-
+# User Profile Update
 @login_required(login_url='/login/')
 @csrf_exempt
 def user_profile(request):
     userId = request.user.id
     user = UserProfile.objects.get(user_id=request.user.id)
+
     if request.method == "GET":
-        print("USER IS HERE-->>",user.user.first_name)
         return render(request,'pawtectApp/user-profile.html',{'user':user})
+
     elif request.method == "POST":
-        print("INSIDE USER PROFILE VIEW->>")
         ctrl = UserController()
         myfile = user.avatar
-        print("AVATAR IS",myfile)
         uploadImage = False
         if request.POST['avatar']:
-            myfile = request.POST['avatar']
+            myfile = "/media/"+request.POST['avatar']
             uploadImage = True
         user_profile = ctrl.userProfile(request.POST,userId,myfile,uploadImage)
         return HttpResponseRedirect(reverse("my-pets"))
 
 
-    
+# Show All Pets 
 @login_required(login_url='/login/')
 def my_pets(request):
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
     return render(request,"pawtectApp/my-pets.html",{"pets":pets})
 
+
+# Create New Pet
 @login_required(login_url='/login/')
 def my_pets_new(request):
     user_profile = request.user.userprofile
@@ -215,6 +200,7 @@ def my_pets_new(request):
     return render(request,"pawtectApp/pet-profile.html",{})
 
 
+# Update/Edit Exist Pet
 @login_required(login_url='/login/')
 def my_pets_edit(request,petId):
     if request.method == "GET":
@@ -223,7 +209,6 @@ def my_pets_edit(request,petId):
     if request.method == "POST":
         user_profile = request.user.userprofile
         pet = Pet.objects.get(id=petId)
-        print("PET PICTURE--->>>",pet.picture)
         myfile = pet.picture
         uploadImage = False
         ctrl = PetsController()
@@ -232,14 +217,14 @@ def my_pets_edit(request,petId):
             uploadImage = True
         update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
         return HttpResponseRedirect(reverse('my-pets'))
-    
+
+
+# Delete Exist Pet
 @login_required(login_url='/login/')
 def my_pets_delete(request,petId):
-    print("PET ID IS HERE-->>>",petId)
     try:
         if petId:
             pet = Pet.objects.get(id=petId)
-            print("PET INFO INSIDE DELETE FUNCTION IS==>>>",pet)
             pet.delete()
             return HttpResponseRedirect(reverse('my_proposal'))
     except Pet.DoesNotExist as e:
@@ -251,6 +236,7 @@ def my_vetcoins(request):
     return render(request,'pawtectApp/my-vetcoins.html')
 
 
+# Get All Proposal
 @login_required(login_url='/login/')
 def my_proposal(request):
     user_profile = request.user.userprofile
@@ -258,18 +244,30 @@ def my_proposal(request):
     return render(request,"pawtectApp/my-proposal.html",{"pets":pets})
 
 
+# Get breed json and age model for show quotation
 def get_filter_quote_data(request):
         if request.method == 'GET':
+
             breed = utils.default_data()
+            
             age_group = Age.objects.values()
             list_result = [entry for entry in age_group]
             return JsonResponse({"breed":breed,"ages":list_result})
         else:
-            return HttpResponse("Request method is not a GET")
+            return HttpResponse("Something went wrong. Please try again.")
 
+
+# Single Proposal View
 def my_proposal_view(request,petId):
-    print("INSIDE PROPOSAL VIEW-->>",petId)
     if petId:
         pet = Pet.objects.get(id=petId)
-        print("THE PET IN PROPOSAL VIEW==>>",pet)
         return render(request,"pawtectApp/my-proposal-view.html",{'pet':pet})
+
+
+# Get Country Data
+def get_country_data(request):
+    if request.method == 'GET':
+        country = utils.default_data_country()
+        return JsonResponse({"country":country})
+    else:
+        return HttpResponse("Something went wrong. Please try again.")

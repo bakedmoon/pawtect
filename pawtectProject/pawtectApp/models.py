@@ -5,8 +5,8 @@ from django.utils import timezone
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    avatar = models.CharField(max_length=500, blank=True, null=True)
-    mobile = models.IntegerField(blank=True, null=True)
+    avatar = models.ImageField(upload_to = 'profile/', default = '/assets/img/common-images/avatar.png')
+    mobile =models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=50,blank=True, null=True)
     address1= models.CharField(max_length=100,blank=True, null=True)
     address2= models.CharField(max_length=100,blank=True, null=True)
@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     city= models.CharField(max_length=50,blank=True, null=True)
     country= models.CharField(max_length=100,blank=True, null=True)
     pincode=models.IntegerField(blank=True, null=True)
-    profession= ArrayField(models.CharField(max_length=50, blank=True, null=True))
+    profession= models.TextField(blank=True, null=True)
 
 
     def __str__(self):

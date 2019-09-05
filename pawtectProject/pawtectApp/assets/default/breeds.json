@@ -1,0 +1,8 @@
+{
+    "breeds": [
+        { "name": "Hound Cross", "category": "GIANT" },
+        { "name": "Indian Mongrel", "category": "GIANT" },
+        { "name": "Indian Pariah Cross", "category": "LARGE" },
+        { "name": "Irish Setter Cross", "category": "SMALL" }
+    ]
+}

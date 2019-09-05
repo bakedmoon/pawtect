@@ -1,5 +1,6 @@
 from django.core.mail import send_mail, BadHeaderError
 import json
+from django.core.files.storage import FileSystemStorage
 from pawtectProject import settings
 
 
@@ -11,8 +12,9 @@ def sendMailToUser(toEmail,name):
 
 
 def default_data():
-    breed = open(settings.ASSETS+'/default/breeds.js','r').read()
-    return breed
+    breed = open(settings.ASSETS+'/default/breeds.json')
+    return json.load(breed)
+
 
 def get_filter_params(params,filterParams={},popList=[]):
     for p in params:
@@ -26,3 +28,15 @@ def get_filter_params(params,filterParams={},popList=[]):
     for p in popList:
         filterParams.pop(p,None)
     return filterParams
+
+
+def default_data_country():
+    country = open(settings.ASSETS+'/default/country.js','r').read()
+    return country
+
+def make_image_url(url):
+    myfile = url
+    fs = FileSystemStorage()
+    filename = fs.save(myfile.name, myfile)
+    imageUrl = fs.url(filename)
+    return imageUrl

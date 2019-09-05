@@ -1,13 +1,13 @@
 from django.contrib.auth.models import User
 from pawtectApp.models import Pet
 from datetime import datetime
-from django.core.files.storage import FileSystemStorage
+from pawtectApp import utils
 import locale
 class PetsController():
     def create_pet(self,petInfo,userProfile,myfile):
         locale.setlocale(locale.LC_ALL, '')
         birthDate = datetime.strptime(petInfo['birthDate'], '%B %d, %Y')
-        imageUrl = make_image_url(myfile)
+        imageUrl = utils.make_image_url(myfile)
         petObj = Pet()
         petObj.name = petInfo['name']
         petObj.picture = imageUrl
@@ -29,7 +29,7 @@ class PetsController():
         locale.setlocale(locale.LC_ALL, '')
         birthDate = datetime.strptime(petInfo['birthDate'], '%B %d, %Y')
         if uploadImage:
-            imageUrl = make_image_url(myfile)
+            imageUrl = utils.make_image_url(myfile)
         else:
             imageUrl = myfile
         petObj = Pet.objects.get(id=petId)
@@ -49,9 +49,3 @@ class PetsController():
         petObj.save()
         return petObj
 
-def make_image_url(url):
-    myfile = url
-    fs = FileSystemStorage()
-    filename = fs.save(myfile.name, myfile)
-    imageUrl = fs.url(filename)
-    return imageUrl

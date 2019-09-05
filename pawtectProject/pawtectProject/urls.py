@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^my_proposal/$',views.my_proposal,name='my_proposal'),
     url(r'^my_proposal/(?P<petId>[0-9]+)/view/$',views.my_proposal_view,name='my_proposal_view'),
     url(r'^get-filter-quote-data/',views.get_filter_quote_data,name="get-filter-quote-data"),
+    url(r'^get-country-data/',views.get_country_data,name="get-country-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
     url(r'^terms/',views.ter_of_use,name='terms'),
     url(r'^privacy/',views.privacy_policy,name='privacy'),

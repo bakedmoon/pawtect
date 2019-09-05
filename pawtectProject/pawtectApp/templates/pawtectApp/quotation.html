@@ -22,7 +22,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
-            <input id="tags1" placeholder="Select dog's breed" />
+            <input id="tags1" placeholder="Select dog's breed"/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -48,15 +48,9 @@
         </div>
       </div>
     </div>
-    {% for t in types %}
 
-    <div>{{ t.type.name }}</div>
-    {% for plan in t.plans %}
-    <h2>{{ plan.name }}</h2>
-    {% endfor %} {% endfor %} 
     {% for key,value in types %} 
     {% if value.plans|length > 0%}
-    
     <div class="get-quote-features-section">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
         <div class="get-quote-fea-ribbon text-center">
@@ -235,55 +229,77 @@
 <script src="/assets/js/vendor/modal.js"></script> {% endcomment %}
 <script>
   $(function() {
+    console.log("Inside Default View Function")
     var breedData = [];
     var agesGroup = [];
+    var age_item ={}
+    var breed_item = {}
     $.ajax({
       type: "GET",
       url: "/get-filter-quote-data",
       success: function(data) {
-        breedData = JSON.parse(data.breed);
-        for (let ages of data.ages) {
-          agesGroup.push(ages.age_range);
+        let breedItem = data.breed.breeds
+        for(let i in breedItem){
+          var item = breedItem[i]
+          item.label = item.name
+          breedData.push(item)
         }
+       
+        for (let age of data.ages) {
+          age.label = age.age_range
+          agesGroup.push(age);
+        }
+
+        $("#tags").autocomplete({
+        source: agesGroup,
+        select:function(ui,item){
+          age_item = item.item
+        }
+      });
+
+      $("#tags1").autocomplete({
+        source: breedData,
+        select:function(ui,item){
+          breed_item = item.item
+          console.log("BREEF IS HERE-->>>",item)
+        }
+      });
+
       }
     });
 
     let amounts = ["40000", "10000", "60000", "150000"];
 
     setTimeout(() => {
-      $("#tags").autocomplete({
-        source: agesGroup
-      });
-
-      $("#tags1").autocomplete({
-        source: breedData
-      });
 
       $("#tags2").autocomplete({
         source: amounts
       });
     }, 500);
-  });
-</script>
 
-<script>
-  var query = "?pawtect-quote=1";
-  $("#searchId").click(() => {
-    age = $("#tags").val();
-    breed = $("#tags1").val();
-    amount = $("#tags2").val();
+  
 
+    var query = "?pawtect-quote=1";
+    $("#searchId").click((e) => {
+      e.preventDefault()
+    let age = $("#tags").val();
+    let breed = $("#tags1").val();
+    let amount = $("#tags2").val();
+  
     if (age.length >= 1) {
-      query += "&age=" + age;
+      query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit;
     }
     if (breed.length >= 1) {
-      query += "&breed=" + breed;
+      query += "&category__icontains="+breed_item.category;
     }
     if (amount.length >= 1) {
       query += "&amount=" + amount;
     }
 
     location.href = "/quotation/" + query;
+  });
+
+  
   });
 </script>
 {% endblock %}
