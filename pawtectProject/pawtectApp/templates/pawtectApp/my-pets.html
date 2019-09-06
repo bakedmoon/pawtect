@@ -67,8 +67,8 @@
           <div class="clearfix"></div>
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
             <div class="pull-right mt-8">
-              <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button>
-             <a href="{% url 'quotation'%}"> <button class="btn btn-md btn-primary ml-8">Get Quote</button></a>
+              <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button></a>
+             <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}')">Get Quote</button>
               <div
                 class="button-dropdown my-pet-col-dropdown relative inline-block ml-8">
               
@@ -115,4 +115,24 @@
     </div>
   </div>
 </footer>
+<script>
+var query = "?pawtect-quote=1";
+var obj = {}
+function getQuote(event,breed){
+  event.preventDefault()
+    var breed_item = {}
+    $.ajax({
+      type: "GET",
+      url: "/get-filter-quote-data",
+      success: function(data) {
+        let breedItem = data.breed.breeds
+       obj = breedItem.find(o => o.name === breed);
+          query += "&category__icontains="+obj.category
+        location.href = "/quotation/" + query;
+       }
+  });
+
+    
+}
+</script>
 {% endblock %}

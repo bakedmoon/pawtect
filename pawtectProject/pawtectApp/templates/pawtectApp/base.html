@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="/assets/style/pawtect/css/style.css" />
   </head>
   <body>
-  {% if not user.is_authenticated %}
+  {% if not user.is_active %}
     <header>
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none d-flex align-center">
@@ -79,7 +79,7 @@
       </div>
     </header>
     {% endif %}
- {% if user.is_authenticated %}
+ {% if user.is_active %}
     <header>
       <div class="wrapper">
         <div

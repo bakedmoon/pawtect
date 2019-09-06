@@ -80,7 +80,7 @@
                 </ul>
                 <lable class="my-pet-col-label">Coverage amount *</lable>
                 <div class="ui-widget relative width-full mt-8" id="select_dog_age">
-                  <input id="my-pet-col-cover-amt" placeholder="Select cover amount" />
+                  <input id="my-pet-col-cover-amt" class="set-amount" placeholder="Select cover amount" />
                   <img
                   src="/assets/img/common-icons/expand-button.svg"
                   class="dropdown-arrow"
@@ -271,9 +271,8 @@
 
 <script>
     $(function() {
-  
-let amounts = ["40000", "10000", "60000", "150000"];
-      $("#my-pet-col-cover-amt").autocomplete({
+let amounts = ["40000", "100000", "60000", "150000"];
+      $(".set-amount").autocomplete({
         source: amounts
       });
     });

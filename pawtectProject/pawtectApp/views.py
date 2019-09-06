@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse,JsonResponse
+from django.http import HttpResponseRedirect, HttpResponse,JsonResponse,HttpRequest
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -158,7 +158,6 @@ def privacy_policy(request):
 
 
 # User Profile Update
-@login_required(login_url='/login/')
 @csrf_exempt
 def user_profile(request):
     userId = request.user.id
@@ -179,7 +178,6 @@ def user_profile(request):
 
 
 # Show All Pets 
-@login_required(login_url='/login/')
 def my_pets(request):
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
@@ -187,7 +185,6 @@ def my_pets(request):
 
 
 # Create New Pet
-@login_required(login_url='/login/')
 def my_pets_new(request):
     user_profile = request.user.userprofile
     if request.method == "GET":
@@ -201,7 +198,7 @@ def my_pets_new(request):
 
 
 # Update/Edit Exist Pet
-@login_required(login_url='/login/')
+
 def my_pets_edit(request,petId):
     if request.method == "GET":
        pet = Pet.objects.get(id=petId)
@@ -220,7 +217,6 @@ def my_pets_edit(request,petId):
 
 
 # Delete Exist Pet
-@login_required(login_url='/login/')
 def my_pets_delete(request,petId):
     try:
         if petId:
@@ -231,13 +227,12 @@ def my_pets_delete(request,petId):
         return HttpResponseRedirect(reverse('my_proposal'))
 
 
-@login_required(login_url='/login/')
+
 def my_vetcoins(request):
     return render(request,'pawtectApp/my-vetcoins.html')
 
 
 # Get All Proposal
-@login_required(login_url='/login/')
 def my_proposal(request):
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
@@ -247,9 +242,7 @@ def my_proposal(request):
 # Get breed json and age model for show quotation
 def get_filter_quote_data(request):
         if request.method == 'GET':
-
             breed = utils.default_data()
-            
             age_group = Age.objects.values()
             list_result = [entry for entry in age_group]
             return JsonResponse({"breed":breed,"ages":list_result})

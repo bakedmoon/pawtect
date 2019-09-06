@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+APPEND_SLASH=False
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 

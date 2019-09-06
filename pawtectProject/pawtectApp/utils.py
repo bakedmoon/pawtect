@@ -31,8 +31,8 @@ def get_filter_params(params,filterParams={},popList=[]):
 
 
 def default_data_country():
-    country = open(settings.ASSETS+'/default/country.js','r').read()
-    return country
+    country = open(settings.ASSETS+'/default/country.json')
+    return json.load(country)
 
 def make_image_url(url):
     myfile = url

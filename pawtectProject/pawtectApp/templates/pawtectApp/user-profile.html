@@ -4,7 +4,7 @@
   <div class="profile-form-wrapper mb-64 clearfix">
     <div class="text-center">
       <h1 class="margin-bottom-none">My Profile</h1>
-      <p class="user-pro-ref-id mt-12">My Reference ID: 23y9238</p>
+      <p class="user-pro-ref-id mt-12">My Reference ID: {{user.id}}</p>
     </div>
     <form class="clearfix" enctype="multipart/form-data">
     {% csrf_token %}
@@ -57,7 +57,7 @@
           class="input-small"
           name="mobile"
           id="mobile"
-          value="{{user.mobile}}"
+          value="{{user.mobile}}" disabled
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -67,7 +67,7 @@
           class="input-small"
           name="email"
           id="email"
-          value="{{user.user.email}}"
+          value="{{user.user.email}}" disabled
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
@@ -124,7 +124,7 @@
             placeholder="Enter country"
             class="input-small"
             name="country" value="{{user.country}}"
-            required/>
+            />
           
           <img
             src="/assets/img/common-icons/expand-button.svg"
@@ -143,7 +143,6 @@
             class="input-small"
             name="user_type"
           />
-          
           <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -160,7 +159,7 @@
           Change Password?
         </button>
         <div class="profile-bottom-btn-wrap pull-right inline-block">
-          <button class="btn ghost-btn-light-gray btn-md">Cancel</button>
+          <button class="btn ghost-btn-light-gray btn-md"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
           <button class="btn btn-primary btn-md ml-8" type="button" id="userProfileId">Save</button>
         </div>
       </div>
@@ -201,7 +200,7 @@ $('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDep
       type: "GET",
       url: "/get-country-data",
       success: function(data) {
-        countries = JSON.parse(data.country)
+        countries = data.country
       }
     });
 
@@ -293,7 +292,6 @@ $("#userProfileId").click((e)=>{
   e.preventDefault()
   let fileImage = $('#avatar').val()
   var filename = fileImage.replace(/^.*\\/, "");
-  console.log("THE profession ARRAY IS-->>>",typeof filename)
   let dataToSend = {}
   dataToSend.fname = $('#fname').val()
   dataToSend.lname = $('#lname').val()

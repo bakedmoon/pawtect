@@ -73,6 +73,7 @@ class Plans(UpdateBaseModel):
 
 class Pet(UpdateBaseModel):
     name = models.CharField(max_length=50,blank=True, null=True)
+    catagory = models.CharField(max_length=50,blank=True, null=True)
     picture = models.CharField(max_length=500, blank=True, null=True)
     microchip_Number = models.CharField(max_length=50,blank=True, null=True)
     species = models.CharField(max_length=100, blank=True, null=True)

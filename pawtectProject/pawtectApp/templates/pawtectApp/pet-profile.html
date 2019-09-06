@@ -40,7 +40,7 @@
           placeholder="Microchip number"
           class="input-small"
           id="microchipNumber"
-          name="microchip_Number" value="{{pet.microchip_Number}}" required />
+          name="microchip_Number" value="{{pet.microchip_Number}}" />
         
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
@@ -174,7 +174,12 @@
       type: "GET",
       url: "/get-filter-quote-data",
       success: function(data) {
-        breedData = JSON.parse(data.breed);
+       let breedItem = data.breed.breeds
+        for(let i in breedItem){
+          var item = breedItem[i]
+          item.label = item.name
+          breedData.push(item)
+        }
       }
     });
 
