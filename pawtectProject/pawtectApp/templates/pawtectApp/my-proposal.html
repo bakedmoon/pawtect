@@ -15,7 +15,7 @@
             All
           </li>
           {% for pet in pets %}
-         <li class="fil-cat" data-rel="jacky"><a href="{% url 'my_proposal_view' pet.id%}">{{pet.name}}</a></li>
+         <li class="fil-cat" data-rel="{{pet.name}}"><a href="{% url 'my_proposal_view' pet.id%}">{{pet.name}}</a></li>
           {% endfor %}
         </ul>
 
@@ -37,7 +37,7 @@
                       <img src="/assets/img/common-icons/edit-icon.svg">
                     </button>
                     </a>
-                   <a href="{% url 'my_pets_delete' pet.id%}" <button class="btn btn-link">
+                   <a href="{% url 'my_pets_delete' pet.id%}"> <button class="btn btn-link">
                       <img src="/assets/img/common-icons/delete-icon.svg">
                     </button>
                     </a>

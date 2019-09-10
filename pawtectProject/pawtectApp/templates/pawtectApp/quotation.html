@@ -11,18 +11,18 @@
             <img src="/assets/img/get-quote/filter-icon.svg" />
           </div>
           <div class="ui-widget inline-block pull-right relative" id="select_dog_age">
-            <input id="tags" placeholder="Select dog's age" />
+            <input id="tags" placeholder="Select dog's age" {% if age_Period %} value="{{age_Period}}"{% endif %} />
             <img
             src="/assets/img/common-icons/expand-button.svg"
-            class="dropdown-arrow"
-          />
+            class="dropdown-arrow" />
+          
           </div>
 
           <!-- End of c-dropdown -->
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
-            <input id="tags1" placeholder="Select dog's breed"/>
+            <input id="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -223,20 +223,15 @@
   </div>
 </footer>
 
-{% comment %} <script src="https://code.jquery.com/jquery-2.2.4.min.js"
-		integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-		crossorigin="anonymous"></script>
-<script src="/assets/js/vendor/modal.js"></script> {% endcomment %}
 <script>
   $(function() {
-    console.log("Inside Default View Function")
     var breedData = [];
     var agesGroup = [];
     var age_item ={}
     var breed_item = {}
     $.ajax({
       type: "GET",
-      url: "/get-filter-quote-data",
+      url: "/get-filter-quote-data/",
       success: function(data) {
         let breedItem = data.breed.breeds
         for(let i in breedItem){
@@ -249,35 +244,29 @@
           age.label = age.age_range
           agesGroup.push(age);
         }
+         $("#tags1").autocomplete({
+        source: breedData,
+        select:function(ui,item){
+          breed_item = item.item
+        }
+      })
 
         $("#tags").autocomplete({
         source: agesGroup,
         select:function(ui,item){
           age_item = item.item
         }
-      });
-
-      $("#tags1").autocomplete({
-        source: breedData,
-        select:function(ui,item){
-          breed_item = item.item
-          console.log("BREEF IS HERE-->>>",item)
-        }
-      });
+     })
 
       }
     });
-
-    let amounts = ["40000", "100000", "60000", "150000"];
-
-    setTimeout(() => {
-
+ let amounts = ["40000", "100000", "60000", "150000"];
+    
       $("#tags2").autocomplete({
         source: amounts
       });
-    }, 500);
-
-  
+     
+    
 
     var query = "?pawtect-quote=1";
     $("#searchId").click((e) => {
@@ -287,10 +276,10 @@
     let amount = $("#tags2").val();
   
     if (age.length >= 1) {
-      query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit;
+      query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit+"&age="+age_item.age_range;
     }
     if (breed.length >= 1) {
-      query += "&category__icontains="+breed_item.category;
+      query += "&category__icontains="+breed_item.category+"&name="+breed_item.name;
     }
     if (amount.length >= 1) {
       query += "&amount=" + amount;

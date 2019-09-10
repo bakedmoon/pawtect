@@ -4,15 +4,15 @@
   <div class="profile-form-wrapper mb-64 clearfix">
     <div class="text-center">
       <h1 class="margin-bottom-none">My Profile</h1>
-      <p class="user-pro-ref-id mt-12">My Reference ID: {{user.id}}</p>
+      <p class="user-pro-ref-id mt-12">My Reference ID: {{user.userprofile.id}}</p>
     </div>
-    <form class="clearfix" enctype="multipart/form-data">
+    <form class="clearfix" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="upload-profile-wrap text-center p-tb-20">
           <div class="relative">
             <img
-            {% if user %}src="{{user.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
+            {% if user %}src="{{user.userprofile.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
               class="upload-profile-img"
               id="image"
             />
@@ -37,7 +37,7 @@
           name="fname"
           id="fname"
           class="input-small"
-          value="{{user.user.first_name}}"
+          value="{{user.userprofile.user.first_name}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -47,7 +47,7 @@
           class="input-small"
           name="lname"
           id="lname"
-          value="{{user.user.last_name}}"
+          value="{{user.userprofile.user.last_name}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
@@ -57,7 +57,7 @@
           class="input-small"
           name="mobile"
           id="mobile"
-          value="{{user.mobile}}" disabled
+          value="{{user.userprofile.mobile}}" disabled
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -67,16 +67,16 @@
           class="input-small"
           name="email"
           id="email"
-          value="{{user.user.email}}" disabled
+          value="{{user.userprofile.user.email}}" disabled
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <div class="ui-widget relative">
-          <select placeholder="Gender" name="gender" id="gender" class="input-small margin-bottom-none" value="{{user.gender}}">
+          <select placeholder="Gender" name="gender" id="gender" class="input-small margin-bottom-none" value="{{user.userprofile.gender}}">
           {% if not user.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
             {% if  user.gender %}<option>Select Gender</option>{% endif %}
-            <option value="male" {% if user.gender == 'male' %}selected {% endif %}>Male</option>
-            <option value="female" {% if user.gender == 'female' %}selected {% endif %}>Female</option>
+            <option value="male" {% if user.userprofile.gender == 'male' %}selected {% endif %}>Male</option>
+            <option value="female" {% if user.userprofile.gender == 'female' %}selected {% endif %}>Female</option>
           </select>
           <img
             src="/assets/img/common-icons/expand-button.svg"
@@ -91,11 +91,11 @@
           class="input-small"
           name="address1"
           id="address1"
-          value="{{user.address1}}"
+          value="{{user.userprofile.address1}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input type="text" placeholder="Area" class="input-small" name="area" id="area" value="{{user.area}}" />
+        <input type="text" placeholder="Area" class="input-small" name="area" id="area" value="{{user.userprofile.area}}" />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
         <input
@@ -104,7 +104,7 @@
           class="input-small"
           name="pincode"
           id="pincode"
-          value="{{user.pincode}}"
+          value="{{user.userprofile.pincode}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
@@ -114,7 +114,7 @@
           class="input-small"
           name="city"
           id="city"
-          value="{{user.city}}"
+          value="{{user.userprofile.city}}"
         />
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
@@ -123,7 +123,7 @@
             id="country"
             placeholder="Enter country"
             class="input-small"
-            name="country" value="{{user.country}}"
+            name="country" value="{{user.userprofile.country}}"
             />
           
           <img
@@ -144,13 +144,13 @@
             name="user_type"
           />
           <img
-            src="/assets/img/common-icons/expand-button.svg"
-            class="dropdown-arrow"
+            src="https://img.icons8.com/material-two-tone/48/000000/plus.png"
+            class="dropdown-arrow" onclick="addProfession()"
           />
         </div>
         <ul class="user-pro-owner-type padd-left-none" id="professionId">
         </ul>
-        <input type="hidden" id="hideId" value="{{user.profession}}"/>
+        <input type="hidden" name="profession" id="hideId" value="{{user.userprofile.profession}}"/>
       
       </div>
       <div class="clearfix"></div>
@@ -160,7 +160,7 @@
         </button>
         <div class="profile-bottom-btn-wrap pull-right inline-block">
           <button class="btn ghost-btn-light-gray btn-md"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
-          <button class="btn btn-primary btn-md ml-8" type="button" id="userProfileId">Save</button>
+         <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
         </div>
       </div>
     </form>
@@ -183,25 +183,42 @@
 
 <script>
 var professsionArray= []
-window.onload = function(){
- let professionData = document.getElementById("hideId").value;
- let splitData = professionData.split(',')
- splitData.pop()
- professsionArray = splitData
- for(let p of splitData){
-$('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDepartment(this)" src="/assets/img/common-icons/close-button-light.svg" /></label>')
+ 
+var reloadProfession = function(){
+  var professionData = document.getElementById("hideId").value;
+  let splitData = professionData.split(',')
+  $('#professionId').empty()
+  professsionArray = []
+  for(var i=0;i<splitData.length;i++){
+    var p = splitData[i]
+      $('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDepartment(this,'+i+')" src="/assets/img/common-icons/close-button-light.svg" /></label>')
+      professsionArray.push(p)
  }
-  
 }
-  $(function() {
 
+removeProfession = function(index){
+    professsionArray.splice(index,1)
+    $('#hideId').val(professsionArray.join(','))
+ reloadProfession()
+    
+}
+
+window.onload = function(){
+ reloadProfession()
+}
+
+  $(function() {
     var countries = [];
     $.ajax({
       type: "GET",
-      url: "/get-country-data",
+      url: "/get-country-data/",
       success: function(data) {
         countries = data.country
-      }
+
+        $("#country").autocomplete({
+        source: countries
+      });
+    }
     });
 
     var availableTags = [
@@ -222,11 +239,7 @@ $('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDep
       source: availableTags
     });
 
-    setTimeout(() => {
-      $("#country").autocomplete({
-        source: countries
-      });
-  },500)
+
   });
 </script>
 
@@ -250,7 +263,6 @@ $("#avatar").change(function() {
   readURL(this);
 });
 
-var professions = new Array();
 var timeOutFunc = setTimeout(()=>{
 $(document).ready(function(){
   $('form').keydown(function (e) {
@@ -259,16 +271,14 @@ $(document).ready(function(){
         return false;
     }
 });
-  
+
     $('body').on("keyup",'#pet_user_type', function(event){
         if(event.which == 13){
           let profession = $("#pet_user_type").val()
           if(profession){
-            $('#professionId').append('<li><span>' + profession + '</span><img onclick="removeFromDepartment(this)" src="/assets/img/common-icons/close-button-light.svg" /></label>')
-            professions.push(profession)
-            $("#hideId").val(function() {
-               return this.value + profession+',';
-             });
+            professsionArray.push(profession)
+             $('#hideId').val(professsionArray.join(','))
+             reloadProfession()
              $("#pet_user_type").val('')
           }
         }
@@ -277,49 +287,19 @@ $(document).ready(function(){
     clearTimeout(timeOutFunc)
 },2000)
 
-function removeFromDepartment(element){
-const g = document.getElementById('professionId');
-for (let i = 0, len = g.children.length; i < len; i++)
-{
-    g.children[i].onclick = function(){
-      console.log("INDEX IS->>",i)
-       g.removeChild(g.childNodes[i+1]);
-    }
-  }
+function removeFromDepartment(element,index){
+    removeProfession(index)
 }
 
-$("#userProfileId").click((e)=>{
-  e.preventDefault()
-  let fileImage = $('#avatar').val()
-  var filename = fileImage.replace(/^.*\\/, "");
-  let dataToSend = {}
-  dataToSend.fname = $('#fname').val()
-  dataToSend.lname = $('#lname').val()
-  dataToSend.email = $('#email').val()
-  dataToSend.avatar = filename
-  dataToSend.mobile = $('#mobile').val()
-  dataToSend.gender = $('#gender').val()
-  dataToSend.address1 = $('#address1').val()
-  dataToSend.area = $('#area').val()
-  dataToSend.city = $('#city').val()
-  dataToSend.country = $('#country').val()
-  dataToSend.pincode = $('#pincode').val()
-  dataToSend.professionData = $('#hideId').val()
-  let response = $.ajax({
-    type: 'POST',
-    url: '/user_profile/',
-    data: dataToSend,
-    });
-
-    response.done(()=>{
-      location.href="/account/my-pets/"
-    })
-
-    response.fail(()=>{
-      alert("Error")
-    })
-    
-})
+function addProfession(){
+  let profession = $("#pet_user_type").val()
+          if(profession){
+            professsionArray.push(profession)
+             $('#hideId').val(professsionArray.join(','))
+             reloadProfession()
+             $("#pet_user_type").val('')
+  }
+}
 </script>
 
 {% endblock %}

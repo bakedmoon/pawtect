@@ -21,7 +21,6 @@
               class="absolute left-center my-pet-col-pet-pro-img" />
             <div class="my-pet-col-pet-pro-details inline-block ml-32 pl-32 ">
               <span class="">{{pet.name}}</span>
-                  
             </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
@@ -68,7 +67,7 @@
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
             <div class="pull-right mt-8">
               <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button></a>
-             <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}')">Get Quote</button>
+             <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}','{{pet.birthDate}}')">Get Quote</button>
               <div
                 class="button-dropdown my-pet-col-dropdown relative inline-block ml-8">
               
@@ -115,22 +114,66 @@
     </div>
   </div>
 </footer>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
 <script>
-var query = "?pawtect-quote=1";
-var obj = {}
-function getQuote(event,breed){
+function getQuote(event,breed,birthdate){
   event.preventDefault()
-    var breed_item = {}
-    $.ajax({
+    var calculated_Days_start = 0
+    var calculated_Days_end = 0
+    var age_Period = ''
+    var start_age = 0
+    var start_age_unit = ''
+    var end_age = 0
+    var end_age_unit = ''
+    var age_obj = {}
+    var dict = {
+      'D':1,
+      'W':7,
+      'M':30,
+      'Y':365
+    }
+    var query = "?pawtect-quote=1";
+    var obj = {}
+      $.ajax({
       type: "GET",
-      url: "/get-filter-quote-data",
+      url: "/get-filter-quote-data/",
       success: function(data) {
         let breedItem = data.breed.breeds
-       obj = breedItem.find(o => o.name === breed);
-          query += "&category__icontains="+obj.category
-        location.href = "/quotation/" + query;
-       }
+        var age_Type = data.ages
+        obj = breedItem.find(o => o.name === breed);
+
+        let actualDate = moment(birthdate);
+        let today = moment(new Date());
+        let diffDays = today.diff(actualDate, 'days')
+        
+        for(let i=0;i<age_Type.length;i++){
+        let start = age_Type[i].start_age*dict[age_Type[i].start_age_unit]
+        let end = age_Type[i].end_age*dict[age_Type[i].end_age_unit]
+            age_obj =age_Type[i]
+            if (between(diffDays,start,end)) {
+             start_age = age_obj.start_age;
+             end_age = age_obj.end_age;
+             start_age_unit = age_obj.start_age_unit;
+             end_age_unit = age_obj.end_age_unit;
+             age_Period = age_obj.age_range;
+             break;
+            }
+    }
+
+      function between(x, min, max) {
+        console.log(x, min, max)
+          if(x >= min && x <= max){
+            return true
+          }
+    }
+          query += "&category__icontains="+obj.category+"&age__start_age__in="+start_age+"&age__start_age_unit__in="+start_age_unit+"&age__end_age__in="+end_age+"&age__end_age_unit__in="+end_age_unit+"&age="+age_Period+"&name="+breed;
+
+          location.href = "/quotation/" + query;
+
+      }
   });
+    
 
     
 }

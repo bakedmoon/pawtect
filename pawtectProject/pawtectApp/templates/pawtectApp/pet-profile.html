@@ -172,7 +172,7 @@
     var breedData = [];
     $.ajax({
       type: "GET",
-      url: "/get-filter-quote-data",
+      url: "/get-filter-quote-data/",
       success: function(data) {
        let breedItem = data.breed.breeds
         for(let i in breedItem){

@@ -15,6 +15,7 @@ from django.contrib.auth.models import User
 from .models import Settings,UserProfile,Plans,Age,Type,Pet
 from .controller.UserController import UserController
 from .controller.PetsController import PetsController
+from pawtectProject import settings
 from . import utils
 from . import const
 
@@ -60,18 +61,26 @@ def signup(request):
 
 
 def otp(request):
+    mob_otp = '123456'
     if request.method == 'POST':
         ctrl = UserController()
-        num1 = request.POST['num1']
-        num2 = request.POST['num2']
-        num3 = request.POST['num3']
-        num4 = request.POST['num4']
-        num5 = request.POST['num5']
-        num6 = request.POST['num6']
+        num1 = str(request.POST['num1'])
+        num2 = str(request.POST['num2'])
+        num3 = str(request.POST['num3'])
+        num4 = str(request.POST['num4'])
+        num5 = str(request.POST['num5'])
+        num6 = str(request.POST['num6'])
         mobile = request.POST['mobile']
         otp = num1+num2+num3+num4+num5+num6
-        userotp=ctrl.otpVerify(otp,mobile)
-        return HttpResponseRedirect(reverse('my-pets'))
+        print(mobile)
+        user = User.objects.get(username=mobile)
+        print(user)
+        if mob_otp == otp:
+            user.is_active = True
+            user.save()
+        else:
+            return HttpResponse("Something went wrong. Please try again.")
+        return HttpResponseRedirect(reverse('login'))
 
     
 # User Login
@@ -93,8 +102,8 @@ def login(request):
 # User Logout
 @login_required
 def user_logout(request):
-    logout(request)
-    return HttpResponseRedirect(reverse('login'))
+    auth.logout(request)
+    return HttpResponseRedirect(reverse('index'))
 
 # Contact 
 def contact(request):
@@ -141,14 +150,16 @@ def quotation(request):
     age_group = Age.objects.all()
 
     # Set for get parmeter which we want search in model
-    query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote'])
+    query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote','age','name'])
     
     # Take type for fiter search result with types.(RED,YELLOW,BLUE)
     for t in types:
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
         type_dict[t.name] = {'type':t,'plans':plans}
-
-    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items})
+    name = request.GET.get('name','')
+    age_Period = request.GET.get('age','')
+    print(name)
+    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period})
     
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
@@ -158,27 +169,29 @@ def privacy_policy(request):
 
 
 # User Profile Update
-@csrf_exempt
+
 def user_profile(request):
-    userId = request.user.id
-    user = UserProfile.objects.get(user_id=request.user.id)
+    print(request.user)
+    # userId = request.user.id
+    # user = UserProfile.objects.get(user_id=request.user.id)
 
     if request.method == "GET":
-        return render(request,'pawtectApp/user-profile.html',{'user':user})
+        return render(request,'pawtectApp/user-profile.html',{})
 
     elif request.method == "POST":
         ctrl = UserController()
-        myfile = user.avatar
+        myfile = request.user.userprofile.avatar
         uploadImage = False
-        if request.POST['avatar']:
-            myfile = "/media/"+request.POST['avatar']
+        if request.FILES:
+            myfile = request.FILES["avatar"]
             uploadImage = True
-        user_profile = ctrl.userProfile(request.POST,userId,myfile,uploadImage)
+        print(request.POST)
+        user_profile = ctrl.userProfile(request.POST,request.user.id,myfile,uploadImage)
         return HttpResponseRedirect(reverse("my-pets"))
 
 
 # Show All Pets 
-def my_pets(request):
+def my_pets(request): 
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
     return render(request,"pawtectApp/my-pets.html",{"pets":pets})
@@ -240,6 +253,7 @@ def my_proposal(request):
 
 
 # Get breed json and age model for show quotation
+@csrf_exempt
 def get_filter_quote_data(request):
         if request.method == 'GET':
             breed = utils.default_data()

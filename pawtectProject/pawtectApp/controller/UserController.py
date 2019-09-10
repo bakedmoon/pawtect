@@ -1,51 +1,51 @@
 from django.contrib.auth.models import User
 from pawtectApp.models import UserProfile
 from django.http import HttpResponse
+from django.contrib import auth
 from django.core.files.storage import FileSystemStorage
 from pawtectApp import utils
 
 class UserController():
     def userSignup(self,userInfo):
-       
-            user = User()
-            user.first_name = userInfo['fname']
-            user.last_name = userInfo['lname']
-            user.email = userInfo['email']
-            user.username = userInfo['mobile']
-            user.set_password(userInfo.get('password2'))
-            user.is_active = False
-            user.save()
-            return user
+        user = User()
+        user.first_name = userInfo['fname']
+        user.last_name = userInfo['lname']
+        user.email = userInfo['email']
+        user.username = userInfo['mobile']
+        user.set_password(userInfo.get('password2'))
+        user.is_active = False
+        user.save()
+
+        up = UserProfile()
+        up.user_id = user.id
+        up.mobile = userInfo['mobile']
+        up.save()
+
+        return user
        
 
     def userProfile(self,userInfo,userId,myfile,uploadImage):
-            print("USER INFO IS-->>>",userInfo)
+            if uploadImage:
+                imageUrl = utils.make_image_url(myfile)
+            else:
+                imageUrl = myfile
             user = User.objects.get(pk=userId)
-            user.first_name = userInfo.get('fname','')
-            user.last_name = userInfo.get('lname','')
-            user.email = userInfo.get('email','')
+            user.first_name = userInfo.get('fname',user.first_name)
+            user.last_name = userInfo.get('lname',user.last_name)
+            user.email = userInfo.get('email',user.email)
             user.save()
 
             userprofile  = UserProfile.objects.get(user_id=userId)
-            userprofile.mobile = userInfo.get('mobile','')
-            userprofile.gender = userInfo.get('gender','')
-            userprofile.avatar = myfile
-            userprofile.address1 = userInfo.get('address1','')
-            userprofile.area = userInfo.get('area','')
-            userprofile.city = userInfo.get('city','')
-            userprofile.country = userInfo.get('country','')
-            userprofile.pincode = userInfo.get('pincode','')
-            userprofile.profession = userInfo.get('professionData','')
+            userprofile.mobile = userInfo.get('mobile',userprofile.mobile)
+            userprofile.gender = userInfo.get('gender',userprofile.gender)
+            userprofile.avatar = imageUrl
+            userprofile.address1 = userInfo.get('address1',userprofile.address1)
+            userprofile.area = userInfo.get('area',userprofile.area)
+            userprofile.city = userInfo.get('city',userprofile.city)
+            userprofile.country = userInfo.get('country',userprofile.country)
+            userprofile.pincode = userInfo.get('pincode',userprofile.pincode)
+            userprofile.profession = userInfo.get('profession',userprofile.profession)
             userprofile.save()
             return userprofile
       
-    def otpVerify(self,otp,mobile):
-        otp = 123456
-        user = User.objects.get(username=mobile)
-        if otp == otp:
-            user_is_active = True
-            user.save()
-            return user
-        else:
-            return HttpResponse("Something went wrong. Please try again.")
-            
+   

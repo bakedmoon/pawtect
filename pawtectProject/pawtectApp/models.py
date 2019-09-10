@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to = 'profile/', default = '/assets/img/common-images/avatar.png')
+    avatar = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
     mobile =models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=50,blank=True, null=True)
     address1= models.CharField(max_length=100,blank=True, null=True)
@@ -74,7 +74,7 @@ class Plans(UpdateBaseModel):
 class Pet(UpdateBaseModel):
     name = models.CharField(max_length=50,blank=True, null=True)
     catagory = models.CharField(max_length=50,blank=True, null=True)
-    picture = models.CharField(max_length=500, blank=True, null=True)
+    picture = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
     microchip_Number = models.CharField(max_length=50,blank=True, null=True)
     species = models.CharField(max_length=100, blank=True, null=True)
     breed = models.CharField(max_length=100,blank=True, null=True)
