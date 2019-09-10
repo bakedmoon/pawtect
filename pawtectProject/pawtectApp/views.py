@@ -12,7 +12,7 @@ import threading,json
 from django.contrib import messages,auth
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
-from .models import Settings,UserProfile,Plans,Age,Type,Pet
+from .models import Settings,UserProfile,Plans,Age,Type,Pet,Coverage_Amount
 from .controller.UserController import UserController
 from .controller.PetsController import PetsController
 from pawtectProject import settings
@@ -72,9 +72,9 @@ def otp(request):
         num6 = str(request.POST['num6'])
         mobile = request.POST['mobile']
         otp = num1+num2+num3+num4+num5+num6
-        print(mobile)
+       
         user = User.objects.get(username=mobile)
-        print(user)
+       
         if mob_otp == otp:
             user.is_active = True
             user.save()
@@ -158,8 +158,9 @@ def quotation(request):
         type_dict[t.name] = {'type':t,'plans':plans}
     name = request.GET.get('name','')
     age_Period = request.GET.get('age','')
-    print(name)
-    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period})
+    coverage_amount = request.GET.get('coverage_amount__amount','')
+
+    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period,"coverage_amount":coverage_amount})
     
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
@@ -171,9 +172,6 @@ def privacy_policy(request):
 # User Profile Update
 
 def user_profile(request):
-    print(request.user)
-    # userId = request.user.id
-    # user = UserProfile.objects.get(user_id=request.user.id)
 
     if request.method == "GET":
         return render(request,'pawtectApp/user-profile.html',{})
@@ -185,7 +183,7 @@ def user_profile(request):
         if request.FILES:
             myfile = request.FILES["avatar"]
             uploadImage = True
-        print(request.POST)
+
         user_profile = ctrl.userProfile(request.POST,request.user.id,myfile,uploadImage)
         return HttpResponseRedirect(reverse("my-pets"))
 
@@ -258,8 +256,9 @@ def get_filter_quote_data(request):
         if request.method == 'GET':
             breed = utils.default_data()
             age_group = Age.objects.values()
+            amounts = Coverage_Amount.objects.values()
             list_result = [entry for entry in age_group]
-            return JsonResponse({"breed":breed,"ages":list_result})
+            return JsonResponse({"breed":breed,"ages":list_result,"amounts":list(amounts)})
         else:
             return HttpResponse("Something went wrong. Please try again.")
 

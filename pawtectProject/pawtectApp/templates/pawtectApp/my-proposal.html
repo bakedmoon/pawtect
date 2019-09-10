@@ -271,10 +271,26 @@
 
 <script>
     $(function() {
-let amounts = ["40000", "100000", "60000", "150000"];
-      $(".set-amount").autocomplete({
-        source: amounts
-      });
+    var amountData = [];
+
+    $.ajax({
+      type: "GET",
+      url: "/get-filter-quote-data/",
+      success: function(data) {
+        let amountItem = data.amounts
+
+        for(let i in amountItem){
+          var item = amountItem[i]
+          item.label = item.amount
+          amountData.push(item)
+        }
+
+     $(".set-amount").autocomplete({
+        source: amountData
+        });
+      }
+  });
+ 
     });
   </script>
 {% endblock %}

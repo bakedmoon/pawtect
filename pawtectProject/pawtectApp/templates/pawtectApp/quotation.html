@@ -31,7 +31,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none ">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_cover_amt">
-            <input id="tags2" placeholder="Select coverage amount" />
+            <input id="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} />
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -226,6 +226,7 @@
 <script>
   $(function() {
     var breedData = [];
+    var amountData = [];
     var agesGroup = [];
     var age_item ={}
     var breed_item = {}
@@ -233,11 +234,20 @@
       type: "GET",
       url: "/get-filter-quote-data/",
       success: function(data) {
+        
         let breedItem = data.breed.breeds
+        let amountItem = data.amounts
+        
         for(let i in breedItem){
           var item = breedItem[i]
           item.label = item.name
           breedData.push(item)
+        }
+
+        for(let i in amountItem){
+          var item = amountItem[i]
+          item.label = item.amount
+          amountData.push(item)
         }
        
         for (let age of data.ages) {
@@ -258,13 +268,15 @@
         }
      })
 
+     $("#tags2").autocomplete({
+        source: amountData
+      });
+
       }
     });
- let amounts = ["40000", "100000", "60000", "150000"];
+ 
     
-      $("#tags2").autocomplete({
-        source: amounts
-      });
+      
      
     
 
@@ -282,7 +294,7 @@
       query += "&category__icontains="+breed_item.category+"&name="+breed_item.name;
     }
     if (amount.length >= 1) {
-      query += "&amount=" + amount;
+      query += "&coverage_amount__amount=" + amount;
     }
 
     location.href = "/quotation/" + query;

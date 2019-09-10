@@ -17,7 +17,6 @@ def default_data():
 
 
 def get_filter_params(params,filterParams={},popList=[]):
-    print("THE PARAMS ARE HERE COME FOR FILTER-->>",params)
     for p in params:
         par=params[p]
         if ',' in par:

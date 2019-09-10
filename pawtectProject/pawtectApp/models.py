@@ -60,13 +60,20 @@ class Type(models.Model):
     def __str__(self):
         return self.name
     
+class Coverage_Amount(models.Model):
+    amount = models.BigIntegerField(default=0)
+
+    def __str__(self):
+        return str(self.amount)
+
+
 class Plans(UpdateBaseModel):
     category = models.CharField(max_length=100, blank=True, null=True)
     type = models.ForeignKey(Type, blank=True, null=True,on_delete=models.CASCADE)
     name = models.CharField(max_length=100,blank=True, null=True)
     features = JSONField(blank=True, null=True)
-    amount = models.IntegerField(default=0)
     age = models.ManyToManyField(Age)
+    coverage_amount = models.ForeignKey(Coverage_Amount,blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.category
@@ -89,3 +96,4 @@ class Pet(UpdateBaseModel):
     
     def __str__(self):
         return self.name
+
