@@ -30,6 +30,11 @@
         </div>
         <!-- End of settings-general-image -->
       </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+          {% if messages %} {% for message in messages %}
+           <span class="error-color mb-16">{{message}}</span>
+           {% endfor %} {% endif %}
+       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
         <input
           type="text"
@@ -145,7 +150,7 @@
           />
           <img
             src="https://img.icons8.com/material-two-tone/48/000000/plus.png"
-            class="dropdown-arrow" onclick="addProfession()"
+            class="dropdown-arrow u-add-profession-icon" onclick="addProfession()"
           />
         </div>
         <ul class="user-pro-owner-type padd-left-none" id="professionId">

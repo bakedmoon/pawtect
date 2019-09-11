@@ -208,7 +208,9 @@ def my_pets_new(request):
         return render(request,"pawtectApp/pet-profile.html",{})
     elif request.method == "POST":
         ctrl = PetsController()
-        myfile = request.FILES["picture"]
+        myfile = ''
+        if request.FILES:
+            myfile = request.FILES["picture"]
         create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
         return HttpResponseRedirect(reverse("my-pets"))
     return render(request,"pawtectApp/pet-profile.html",{})
