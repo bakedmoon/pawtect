@@ -17,7 +17,7 @@
         <div class="my-pet-cols clearfix relative mr-8 mb-48">
           <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16">
             <img
-              src="{{pet.picture}}"
+            {% if pet %}src="{{pet.picture}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
               class="absolute left-center my-pet-col-pet-pro-img" />
             <div class="my-pet-col-pet-pro-details inline-block ml-32 pl-32 ">
               <span class="">{{pet.name}}</span>

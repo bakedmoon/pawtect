@@ -6,11 +6,11 @@ from pawtectApp import utils
 
 class PetsController():
     def create_pet(self,petInfo,userProfile,myfile):
-       
             birthDate = datetime.strptime(petInfo['birthDate'], '%B %d, %Y')
             imageUrl = ''
-            if myfile is not '':
+            if myfile.strip():
                 imageUrl = utils.make_image_url(myfile)
+            imageUrl = '/media/avatar.png'
             petObj = Pet()
             petObj.name = petInfo.get('name','')
             petObj.picture = imageUrl

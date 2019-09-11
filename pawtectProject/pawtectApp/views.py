@@ -203,12 +203,12 @@ def my_pets(request):
 
 # Create New Pet
 def my_pets_new(request):
+    myfile = ''
     user_profile = request.user.userprofile
     if request.method == "GET":
         return render(request,"pawtectApp/pet-profile.html",{})
     elif request.method == "POST":
         ctrl = PetsController()
-        myfile = ''
         if request.FILES:
             myfile = request.FILES["picture"]
         create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
