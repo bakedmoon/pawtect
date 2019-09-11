@@ -72,15 +72,18 @@ def otp(request):
         num6 = str(request.POST['num6'])
         mobile = request.POST['mobile']
         otp = num1+num2+num3+num4+num5+num6
-       
         user = User.objects.get(username=mobile)
        
         if mob_otp == otp:
             user.is_active = True
+            user.backend = settings.AUTHENTICATION_BACKENDS[0]
+            auth.logout(request)
+            auth.login(request,user)
             user.save()
+
         else:
             return HttpResponse("Something went wrong. Please try again.")
-        return HttpResponseRedirect(reverse('login'))
+        return HttpResponseRedirect(reverse('my-pets'))
 
     
 # User Login
@@ -165,6 +168,9 @@ def quotation(request):
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
 
+def pawtect_terms(request):
+    return render(request,'pawtectApp/pawtect-terms.html')
+
 def privacy_policy(request):
     return render(request,'pawtectApp/privacy.html')
 
@@ -241,6 +247,9 @@ def my_pets_delete(request,petId):
 
 def my_vetcoins(request):
     return render(request,'pawtectApp/my-vetcoins.html')
+
+def page_not_found(request):
+    return render(request,'pawtectApp/404.html')
 
 
 # Get All Proposal

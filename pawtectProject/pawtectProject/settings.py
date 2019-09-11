@@ -125,8 +125,9 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sagar.crive@gmail.com'
 EMAIL_HOST_PASSWORD = 'Sagar@973065'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 STATIC_URL = '/static/'
 
