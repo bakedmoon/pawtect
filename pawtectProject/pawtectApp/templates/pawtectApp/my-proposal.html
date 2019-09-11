@@ -80,15 +80,15 @@
                 </ul>
                 <lable class="my-pet-col-label">Coverage amount *</lable>
                 <div class="ui-widget relative width-full mt-8" id="select_dog_age">
-                  <input id="my-pet-col-cover-amt" class="set-amount" placeholder="Select cover amount" />
+                  <input id="myInput1" class="set-amount" onchange="myChangeFunction()" placeholder="Select cover amount" />
                   <img
                   src="/assets/img/common-icons/expand-button.svg"
                   class="dropdown-arrow"
                 />
                 </div>
                 <div class="my-pet-col-plan-fee mb-4">
-                  <span>Plan Fees</span>
-                  <span class="pull-right">₹ 0</span>
+                  <input type="text" class="pull-right set-amount-plan" id="myInput2" disabled/>
+                  {% comment %} <span class="pull-right set-amount-plan" >₹ </span> {% endcomment %}
                 </div>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd-h-none">
@@ -292,5 +292,15 @@
   });
  
     });
+
+    function myChangeFunction() {
+     var input1 =  document.getElementsByClassName("tage");
+     var input2 =  document.getElementsByClassName("set-amount-plan");
+      
+   input1.addEventListener('change', function() {
+    input2.value = input1.value;
+  });
+    
+    }
   </script>
 {% endblock %}
