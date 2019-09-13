@@ -3,6 +3,15 @@ from django.contrib.postgres.fields import JSONField,ArrayField
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+QUESTION_TYPE_CHOICES = [
+        ('radio', 'Radio'),
+        ('checkbox', 'Checkbox'),
+        ('text', 'Text')
+    ]
+
+
+
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
@@ -78,6 +87,14 @@ class Plans(UpdateBaseModel):
     def __str__(self):
         return self.category
 
+class Questions(UpdateBaseModel):
+    question = models.CharField(max_length=1000, blank=True, null=True)
+    type = models.CharField(max_length=50, choices=QUESTION_TYPE_CHOICES,default='text')
+    option = JSONField(blank=True, null=True)
+
+    def __str__(self):
+        return self.question
+
 class Pet(UpdateBaseModel):
     name = models.CharField(max_length=50,blank=True, null=True)
     catagory = models.CharField(max_length=50,blank=True, null=True)
@@ -93,7 +110,28 @@ class Pet(UpdateBaseModel):
     consult_Address = models.CharField(max_length=500,blank=True, null=True)
     question_answer = JSONField(blank=True, null=True)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+
     
     def __str__(self):
         return self.name
+
+    def get_answer(self,question_id):
+        try:
+            answer = PetQuestion.objects.get(pet_id=self.id,questions_id=question_id).answer
+            print(answer)
+            return answer
+        except Exception as e:
+            return None
+        return None
+
+    
+
+
+class PetQuestion(models.Model):
+    answer = models.CharField(max_length=100)
+    pet = models.ForeignKey(Pet,on_delete=models.DO_NOTHING)
+    questions = models.ForeignKey(Questions,on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return str(self.pet)
 

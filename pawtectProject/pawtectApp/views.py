@@ -12,7 +12,7 @@ import threading,json
 from django.contrib import messages,auth
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
-from .models import Settings,UserProfile,Plans,Age,Type,Pet,Coverage_Amount
+from .models import Settings,UserProfile,Plans,Age,Type,Pet,Coverage_Amount,Questions,PetQuestion
 from .controller.UserController import UserController
 from .controller.PetsController import PetsController
 from pawtectProject import settings
@@ -149,8 +149,8 @@ def quotation(request):
     query_filter = {}
     type_dict = {}
     breedInfo = ''
-    types = Type.objects.all()
-    age_group = Age.objects.all()
+    types = Type.objects.all().order_by('id')
+    age_group = Age.objects.all().order_by('id')
 
     # Set for get parmeter which we want search in model
     query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote','age','name'])
@@ -258,7 +258,9 @@ def page_not_found(request):
 def my_proposal(request):
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
-    return render(request,"pawtectApp/my-proposal.html",{"pets":pets})
+    questions = Questions.objects.all().order_by('id')
+    # petQues = PetQuestion.objects.all()
+    return render(request,"pawtectApp/my-proposal.html",{"pets":pets,"questions":questions})
 
 
 # Get breed json and age model for show quotation
@@ -288,3 +290,19 @@ def get_country_data(request):
         return JsonResponse({"country":country})
     else:
         return HttpResponse("Something went wrong. Please try again.")
+
+# Save answers of health questions
+@csrf_exempt
+def saveAnswer(request):
+    if request.method == "POST":
+        try:
+            que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['pet']) & Q(questions_id=request.POST['question']))
+            print("THE TRY BLOCK IS-->>",que_obj.answer)
+            que_obj.answer = request.POST['answer']
+            que_obj.save()
+            return HttpResponse("Success")
+        except PetQuestion.DoesNotExist:
+            new_values = {'pet_id':request.POST['pet'],'questions_id':request.POST['question'],'answer':request.POST['answer']}
+            que_obj = PetQuestion(**new_values)
+            que_obj.save()
+            return HttpResponse("Success")

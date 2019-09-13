@@ -1,4 +1,9 @@
-{% extends "pawtectApp/base.html" %} {% block body_block %}
+{% extends "pawtectApp/base.html" %} 
+{% load custom_filter %}
+
+
+{% block body_block %}
+
 
 <div class="main-content-wrapper">
   <div class="wrapper">
@@ -87,104 +92,43 @@
                 />
                 </div>
                 <div class="my-pet-col-plan-fee mb-4">
-                  <input type="text" class="pull-right set-amount-plan" id="myInput2" disabled/>
-                  {% comment %} <span class="pull-right set-amount-plan" >₹ </span> {% endcomment %}
+                  <span>Plan Fees</span>
+                  <span class="pull-right set-amount-plan" >₹ </span>
                 </div>
               </div>
+              {% if questions.count > 0 %}
               <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 padd-h-none">
                 <div class="my-pet-col-right-box">
                   <h6 class="inline-block margin-v-none">Health Information *</h6>
                   <div class="inline-block pull-right">
                     <img src="/assets/img/common-icons/circle-with-check-symbol.svg">
-                    <span class="my-pet-col-que-ans-count">2/4</span>
+                    <span class="my-pet-col-que-ans-count">{{questions.count}}/{{questions.count}}</span>
                   </div>
                   <div class="my-pet-col-que-section width-full">
+                  {% for question in questions %}
                     <div class="my-pet-col-ques">
-                      <p>Has your pet ever been diagnosed with cancer or 
-                          a heart condition?</p>
-                      
-                      <label class="radio-button-wrapper inline-block">
-                        <input type="radio" name="pet_health-ans" >
-                        <span class="checkmark small-checkmark"></span>
-                        <div class="radio-button-label inline-block">
-                          <span class="padd-left-none">Yes</span>
-                        </div> 
-                      </label>
-                    
-                      <label class="radio-button-wrapper inline-block">
-                        <input type="radio" name="pet_health-ans" checked="checked">
-                        <span class="checkmark small-checkmark"></span>
-                        <div class="radio-button-label inline-block">
-                          <span class="padd-left-none">No</span>
-                        </div> 
-                      </label>
+                      <p>{{question.question}}</p>
+                      {% if question.type == 'radio'%}
+                          {% for op in question.option %}
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" id='ans-{{question.id}}' name="answer-{{pet.id}}-{{question.id}}" {% if pet|get_answer:question.id|lower == op|lower %}  checked {% endif %}  value="{{op}}" onclick="answer('{{pet.id}}','{{question.id}}','{{op}}')">
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">{{op}}</span>
+                          </div> 
+                        </label>
+                          {% endfor %}
+                      {% elif question.type == 'text' %}
+                         <label class="radio-button-wrapper inline-block">
+                          <input type="text" id='ans-{{question.id}}' name="answer-{{pet.id}}-{{question.id}}"  value="{{pet|get_answer:question.id}}" onclick="answer('{{pet.id}}','{{question.id}}')">
+                        </label>
+                      {% endif%}
                     </div>
-
-                    <div class="my-pet-col-ques">
-                      <p>Has your pet been treated for any illness and or 
-                          injury in the last one year?</p>
-                      
-                      <label class="radio-button-wrapper inline-block">
-                        <input type="radio" name="pet_health-ans" >
-                        <span class="checkmark small-checkmark"></span>
-                        <div class="radio-button-label inline-block">
-                          <span class="padd-left-none">Yes</span>
-                        </div> 
-                      </label>
-                    
-                      <label class="radio-button-wrapper inline-block">
-                        <input type="radio" name="pet_health-ans" >
-                        <span class="checkmark small-checkmark"></span>
-                        <div class="radio-button-label inline-block">
-                          <span class="padd-left-none">No</span>
-                        </div> 
-                      </label>
-                    </div>
-                    <div class="my-pet-col-ques">
-                        <p>Has your pet ever been diagnosed with cancer or 
-                            a heart condition?</p>
-                        
-                        <label class="radio-button-wrapper inline-block">
-                          <input type="radio" name="pet_health-ans" >
-                          <span class="checkmark small-checkmark"></span>
-                          <div class="radio-button-label inline-block">
-                            <span class="padd-left-none">Yes</span>
-                          </div> 
-                        </label>
-                      
-                        <label class="radio-button-wrapper inline-block">
-                          <input type="radio" name="pet_health-ans" >
-                          <span class="checkmark small-checkmark "></span>
-                          <div class="radio-button-label inline-block">
-                            <span class="padd-left-none">No</span>
-                          </div> 
-                        </label>
-                      </div>
-  
-                      <div class="my-pet-col-ques">
-                        <p>Has your pet been treated for any illness and or 
-                            injury in the last one year?</p>
-                        
-                        <label class="radio-button-wrapper inline-block">
-                          <input type="radio" name="pet_health-ans" >
-                          <span class="checkmark small-checkmark"></span>
-                          <div class="radio-button-label inline-block">
-                            <span class="padd-left-none">Yes</span>
-                          </div> 
-                        </label>
-                      
-                        <label class="radio-button-wrapper inline-block">
-                          <input type="radio" name="pet_health-ans" >
-                          <span class="checkmark small-checkmark"></span>
-                          <div class="radio-button-label inline-block">
-                            <span class="padd-left-none">No</span>
-                          </div> 
-                        </label>
-                      </div>
+                  {% endfor %}
                   </div>
                 </div>
               </div>
-              
+              {% endif %}
             </div>
           </div>
       {% endfor %}
@@ -289,18 +233,26 @@
         source: amountData
         });
       }
-  });
- 
     });
-
-    function myChangeFunction() {
-     var input1 =  document.getElementsByClassName("tage");
-     var input2 =  document.getElementsByClassName("set-amount-plan");
-      
-   input1.addEventListener('change', function() {
-    input2.value = input1.value;
-  });
-    
+});
+  </script>
+  <script>
+  function answer(petId,questionId,answer){
+  console.log("INSIDE ANSWER",petId,questionId,answer)
+  var queryData = {
+    "pet":petId,
+    "question":questionId,
+    "answer":answer
+  }
+  console.log("Query Data is here-->>>>",queryData)
+  $.ajax({
+    type:"POST",
+    url:"/saveAnswer/",
+    data:queryData,
+    success:function(data){
+      console.log("INSIDE SUCCESS DATA IS HERE-->>>",data)
     }
+  })
+}
   </script>
 {% endblock %}
