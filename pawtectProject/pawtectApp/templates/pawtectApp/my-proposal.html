@@ -85,7 +85,7 @@
                 </ul>
                 <lable class="my-pet-col-label">Coverage amount *</lable>
                 <div class="ui-widget relative width-full mt-8" id="select_dog_age">
-                  <input id="myInput1" class="set-amount" onchange="myChangeFunction()" placeholder="Select cover amount" />
+                  <input id="myInput1" class="set-amount" onblur="myChangeFunction(this,'{{pet.id}}')" placeholder="Select cover amount" />
                   <img
                   src="/assets/img/common-icons/expand-button.svg"
                   class="dropdown-arrow"
@@ -93,7 +93,7 @@
                 </div>
                 <div class="my-pet-col-plan-fee mb-4">
                   <span>Plan Fees</span>
-                  <span class="pull-right set-amount-plan" >₹ </span>
+                  <span class="pull-right set-amount-plan" id="{{pet.id}}">₹ </span>
                 </div>
               </div>
               {% if questions.count > 0 %}
@@ -140,29 +140,29 @@
           <ul class="my-proposal-plan-fee-list padd-left-none mt-16">
             <li>
               <span>Total Plan Fees</span>
-              <span>₹ 0</span>
+              <span id="totalId">₹ 0</span>
             </li>
             <li>
               <span>Multiple Pet Discount (10%)</span>
-              <span>- ₹ 0</span>
+              <span id="discountId">₹ 0</span>
             </li>
             <li>
               <span>GST</span>
-              <span>₹ 0</span>
+              <span id="gstId">₹ 0</span>
             </li>
             <li>
               <span>Vetcoins</span>
-              <span>- ₹ 40</span>
+              <span id="vetcoinId">₹ 0</span>
             </li>
           </ul>
           <!-- add class show-referral-inp-section to my-pet-col-referral-section to enable referral input field -->
           <div class="my-pet-col-referral-section">
-            <a href="">Have a referral code?</a>
+            <a href="" onclick="referCode(event)">Have a referral code?</a>
             <div class="my-pet-col-referral-inp-wrap">
               <label>Referral Code</label>
               <div class="relative">
-                <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none">
-                <button class="btn btn-link input-cancel-btn absolute right-center">
+                <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none" onblur="checkCode(this)">
+                <button class="btn btn-link input-cancel-btn absolute right-center" onclick="closeCode(event)">
                   <img src="/assets/img/common-icons/close-button.svg" >
                 </button>
               </div>
@@ -170,17 +170,17 @@
           </div>
           <div class="my-pet-col-plan-fee mt-16">
             <span>Net Payable</span>
-            <span class="pull-right">₹ 0</span>
+            <span class="pull-right" id="netPaymentId">₹ 0</span>
           </div>
           <div class="my_proposal_terms_checkbox">
             <label class="checkbox-container">
-              <input type="checkbox" name="accept_policy">
+              <input type="checkbox" name="accept_policy" id="myCheck">
               <span class="checkbox-checkmark"></span>
-              <span>I have read and agreed with <a href="">Terms and 
+              <span>I have read and agreed with <a href="{% url 'terms' %}">Terms and 
                   Conditions</a>  of Pawtect Plan</span>
             </label>
           </div>
-          <button class="btn btn-primary btn-md width-full mt-12">Proceed to Payment</button>
+          <button class="btn btn-primary btn-md width-full mt-12" id="paymentId" disabled>Proceed to Payment</button>
         </div>
       </div>
     </div>
@@ -188,7 +188,7 @@
 </div>
 
 <!-- tab js start -->
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
   $(function() {
     var selectedClass = "";
@@ -216,13 +216,11 @@
 <script>
     $(function() {
     var amountData = [];
-
     $.ajax({
       type: "GET",
       url: "/get-filter-quote-data/",
       success: function(data) {
         let amountItem = data.amounts
-
         for(let i in amountItem){
           var item = amountItem[i]
           item.label = item.amount
@@ -238,13 +236,11 @@
   </script>
   <script>
   function answer(petId,questionId,answer){
-  console.log("INSIDE ANSWER",petId,questionId,answer)
   var queryData = {
-    "pet":petId,
-    "question":questionId,
+    "petId":petId,
+    "questionId":questionId,
     "answer":answer
   }
-  console.log("Query Data is here-->>>>",queryData)
   $.ajax({
     type:"POST",
     url:"/saveAnswer/",
@@ -254,5 +250,97 @@
     }
   })
 }
+var amountArray = []
+var count = 0;
+var discountValue = 0;
+var gst = 0;
+var finalAmount = 0;
+const disPercentage = 10;
+const gstPercentage = 18;
+const vetcoins = 50
+$("#vetcoinId").html("₹"+vetcoins)
+function myChangeFunction(amount,petId){
+  let flag = false;
+  let sum = 0
+  let coverageAmount = ((amount.value)/12)
+
+  $("#"+petId).html((coverageAmount).toFixed(2));
+
+  amountArray.push(coverageAmount);
+
+  sum = (amountArray.reduce(sumofArray)).toFixed(2)
+
+  $("#totalId").html("₹"+sum)
+
+  count++;
+  flag = true;
+
+  if(count > 1){
+    discountValue = (sum*(disPercentage/100)).toFixed(2)
+    gstValue = sum - discountValue
+    gst = (gstValue*(gstPercentage/100)).toFixed(2)
+    $("#discountId").html("₹"+discountValue)
+    gst = (sum*(18/100)).toFixed(2)
+    $("#gstId").html("₹"+gst)
+  }else{
+    gst = (sum*(18/100)).toFixed(2)
+    $("#gstId").html("₹"+gst)
+  }
+  
+  finalAmount  = Number(sum) + Number(gst) - Number(discountValue) - Number(vetcoins)
+  
+  $("#netPaymentId").html("₹"+finalAmount)
+  
+}
+function sumofArray(sum, num) { 
+            return sum + num; 
+} 
+
+function referCode(event){
+  event.preventDefault()
+  $(".my-pet-col-referral-section").addClass("show-referral-inp-section");
+}
+
+function closeCode(event){
+  event.preventDefault()
+  $(".my-pet-col-referral-section").removeClass("show-referral-inp-section");
+}
+
+function checkCode(referCode){
+  return referCode.value
+}
+
+var checked = false
+var checkBox = document.getElementById("myCheck");
+$("#myCheck").click(()=>{
+ checked = true
+ if(checkBox.checked == true){
+  document.getElementById("paymentId").disabled = false;
+ }else{
+   document.getElementById("paymentId").disabled = true;
+ }
+})
+
+
+$("#paymentId").click((event)=>{
+    event.preventDefault()
+    var amountLength = $("#netPaymentId").html().length
+   
+    if(amountLength > 3){
+        swal({
+        title: "Good job!",
+        text: "Payment Successfull.",
+        icon: "success",
+        });
+      }else{
+        swal({
+        title: "Ohhh...",
+        text: "Please select coverage amount.",
+        icon: "warning",
+        });
+}
+    
+})
+        
   </script>
 {% endblock %}

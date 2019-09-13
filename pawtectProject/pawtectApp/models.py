@@ -118,7 +118,6 @@ class Pet(UpdateBaseModel):
     def get_answer(self,question_id):
         try:
             answer = PetQuestion.objects.get(pet_id=self.id,questions_id=question_id).answer
-            print(answer)
             return answer
         except Exception as e:
             return None

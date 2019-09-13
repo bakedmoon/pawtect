@@ -296,7 +296,7 @@ def get_country_data(request):
 def saveAnswer(request):
     if request.method == "POST":
         try:
-            que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['pet']) & Q(questions_id=request.POST['question']))
+            que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
             print("THE TRY BLOCK IS-->>",que_obj.answer)
             que_obj.answer = request.POST['answer']
             que_obj.save()
