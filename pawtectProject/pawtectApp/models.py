@@ -8,10 +8,7 @@ QUESTION_TYPE_CHOICES = [
         ('checkbox', 'Checkbox'),
         ('text', 'Text')
     ]
-
-
-
-
+    
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
@@ -91,7 +88,7 @@ class Questions(UpdateBaseModel):
     question = models.CharField(max_length=1000, blank=True, null=True)
     type = models.CharField(max_length=50, choices=QUESTION_TYPE_CHOICES,default='text')
     option = JSONField(blank=True, null=True)
-
+    
     def __str__(self):
         return self.question
 
@@ -128,9 +125,8 @@ class Pet(UpdateBaseModel):
 
 class PetQuestion(models.Model):
     answer = models.CharField(max_length=100)
-    pet = models.ForeignKey(Pet,on_delete=models.DO_NOTHING)
-    questions = models.ForeignKey(Questions,on_delete=models.DO_NOTHING)
+    pet = models.ForeignKey(Pet,on_delete=models.CASCADE)
+    questions = models.ForeignKey(Questions,on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.pet)
-

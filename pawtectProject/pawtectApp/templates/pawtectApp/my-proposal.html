@@ -264,7 +264,7 @@ function myChangeFunction(amount,petId){
   let sum = 0
   let coverageAmount = ((amount.value)/12)
 
-  $("#"+petId).html((coverageAmount).toFixed(2));
+  $("#"+petId).html("₹"+(coverageAmount).toFixed(2));
 
   amountArray.push(coverageAmount);
 

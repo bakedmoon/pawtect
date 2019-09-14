@@ -22,6 +22,8 @@ from . import const
     
 # Landing Page
 def index(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('my-pets'))
     return render(request, 'pawtectApp/index.html',{})
     try:
         settings = Settings.objects.get(key='home_banner_image')
@@ -259,7 +261,7 @@ def my_proposal(request):
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
     questions = Questions.objects.all().order_by('id')
-    # petQues = PetQuestion.objects.all()
+
     return render(request,"pawtectApp/my-proposal.html",{"pets":pets,"questions":questions})
 
 
