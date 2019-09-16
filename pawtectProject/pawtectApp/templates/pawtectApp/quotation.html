@@ -39,8 +39,7 @@
           </div>
         </div>
         <div
-          class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper"
-        >
+          class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper">
           <button class="btn btn-primary" id="searchId">
             Apply
           </button>
@@ -54,7 +53,7 @@
     <div class="get-quote-features-section">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
         <div class="get-quote-fea-ribbon text-center">
-          <img src="/assets/img/get-quote/ribbons/red-aids.svg" />
+          <img src="{{value.type.icon}}" />
           <span>{{ value.type.name }}</span>
         </div>
       </div>
@@ -276,10 +275,6 @@
     });
  
     
-      
-     
-    
-
     var query = "?pawtect-quote=1";
     $("#searchId").click((e) => {
       e.preventDefault()
