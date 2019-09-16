@@ -57,6 +57,7 @@
             placeholder="Species"
             class="input-small"
             name="species" value="{{pet.species}}"
+            required
            />
           <img
             src="/assets/img/common-icons/expand-button.svg"
@@ -191,28 +192,8 @@
     });
 
     var species = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
+      "Canine / Dog",
+      "Feline / Cat"
     ];
     $("#species").autocomplete({
       source: species
@@ -226,7 +207,6 @@
     $("#date").datepicker({
       maxDate :'0',
       dateFormat: "MM d, yy"
-      
     });
     
   },500)

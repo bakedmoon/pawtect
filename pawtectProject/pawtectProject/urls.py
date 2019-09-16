@@ -26,7 +26,6 @@ urlpatterns = [
     url(r'^my_proposal/(?P<petId>[0-9]+)/$',views.my_pets_delete,name='my_pets_delete'),
     url(r'^my_vetcoins/',views.my_vetcoins,name='my_vetcoins'),
     url(r'^my_proposal/$',views.my_proposal,name='my_proposal'),
-    url(r'^my_proposal/(?P<petId>[0-9]+)/view/$',views.my_proposal_view,name='my_proposal_view'),
     url(r'^get-filter-quote-data/',views.get_filter_quote_data,name="get-filter-quote-data"),
     url(r'^get-country-data/',views.get_country_data,name="get-country-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
@@ -35,7 +34,7 @@ urlpatterns = [
     url(r'^pawtect_terms/',views.pawtect_terms,name='pawtect_terms'),
     url(r'^privacy/',views.privacy_policy,name='privacy'),
     url(r'^logout/$', views.user_logout, name='logout'),
-    url(r'^page_not_found/$',views.page_not_found,name='404'),
+    url(r'^page_not_found/$',views.page_not_found,name='page_not_found'),
     url(r'^assets/(?P<path>.*)$', serve,{'document_root': settings.ASSETS}),
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
 ]

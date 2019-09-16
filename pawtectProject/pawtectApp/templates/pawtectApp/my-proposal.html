@@ -16,11 +16,11 @@
     <div class="my-proposal-content-wrapper clearfix mt-20">
       <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 padd-left-none">
         <ul class="toolbar mb-48 my-proposal-tab-list padd-left-none">
-          <li class="fil-cat selected" href="" data-rel="all">
+          <li class="fil-cat {% if not selectedPet %}selected {% endif %}" href="" data-rel="all" onclick="allPet()">
             All
           </li>
-          {% for pet in pets %}
-         <li class="fil-cat" data-rel="{{pet.name}}"><a href="{% url 'my_proposal_view' pet.id%}">{{pet.name}}</a></li>
+          {% for pet in myPets %}
+         <li class="fil-cat {% if  selectedPet and selectedPet.id == pet.id %} selected {% endif %}" data-rel="{{pet.name}}" onclick="singlePet({{pet.id}})">{{pet.name}}</li>
           {% endfor %}
         </ul>
 
@@ -93,7 +93,7 @@
                 </div>
                 <div class="my-pet-col-plan-fee mb-4">
                   <span>Plan Fees</span>
-                  <span class="pull-right set-amount-plan" id="{{pet.id}}">₹ </span>
+                  <span class="pull-right set-amount-plan" id="{{pet.id}}">₹ 0</span>
                 </div>
               </div>
               {% if questions.count > 0 %}
@@ -339,8 +339,17 @@ $("#paymentId").click((event)=>{
         icon: "warning",
         });
 }
-    
 })
-        
+  </script>
+
+  <script>
+    function singlePet(petId){
+    var query = "?petId="+petId
+    location.href = "/my_proposal/" + query;
+}
+
+function allPet(){
+    location.href = "/my_proposal/";
+}
   </script>
 {% endblock %}

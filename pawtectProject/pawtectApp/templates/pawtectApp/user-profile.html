@@ -128,7 +128,7 @@
             id="country"
             placeholder="Enter country"
             class="input-small"
-            name="country" value="{{user.userprofile.country | default:""}}"
+            name="country" value="{{user.userprofile.country | default:"India"}}"
             />
           
           <img
@@ -160,8 +160,8 @@
       </div>
       <div class="clearfix"></div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-32">
-        <button class="btn btn-md text-left brand-color  padd-h-none ">
-          Change Password?
+        <button class="btn btn-md text-left brand-color  padd-h-none "><a href="{% url 'page_not_found' %}">
+          Change Password?</a>
         </button>
         <div class="profile-bottom-btn-wrap pull-right inline-block">
           <button class="btn ghost-btn-light-gray btn-md"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
