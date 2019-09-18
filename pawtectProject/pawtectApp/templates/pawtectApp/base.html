@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Pawtect</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
       rel="icon"
       type="image/png"
@@ -83,7 +85,7 @@
     <header>
       <div class="wrapper">
         <div
-          class="col-lg-4 col-md-2 col-sm-2 col-xs-2 padd-h-none d-flex align-center"
+          class="col-lg-4 col-md-4 col-sm-3 col-xs-5 padd-h-none d-flex align-center"
         >
           <a href="{% url 'index' %}">
             <img
@@ -105,8 +107,8 @@
           </div> {% endcomment %}
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs padd-right-none">
-          <ul class="header-list nav pull-right">
+        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-7 padd-right-none">
+          <ul class="header-list nav pull-right hidden-xs ">
             <li>
               <span class="header-vetcoin-tag">40 Vetcoins Available</span>
             </li>
@@ -142,6 +144,46 @@
               </ul>
             </li>
           </ul>
+
+          <nav class="mobile-menu visible-xs">
+						<input id="nav" type="checkbox" />
+						
+						<label for="nav">
+							<div class="menu-trigger">
+								<i></i><i></i><i></i>
+							</div>
+						</label>
+						<div class="mobile-nav-slider">
+              <div class="slider-backdrop absolute-center"></div>
+              <div class="mobile-nav-slider-list">
+                <h6 class="mobile-nav-slider-heading">Menu</h6>
+                <menu class="mobile-menu-list padd-left-none">
+                  <li>
+                    <span class="header-vetcoin-tag">40 Vetcoins Available</span>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name != "my-pets" %}active{% endif %}"><a href="{% url 'my_proposal' %}">My Pawtect Proposals</a></li>
+                  <li class="{% if request.resolver_match.url_name == "my-pets" %}active{% endif %}"><a href="{% url 'my-pets' %}">My Pets</a></li>
+                  <li>
+                    <a href="{% url 'user_profile' %}">
+                      My Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'my_vetcoins' %}">
+                      My Vetcoins Statement
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'logout' %}">
+                      Logout
+                    </a>
+                  </li>
+                </menu>
+              </div>
+            </div>
+						
+						
+					</nav>
         </div>
       </div>
     </header> 
@@ -188,6 +230,22 @@
           if (!n.parents().hasClass("button-dropdown"))
             e(".button-dropdown .dropdown-toggle").removeClass("active");
         });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        $('input[type="checkbox"]').click(function(){
+          if($(this).is(":checked")){
+              $('.mobile-menu').addClass('open-slider');
+          }
+          else if($(this).is(":not(:checked)")){
+            $('.mobile-menu').removeClass('open-slider');
+          }
+      });
+      $('.slider-backdrop').click(function(){
+        $('.mobile-menu').removeClass('open-slider');
+      })
       });
     </script>
     {% block body_block %} {% endblock %}

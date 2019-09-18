@@ -1,187 +1,193 @@
 {% extends "pawtectApp/base.html" %} {% block body_block %}
 
 <div class="main-content-wrapper">
-  <div class="profile-form-wrapper mb-64 clearfix">
-    <div class="text-center">
-      <h1 class="margin-bottom-none">My Profile</h1>
-      <p class="user-pro-ref-id mt-12">My Reference ID: {{user.userprofile.id}}</p>
-    </div>
-    <form class="clearfix" method="post"  enctype="multipart/form-data">
-    {% csrf_token %}
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="upload-profile-wrap text-center p-tb-20">
-          <div class="relative">
-            <img
-            {% if user %}src="{{user.userprofile.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
-              class="upload-profile-img"
-              id="image"
-            />
+  <div class="wrapper">
+      <div class="profile-form-wrapper mb-64 clearfix">
+          <div class="text-center">
+            <h1 class="margin-bottom-none u-mob-large-heading ">My Profile</h1>
+            <p class="user-pro-ref-id mt-12">My Reference ID: {{user.userprofile.id}}</p>
           </div>
-          <input
-            type="file"
-            name="avatar"
-            id="avatar"
-            class="img-upload-input"
-          /><label for="avatar" class="pt-4"
-            ><img src="/assets/img/common-icons/camera.svg" /><span
-              >Change Image</span
-            ></label
-          >
+          <form class="clearfix" method="post"  enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="upload-profile-wrap text-center p-tb-20">
+                <div class="relative">
+                  <img
+                  {% if user %}src="{{user.userprofile.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
+                    class="upload-profile-img"
+                    id="image"
+                  />
+                </div>
+                <input
+                  type="file"
+                  name="avatar"
+                  id="avatar"
+                  class="img-upload-input"
+                /><label for="avatar" class="pt-4"
+                  ><img src="/assets/img/common-icons/camera.svg" /><span
+                    >Change Image</span
+                  ></label
+                >
+              </div>
+              <!-- End of settings-general-image -->
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+                {% if messages %} {% for message in messages %}
+                 <span class="error-color mb-16">{{message}}</span>
+                 {% endfor %} {% endif %}
+             </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                placeholder="First Name"
+                name="fname"
+                id="fname"
+                class="input-small"
+                value="{{user.userprofile.user.first_name}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                placeholder="Last Name"
+                class="input-small"
+                name="lname"
+                id="lname"
+                value="{{user.userprofile.user.last_name}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                placeholder="Mobile Number"
+                class="input-small"
+                name="mobile"
+                id="mobile"
+                value="{{user.userprofile.mobile}}" disabled
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="email"
+                placeholder="Email"
+                class="input-small"
+                name="email"
+                id="email"
+                value="{{user.userprofile.user.email}}" disabled
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <div class="ui-widget relative">
+                <select placeholder="Gender" name="gender" id="gender" class="input-small margin-bottom-none" value="{{user.userprofile.gender}}">
+                {% if not user.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
+                  {% if  user.gender %}<option>Select Gender</option>{% endif %}
+                  <option value="male" {% if user.userprofile.gender == 'male' %}selected {% endif %}>Male</option>
+                  <option value="female" {% if user.userprofile.gender == 'female' %}selected {% endif %}>Female</option>
+                </select>
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                placeholder="Address"
+                class="input-small"
+                name="address1"
+                id="address1"
+                value="{{user.userprofile.address1 | default:""}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input type="text" placeholder="Area" class="input-small" name="area" id="area" value="{{user.userprofile.area | default:""}}" />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="number"
+                placeholder="Pincode"
+                class="input-small"
+                name="pincode"
+                id="pincode"
+                value="{{user.userprofile.pincode}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                placeholder="City"
+                class="input-small"
+                name="city"
+                id="city"
+                value="{{user.userprofile.city | default:""}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <div class="ui-widget relative ">
+                <input
+                  id="country"
+                  placeholder="Enter country"
+                  class="input-small"
+                  name="country" value="{{user.userprofile.country | default:""}}"
+                  />
+                
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+              <div
+                class="ui-widget width-full small-ui-widget inline-block pull-right relative mb-8"
+              >
+                <input
+                  id="pet_user_type"
+                  placeholder="I am..."
+                  class="input-small"
+                  name="user_type"
+                />
+                <img
+                  src="https://img.icons8.com/material-two-tone/48/000000/plus.png"
+                  class="dropdown-arrow u-add-profession-icon" onclick="addProfession()"
+                />
+              </div>
+              <ul class="user-pro-owner-type padd-left-none" id="professionId">
+              </ul>
+              <input type="hidden" name="profession" id="hideId" value="{{user.userprofile.profession | default:""}}"/>
+            
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-32">
+              <button class="btn btn-md text-left brand-color u-mob-change-pass-margin  padd-h-none ">
+                Change Password?
+              </button>
+              <div class="profile-bottom-btn-wrap pull-right inline-block">
+                <button class="btn ghost-btn-light-gray btn-md"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
+               <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <!-- End of settings-general-image -->
-      </div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
-          {% if messages %} {% for message in messages %}
-           <span class="error-color mb-16">{{message}}</span>
-           {% endfor %} {% endif %}
-       </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input
-          type="text"
-          placeholder="First Name"
-          name="fname"
-          id="fname"
-          class="input-small"
-          value="{{user.userprofile.user.first_name}}"
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
-        <input
-          type="text"
-          placeholder="Last Name"
-          class="input-small"
-          name="lname"
-          id="lname"
-          value="{{user.userprofile.user.last_name}}"
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input
-          type="text"
-          placeholder="Mobile Number"
-          class="input-small"
-          name="mobile"
-          id="mobile"
-          value="{{user.userprofile.mobile}}" disabled
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
-        <input
-          type="email"
-          placeholder="Email"
-          class="input-small"
-          name="email"
-          id="email"
-          value="{{user.userprofile.user.email}}" disabled
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <div class="ui-widget relative">
-          <select placeholder="Gender" name="gender" id="gender" class="input-small margin-bottom-none" value="{{user.userprofile.gender}}">
-          {% if not user.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
-            {% if  user.gender %}<option>Select Gender</option>{% endif %}
-            <option value="male" {% if user.userprofile.gender == 'male' %}selected {% endif %}>Male</option>
-            <option value="female" {% if user.userprofile.gender == 'female' %}selected {% endif %}>Female</option>
-          </select>
-          <img
-            src="/assets/img/common-icons/expand-button.svg"
-            class="dropdown-arrow"
-          />
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
-        <input
-          type="text"
-          placeholder="Address"
-          class="input-small"
-          name="address1"
-          id="address1"
-          value="{{user.userprofile.address1 | default:""}}"
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input type="text" placeholder="Area" class="input-small" name="area" id="area" value="{{user.userprofile.area | default:""}}" />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
-        <input
-          type="number"
-          placeholder="Pincode"
-          class="input-small"
-          name="pincode"
-          id="pincode"
-          value="{{user.userprofile.pincode}}"
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6">
-        <input
-          type="text"
-          placeholder="City"
-          class="input-small"
-          name="city"
-          id="city"
-          value="{{user.userprofile.city | default:""}}"
-        />
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6">
-        <div class="ui-widget relative ">
-          <input
-            id="country"
-            placeholder="Enter country"
-            class="input-small"
-            name="country" value="{{user.userprofile.country | default:""}}"
-            />
-          
-          <img
-            src="/assets/img/common-icons/expand-button.svg"
-            class="dropdown-arrow"
-          />
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
-        <div
-          class="ui-widget width-full small-ui-widget inline-block pull-right relative mb-8"
-        >
-          <input
-            id="pet_user_type"
-            placeholder="I am..."
-            class="input-small"
-            name="user_type"
-          />
-          <img
-            src="https://img.icons8.com/material-two-tone/48/000000/plus.png"
-            class="dropdown-arrow u-add-profession-icon" onclick="addProfession()"
-          />
-        </div>
-        <ul class="user-pro-owner-type padd-left-none" id="professionId">
-        </ul>
-        <input type="hidden" name="profession" id="hideId" value="{{user.userprofile.profession | default:""}}"/>
-      
-      </div>
-      <div class="clearfix"></div>
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-32">
-        <button class="btn btn-md text-left brand-color  padd-h-none ">
-          Change Password?
-        </button>
-        <div class="profile-bottom-btn-wrap pull-right inline-block">
-          <button class="btn ghost-btn-light-gray btn-md"><a href="{{request.META.HTTP_REFERER}}">Cancel</a></button>
-         <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
-        </div>
-      </div>
-    </form>
   </div>
+  
 </div>
 
 <footer class="footer2">
   <div class="wrapper">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
       <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
-      <ul class="footer-list2 pull-right">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
         <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
         <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
       </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
     </div>
   </div>
 </footer>
