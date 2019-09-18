@@ -259,10 +259,16 @@ def page_not_found(request):
 # Get All Proposal
 def my_proposal(request):
     user_profile = request.user.userprofile
-    pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+    petId = request.GET.get('petId',None)
+    myPets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+    selectedPet = None
+    if petId:
+        selectedPet = Pet.objects.get(pk=petId)
+        pets = [selectedPet]
+    else:
+        pets = myPets
     questions = Questions.objects.all().order_by('id')
-
-    return render(request,"pawtectApp/my-proposal.html",{"pets":pets,"questions":questions})
+    return render(request,"pawtectApp/my-proposal.html",{"pets":pets,"questions":questions,"myPets":myPets,"selectedPet":selectedPet})
 
 
 # Get breed json and age model for show quotation
@@ -276,13 +282,6 @@ def get_filter_quote_data(request):
             return JsonResponse({"breed":breed,"ages":list_result,"amounts":list(amounts)})
         else:
             return HttpResponse("Something went wrong. Please try again.")
-
-
-# Single Proposal View
-def my_proposal_view(request,petId):
-    if petId:
-        pet = Pet.objects.get(id=petId)
-        return render(request,"pawtectApp/my-proposal-view.html",{'pet':pet})
 
 
 # Get Country Data
