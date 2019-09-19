@@ -1,6 +1,6 @@
 {% extends "pawtectApp/base.html" %} {% block body_block %}
 <div class="login-container">
-  <div class="col-lg-6 col-md-6 col-sm-6 hiddein-xs padd-h-none">
+  <div class="col-lg-6 col-md-6 hidden-sm hidden-xs padd-h-none">
     <div class="login-left-section">
       <img
         src="/assets/img/login/login-left-section-bg-img/login_left_bg-img@3x.png"
@@ -9,12 +9,12 @@
       />
     </div>
   </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
       <div class="login-right-section">
       {% if not is_otpModal %}
         <div class="wrapper">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center relative">
-                <h1 class="login-right-section-heading">Sign Up</h1>
+                <h1 class="login-right-section-heading u-mob-large-heading">Sign Up</h1>
                 <p class="login-right-section-para">Your dog's safety is your responsibility!</p>
               </div>
               <form method="post" action="{% url 'register' %}" class="relative">
@@ -28,22 +28,22 @@
                 </span>
               {% csrf_token %}
               <div class="login-right-box">
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="text" name="fname" placeholder="First Name *"  class="input-small" required/>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input type="text" name="lname" placeholder="Last Name *" class="input-small" required/>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small" required/>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input type="email" name="email" placeholder="Email ID *" class="input-small" required/>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="password" name="password" placeholder="Password *" class="input-small"  required/>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 ">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input
                     type="password"
                     name="password2"

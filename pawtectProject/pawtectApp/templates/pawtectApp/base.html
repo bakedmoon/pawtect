@@ -38,16 +38,16 @@
     <header>
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none d-flex align-center">
-          <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 padd-h-none">
             <a href="{% url 'index' %}">
               <img
-                src="/assets/img/brand/main-logo.png"
+                src="/assets/img/brand/Pawtect-Logo.jpg"
                 alt="main-logo"
                 class="main-logo"
               />
             </a>
           </div>
-          <div class="col-lg-10 col-md-8 col-sm-8 hidden-xs">
+          <div class="col-lg-10 col-md-9 hidden-sm hidden-xs">
             <ul class="header-list">
               <li class="{% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url 'index' %}">Home</a></li>
               <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
@@ -58,8 +58,8 @@
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs padd-right-none">
-          <ul class="header-right-list pull-right">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  padd-right-none">
+          <ul class="header-right-list pull-right padd-left-none hidden-sm hidden-xs">
             <li class="header-right-list-icons">
               <a href=""><i class="fa fa-phone" aria-hidden="true"></i></a>
             </li>
@@ -77,6 +77,50 @@
               </a>
             </li>
           </ul>
+
+          <nav class="mobile-menu visible-sm visible-xs">
+						<input id="nav" type="checkbox" />
+						
+						<label for="nav">
+							<div class="menu-trigger">
+								<i></i><i></i><i></i>
+							</div>
+						</label>
+						<div class="mobile-nav-slider">
+              <div class="slider-backdrop absolute-center"></div>
+              <div class="mobile-nav-slider-list">
+                <h6 class="mobile-nav-slider-heading">Menu</h6>
+                <menu class="mobile-menu-list padd-left-none">
+                  <li class="{% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url 'index' %}">Home</a></li>
+                  <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
+                  <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
+                  <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
+                  <li class="{% if request.resolver_match.url_name == "aboutUs" %}active{% endif %}"><a href="{% url 'aboutUs' %}">About us</a></li>
+                  <li>
+                    <a href="{% url 'login' %}">
+                      <button class="btn ghost-btn-grey">Login</button>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'register' %}">
+                      <button class="btn btn-primary">Sign up</button>
+                    </a>
+                  </li>
+                  <li>
+                    <span class="header-right-list-icons mr-8">
+                      <a href=""><i class="fa fa-phone" aria-hidden="true"></i></a>
+                    </span>
+                    <span class="header-right-list-icons mail-icon">
+                      <a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    </span>
+                  </li>
+                </menu>
+              </div>
+            </div>
+						
+						
+					</nav>
+
         </div>
       </div>
     </header>

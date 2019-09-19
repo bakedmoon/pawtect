@@ -64,7 +64,9 @@
   .header-vetcoin-tag {
     font-size: @font-size;
   }
+
   //header mobile responsive end
+
   //footer mobile responsive start
   .footer-list2 {
     float: none;
@@ -90,7 +92,28 @@
   .u-mob-col-padd-right-none {
     padding-right: 0px;
   }
+  .u-mob-col-padd-h-none {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
   //common mobile responsive end
+
+  //login mobile responsive start
+  .login-container {
+    padding-top: @space * 5;
+  }
+  .login-right-box {
+    max-width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .login-right-section-para {
+    font-size: @font-size;
+  }
+  .login-right-section-heading {
+    margin-top: 0px;
+  }
+  //login mobile responsive end
 
   //my pet mobile responsive start
   .my-pet-col-bottom-btn-wrap {
@@ -198,6 +221,14 @@
   }
   //common tab responsive end
 
+  //login tab responsive start
+  .login-right-box {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  //login tab reponsive end
+
   //my pet tab responsive start
   .my-pet-col-bottom-btn-wrap {
     .btn,
@@ -208,7 +239,7 @@
   //my pet tab responsive end
 } // @media - tab
 
-@media (max-width: 1199px) and (min-width: 992px) {
+@media (max-width: 1080px) and (min-width: 992px) {
   .col-lg-1,
   .col-lg-10,
   .col-lg-11,
@@ -274,6 +305,17 @@
   h6 {
     margin-top: @space / 4;
     margin-bottom: @space / 4;
+  }
+  .header-list {
+    li {
+      margin-right: @space + 2;
+    }
+  }
+  .header-right-list {
+    padding-left: 0px;
+    li {
+      margin-left: @space / 2 + 2;
+    }
   }
 } // @media
 
