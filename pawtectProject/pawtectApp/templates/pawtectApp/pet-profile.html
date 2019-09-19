@@ -24,6 +24,7 @@
                   name="picture"
                   id="picture"
                   class="img-upload-input"
+                  accept="image/*"
                 /><label for="picture" class="pt-4"
                   ><img src="/assets/img/common-icons/camera.svg" /><span
                     >Change Image</span
@@ -38,15 +39,17 @@
                 {% endfor %} {% endif %}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
-              <input type="text" placeholder="Pet Name" id="name" name="name" class="input-small" value="{{pet.name}}"/>
+              <input type="text" placeholder="Pet Name" id="name" name="name" class="input-small" value="{{pet.name}}" required/>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <input
-                type="number"
+                type="text"
                 placeholder="Microchip number"
-                class="input-small"
+                class="input-small restrict"
                 id="microchipNumber"
-                name="microchip_Number" value="{{pet.microchip_Number}}" />
+                name="microchip_Number"
+                onkeypress=" return isSpecial(event)" 
+                value="{{pet.microchip_Number}}" />
               
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none clearfix">
@@ -57,7 +60,10 @@
                   id="species"
                   placeholder="Species"
                   class="input-small"
-                  name="species" value="{{pet.species}}"
+                  name="species" 
+                  value="{{pet.species}}"
+                  onkeypress=" return isSpecial(event)" 
+                  required
                  />
                 <img
                   src="/assets/img/common-icons/expand-button.svg"
@@ -73,7 +79,10 @@
                   id="pet_profile_breed"
                   placeholder="Breed"
                   class="input-small"
-                  name="breed" value="{{pet.breed}}"
+                  name="breed"
+                  value="{{pet.breed}}"
+                  onkeypress=" return isSpecial(event)" 
+                  required
                   />
                 
                 <img
@@ -91,6 +100,7 @@
                 placeholder="Enter Birthdate"
                 class="input-small"
                 value="{{pet.birthDate | date:"F j, Y"}}"
+                readonly
                 required
               />
             </div>
@@ -135,6 +145,8 @@
                 name="consult_mobileNumber"
                 placeholder="Consulting mobile number"
                 class="input-small"
+                onkeypress=" return isNumber(event)"
+                minlength="10" maxlength="13"
                 value="{{pet.consult_mobileNumber}}"
               />
             </div>
@@ -152,7 +164,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-16">
               <div class="profile-bottom-btn-wrap pull-right">
                 <button class="btn ghost-btn-light-gray btn-md"><a href="{{ request.META.HTTP_REFERER }}">Cancel</a></button>
-                <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
+                <button class="btn btn-primary btn-md ml-8" id="saveId" type="submit">Save</button>
               </div>
             </div>
             
@@ -237,9 +249,24 @@ $("#picture").change(function() {
 
 </script>
 <script>
-function goto(){
-  window.history.go(-1)
-}
+function isNumber(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true; 
+    }
+
+    function isSpecial(evt){
+    evt = (evt) ? evt : window.event;
+    console.log("THE EVENT CODE IS HERE-->>>",evt.which)
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode == 45 || charCode == 173 || charCode == 63 || charCode == 189 || charCode == 61 || charCode == 187 || charCode == 59 || charCode == 186 || charCode == 95 || charCode == 47 || charCode == 46 || charCode == 62 || charCode == 60 || charCode == 44 || charCode == 58 || charCode == 34 || charCode == 39 || charCode == 125 || charCode == 123 || charCode == 91 || charCode == 40 || charCode == 91 || charCode == 41 || charCode == 42 || charCode == 43 || charCode == 33 || charCode == 64 || charCode == 35 || charCode == 36 || charCode == 37 || charCode == 94 || charCode == 38) {
+        return false;
+    }
+    return true; 
+    }
 </script>
 
 {% endblock %}

@@ -99,7 +99,7 @@ def login(request):
             auth.login(request, user)
             return HttpResponseRedirect(reverse('my-pets'))
         else:
-            messages.error(request,"Something went wrong try again.")
+            messages.error(request,"User does not exist.")
             return HttpResponseRedirect(reverse('login'))
     else:
         return render(request, 'pawtectApp/login.html')
