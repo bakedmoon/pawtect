@@ -3,3 +3,5 @@ __pycache__
 *.pyc
 pawtectProject/__pycache__/
 pawtectApp/migrations
+media/
+pawtectEnv/lib
