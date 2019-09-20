@@ -23,6 +23,7 @@
                   name="avatar"
                   id="avatar"
                   class="img-upload-input"
+                  accept="image/*"
                 /><label for="avatar" class="pt-4"
                   ><img src="/assets/img/common-icons/camera.svg" /><span
                     >Change Image</span
@@ -44,6 +45,7 @@
                 id="fname"
                 class="input-small"
                 value="{{user.userprofile.user.first_name}}"
+                required
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
@@ -105,11 +107,12 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <input
-                type="number"
+                type="text"
                 placeholder="Pincode"
                 class="input-small"
                 name="pincode"
                 id="pincode"
+                onkeypress=" return isNumber(event)"
                 value="{{user.userprofile.pincode}}"
                 required
               />
@@ -312,6 +315,15 @@ function addProfession(){
              $("#pet_user_type").val('')
   }
 }
+
+function isNumber(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true; 
+    }
 </script>
 
 {% endblock %}
