@@ -43,7 +43,7 @@
           <button class="btn btn-primary" id="searchId">
             Apply
           </button>
-          <button class="btn ghost-btn-light-gray pull-right">Clear All</button>
+          <a href="{% url 'quotation' %}"><button class="btn ghost-btn-light-gray pull-right">Clear All</button></a>
         </div>
       </div>
     </div>
@@ -223,6 +223,7 @@
 </footer>
 
 <script>
+
   $(function() {
     var breedData = [];
     var amountData = [];
@@ -253,7 +254,8 @@
           age.label = age.age_range
           agesGroup.push(age);
         }
-         $("#tags1").autocomplete({
+
+        $("#tags1").autocomplete({
         source: breedData,
         select:function(ui,item){
           breed_item = item.item
@@ -265,9 +267,9 @@
         select:function(ui,item){
           age_item = item.item
         }
-     })
+      })
 
-     $("#tags2").autocomplete({
+      $("#tags2").autocomplete({
         source: amountData
       });
 
@@ -277,11 +279,40 @@
     
     var query = "?pawtect-quote=1";
     $("#searchId").click((e) => {
-      e.preventDefault()
+       e.preventDefault()
+
+      var url_string = location;
+      var url = new URL(url_string);
+      var breedCat = url.searchParams.get("category__icontains");
+      var breedName = url.searchParams.get("name");
+      var breedStart_age = url.searchParams.get("age__start_age__in");
+      var breedStart_age_unit = url.searchParams.get("age__start_age_unit__in");
+      var breedEnd_age = url.searchParams.get("age__end_age__in");
+      var breedEnd_age_unit = url.searchParams.get("age__end_age_unit__in");
+      var breedAge_range = url.searchParams.get("age");
+
     let age = $("#tags").val();
     let breed = $("#tags1").val();
     let amount = $("#tags2").val();
-  
+
+    if(breed_item.category == undefined){
+      breed_item.category = breedCat ? breedCat : breed_item.category;
+      breed_item.name = breedName ? breedName : breed_item.name;
+      age_item.start_age = breedStart_age ? breedStart_age : age_item.start_age;
+      age_item.start_age_unit = breedStart_age_unit ? breedStart_age_unit : age_item.start_age_unit;
+      age_item.end_age = breedEnd_age ? breedEnd_age : age_item.end_age;
+      age_item.end_age_unit = breedEnd_age_unit ? breedEnd_age_unit : age_item.end_age_unit;
+      age_item.age_range = breedAge_range ? breedAge_range : age_item.age_range;
+    }else{
+      breed_item.category = breed_item.category ? breed_item.category : breedCat;
+      breed_item.name = breed_item.name ;
+      age_item.start_age = age_item.start_age ? age_item.start_age : breedStart_age;
+      age_item.start_age_unit = age_item.start_age_unit ? age_item.start_age_unit : breedStart_age_unit;
+      age_item.end_age = age_item.end_age ? age_item.end_age : breedEnd_age;
+      age_item.end_age_unit = age_item.end_age_unit ? age_item.end_age_unit : breedEnd_age_unit;
+      age_item.age_range = age_item.age_range ? age_item.age_range : breedAge_range;
+    }
+    
     if (age.length >= 1) {
       query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit+"&age="+age_item.age_range;
     }
