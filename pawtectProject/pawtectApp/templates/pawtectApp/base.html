@@ -35,7 +35,7 @@
   </head>
   <body>
   {% if not user.is_authenticated %}
-    <header>
+    <header class="p-tb-12">
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none d-flex align-center">
           <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 padd-h-none">
@@ -117,10 +117,7 @@
                 </menu>
               </div>
             </div>
-						
-						
 					</nav>
-
         </div>
       </div>
     </header>
@@ -129,7 +126,7 @@
     <header>
       <div class="wrapper">
         <div
-          class="col-lg-4 col-md-4 col-sm-3 col-xs-5 padd-h-none d-flex align-center"
+          class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd-h-none d-flex align-center"
         >
           <a href="{% url 'index' %}">
             <img
@@ -151,8 +148,8 @@
           </div> {% endcomment %}
         </div>
 
-        <div class="col-lg-8 col-md-8 col-sm-9 col-xs-7 padd-right-none">
-          <ul class="header-list nav pull-right hidden-xs ">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-right-none">
+          <ul class="header-list nav pull-right hidden-sm hidden-xs ">
             <li>
               <span class="header-vetcoin-tag">40 Vetcoins Available</span>
             </li>
@@ -189,7 +186,7 @@
             </li>
           </ul>
 
-          <nav class="mobile-menu visible-xs">
+          <nav class="mobile-menu visible-sm visible-xs">
 						<input id="nav" type="checkbox" />
 						
 						<label for="nav">

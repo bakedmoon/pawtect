@@ -60,11 +60,18 @@
       display: block;
     }
   } // justified
+  .btn-link {
+    min-height: auto;
+    min-width: auto;
+    padding: 0px;
+  }
   //header mobile responsive start
+  header {
+    padding-bottom: 10px;
+  }
   .header-vetcoin-tag {
     font-size: @font-size;
   }
-
   //header mobile responsive end
 
   //footer mobile responsive start
@@ -165,7 +172,122 @@
   .my-proposal-top-para {
     font-size: @font-size;
   }
+
+  .my-proposal-content-wrapper {
+    margin-top: @space * 2;
+  }
+
+  .my-pet-cols {
+    padding: @space - 4;
+  }
+
+  .my-pet-col-ribbon-list {
+    margin-bottom: 0px;
+    .radio-button-label {
+      margin-bottom: @space;
+    }
+  }
+
+  .my-pet-col-plan-fee {
+    margin-bottom: @space;
+  }
+  .my-proposal-payment-section {
+    transition: 0.2s height ease-in-out;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: auto;
+    margin-bottom: 76px;
+    height: 40px;
+    .u-mob-pay-button {
+      margin-top: 0px;
+    }
+  }
+  .my-proposal-plan-summary-col {
+    padding: 0px;
+    visibility: hidden;
+    opacity: 0;
+    height: 0px;
+    transition: 0.1s height ease-in-out;
+  }
+  .my-proposal-plan-content {
+    padding: @space * 2 @space @space * 4;
+    border-top: 1px solid #f8f8f8;
+  }
+  .open-payment-slider {
+    height: 100%;
+    .my-proposal-plan-summary-col {
+      transition: 0.1s height ease-in-out;
+      visibility: visible;
+      opacity: 1;
+      height: 100%;
+      padding-top: 137px;
+      overflow-y: auto;
+    }
+  }
+  .close-payment-slider-btn {
+    display: block;
+    img {
+      max-height: 12px;
+    }
+    img,
+    span {
+      vertical-align: middle;
+    }
+  }
+  .u-mob-pay-button {
+    position: absolute;
+    bottom: 0px;
+    .border-radius(0px);
+  }
+  .u-proposal-amt-col-wrap {
+    padding-right: 0px;
+  }
   //my proposal mobile responsive end
+
+  //get quote mobile responsive start
+  .get-quote-top-col-wrapper {
+    display: none;
+  }
+  .get-quote-fea-cols {
+    margin-right: 0px;
+    margin-bottom: @space - 4;
+  }
+  .get-quote-features-bottom-note {
+    padding-left: @space * 2;
+    padding-right: @space * 2;
+    text-align: center;
+  }
+  .get-quote-top-section {
+    margin-top: 0px;
+    margin-bottom: @space - 4;
+    h1 {
+      text-align: left;
+      display: inline-block;
+    }
+    .u-mob-filter-section {
+      border: 1px solid #dbdbdb;
+      .border-radius(4px);
+      height: 40px;
+      line-height: 38px;
+      color: #999999;
+      text-align: center;
+      display: inline-block;
+      padding: 0px @space - 4;
+      margin-top: 5px;
+      img,
+      span {
+        vertical-align: middle;
+      }
+      span {
+        padding-left: @space - 4;
+      }
+    }
+  }
+
+  //get quote mobile responsive end
 } // @media - phone
 
 @media (min-width: 768px) and (max-width: 991px) {
@@ -175,6 +297,11 @@
   .btn {
     .button-size(8px; 16px; @font-size - 1; 1.3; 4px);
     .min-width(120px);
+  }
+  .btn-link {
+    min-height: auto;
+    min-width: auto;
+    padding: 0px;
   }
   h1,
   .h1 {
@@ -205,20 +332,34 @@
     padding-right: @space;
   }
   //header tab responsive start
+
   .header-list {
     li {
       margin-right: @space;
     }
   }
+
   //header tab responsive end
 
   //common tab responsive start
   .main-content-wrapper {
     margin-bottom: @space * 4;
+    margin-top: @space * 5;
   }
   .u-mob-large-heading {
     font-size: @font-size * 2;
   }
+  .u-tab-col-padd-left-none {
+    padding-left: 0px;
+  }
+  .u-tab-col-padd-right-none {
+    padding-right: 0px;
+  }
+  .u-tab-col-padd-h-none {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   //common tab responsive end
 
   //login tab responsive start
@@ -237,9 +378,58 @@
     }
   }
   //my pet tab responsive end
+
+  //my proposal tab responsive start
+  .u-proposal-amt-col-wrap {
+    padding-right: 0px;
+  }
+  .my-pet-col-ribbon-list {
+    margin-bottom: 0px;
+    .radio-button-label {
+      margin-bottom: @space;
+    }
+  }
+  .my-pet-col-plan-fee {
+    margin-bottom: @space;
+  }
+  .get-quote-top-section {
+    margin-top: 0px;
+    margin-bottom: @space - 4;
+    h1 {
+      text-align: left;
+      display: inline-block;
+    }
+    .u-mob-filter-section {
+      border: 1px solid #dbdbdb;
+      .border-radius(4px);
+      height: 40px;
+      line-height: 37px;
+      color: #999999;
+      text-align: center;
+      display: inline-block;
+      padding: 0px @space - 4;
+      margin-top: 5px;
+      img,
+      span {
+        vertical-align: middle;
+      }
+      span {
+        padding-left: @space - 4;
+      }
+    }
+  }
+  .get-quote-top-col-wrapper {
+    display: none;
+  }
+  .get-quote-features-bottom-note {
+    padding-left: @space * 2;
+    padding-right: @space * 2;
+    text-align: center;
+  }
+  //my proposal tab responsive end
 } // @media - tab
 
-@media (max-width: 1080px) and (min-width: 992px) {
+@media (max-width: 1199px) and (min-width: 992px) {
   .col-lg-1,
   .col-lg-10,
   .col-lg-11,
@@ -317,6 +507,25 @@
       margin-left: @space / 2 + 2;
     }
   }
+  //my proposal medium screen responsive start
+  .u-proposal-amt-col-wrap {
+    padding-right: 0px;
+  }
+  .my-pet-col-ribbon-list {
+    margin-bottom: 0px;
+    .radio-button-label {
+      margin-bottom: @space;
+    }
+  }
+  .my-pet-col-plan-fee {
+    margin-bottom: @space;
+  }
+  //my proposal medium screen responsive end
+  .get-quote-top-btn-wrapper {
+    .btn {
+      width: 48%;
+    }
+  }
 } // @media
 
 @media (min-width: 1024px) and (max-width: 1199px) {
@@ -331,4 +540,13 @@
     }
   }
   //my pet responsive end
+  .u-mob-quote-heading-inline {
+    font-size: 30px;
+  }
+  .u-mob-filter-section {
+    margin-top: 2px !important;
+    span {
+      padding-left: @space / 4 !important;
+    }
+  }
 }

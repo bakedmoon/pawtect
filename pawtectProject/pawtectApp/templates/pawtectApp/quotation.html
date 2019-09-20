@@ -3,8 +3,53 @@
 <div class="main-content-wrapper">
   <div class="wrapper">
     <div class="get-quote-top-section">
-      <h1 class="text-center margin-top-none" data-toggle="modal"
-      data-target="#get_quote_pet_det_modal">Get Quote</h1>
+      <h1 class="u-mob-quote-heading-inline u-mob-large-heading text-center margin-top-none">Get Quote</h1>
+      <div class="u-mob-filter-section pull-right">
+        <img src="/assets/img/get-quote/filter-icon.svg" />
+        <span>View Filters</span>
+      </div>
+      <div class="u-mob-filter-slider visible-sm visible-xs">
+        <div class="mobile-nav-slider">
+          <div class="slider-backdrop absolute-center"></div>
+          <div class="mobile-nav-slider-list">
+            <h6 class="mobile-nav-slider-heading">Filters</h6>
+            <button class="u-mob-filter-slider-close-btn btn btn-link absolute right top mt-16 mr-16"><img src="/assets/img/common-icons/close-button.svg"></button>
+            <menu class="mobile-menu-list padd-left-none">
+              <li>
+                <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_age">
+                  <input id="tags" placeholder="Select dog's age" {% if age_Period %} value="{{age_Period}}"{% endif %} />
+                  <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow" />
+                
+                </div>
+              </li>
+              <li>
+                <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
+                  <input id="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
+                  <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+                </div>
+              </li>
+              <li>
+                <div class="ui-widget inline-block pull-right relative width-full" id="select_cover_amt">
+                  <input id="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} />
+                  <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+                </div>
+              </li>
+              <li>
+                <button class="btn ghost-btn-light-gray ">Clear All</button>
+                <button class="btn btn-primary pull-right" id="searchId">Apply</button>    
+              </li>
+            </menu>
+          </div>
+        </div>
+      </div>
       <div class="get-quote-top-col-wrapper clearfix">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-h-none">
           <div class="get-quote-top-filter inline-block text-center ">
@@ -20,7 +65,7 @@
 
           <!-- End of c-dropdown -->
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="col-lg-4 col-md-3 col-sm-4">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
             <input id="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
             <img
@@ -39,7 +84,7 @@
           </div>
         </div>
         <div
-          class="col-lg-2 col-md-2 col-sm-2 padd-h-none get-quote-top-btn-wrapper">
+          class="col-lg-2 col-md-3 col-sm-2 padd-h-none get-quote-top-btn-wrapper">
           <button class="btn btn-primary" id="searchId">
             Apply
           </button>
@@ -58,7 +103,25 @@
         </div>
       </div>
 
-      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 padd-h-none">
+      <div class="col-sm-12 col-xs-12 visible-sm visible-xs padd-h-none">
+        <div class="get-quote-fea-cols get-quote-fea-details">
+          <h3>Features</h3>
+          <ul class="get-quote-fea-cols-list padd-left-none">
+          {% for key,value in value.type.features.items %}
+            <li>
+              {% if value %}
+              <img src="/assets/img/get-quote/checkmark-icon.svg" />
+              {% else %}
+              <img src="/assets/img/get-quote/cross-icon.svg" />
+              {% endif %}
+              <span>{{ key }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 padd-h-none">
         {% for plan in value.plans %}
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
           <div class="get-quote-fea-cols">
@@ -72,7 +135,7 @@
         {% endfor %}
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 padd-h-none">
+      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs padd-h-none">
         <div class="get-quote-fea-cols get-quote-fea-details">
           <h3>Features</h3>
           <ul class="get-quote-fea-cols-list padd-left-none">
@@ -143,7 +206,7 @@
       <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
     </div>
 
-    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
       <h6 class="footer-heading">Company</h6>
       <ul class="footer-list padd-left-none">
         <li><a href="{% url 'index' %}">Home</a></li>
@@ -152,13 +215,14 @@
         <li><a href="{% url 'aboutUs' %}">About Us</a></li>
       </ul>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
       <ul class="footer-list u-footer-list-margin-top  padd-left-none">
         <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
         <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
         <li><a href="{% url 'contact' %}">Contact Us</a></li>
       </ul>
     </div>
+    <div class="clearfix visible-xs"></div>
     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
       <h6 class="footer-heading">Follow Us</h6>
       <ul class="footer-list padd-left-none">
@@ -218,6 +282,9 @@
           }
         </style>
       </div>
+    </div>
+    <div class="col-xs-12 visible-xs">
+      <p class="copy-text mt-32">&copy;2019 Ventina HealthcareLLP</p>
     </div>
   </div>
 </footer>
@@ -296,6 +363,20 @@
   });
 
   
+  });
+</script>
+
+<script>
+  $(document).ready(function(){
+    $('.u-mob-filter-section').click(function(){
+      $('.u-mob-filter-slider').addClass('open-slider');
+    });
+    $('.u-mob-filter-slider-close-btn').click(function(){
+      $('.u-mob-filter-slider').removeClass('open-slider');
+    })
+    $('.slider-backdrop').click(function(){
+      $('.u-mob-filter-slider').removeClass('open-slider');
+    });
   });
 </script>
 {% endblock %}

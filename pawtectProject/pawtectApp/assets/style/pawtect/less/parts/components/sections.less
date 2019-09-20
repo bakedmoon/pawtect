@@ -492,6 +492,9 @@
     margin-bottom: 20px;
   }
 }
+.u-mob-filter-section {
+  display: none;
+}
 .get-quote-top-filter {
   position: absolute;
   left: 0px;
@@ -510,7 +513,7 @@
   }
 }
 #select_dog_age {
-  width: 230px;
+  width: calc(100% - 48px);
 }
 
 .ui-widget {
@@ -1108,6 +1111,7 @@ ul.dropdown-menu {
 
 .my-pet-col-pet-pro-details {
   min-width: 150px;
+  max-width: 50%;
   height: 35px;
   line-height: 32px;
   font-size: @font-size-small;
@@ -1118,6 +1122,10 @@ ul.dropdown-menu {
   padding-right: @space / 2 - 2;
   span {
     vertical-align: middle;
+    width: calc(100% - 64px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   &.large-width-details {
     min-width: 180px;
@@ -1157,6 +1165,9 @@ ul.dropdown-menu {
 
 //my proposal page css start
 .my-proposal-tab-list {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
   li {
     display: inline-block;
     height: 24px;
@@ -1245,6 +1256,10 @@ ul.dropdown-menu {
     padding-bottom: 0px;
   }
 }
+.my-proposal-payment-section {
+  position: sticky;
+  top: 96px;
+}
 .my-proposal-plan-summary-col {
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
   background-color: @light-color;
@@ -1255,7 +1270,9 @@ ul.dropdown-menu {
     font-size: @font-size-small;
   }
 }
-
+.close-payment-slider-btn {
+  display: none;
+}
 .my-proposal-plan-fee-list {
   li {
     display: flex;

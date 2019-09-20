@@ -14,7 +14,7 @@
     </p>
 
     <div class="my-proposal-content-wrapper clearfix mt-20">
-      <div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 padd-left-none">
+      <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 padd-left-none u-mob-col-padd-right-none">
         <ul class="toolbar mb-48 my-proposal-tab-list padd-left-none">
           <li class="fil-cat {% if not selectedPet %}selected {% endif %}" href="" data-rel="all" onclick="allPet()">
             All
@@ -50,7 +50,7 @@
                 </div>
                 
               </div>
-              <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 padd-left-none pt-32">
+              <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 padd-left-none u-proposal-amt-col-wrap  pt-32">
                 <label class="my-pet-col-label">Plans *</label>
                 <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
                   <li>
@@ -97,7 +97,7 @@
                 </div>
               </div>
               {% if questions.count > 0 %}
-              <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 padd-h-none">
+              <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 padd-h-none">
                 <div class="my-pet-col-right-box">
                   <h6 class="inline-block margin-v-none">Health Information *</h6>
                   <div class="inline-block pull-right">
@@ -134,58 +134,80 @@
       {% endfor %}
         </div>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 padd-h-none">
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 padd-h-none my-proposal-payment-section">
         <div class="my-proposal-plan-summary-col">
-          <h6 class="margin-v-none">Plan Fees Summary</h6>
-          <ul class="my-proposal-plan-fee-list padd-left-none mt-16">
-            <li>
-              <span>Total Plan Fees</span>
-              <span id="totalId">₹ 0</span>
-            </li>
-            <li>
-              <span>Multiple Pet Discount (10%)</span>
-              <span id="discountId">₹ 0</span>
-            </li>
-            <li>
-              <span>GST</span>
-              <span id="gstId">₹ 0</span>
-            </li>
-            <li>
-              <span>Vetcoins</span>
-              <span id="vetcoinId">₹ 0</span>
-            </li>
-          </ul>
-          <!-- add class show-referral-inp-section to my-pet-col-referral-section to enable referral input field -->
-          <div class="my-pet-col-referral-section">
-            <a href="" onclick="referCode(event)">Have a referral code?</a>
-            <div class="my-pet-col-referral-inp-wrap">
-              <label>Referral Code</label>
-              <div class="relative">
-                <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none" onblur="checkCode(this)">
-                <button class="btn btn-link input-cancel-btn absolute right-center" onclick="closeCode(event)">
-                  <img src="/assets/img/common-icons/close-button.svg" >
-                </button>
+          <div class="my-proposal-plan-content relative">
+            <h6 class="margin-v-none">Plan Fees Summary</h6>
+            <span class="close-payment-slider-btn absolute right top mr-16 mt-12  "><img src="/assets/img/common-icons/close-button.svg"><span class="pl-4">Close</span></span>
+            <ul class="my-proposal-plan-fee-list padd-left-none mt-16">
+              <li>
+                <span>Total Plan Fees</span>
+                <span id="totalId">₹ 0</span>
+              </li>
+              <li>
+                <span>Multiple Pet Discount (10%)</span>
+                <span id="discountId">₹ 0</span>
+              </li>
+              <li>
+                <span>GST</span>
+                <span id="gstId">₹ 0</span>
+              </li>
+              <li>
+                <span>Vetcoins</span>
+                <span id="vetcoinId">₹ 0</span>
+              </li>
+            </ul>
+            <!-- add class show-referral-inp-section to my-pet-col-referral-section to enable referral input field -->
+            <div class="my-pet-col-referral-section">
+              <a href="" onclick="referCode(event)">Have a referral code?</a>
+              <div class="my-pet-col-referral-inp-wrap">
+                <label>Referral Code</label>
+                <div class="relative">
+                  <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none" onblur="checkCode(this)">
+                  <button class="btn btn-link input-cancel-btn absolute right-center" onclick="closeCode(event)">
+                    <img src="/assets/img/common-icons/close-button.svg" >
+                  </button>
+                </div>
               </div>
             </div>
+            <div class="my-pet-col-plan-fee mt-16">
+              <span>Net Payable</span>
+              <span class="pull-right" id="netPaymentId">₹ 0</span>
+            </div>
+            <div class="my_proposal_terms_checkbox">
+              <label class="checkbox-container">
+                <input type="checkbox" name="accept_policy" id="myCheck">
+                <span class="checkbox-checkmark"></span>
+                <span>I have read and agreed with <a href="{% url 'terms' %}">Terms and 
+                    Conditions</a>  of Pawtect Plan</span>
+              </label>
+            </div>
           </div>
-          <div class="my-pet-col-plan-fee mt-16">
-            <span>Net Payable</span>
-            <span class="pull-right" id="netPaymentId">₹ 0</span>
-          </div>
-          <div class="my_proposal_terms_checkbox">
-            <label class="checkbox-container">
-              <input type="checkbox" name="accept_policy" id="myCheck">
-              <span class="checkbox-checkmark"></span>
-              <span>I have read and agreed with <a href="{% url 'terms' %}">Terms and 
-                  Conditions</a>  of Pawtect Plan</span>
-            </label>
-          </div>
-          <button class="btn btn-primary btn-md width-full mt-12" id="paymentId" disabled>Proceed to Payment</button>
+          <button class="btn btn-primary btn-md width-full mt-12 u-mob-pay-button" id="paymentId" disabled>Proceed to Payment</button>
         </div>
+        <button class="btn btn-primary btn-md width-full u-mob-pay-button visible-xs" id="u-mob-bottom-pay-button">Proceed to Payment</button>
       </div>
     </div>
   </div>
 </div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="">Terms of Usage</a></li>
+        <li><a href="">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+
 
 <!-- tab js start -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -351,5 +373,16 @@ $("#paymentId").click((event)=>{
 function allPet(){
     location.href = "/my_proposal/";
 }
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      $('#u-mob-bottom-pay-button').click(function(){
+        $('.my-proposal-payment-section').addClass('open-payment-slider')
+      });
+      $('.close-payment-slider-btn').click(function(){
+        $('.my-proposal-payment-section').removeClass('open-payment-slider')
+      })
+    })
   </script>
 {% endblock %}
