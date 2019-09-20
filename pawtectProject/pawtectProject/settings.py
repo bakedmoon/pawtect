@@ -70,7 +70,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pawtectProject.wsgi.application'
-
+DB_NAME = os.environ.get('DB_NAME', 'pawtect')
+DB_USER = os.environ.get('DB_USER', 'doced')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', 'welcome1')
+DB_HOST = os.environ.get('DB_HOST', 'localhost')
+DB_PORT = os.environ.get('DB_PORT', 5432)
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -78,11 +82,11 @@ WSGI_APPLICATION = 'pawtectProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pawtectapp',
-        'USER': 'pawtect',
-        'PASSWORD': 'pawtect',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT':DB_PORT,
     }
 }
 

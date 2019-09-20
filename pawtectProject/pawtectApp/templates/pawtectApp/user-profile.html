@@ -204,10 +204,14 @@ var reloadProfession = function(){
   let splitData = professionData.split(',')
   $('#professionId').empty()
   professsionArray = []
+  
   for(var i=0;i<splitData.length;i++){
     var p = splitData[i]
+    if(splitData[0].length > 0){
       $('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDepartment(this,'+i+')" src="/assets/img/common-icons/close-button-light.svg" /></label>')
       professsionArray.push(p)
+    }
+      
  }
 }
 

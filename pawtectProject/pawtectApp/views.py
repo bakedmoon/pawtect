@@ -303,7 +303,7 @@ def saveAnswer(request):
             que_obj.save()
             return HttpResponse("Success")
         except PetQuestion.DoesNotExist:
-            new_values = {'pet_id':request.POST['pet'],'questions_id':request.POST['question'],'answer':request.POST['answer']}
+            new_values = {'pet_id':request.POST['petId'],'questions_id':request.POST['questionId'],'answer':request.POST['answer']}
             que_obj = PetQuestion(**new_values)
             que_obj.save()
             return HttpResponse("Success")
