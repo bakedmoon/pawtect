@@ -23,6 +23,7 @@
                   name="avatar"
                   id="avatar"
                   class="img-upload-input"
+                  accept="image/*"
                 /><label for="avatar" class="pt-4"
                   ><img src="/assets/img/common-icons/camera.svg" /><span
                     >Change Image</span
@@ -42,6 +43,7 @@
                 id="fname"
                 class="input-small"
                 value="{{user.userprofile.user.first_name}}"
+                required
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
@@ -103,11 +105,12 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <input
-                type="number"
+                type="text"
                 placeholder="Pincode"
                 class="input-small"
                 name="pincode"
                 id="pincode"
+                onkeypress=" return isNumber(event)"
                 value="{{user.userprofile.pincode}}"
                 required
               />
@@ -208,10 +211,14 @@ var reloadProfession = function(){
   let splitData = professionData.split(',')
   $('#professionId').empty()
   professsionArray = []
+  
   for(var i=0;i<splitData.length;i++){
     var p = splitData[i]
+    if(splitData[0].length > 0){
       $('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDepartment(this,'+i+')" src="/assets/img/common-icons/close-button-light.svg" /></label>')
       professsionArray.push(p)
+    }
+      
  }
 }
 
@@ -261,7 +268,7 @@ window.onload = function(){
 
   });
 </script>
-
+<script src="/assets/js/validation.js"></script>
 <script>
 var imageUrl = ''
 function readURL(input) {

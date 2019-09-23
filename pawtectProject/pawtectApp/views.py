@@ -95,17 +95,28 @@ def login(request):
         password = request.POST.get('password','')
         
         user =auth.authenticate(username=username, password=password)
+
+        if not user:
+            try:
+                user = User.objects.get(email = username)
+                username = user.username
+            except User.DoesNotExist:
+                messages.error(request,"User does not exist.")
+
+            user = auth.authenticate(username=username, password=password)
+        
         if user:
-            auth.login(request, user)
-            return HttpResponseRedirect(reverse('my-pets'))
+            if user.is_active:
+                auth.login(request, user)
+                return HttpResponseRedirect(reverse('my-pets'))
         else:
-            messages.error(request,"Something went wrong try again.")
+            messages.error(request,"User does not exist.")
             return HttpResponseRedirect(reverse('login'))
     else:
         return render(request, 'pawtectApp/login.html')
 
 # User Logout
-@login_required
+@login_required(login_url='login')
 def user_logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
@@ -178,7 +189,7 @@ def privacy_policy(request):
 
 
 # User Profile Update
-
+@login_required(login_url='login')
 def user_profile(request):
 
     if request.method == "GET":
@@ -197,6 +208,7 @@ def user_profile(request):
 
 
 # Show All Pets 
+@login_required(login_url='login')
 def my_pets(request): 
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
@@ -204,6 +216,7 @@ def my_pets(request):
 
 
 # Create New Pet
+@login_required(login_url='login')
 def my_pets_new(request):
     myfile = ''
     user_profile = request.user.userprofile
@@ -219,7 +232,7 @@ def my_pets_new(request):
 
 
 # Update/Edit Exist Pet
-
+@login_required(login_url='login')
 def my_pets_edit(request,petId):
     if request.method == "GET":
        pet = Pet.objects.get(id=petId)
@@ -238,6 +251,7 @@ def my_pets_edit(request,petId):
 
 
 # Delete Exist Pet
+@login_required(login_url='login')
 def my_pets_delete(request,petId):
     try:
         if petId:
@@ -257,6 +271,7 @@ def page_not_found(request):
 
 
 # Get All Proposal
+@login_required(login_url='login')
 def my_proposal(request):
     user_profile = request.user.userprofile
     petId = request.GET.get('petId',None)
@@ -298,12 +313,11 @@ def saveAnswer(request):
     if request.method == "POST":
         try:
             que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
-            print("THE TRY BLOCK IS-->>",que_obj.answer)
             que_obj.answer = request.POST['answer']
             que_obj.save()
             return HttpResponse("Success")
         except PetQuestion.DoesNotExist:
-            new_values = {'pet_id':request.POST['pet'],'questions_id':request.POST['question'],'answer':request.POST['answer']}
+            new_values = {'pet_id':request.POST['petId'],'questions_id':request.POST['questionId'],'answer':request.POST['answer']}
             que_obj = PetQuestion(**new_values)
             que_obj.save()
             return HttpResponse("Success")

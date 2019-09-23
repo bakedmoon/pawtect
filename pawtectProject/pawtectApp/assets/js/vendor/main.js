@@ -608,5 +608,6 @@ window.onload = function() {
         $("#quickview").remove();
       });
     });
+
   });
 };

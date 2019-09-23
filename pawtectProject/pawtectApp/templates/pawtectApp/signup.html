@@ -22,25 +22,25 @@
               {% csrf_token %}
               <div class="login-right-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="fname" placeholder="First Name *"  class="input-small" required/>
+                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="text" name="lname" placeholder="Last Name *" class="input-small" required/>
+                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small"  required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small" required/>
+                  <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small"  autocomplete="mobile" minlength="10" maxlength="13" onkeypress=" return isNumber(event)" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="email" name="email" placeholder="Email ID *" class="input-small" required/>
+                  <input type="email" name="email" placeholder="Email ID *" class="input-small" autocomplete="new-password" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="password" name="password" placeholder="Password *" class="input-small"  required/>
+                  <input type="password" name="password" placeholder="Password *" class="input-small" autocomplete="new-password" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input
                     type="password"
                     name="password2"
-                    placeholder="Confirm Password *" class="input-small"
+                    placeholder="Confirm Password *" class="input-small"  required
                   />
                 </div>
                 <div class="clearfix"></div>
@@ -71,12 +71,12 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="login-otp-wrapper">
-                <input type="text" class="inputs" name="num1" maxlength="1" autofocus>
-                <input type="text" class="inputs" name="num2" maxlength="1">
-                <input type="text" class="inputs" name="num3" maxlength="1">
-                <input type="text" class="inputs" name="num4" maxlength="1">
-                <input type="text" class="inputs" name="num5" maxlength="1">
-                <input type="text" class="inputs" name="num6" maxlength="1">
+                <input type="text" class="inputs" name="num1" maxlength="1" autofocus required>
+                <input type="text" class="inputs" name="num2" maxlength="1" required>
+                <input type="text" class="inputs" name="num3" maxlength="1" required>
+                <input type="text" class="inputs" name="num4" maxlength="1" required>
+                <input type="text" class="inputs" name="num5" maxlength="1" required>
+                <input type="text" class="inputs" name="num6" maxlength="1" required>
                 <input type="hidden" class="inputs" name="mobile" value={{mobileNumber}}>
               </div>
             </div>
@@ -96,6 +96,7 @@
     </div>
   </div>
 </div>
+<script src="/assets/js/validation.js"></script>
 <script>
 
 $(".inputs").keyup(function () {
@@ -108,4 +109,5 @@ $(".inputs").keyup(function () {
     }
 });
 </script>
+
 {% endblock %}
