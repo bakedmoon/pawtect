@@ -83,7 +83,7 @@
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
-              <input
+              <!-- <input
                 type="text"
                 id="date"
                 name="birthDate"
@@ -92,7 +92,8 @@
                 class="input-small"
                 value="{{pet.birthDate | date:"F j, Y"}}"
                 required
-              />
+              /> -->
+              <input type="text" name="birthDate" id="datepicker"  placeholder="Enter Birthdate" class="input-small" value="{{pet.birthDate | date:"F j, Y"}}" required />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <div class="ui-widget relative">
@@ -149,6 +150,15 @@
               />
             </div>
             <div class="clearfix"></div>
+            {% if messages %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+              <span class="alert-section error-alert width-full" id="errorId">
+                {% for message in  messages%}
+                <span>{{message}}</span>
+                {% endfor %}
+              </span>
+            </div>
+            {% endif %}
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-16">
               <div class="profile-bottom-btn-wrap pull-right">
                 <button class="btn ghost-btn-light-gray btn-md"><a href="{{ request.META.HTTP_REFERER }}">Cancel</a></button>
@@ -242,4 +252,15 @@ function goto(){
 }
 </script>
 
+<script>
+  $(document).ready(function(){
+    $(document).ready(function(){
+      $('#datepicker').duDatepicker({
+        theme: '#fb9f2b',
+        auto: true,
+        format: 'mmmm dd, yyyy'
+      }); //Initializes the date picker
+    });
+  });
+</script>
 {% endblock %}

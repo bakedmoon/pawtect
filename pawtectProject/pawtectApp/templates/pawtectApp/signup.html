@@ -19,13 +19,6 @@
               </div>
               <form method="post" action="{% url 'register' %}" class="relative">
               
-              <span class="error-text" id="errorId">
-                {% if messages %}
-                {% for message in  messages%}
-                <span>{{message}}</span>
-                {% endfor %}
-                {% endif %} 
-                </span>
               {% csrf_token %}
               <div class="login-right-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
@@ -51,11 +44,21 @@
                   />
                 </div>
                 <div class="clearfix"></div>
+                {% if messages %}
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+                  <span class="alert-section error-alert width-full" id="errorId">
+                    {% for message in  messages%}
+                    <span>{{message}}</span>
+                    {% endfor %}
+                  </span>
+                </div>
+                {% endif %}
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                   <button class="btn btn-md btn-primary login-bottom-btn" type="submit">Continue</button>
                 </div>
               </div>
               </form>
+              
         </div>
         {% endif %}
       {% if is_otpModal %}
@@ -94,9 +97,6 @@
   </div>
 </div>
 <script>
-setTimeout(()=>{
-  document.getElementById('errorId').style.display ='none'
-},2000)
 
 $(".inputs").keyup(function () {
     if (this.value.length == this.maxLength) {

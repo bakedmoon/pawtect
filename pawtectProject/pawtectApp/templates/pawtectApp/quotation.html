@@ -1,6 +1,6 @@
 {% extends "pawtectApp/base.html" %} {% block body_block %}
 
-<div class="main-content-wrapper">
+<div class="main-content-wrapper u-mob-margin-bottom-32 ">
   <div class="wrapper">
     <div class="get-quote-top-section">
       <h1 class="u-mob-quote-heading-inline u-mob-large-heading text-center margin-top-none">Get Quote</h1>
@@ -25,13 +25,13 @@
                 </div>
               </li>
               <li>
-                <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
+                <!-- <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
                   <input id="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
                   <img
                   src="/assets/img/common-icons/expand-button.svg"
                   class="dropdown-arrow"
                 />
-                </div>
+                </div> -->
               </li>
               <li>
                 <div class="ui-widget inline-block pull-right relative width-full" id="select_cover_amt">
@@ -199,14 +199,14 @@
 
 <footer>
   <div class="wrapper">
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padd-left-none">
       <a href="{% url 'index' %}">
         <img src="/assets/img/brand/logo_white.png" class="main-logo" />
       </a>
       <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
     </div>
 
-    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
       <h6 class="footer-heading">Company</h6>
       <ul class="footer-list padd-left-none">
         <li><a href="{% url 'index' %}">Home</a></li>
@@ -215,7 +215,7 @@
         <li><a href="{% url 'aboutUs' %}">About Us</a></li>
       </ul>
     </div>
-    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
       <ul class="footer-list u-footer-list-margin-top  padd-left-none">
         <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
         <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
@@ -223,7 +223,7 @@
       </ul>
     </div>
     <div class="clearfix visible-xs"></div>
-    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
       <h6 class="footer-heading">Follow Us</h6>
       <ul class="footer-list padd-left-none">
         <li>
@@ -252,7 +252,7 @@
         </li>
       </ul>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padd-h-none">
       <div class="mapouter">
         <div class="gmap_canvas">
           <iframe
