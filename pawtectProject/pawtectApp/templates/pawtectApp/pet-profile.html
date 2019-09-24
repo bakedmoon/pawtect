@@ -13,11 +13,18 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="upload-profile-wrap text-center p-tb-20">
                 <div class="relative">
-                  <img
-                   {% if pet %}src="{{pet.picture}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %} 
+                {% if pet.picture %}
+                <img
+                   {% if pet %} src="{{pet.picture}}" {% else %} onError="this.onerror=null;this.src='/assets/img/common-images/avatar.png'"{% endif %} 
                     class="upload-profile-img"
-                    id="image"
-                    />
+                    id="image" />
+                {% else %}
+                <img
+                    src='/assets/img/common-images/avatar.png'
+                    class="upload-profile-img"
+                    id="image" />
+                {% endif %}
+                  
                 </div>
                 <input
                   type="file"
@@ -34,9 +41,6 @@
               <!-- End of settings-general-image -->
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
-               {% if messages %} {% for message in messages %}
-                <span class="error-color mb-16">{{message}}</span>
-                {% endfor %} {% endif %}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
               <input type="text" placeholder="Pet Name" id="name" name="name" class="input-small" value="{{pet.name}}" required/>
@@ -92,18 +96,9 @@
               </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
-              <!-- <input
-                type="text"
-                id="date"
-                name="birthDate"
-                aria-required="true"
-                placeholder="Enter Birthdate"
-                class="input-small"
-                value="{{pet.birthDate | date:"F j, Y"}}"
-                readonly
-                required
-              /> -->
-              <input type="text" name="birthDate" id="datepicker"  placeholder="Enter Birthdate" class="input-small" value="{{pet.birthDate | date:"F j, Y"}}" required />
+             
+            <input type="text" name="birthDate" id="datepicker"  placeholder="Enter Birthdate" class="input-small" value="{{pet.birthDate | date:"F j, Y"}}" data-maxdate="today" />
+
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <div class="ui-widget relative">
@@ -147,7 +142,8 @@
                 placeholder="Consulting mobile number"
                 class="input-small"
                 onkeypress=" return isNumber(event)"
-                minlength="10" maxlength="13"
+                minlength="10" maxlength="13" onkeypress=" return isNumber(event)" required oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
+                  onchange="this.setCustomValidity('')"
                 value="{{pet.consult_mobileNumber}}"
               />
             </div>
@@ -231,11 +227,6 @@
       $("#pet_profile_breed").autocomplete({
         source: breedData
       });
-
-    $("#date").datepicker({
-      maxDate :'0',
-      dateFormat: "MM d, yy"
-    });
     
   },500)
     
@@ -271,14 +262,12 @@ function isNumber(evt){
 </script>
 
 <script>
-  $(document).ready(function(){
     $(document).ready(function(){
       $('#datepicker').duDatepicker({
         theme: '#fb9f2b',
         auto: true,
         format: 'mmmm dd, yyyy'
       }); //Initializes the date picker
-    });
   });
 </script>
 {% endblock %}

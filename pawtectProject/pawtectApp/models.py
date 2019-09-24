@@ -19,7 +19,7 @@ class UserProfile(models.Model):
     area= models.CharField(max_length=50,blank=True, null=True)
     city= models.CharField(max_length=50,blank=True, null=True)
     country= models.CharField(max_length=100,blank=True, null=True)
-    pincode=models.IntegerField(blank=True, null=True)
+    pincode=models.CharField(max_length=10,blank=True, null=True)
     profession= models.TextField(blank=True, null=True)
 
 

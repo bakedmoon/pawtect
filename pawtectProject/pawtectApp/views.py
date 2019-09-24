@@ -20,19 +20,7 @@ from . import utils
 from . import const
 
     
-# Landing Page
-def index(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('my-pets'))
-    return render(request, 'pawtectApp/index.html',{})
-    try:
-        settings = Settings.objects.get(key='home_banner_image')
-        url = settings.value['url']
-        return render(request, 'pawtectApp/index.html',{'imageUrl':url})
-    except Settings.DoesNotExist:
-        return render(request, 'pawtectApp/index.html',{})
-
-
+# Home Page
 def home(request):
     return render(request, 'pawtectApp/home.html',{})
     try:
@@ -100,10 +88,11 @@ def login(request):
             try:
                 user = User.objects.get(email = username)
                 username = user.username
-            except User.DoesNotExist:
-                messages.error(request,"User does not exist.")
+                user = auth.authenticate(username=username, password=password)
 
-            user = auth.authenticate(username=username, password=password)
+            except User.DoesNotExist as e:
+                messages.error(request,"")
+            
         
         if user:
             if user.is_active:
@@ -119,7 +108,7 @@ def login(request):
 @login_required(login_url='login')
 def user_logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('home'))
 
 # Contact 
 def contact(request):
@@ -223,6 +212,10 @@ def my_pets_new(request):
     if request.method == "GET":
         return render(request,"pawtectApp/pet-profile.html",{})
     elif request.method == "POST":
+        # if request.POST['birthDate'] == '':
+        #     messages.error(request,"Please fill the"+ request.POST['birthDate'] +"field.")
+        #     return HttpResponseRedirect(reverse("my_pets_new"))
+
         ctrl = PetsController()
         if request.FILES:
             myfile = request.FILES["picture"]

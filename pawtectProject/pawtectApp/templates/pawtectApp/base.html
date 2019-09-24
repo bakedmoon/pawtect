@@ -47,7 +47,7 @@
       <div class="wrapper">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none d-flex align-center">
           <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 padd-h-none">
-            <a href="{% url 'index' %}">
+            <a href="{% url 'home' %}">
               <img
                 src="/assets/img/brand/Pawtect-Logo.jpg"
                 alt="main-logo"
@@ -57,7 +57,7 @@
           </div>
           <div class="col-lg-10 col-md-9 hidden-sm hidden-xs">
             <ul class="header-list">
-              <li class="{% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url 'index' %}">Home</a></li>
+              <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
               <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
               <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
               <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
@@ -99,7 +99,7 @@
               <div class="mobile-nav-slider-list">
                 <h6 class="mobile-nav-slider-heading">Menu</h6>
                 <menu class="mobile-menu-list padd-left-none">
-                  <li class="{% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url 'index' %}">Home</a></li>
+                  <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
                   <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
                   <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
                   <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
@@ -136,7 +136,7 @@
         <div
           class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd-h-none d-flex align-center"
         >
-          <a href="{% url 'index' %}">
+          <a href="{% url 'home' %}">
             <img
               src="/assets/img/brand/Pawtect-Logo.jpg"
               alt="main-logo"

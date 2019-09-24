@@ -22,25 +22,30 @@
               {% csrf_token %}
               <div class="login-right-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" required/>
+                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" oninvalid="this.setCustomValidity('Please fill first name field.')"
+                  onchange="this.setCustomValidity('')" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small"  required/>
+                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small"
+                 required oninvalid="this.setCustomValidity('Please fill last name field.')" onchange="this.setCustomValidity('')"/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small"  autocomplete="mobile" minlength="10" maxlength="13" onkeypress=" return isNumber(event)" required/>
+                  <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small"  autocomplete="mobile" minlength="10" maxlength="13" onkeypress=" return isNumber(event)" required oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
+                  onchange="this.setCustomValidity('')" />
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="email" name="email" placeholder="Email ID *" class="input-small" autocomplete="new-password" required/>
+                  <input type="email" name="email" placeholder="Email ID *" class="input-small" autocomplete="new-password" required oninvalid="this.setCustomValidity('Please fill email filed')" onchange="this.setCustomValidity('')"/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="password" name="password" placeholder="Password *" class="input-small" autocomplete="new-password" required/>
+                  <input type="password" name="password" placeholder="Password *" class="input-small" autocomplete="new-password" required oninvalid="this.setCustomValidity('Please fill password field.')"
+                  onchange="this.setCustomValidity('')"/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input
                     type="password"
                     name="password2"
-                    placeholder="Confirm Password *" class="input-small"  required
+                    placeholder="Confirm Password *" class="input-small"  required oninvalid="this.setCustomValidity('Please fill confirm password field.')"
+                    onchange="this.setCustomValidity('')"
                   />
                 </div>
                 <div class="clearfix"></div>
