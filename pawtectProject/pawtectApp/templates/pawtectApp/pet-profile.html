@@ -103,7 +103,7 @@
                 readonly
                 required
               /> -->
-              <input type="text" name="birthDate" id="datepicker"  placeholder="Enter Birthdate" class="input-small" value="{{pet.birthDate | date:"F j, Y"}}" required />
+              <input type="text" name="birthDate" id="datepicker"  placeholder="Enter Birthdate" class="input-small" value="{{pet.birthDate | date:"F j, Y"}}" data-maxdate="today" required />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <div class="ui-widget relative">
@@ -271,14 +271,13 @@ function isNumber(evt){
 </script>
 
 <script>
-  $(document).ready(function(){
+  
     $(document).ready(function(){
       $('#datepicker').duDatepicker({
-        theme: '#fb9f2b',
         auto: true,
         format: 'mmmm dd, yyyy'
       }); //Initializes the date picker
     });
-  });
+  
 </script>
 {% endblock %}
