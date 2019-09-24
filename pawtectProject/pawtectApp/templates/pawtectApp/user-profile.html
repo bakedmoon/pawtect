@@ -13,7 +13,7 @@
               <div class="upload-profile-wrap text-center p-tb-20">
                 <div class="relative">
                   <img
-                  {% if user %}src="{{user.userprofile.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
+                  {% if user %}src="{{user.userprofile.avatar}}" {% else %} onError="this.onerror=null;this.src='/assets/img/common-images/avatar.png'" {% endif %}
                     class="upload-profile-img"
                     id="image"
                   />
@@ -112,7 +112,6 @@
                 id="pincode"
                 onkeypress=" return isNumber(event)"
                 value="{{user.userprofile.pincode}}"
-                required
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
