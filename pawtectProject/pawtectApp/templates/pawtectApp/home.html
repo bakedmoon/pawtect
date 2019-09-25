@@ -5,7 +5,7 @@
     <p class="loader__label">Loading...</p>
   </div>
 </div>
-<div class="main-content-wrapper home-content-wrapper">
+<div class="main-content-wrapper home-content-wrapper u-mob-margin-bottom-32">
   <div class="slider">
     <div class="full-fluid">
       <div class="slider_wrapper">
@@ -139,7 +139,9 @@
           </ul>
         </div>
       </div>
-     <a href="{% url 'quotation' %}"><button class="btn btn-small btn-primary">Get Quote</button></a>
+      <a href="{% url 'quotation' %}"
+        ><button class="btn btn-small btn-primary">Get Quote</button></a
+      >
     </div>
   </div>
 
@@ -162,14 +164,14 @@
         <h3>Why do you need PawTect?</h3>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 u-mb-padd-h-none">
         <div class="i-why-need-cols">
           <img src="/assets/img/index/why-need-section/icon1.png" />
           <p>Treatment at any <br class="hidden-xs" />clinic in India</p>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 u-mb-padd-h-none">
         <div class="i-why-need-cols">
           <img src="/assets/img/index/why-need-section/icon2.png" />
           <p>
@@ -179,7 +181,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 u-mb-padd-h-none">
         <div class="i-why-need-cols">
           <img src="/assets/img/index/why-need-section/icon3.png" />
           <p>
@@ -189,7 +191,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 u-mb-padd-h-none">
         <div class="i-why-need-cols">
           <img src="/assets/img/index/why-need-section/icon4.png" />
           <p>
@@ -199,7 +201,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 u-mb-padd-h-none">
         <div class="i-why-need-cols">
           <img src="/assets/img/index/why-need-section/icon5.png" />
           <p>
@@ -209,7 +211,7 @@
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 u-mb-padd-h-none">
         <div class="i-why-need-cols">
           <img src="/assets/img/index/why-need-section/icon6.png" />
           <p>
@@ -221,7 +223,7 @@
     </div>
 
     <div class="i-step-section clearfix">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 u-mb-padd-h-none">
         <div class="i-step-section-box i-step-left-section-box">
           <div class="i-step-counter-col">
             <span class="i-step-counter">1</span>
@@ -269,7 +271,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 u-mb-padd-h-none">
         <div class="i-step-section-box i-step-right-section-box">
           <div class="i-step-right-section-box-content">
             <h6 class="margin-top-none">Simple and Stress-free claims</h6>
@@ -421,99 +423,98 @@
       </div>
     </div>
   </div>
+</div>
+<footer>
+  <div class="wrapper">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padd-left-none">
+      <a href="{% url 'home' %}">
+        <img src="/assets/img/brand/logo_white.png" class="main-logo" />
+      </a>
+      <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
+    </div>
 
-  <footer>
-    <div class="wrapper">
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padd-left-none">
-        <a href="{% url 'home' %}">
-          <img src="/assets/img/brand/logo_white.png" class="main-logo" />
-        </a>
-        <p class="copy-text hidden-xs">&copy;2019 Ventina HealthcareLLP</p>
-      </div>
-
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-        <h6 class="footer-heading">Company</h6>
-        <ul class="footer-list padd-left-none">
-          <li><a href="{% url 'home' %}">Home</a></li>
-          <li><a href="{% url 'plans' %}">Plans</a></li>
-          <li><a href="{% url 'quotation' %}">Get Quote</a></li>
-          <li><a href="{% url 'aboutUs' %}">About Us</a></li>
-        </ul>
-      </div>
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-        <ul class="footer-list u-footer-list-margin-top  padd-left-none">
-          <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
-          <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
-          <li><a href="{% url 'contact' %}">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="clearfix visible-xs"></div>
-      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <h6 class="footer-heading">Follow Us</h6>
-        <ul class="footer-list padd-left-none">
-          <li>
-            <a
-              ><i class="fa fa-facebook-square" aria-hidden="true"></i
-              ><span>Facebook</span></a
-            >
-          </li>
-          <li>
-            <a
-              ><i class="fa fa-twitter-square" aria-hidden="true"></i
-              ><span>Twitter</span></a
-            >
-          </li>
-          <li>
-            <a
-              ><i class="fa fa-instagram" aria-hidden="true"></i
-              ><span>Instagram</span></a
-            >
-          </li>
-          <li>
-            <a
-              ><i class="fa fa-linkedin-square" aria-hidden="true"></i
-              ><span>Linkedin</span></a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padd-h-none">
-        <div class="mapouter">
-          <div class="gmap_canvas">
-            <iframe
-              width="100%"
-              height="100%"
-              id="gmap_canvas"
-              src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
-              frameborder="0"
-              scrolling="no"
-              marginheight="0"
-              marginwidth="0"
-            ></iframe
-            ><a
-              href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
-            ></a>
-          </div>
-          <style>
-            .mapouter {
-              position: relative;
-              text-align: right;
-              height: 100%;
-            }
-            .gmap_canvas {
-              overflow: hidden;
-              background: none !important;
-              height: 100%;
-            }
-          </style>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 u-mob-col-padd-h-none">
+      <h6 class="footer-heading">Company</h6>
+      <ul class="footer-list padd-left-none">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'plans' %}">Plans</a></li>
+        <li><a href="{% url 'quotation' %}">Get Quote</a></li>
+        <li><a href="{% url 'aboutUs' %}">About Us</a></li>
+      </ul>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6 u-mob-col-padd-h-none">
+      <ul class="footer-list u-footer-list-margin-top  padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="clearfix visible-xs"></div>
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 u-mob-col-padd-h-none">
+      <h6 class="footer-heading">Follow Us</h6>
+      <ul class="footer-list padd-left-none">
+        <li>
+          <a
+            ><i class="fa fa-facebook-square" aria-hidden="true"></i
+            ><span>Facebook</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-twitter-square" aria-hidden="true"></i
+            ><span>Twitter</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-instagram" aria-hidden="true"></i
+            ><span>Instagram</span></a
+          >
+        </li>
+        <li>
+          <a
+            ><i class="fa fa-linkedin-square" aria-hidden="true"></i
+            ><span>Linkedin</span></a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 padd-h-none">
+      <div class="mapouter">
+        <div class="gmap_canvas">
+          <iframe
+            width="100%"
+            height="100%"
+            id="gmap_canvas"
+            src="https://maps.google.com/maps?q=VETINA%20Healthcare%20LLP%2C%20New%20Airport%20Road%2C%20Mhada%20Colony%2C%20Viman%20Nagar%2C%20Pune%2C%20Maharashtra&t=&z=13&ie=UTF8&iwloc=&output=embed"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+          ></iframe
+          ><a
+            href="https://www.embedgooglemap.net/blog/best-wordpress-themes/"
+          ></a>
         </div>
-      </div>
-      <div class="col-xs-12 visible-xs">
-        <p class="copy-text mt-32">&copy;2019 Ventina HealthcareLLP</p>
+        <style>
+          .mapouter {
+            position: relative;
+            text-align: right;
+            height: 100%;
+          }
+          .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 100%;
+          }
+        </style>
       </div>
     </div>
-  </footer>
-</div>
+    <div class="col-xs-12 visible-xs u-mob-col-padd-h-none">
+      <p class="copy-text mt-32">&copy;2019 Ventina HealthcareLLP</p>
+    </div>
+  </div>
+</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/assets/js/vendor/jquery-ui.min.js"></script>
@@ -561,14 +562,23 @@
       items: 1,
       margin: 10,
       nav: true,
+      dots: false,
       responsive: {
         0: {
-          items: 1
+          items: 1,
+          dots: true,
+          nav: false
         },
-        600: {
-          items: 1
+        768: {
+          items: 1,
+          dots: true,
+          nav: false
         },
-        1000: {
+        992: {
+          items: 1,
+          dots: false
+        },
+        1080: {
           items: 1
         }
       }
