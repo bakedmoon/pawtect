@@ -1,6 +1,8 @@
 from django.core.mail import send_mail, BadHeaderError
 import json
 from django.core.files.storage import FileSystemStorage
+from django.http import JsonResponse
+from .models import Pet
 from pawtectProject import settings
 
 
@@ -40,3 +42,23 @@ def make_image_url(url):
     filename = fs.save(myfile.name, myfile)
     imageUrl = fs.url(filename)
     return imageUrl
+
+# Check Microchip Number Exist
+def checkMicrochipNumber(microchipNumber):
+    existChipNumber = Pet.objects.filter(microchip_Number = microchipNumber).exists()
+    return existChipNumber
+
+#Get fill pet info using from views.my_pets_new funtion.
+def afterErrorPetData(petInfo):
+    pet = {}
+    pet['name'] = petInfo['name']
+    pet['microchip_Number'] = petInfo['microchip_Number']
+    pet['species'] = petInfo['species']
+    pet['breed'] = petInfo['breed']
+    pet['birthDate'] = petInfo['birthDate']
+    pet['gender'] = petInfo['gender']
+    pet['consult_Name'] = petInfo['consult_Name']
+    pet['consult_Email'] = petInfo['consult_Email']
+    pet['consult_mobileNumber'] = petInfo['consult_mobileNumber']
+    pet['consult_Address'] = petInfo['consult_Address']
+    return pet

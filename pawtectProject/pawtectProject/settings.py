@@ -70,9 +70,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pawtectProject.wsgi.application'
-DB_NAME = os.environ.get('DB_NAME', 'pawtect')
-DB_USER = os.environ.get('DB_USER', 'doced')
-DB_PASSWORD = os.environ.get('DB_PASSWORD', 'welcome1')
+DB_NAME = os.environ.get('DB_NAME', 'pawtectapp')
+DB_USER = os.environ.get('DB_USER', 'pawtect')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', 'pawtect')
 DB_HOST = os.environ.get('DB_HOST', 'localhost')
 DB_PORT = os.environ.get('DB_PORT', 5432)
 

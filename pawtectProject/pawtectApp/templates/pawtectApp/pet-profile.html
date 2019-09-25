@@ -52,9 +52,8 @@
                 class="input-small restrict"
                 id="microchipNumber"
                 name="microchip_Number"
-                onkeypress=" return isSpecial(event)" 
-                value="{{pet.microchip_Number}}" />
-              
+                value="{{pet.microchip_Number}}"/>
+                
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none clearfix">
               <div
@@ -151,7 +150,7 @@
                 placeholder="Consulting mobile number"
                 class="input-small"
                 onkeypress=" return isNumber(event)"
-                minlength="10" maxlength="13" onkeypress=" return isNumber(event)" required oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
+                minlength="10" maxlength="13" onkeypress=" return isNumber(event)" oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
                   onchange="this.setCustomValidity('')"
                 value="{{pet.consult_mobileNumber}}"
               />
@@ -178,7 +177,7 @@
             {% endif %}
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-16">
               <div class="profile-bottom-btn-wrap pull-right">
-                <button class="btn ghost-btn-light-gray btn-md"><a href="{{ request.META.HTTP_REFERER }}">Cancel</a></button>
+                <button class="btn ghost-btn-light-gray btn-md"><a href="{% url 'my-pets' %}">Cancel</a></button>
                 <button class="btn btn-primary btn-md ml-8" id="saveId" type="submit">Save</button>
               </div>
             </div>
@@ -271,20 +270,11 @@ function isNumber(evt){
 </script>
 
 <script>
-<<<<<<< HEAD
-  
-=======
->>>>>>> 5cd4c4e9798cd24b56991c55f3dc29af5d04dfbb
     $(document).ready(function(){
       $('#datepicker').duDatepicker({
         auto: true,
         format: 'mmmm dd, yyyy'
       }); //Initializes the date picker
-<<<<<<< HEAD
     });
-  
-=======
-  });
->>>>>>> 5cd4c4e9798cd24b56991c55f3dc29af5d04dfbb
 </script>
 {% endblock %}
