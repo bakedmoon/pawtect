@@ -29,6 +29,10 @@
       rel="stylesheet"
       href="/assets/style/vendor/owl-carousel/owl.carousel.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="/assets/style/vendor/owl-carousel/owl.theme.default.css"
+    />
 
     <!-- slick carousel  -->
     
@@ -60,7 +64,7 @@
               <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
               <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
               <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
-              <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
+              <!-- <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li> -->
               <li class="{% if request.resolver_match.url_name == "aboutUs" %}active{% endif %}"><a href="{% url 'aboutUs' %}">About us</a></li>
             </ul>
           </div>
@@ -102,7 +106,7 @@
                   <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
                   <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
                   <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
-                  <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
+                  <!-- <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li> -->
                   <li class="{% if request.resolver_match.url_name == "aboutUs" %}active{% endif %}"><a href="{% url 'aboutUs' %}">About us</a></li>
                   <li>
                     <a href="{% url 'login' %}">
