@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.core.files.storage import FileSystemStorage
 import threading,json
+from datetime import date,datetime
 from django.contrib import messages,auth
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib.auth.models import User
@@ -200,7 +201,16 @@ def user_profile(request):
 @login_required(login_url='login')
 def my_pets(request): 
     user_profile = request.user.userprofile
+    today = date.today()
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+    for petBirth in pets:
+        diffrence = today - petBirth.birthDate
+        actualDays = diffrence.days
+        if actualDays < 56:
+            petBirth.disabledClass = True
+            print("THE PET IS HERE-->>",petBirth)
+
+
     return render(request,"pawtectApp/my-pets.html",{"pets":pets})
 
 
@@ -225,7 +235,7 @@ def my_pets_new(request):
 
                 #Get fill pet info using service.
                 getPetInfo = utils.afterErrorPetData(request.POST)
-                print("THE DEFAULT DATA COME HERE IS --->>",getPetInfo)
+               
                 return render(request,"pawtectApp/pet-profile.html",{"pet":getPetInfo})
 
             else:
@@ -244,14 +254,16 @@ def my_pets_edit(request,petId):
        pet = Pet.objects.get(id=petId)
        return render(request,"pawtectApp/pet-profile.html",{"pet":pet})
     if request.method == "POST":
-        if request.POST['microchip_Number']:
-
+        pet = Pet.objects.get(id=petId)
+        print("PET IS HERE--->>>",pet.microchip_Number,request.POST['microchip_Number'])
+        if request.POST['microchip_Number'] != pet.microchip_Number:
+           
             #Check if exist or not microchip number
             ifExist = utils.checkMicrochipNumber(request.POST['microchip_Number'])
 
             if ifExist:
                 messages.error(request,"Microchip number "+"[ "+request.POST['microchip_Number']+" ]"+" already exist.")
-
+                
                 #To stay same page call edit url again. For this send petId to url.
                 url = reverse('my-pets-edit', kwargs={'petId': petId})
                 return HttpResponseRedirect(url)
@@ -267,6 +279,8 @@ def my_pets_edit(request,petId):
                     uploadImage = True
                 update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
                 return HttpResponseRedirect(reverse('my-pets'))
+
+        return HttpResponseRedirect(reverse('my-pets'))
 
 
 # Delete Exist Pet
