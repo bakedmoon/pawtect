@@ -208,20 +208,33 @@ def my_pets(request):
 @login_required(login_url='login')
 def my_pets_new(request):
     myfile = ''
+    microchipNumber = ''
+    existChipNumber = ''
+    pet = {}
     user_profile = request.user.userprofile
     if request.method == "GET":
         return render(request,"pawtectApp/pet-profile.html",{})
     elif request.method == "POST":
-        # if request.POST['birthDate'] == '':
-        #     messages.error(request,"Please fill the"+ request.POST['birthDate'] +"field.")
-        #     return HttpResponseRedirect(reverse("my_pets_new"))
+        if request.POST['microchip_Number']:
 
-        ctrl = PetsController()
-        if request.FILES:
-            myfile = request.FILES["picture"]
-        create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
-        return HttpResponseRedirect(reverse("my-pets"))
-    return render(request,"pawtectApp/pet-profile.html",{})
+            #Check if exist or not microchip number
+            ifExist = utils.checkMicrochipNumber(request.POST['microchip_Number'])
+
+            if ifExist:
+                messages.error(request,"Microchip number "+"[ "+request.POST['microchip_Number']+" ]"+" already exist.")
+
+                #Get fill pet info using service.
+                getPetInfo = utils.afterErrorPetData(request.POST)
+                print("THE DEFAULT DATA COME HERE IS --->>",getPetInfo)
+                return render(request,"pawtectApp/pet-profile.html",{"pet":getPetInfo})
+
+            else:
+                ctrl = PetsController()
+                if request.FILES:
+                    myfile = request.FILES["picture"]
+                create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
+                return HttpResponseRedirect(reverse("my-pets"))
+    return render(request,"pawtectApp/pet-profile.html",pet)
 
 
 # Update/Edit Exist Pet
@@ -231,16 +244,29 @@ def my_pets_edit(request,petId):
        pet = Pet.objects.get(id=petId)
        return render(request,"pawtectApp/pet-profile.html",{"pet":pet})
     if request.method == "POST":
-        user_profile = request.user.userprofile
-        pet = Pet.objects.get(id=petId)
-        myfile = pet.picture
-        uploadImage = False
-        ctrl = PetsController()
-        if request.FILES:
-            myfile = request.FILES["picture"]
-            uploadImage = True
-        update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
-        return HttpResponseRedirect(reverse('my-pets'))
+        if request.POST['microchip_Number']:
+
+            #Check if exist or not microchip number
+            ifExist = utils.checkMicrochipNumber(request.POST['microchip_Number'])
+
+            if ifExist:
+                messages.error(request,"Microchip number "+"[ "+request.POST['microchip_Number']+" ]"+" already exist.")
+
+                #To stay same page call edit url again. For this send petId to url.
+                url = reverse('my-pets-edit', kwargs={'petId': petId})
+                return HttpResponseRedirect(url)
+
+            else:
+                user_profile = request.user.userprofile
+                pet = Pet.objects.get(id=petId)
+                myfile = pet.picture
+                uploadImage = False
+                ctrl = PetsController()
+                if request.FILES:
+                    myfile = request.FILES["picture"]
+                    uploadImage = True
+                update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
+                return HttpResponseRedirect(reverse('my-pets'))
 
 
 # Delete Exist Pet
@@ -314,3 +340,5 @@ def saveAnswer(request):
             que_obj = PetQuestion(**new_values)
             que_obj.save()
             return HttpResponse("Success")
+    
+

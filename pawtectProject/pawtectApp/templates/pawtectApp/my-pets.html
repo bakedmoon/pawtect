@@ -68,7 +68,8 @@
             <div class="pull-right mt-8 my-pet-col-bottom-btn-wrap">
               <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button></a>
              <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}','{{pet.birthDate}}')">Get Quote</button>
-              <div
+
+              {% comment %} <div
                 class="button-dropdown my-pet-col-dropdown relative inline-block ml-8">
               
                 <a href="javascript:void(0)" class="dropdown-toggle">
@@ -90,7 +91,8 @@
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> {% endcomment %}
+
             </div>
           </div>
         </div>
