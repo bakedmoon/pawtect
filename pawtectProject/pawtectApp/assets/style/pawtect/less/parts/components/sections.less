@@ -584,18 +584,29 @@
   z-index: 4;
 }
 
-.ui-menu .ui-menu-item {
-  font-size: 14px;
-  padding: 6px 12px;
-  &:hover,
-  &:focus {
-    border: none !important;
-    outline: none !important;
-    .ui-menu-item-wrapper {
+.ui-menu {
+  .ui-menu-item {
+    font-size: 14px;
+    padding: 6px 12px;
+    &:hover,
+    &:focus {
       border: none !important;
       outline: none !important;
+      background-color: #f9f9f9 !important;
+      background: #f9f9f9 !important;
+      .ui-menu-item-wrapper {
+        border: none !important;
+        outline: none !important;
+        background-color: #f9f9f9 !important;
+        background: #f9f9f9 !important;
+      }
     }
   }
+}
+.ui-menu-item-wrapper:focus,
+.ui-menu-item-wrapper:hover {
+  outline: none;
+  background-color: #f9f9f9 !important;
 }
 
 ul.dropdown-menu {
@@ -1112,12 +1123,15 @@ ul.dropdown-menu {
 //inside my pet page css start
 .my-pet-col-wrapper {
   margin-top: (@space * 3) + 4;
+  display: flex !important;
+  flex-wrap: wrap;
 }
 
 .my-pet-cols {
   border: 1px solid #e5e5e5;
   .border-radius(8px);
   padding: @space * 3 @space - 4 @space - 4 @space;
+  min-height: 360px;
 }
 
 .my-pet-col-list {
@@ -1229,7 +1243,11 @@ ul.dropdown-menu {
       }
     }
   }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
+
 .scale-anm {
   transform: scale(1);
 }
@@ -1336,6 +1354,9 @@ ul.dropdown-menu {
     }
   }
 }
+#u-mob-bottom-pay-button {
+  display: none;
+}
 .input-cancel-btn {
   cursor: pointer;
   height: 20px;
@@ -1359,6 +1380,12 @@ ul.dropdown-menu {
     color: #3fa6f1;
     text-decoration: underline;
   }
+}
+.morecontent span {
+  display: none;
+}
+.morelink {
+  display: block;
 }
 //my proposal page css end
 

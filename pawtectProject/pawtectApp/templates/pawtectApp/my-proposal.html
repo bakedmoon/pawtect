@@ -20,7 +20,8 @@
             All
           </li>
           {% for pet in myPets %}
-         <li class="fil-cat {% if  selectedPet and selectedPet.id == pet.id %} selected {% endif %}" data-rel="{{pet.name}}" onclick="singlePet({{pet.id}})">{{pet.name}}</li>
+         <li class="fil-cat {% if  selectedPet and selectedPet.id == pet.id %} selected {% endif %}" data-rel="{{pet.name}}" 
+         onclick="singlePet({{pet.id}})">{{pet.name}}</li>
           {% endfor %}
         </ul>
 
@@ -185,7 +186,7 @@
           </div>
           <button class="btn btn-primary btn-md width-full mt-12 u-mob-pay-button" id="paymentId" disabled>Proceed to Payment</button>
         </div>
-        <button class="btn btn-primary btn-md width-full u-mob-pay-button visible-xs" id="u-mob-bottom-pay-button">Proceed to Payment</button>
+        <button class="btn btn-primary btn-md width-full u-mob-pay-button" id="u-mob-bottom-pay-button">Continue</button>
       </div>
     </div>
   </div>
@@ -250,7 +251,11 @@
         }
 
      $(".set-amount").autocomplete({
-        source: amountData
+        source: amountData,
+        minLength:0
+        }).bind('focus', function() {      
+          if(!$(this).val().trim())
+                $(this).keydown();
         });
       }
     });
@@ -378,9 +383,11 @@ function allPet(){
   <script>
     $(document).ready(function(){
       $('#u-mob-bottom-pay-button').click(function(){
+        $(this).css("display","none");
         $('.my-proposal-payment-section').addClass('open-payment-slider')
       });
       $('.close-payment-slider-btn').click(function(){
+        $("#u-mob-bottom-pay-button").css("display","block");
         $('.my-proposal-payment-section').removeClass('open-payment-slider')
       })
     })

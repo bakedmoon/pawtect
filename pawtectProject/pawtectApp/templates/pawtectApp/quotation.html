@@ -44,7 +44,7 @@
               </li>
               <li>
                 <button class="btn ghost-btn-light-gray ">Clear All</button>
-                <button class="btn btn-primary pull-right" id="searchId">Apply</button>    
+                <button class="btn btn-primary pull-right searchId" id="searchId">Apply</button>    
               </li>
             </menu>
           </div>
@@ -56,7 +56,7 @@
             <img src="/assets/img/get-quote/filter-icon.svg" />
           </div>
           <div class="ui-widget inline-block pull-right relative" id="select_dog_age">
-            <input class="tags" placeholder="Select dog's age" {% if age_Period %} value="{{age_Period}}"{% endif %} />
+            <input id="tags" class="tags" placeholder="Select dog's age" {% if age_Period %} value="{{age_Period}}"{% endif %} />
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow" />
@@ -67,7 +67,7 @@
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
-            <input class="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
+            <input id="tags1" class="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -76,7 +76,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none ">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_cover_amt">
-            <input class="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} />
+            <input id="tags2" class="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} />
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -324,20 +324,31 @@
 
         $(".tags1").autocomplete({
         source: breedData,
+        minLength:0,
         select:function(ui,item){
           breed_item = item.item
         }
-      })
+      }).bind('focus', function() {     
+        if(!$(this).val().trim())
+              $(this).keydown();
+      });
 
         $(".tags").autocomplete({
         source: agesGroup,
+        minLength:0,
         select:function(ui,item){
           age_item = item.item
         }
-      })
+      }).bind('focus', function() {     
+        if(!$(this).val().trim())
+              $(this).keydown();
+      });
   
       $(".tags2").autocomplete({
-        source: amountData
+        source: amountData, minLength:0
+      }).bind('focus', function() {     
+        if(!$(this).val().trim())
+              $(this).keydown();
       });
 
       }
@@ -358,10 +369,12 @@
       var breedEnd_age_unit = url.searchParams.get("age__end_age_unit__in");
       var breedAge_range = url.searchParams.get("age");
 
-    var age = $(".tags").val();
-    var breed = $(".tags1").val();
-    var amount = $(".tags2").val();
+    var age = $("#tags").val();
+    var breed = $("#tags1").val();
+    var amount = $("#tags2").val();
+    
     console.log("INSIDE AGE BREED AMOUNT",age,breed,amount)
+    
     if(breed_item.category == undefined){
       breed_item.category = breedCat ? breedCat : breed_item.category;
       breed_item.name = breedName ? breedName : breed_item.name;

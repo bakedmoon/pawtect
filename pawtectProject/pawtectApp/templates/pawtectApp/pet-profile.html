@@ -228,12 +228,20 @@
       "Feline / Cat"
     ];
     $("#species").autocomplete({
-      source: species
+      source: species,
+      minLength:0
+    }).bind('focus', function() {     
+      if(!$(this).val().trim())
+            $(this).keydown();
     });
 
     setTimeout(() => {
       $("#pet_profile_breed").autocomplete({
-        source: breedData
+        source: breedData,
+        minLength:0
+      }).bind('focus', function() {     
+        if(!$(this).val().trim())
+              $(this).keydown();
       });
     
   },500)
