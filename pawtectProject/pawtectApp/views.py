@@ -37,10 +37,16 @@ def signup(request):
     if request.method == 'POST':
         ctrl = UserController()
         if request.POST['password'] == request.POST['password2']:
+
             existUser = User.objects.filter(Q(email=request.POST['email']) | Q(username=request.POST['mobile'])).exists()
             if existUser:
-                messages.error(request,'User already exist for email or mobile number.')
-                return HttpResponseRedirect(reverse('register'))
+                user = User.objects.get(Q(email=request.POST['email']) | Q(username=request.POST['mobile']))
+                print("USER IS IN SIGN UP PAGE-->>>>>",user.is_active)
+                if user.is_active:
+                    messages.error(request,'User already exist for email or mobile number.')
+                    return HttpResponseRedirect(reverse('register'))
+                else:
+                    return render(request,'pawtectApp/signup.html',{'is_otpModal':True,'mobileNumber':request.POST['mobile']})
             else:
                 usersignup = ctrl.userSignup(request.POST)
                 return render(request,'pawtectApp/signup.html',{'is_otpModal':True,'mobileNumber':request.POST['mobile']})
@@ -161,6 +167,7 @@ def quotation(request):
     # Take type for fiter search result with types.(RED,YELLOW,BLUE)
     for t in types:
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
+
         type_dict[t.name] = {'type':t,'plans':plans}
     name = request.GET.get('name','')
     age_Period = request.GET.get('age','')
