@@ -206,10 +206,10 @@ def my_pets(request):
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56:
+        if actualDays < 56 or actualDays > 2190:
             petBirth.disabledClass = True
-            print("THE PET IS HERE-->>",petBirth)
-
+        else:
+            petBirth.disabledClass = False
 
     return render(request,"pawtectApp/my-pets.html",{"pets":pets})
 
@@ -250,12 +250,11 @@ def my_pets_new(request):
 # Update/Edit Exist Pet
 @login_required(login_url='login')
 def my_pets_edit(request,petId):
+    pet = Pet.objects.get(id=petId)
     if request.method == "GET":
-       pet = Pet.objects.get(id=petId)
        return render(request,"pawtectApp/pet-profile.html",{"pet":pet})
     if request.method == "POST":
-        pet = Pet.objects.get(id=petId)
-        print("PET IS HERE--->>>",pet.microchip_Number,request.POST['microchip_Number'])
+       
         if request.POST['microchip_Number'] != pet.microchip_Number:
            
             #Check if exist or not microchip number
@@ -268,17 +267,16 @@ def my_pets_edit(request,petId):
                 url = reverse('my-pets-edit', kwargs={'petId': petId})
                 return HttpResponseRedirect(url)
 
-            else:
-                user_profile = request.user.userprofile
-                pet = Pet.objects.get(id=petId)
-                myfile = pet.picture
-                uploadImage = False
-                ctrl = PetsController()
-                if request.FILES:
-                    myfile = request.FILES["picture"]
-                    uploadImage = True
-                update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
-                return HttpResponseRedirect(reverse('my-pets'))
+        else:
+            user_profile = request.user.userprofile
+            myfile = pet.picture
+            uploadImage = False
+            ctrl = PetsController()
+            if request.FILES:
+                myfile = request.FILES["picture"]
+                uploadImage = True
+            update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
+            return HttpResponseRedirect(reverse('my-pets'))
 
         return HttpResponseRedirect(reverse('my-pets'))
 

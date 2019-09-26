@@ -74,7 +74,7 @@
             <div class="pull-right mt-8 my-pet-col-bottom-btn-wrap">
               <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button></a>
               {% if pet.disabledClass %}
-               <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}','{{pet.birthDate}}')" disabled>Get Quote</button>
+               <button class="btn btn-md btn-primary ml-8" type="button" disabled>Get Quote</button>
                {% else %}
                 <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}','{{pet.birthDate}}')">Get Quote</button>
               {% endif %}
