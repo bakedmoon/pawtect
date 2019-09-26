@@ -10,13 +10,15 @@
     </div>
 
     <div class="clearfix"></div>
-
-    <!-- <div class="my-pets-empty-screen">
-      <img src="/assets/img/home/pet-empty.jpg">
-      <h2>Screen Heading</h2>
-      <p>Cras quis nulla commodo, aliquam lectus sed, blandit augue. Cras ullamcorper bibendum bibendum. Duis tincidunt urna non pretium porta. Nam condimentum vitae ligula vel ornare.</p>
-    </div> -->
-
+    
+    <!-- empty screen start -->
+    <div class="empty-screen-wrapper" style="display: none;">
+      <img src="/assets/img/common-images/empty-screen-images/empty-pet-img.png" class="empty-screen-img">
+      <h2> Add your pet's information</h2>
+      <p>You can add your pet's information and create a proper profile over here.</p>
+    </div>
+    <!-- empty screen end -->
+    
     <div class="my-pet-col-wrapper clearfix">
     {% for pet in pets %}
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
