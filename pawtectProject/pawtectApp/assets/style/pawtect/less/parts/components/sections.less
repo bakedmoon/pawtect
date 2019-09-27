@@ -1207,7 +1207,7 @@ ul.dropdown-menu {
   border: 1px solid #e5e5e5;
   .border-radius(8px);
   padding: @space * 3 @space - 4 @space - 4 @space;
-  min-height: 360px;
+  min-height: 380px;
 }
 
 .my-pet-col-list {
@@ -1224,6 +1224,9 @@ ul.dropdown-menu {
     p {
       color: #1e1e1e;
       margin: 0px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 }
