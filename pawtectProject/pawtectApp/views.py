@@ -223,7 +223,7 @@ def my_pets(request):
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56 or actualDays > 2191:
+        if actualDays < 56 or actualDays > 2190:
             petBirth.disabledClass = True
         else:
             petBirth.disabledClass = False
@@ -242,8 +242,8 @@ def my_pets_new(request):
     if request.method == "GET":
         return render(request,"pawtectApp/pet-profile.html",{})
     elif request.method == "POST":
-        if request.POST['microchip_Number']:
-
+        print("THE LENGTH IS HERE",len(request.POST['microchip_Number']))
+        if len(request.POST['microchip_Number']) > 0:
             #Check if exist or not microchip number
             ifExist = utils.checkMicrochipNumber(request.POST['microchip_Number'])
 
@@ -255,12 +255,14 @@ def my_pets_new(request):
                
                 return render(request,"pawtectApp/pet-profile.html",{"pet":getPetInfo})
 
-            else:
-                ctrl = PetsController()
-                if request.FILES:
-                    myfile = request.FILES["picture"]
-                create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
-                return HttpResponseRedirect(reverse("my-pets"))
+        else:
+            
+            ctrl = PetsController()
+            if request.FILES:
+                myfile = request.FILES["picture"]
+            create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
+            return HttpResponseRedirect(reverse("my-pets"))
+
     return render(request,"pawtectApp/pet-profile.html",pet)
 
 
@@ -270,13 +272,14 @@ def my_pets_edit(request,petId):
     pet = Pet.objects.get(id=petId)
     if request.method == "GET":
        return render(request,"pawtectApp/pet-profile.html",{"pet":pet})
+
     if request.method == "POST":
-       
+
         if request.POST['microchip_Number'] != pet.microchip_Number:
-           
+
             #Check if exist or not microchip number
             ifExist = utils.checkMicrochipNumber(request.POST['microchip_Number'])
-
+            
             if ifExist:
                 messages.error(request,"Microchip number "+"[ "+request.POST['microchip_Number']+" ]"+" already exist.")
                 
@@ -369,5 +372,16 @@ def saveAnswer(request):
             que_obj = PetQuestion(**new_values)
             que_obj.save()
             return HttpResponse("Success")
-    
+
+# To get plan fees
+@csrf_exempt
+def planFees(request):
+    if request.method == "POST":
+        fees = Plans.objects.filter(Q(category=request.POST['category']) & Q(age__age_range=request.POST['age']) & Q(type__name = request.POST['planType']) & Q(coverage_amount__amount = request.POST['coverage_amount'])).values()
+        newFees = list(fees)
+
+        for i in newFees:
+            return JsonResponse({"fees":i})
+    else:
+        return HttpResponse("Error occur.")
 

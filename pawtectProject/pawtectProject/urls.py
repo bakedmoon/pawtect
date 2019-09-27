@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^get-country-data/',views.get_country_data,name="get-country-data"),
     url(r'^aboutUs/',views.aboutUs,name='aboutUs'),
     url(r'^saveAnswer/',views.saveAnswer,name='saveAnswer'),
+    url(r'^planFees/',views.planFees, name="planFees"),
     url(r'^terms/',views.ter_of_use,name='terms'),
     url(r'^pawtect_terms/',views.pawtect_terms,name='pawtect_terms'),
     url(r'^privacy/',views.privacy_policy,name='privacy'),

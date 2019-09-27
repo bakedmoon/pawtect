@@ -22,11 +22,11 @@
               {% csrf_token %}
               <div class="login-right-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" oninvalid="this.setCustomValidity('Please fill first name field.')"
-                  onchange="this.setCustomValidity('')" required/>
+                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" onkeypress=" return isChar(event);"  oninvalid="this.setCustomValidity('Please fill first name field.')"
+                  onchange="this.setCustomValidity(''); " required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small"
+                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small" onkeypress=" return isChar(event);"
                  required oninvalid="this.setCustomValidity('Please fill last name field.')" onchange="this.setCustomValidity('')"/>
                 </div>
                 
@@ -39,11 +39,11 @@
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="zip-code" placeholder="Zip Code" class="input-small" />
+                  <input type="text" name="zip-code" placeholder="Zip Code" class="input-small" required />
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="text" name="referral-code"  placeholder="Referral Code" class="input-small" />
+                  <input type="text" name="referral-code"  placeholder="Referral Code" class="input-small"  required />
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
