@@ -210,15 +210,16 @@ def my_pets(request):
     user_profile = request.user.userprofile
     today = date.today()
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+    petsCount = pets.count()
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56 or actualDays > 2190:
+        if actualDays < 56 or actualDays > 2191:
             petBirth.disabledClass = True
         else:
             petBirth.disabledClass = False
 
-    return render(request,"pawtectApp/my-pets.html",{"pets":pets})
+    return render(request,"pawtectApp/my-pets.html",{"pets":pets,"petsCount":petsCount})
 
 
 # Create New Pet

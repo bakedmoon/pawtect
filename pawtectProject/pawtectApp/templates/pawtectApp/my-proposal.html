@@ -7,7 +7,8 @@
 
 <div class="main-content-wrapper">
   <!-- empty screen start -->
-  <div class="wrapper" style="display: none">
+  {% if not pets %}
+  <div class="wrapper">
     <h1 class="u-mob-large-heading">My Pawtect Proposals</h1>
     <div class="empty-screen-wrapper mt-32">
       <img src="/assets/img/common-images/empty-screen-images/empty-pet-img.png" class="empty-screen-img">
@@ -15,8 +16,9 @@
       <p>Enter your pet's information and get the required quotation.</p>
     </div>
   </div>
+  {% endif %}
   <!-- empty screen end -->
-
+  {% if pets %}
   <div class="wrapper">
     <h1 class="u-mob-large-heading">My Pawtect Proposals</h1>
     <p class="my-proposal-top-para">
@@ -60,14 +62,13 @@
                     </a>
                   </div>
                 </div>
-                
               </div>
               <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 padd-left-none u-proposal-amt-col-wrap  pt-32">
                 <label class="my-pet-col-label">Plans *</label>
                 <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
                   <li>
                     <label class="radio-button-wrapper">
-                      <input type="radio" name="ribbon-types">
+                      <input type="radio" class="radioCheck" name="ribbon-types" value="Red Ribbon" onclick="getPlan(this,'{{pet.breed}}','{{pet.birthDate}}')">
                       <span class="checkmark small-checkmark"></span>
                       <div class="radio-button-label inline-block">
                           <img src="/assets/img/common-icons/red-ribbon.svg">
@@ -76,7 +77,7 @@
                       <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
                     </label>
                     <label class="radio-button-wrapper">
-                      <input type="radio" name="ribbon-types" >
+                      <input type="radio" class="radioCheck" name="ribbon-types" value="Yellow Ribbon" onclick="getPlan(this)">
                       <span class="checkmark small-checkmark"></span>
                       <div class="radio-button-label inline-block">
                           <img src="/assets/img/common-icons/yellow-ribbon.svg">
@@ -85,7 +86,7 @@
                       <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
                     </label>
                     <label class="radio-button-wrapper">
-                      <input type="radio" name="ribbon-types" >
+                      <input type="radio" class="radioCheck" name="ribbon-types" value="Blue Ribbon" onclick="getPlan(this)">
                       <span class="checkmark small-checkmark"></span>
                       <div class="radio-button-label inline-block">
                           <img src="/assets/img/common-icons/blue-ribbon.svg">
@@ -201,6 +202,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 </div>
 
 <footer class="footer2">
@@ -210,8 +212,8 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
       <ul class="footer-list2 pull-right padd-left-none">
-        <li><a href="">Terms of Usage</a></li>
-        <li><a href="">Privacy Policy</a></li>
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
       </ul>
     </div>
     <div class="col-xs-12 visible-xs padd-h-none">
@@ -248,13 +250,19 @@
 
 
 <script>
+    var breedItem = {}
+    var age_Type = []
     $(function() {
     var amountData = [];
     $.ajax({
       type: "GET",
       url: "/get-filter-quote-data/",
       success: function(data) {
+
         let amountItem = data.amounts
+        breedItem = data.breed.breeds
+        age_Type = data.ages
+
         for(let i in amountItem){
           var item = amountItem[i]
           item.label = item.amount
@@ -271,6 +279,14 @@
       }
     });
 });
+
+    function getPlan(planType,breed,birthDate){
+    var plan = planType.value;
+    var obj = {}
+    obj = breedItem.find(o => o.name === breed);
+    console.log("THE BREEDS ARE=--",obj.category)
+    console.log("Radio Values Are-->>>",plan,breed,birthDate)
+  }
   </script>
   <script>
   function answer(petId,questionId,answer){
@@ -402,5 +418,8 @@ function allPet(){
         $('.my-proposal-payment-section').removeClass('open-payment-slider')
       })
     })
+  </script>
+  <script>
+  
   </script>
 {% endblock %}

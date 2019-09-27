@@ -12,7 +12,7 @@ QUESTION_TYPE_CHOICES = [
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
-    mobile =models.BigIntegerField(blank=True, null=True)
+    mobile = models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=50,blank=True, null=True)
     address1= models.CharField(max_length=100,blank=True, null=True)
     address2= models.CharField(max_length=100,blank=True, null=True)
@@ -80,6 +80,7 @@ class Plans(UpdateBaseModel):
     features = JSONField(blank=True, null=True)
     age = models.ManyToManyField(Age)
     coverage_amount = models.ForeignKey(Coverage_Amount,blank=True, null=True, on_delete=models.CASCADE)
+    fees = models.BigIntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.category

@@ -12,15 +12,18 @@
     <div class="clearfix"></div>
     
     <!-- empty screen start -->
-    <div class="empty-screen-wrapper" style="display: none;">
+   {% if not pets %}
+    <div class="empty-screen-wrapper">
       <img src="/assets/img/common-images/empty-screen-images/empty-pet-img.png" class="empty-screen-img">
       <h2> Add your pet's information</h2>
       <p>You can add your pet's information and create a proper profile over here.</p>
     </div>
+   {% endif %}
     <!-- empty screen end -->
     
     <div class="my-pet-col-wrapper clearfix">
     {% for pet in pets %}
+   
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
         <div class="my-pet-cols clearfix relative mr-8 mb-48">
           <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16">
@@ -121,8 +124,8 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
       <ul class="footer-list2 pull-right padd-left-none">
-        <li><a href="">Terms of Usage</a></li>
-        <li><a href="">Privacy Policy</a></li>
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
       </ul>
     </div>
     <div class="col-xs-12 visible-xs padd-h-none">
