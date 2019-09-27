@@ -15,3 +15,13 @@ function isSpecial(evt){
         }
         return true; 
         }   
+
+function isChar(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    console.log("CHAR CODE IS HERE-->>>",charCode)
+    if (charCode <= 97 || charCode >= 122) {
+        return false;
+        }
+        return true; 
+    }

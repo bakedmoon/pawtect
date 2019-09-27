@@ -42,7 +42,7 @@
                 name="fname"
                 id="fname"
                 class="input-small"
-                onkeypress=" return isSpecial(event)"
+                onkeypress=" return isChar(event);"
                 value="{{user.userprofile.user.first_name}}"
                 required
               />
@@ -54,7 +54,7 @@
                 class="input-small"
                 name="lname"
                 id="lname"
-                onkeypress=" return isSpecial(event)"
+                onkeypress=" return isChar(event);"
                 value="{{user.userprofile.user.last_name}}"
               />
             </div>
