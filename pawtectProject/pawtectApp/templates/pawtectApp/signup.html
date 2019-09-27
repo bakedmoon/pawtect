@@ -38,13 +38,13 @@
                   <input type="email" name="email" placeholder="Email ID *" class="input-small" autocomplete="new-password" required oninvalid="this.setCustomValidity('Please fill email filed')" onchange="this.setCustomValidity('')"/>
                 </div>
 
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
+                {% comment %} <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="text" name="zip-code" placeholder="Zip Code" class="input-small" required />
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input type="text" name="referral-code"  placeholder="Referral Code" class="input-small"  required />
-                </div>
+                </div> {% endcomment %}
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="password" name="password" placeholder="Password *" class="input-small" autocomplete="new-password" required oninvalid="this.setCustomValidity('Please fill password field.')"

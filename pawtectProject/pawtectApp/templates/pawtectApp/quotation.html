@@ -86,18 +86,20 @@
         <div
           class="col-lg-2 col-md-3 col-sm-2 padd-h-none get-quote-top-btn-wrapper">
           <button class="btn btn-primary searchId" id="searchId">
-            Apply
+            Apply{{types.length}}
           </button>
           <a href="{% url 'quotation' %}"><button class="btn ghost-btn-light-gray pull-right">Clear All</button></a>
         </div>
       </div>
     </div>
 
+  {% if planCount == 0 %}
     <div class="empty-screen-wrapper mb-64">
       <img src="/assets/img/common-images/empty-screen-images/get-quote-empty-img.png" class="empty-screen-img">
       <h2>Get a quote</h2>
       <p>Oops!This search is not available</p>
     </div>
+  {% endif %}
 
     {% for key,value in types %} 
     {% if value.plans|length > 0%}
@@ -403,7 +405,7 @@
       query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit+"&age="+age_item.age_range;
     }
     if (breed.length >= 1) {
-      query += "&category__icontains="+breed_item.category+"&name="+breed_item.name;
+      query += "&category__icontains="+breed_item.category+"&name="+breed;
     }
     if (amount.length >= 1) {
       query += "&coverage_amount__amount=" + amount;

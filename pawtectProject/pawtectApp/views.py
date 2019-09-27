@@ -176,13 +176,14 @@ def quotation(request):
     # Take type for fiter search result with types.(RED,YELLOW,BLUE)
     for t in types:
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
-
+        
+        planCount = plans.count()
         type_dict[t.name] = {'type':t,'plans':plans}
     name = request.GET.get('name','')
     age_Period = request.GET.get('age','')
     coverage_amount = request.GET.get('coverage_amount__amount','')
 
-    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period,"coverage_amount":coverage_amount})
+    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period,"coverage_amount":coverage_amount,"planCount":planCount})
     
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
