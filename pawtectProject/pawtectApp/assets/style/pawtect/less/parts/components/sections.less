@@ -634,9 +634,9 @@
 }
 
 .ui-menu {
+  padding: 0px !important;
   .ui-menu-item {
     font-size: 14px;
-    padding: 6px 12px;
     &:hover,
     &:focus {
       border: none !important;
@@ -651,11 +651,23 @@
       }
     }
   }
+  .ui-menu-item-wrapper {
+    padding: 6px 12px;
+  }
 }
 .ui-menu-item-wrapper:focus,
 .ui-menu-item-wrapper:hover {
-  outline: none;
+  outline: none !important;
   background-color: #f9f9f9 !important;
+}
+
+.ui-menu-item-wrapper {
+  border: none;
+  outline: none;
+}
+.ui-state-active {
+  border: none !important;
+  background: #f9f9f9 !important;
 }
 
 ul.dropdown-menu {
