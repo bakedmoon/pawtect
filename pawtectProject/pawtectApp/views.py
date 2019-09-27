@@ -117,6 +117,15 @@ def user_logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('home'))
 
+def forgot_password(request):
+    return render(request,'pawtectApp/forgot-password.html')
+
+def reset_password(request):
+    return render(request,'pawtectApp/reset-password.html')
+
+def change_password(request):
+    return render(request,'pawtectApp/change-password.html')
+
 # Contact 
 def contact(request):
     if request.method == 'GET':

@@ -501,7 +501,33 @@
   margin-top: -26px;
   color: red;
 }
+
+.forgot-pass-link {
+  font-size: @font-size-small;
+}
 //login page css end
+
+//change password css start
+.login-change-pass-wrapper {
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.login-change-pass-box {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  .border-radius(2px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: @space;
+}
+
+.login-right-forgt-pass-para {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+//change password css end
 
 //get quote css start
 .get-quote-top-section {
@@ -1231,9 +1257,6 @@ ul.dropdown-menu {
 
 //my proposal page css start
 .my-proposal-tab-list {
-  width: 100%;
-  white-space: nowrap;
-  overflow-x: auto;
   li {
     display: inline-block;
     height: 24px;
@@ -1245,6 +1268,8 @@ ul.dropdown-menu {
     .border-radius(30px);
     text-align: center;
     margin-right: @space / 4;
+    margin-top: @space / 2;
+    margin-bottom: @space / 2;
     cursor: pointer;
     a {
       color: #1e1e1e;
