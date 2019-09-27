@@ -289,10 +289,20 @@ function isNumber(evt){
 </script>
 
 <script>
-  document.getElementById("saveId").disabled = true
+  window.onload = dateLength();
+
+  function dateLength(){
+    var input_length = document.getElementById('datepicker').value;
+  if(input_length.length > 0){
+    document.getElementById("saveId").disabled = false
+  }else{
+    document.getElementById("saveId").disabled = true
+  }
+  }
+
     function validateDate() {
-      var x = document.getElementById('datepicker').value;
-      if (x.length > 0) {
+      var inputLength = document.getElementById('datepicker').value;
+      if (inputLength.length > 0) {
         document.getElementById("saveId").disabled = false
         return false;
       }else{
