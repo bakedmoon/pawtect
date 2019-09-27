@@ -184,6 +184,19 @@
   right: 0;
 }
 
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &.sm-ellipsis {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: unset;
+    // height: 40px;
+  }
+}
+
 // --------------- margin and padding none
 .margin-h-none {
   .margin-left-none();
