@@ -198,7 +198,7 @@ def privacy_policy(request):
 # User Profile Update
 @login_required(login_url='login')
 def user_profile(request):
-
+    
     if request.method == "GET":
         return render(request,'pawtectApp/user-profile.html',{})
 
@@ -253,16 +253,13 @@ def my_pets_new(request):
 
                 #Get fill pet info using service.
                 getPetInfo = utils.afterErrorPetData(request.POST)
-               
                 return render(request,"pawtectApp/pet-profile.html",{"pet":getPetInfo})
-
-        else:
-            
-            ctrl = PetsController()
-            if request.FILES:
-                myfile = request.FILES["picture"]
-            create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
-            return HttpResponseRedirect(reverse("my-pets"))
+            else:
+                ctrl = PetsController()
+                if request.FILES:
+                    myfile = request.FILES["picture"]
+                create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
+                return HttpResponseRedirect(reverse("my-pets"))
 
     return render(request,"pawtectApp/pet-profile.html",pet)
 
@@ -362,6 +359,7 @@ def get_country_data(request):
 # Save answers of health questions
 @csrf_exempt
 def saveAnswer(request):
+    print("INSIDE SAVE ANSWER FUNCTION",request.POST)
     if request.method == "POST":
         try:
             que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
@@ -377,12 +375,14 @@ def saveAnswer(request):
 # To get plan fees
 @csrf_exempt
 def planFees(request):
+    print("ISNIDE PLAN FEES FUNCTION")
     if request.method == "POST":
+        print("INSIDE PLAN FEES CALL",request.POST)
         fees = Plans.objects.filter(Q(category=request.POST['category']) & Q(age__age_range=request.POST['age']) & Q(type__name = request.POST['planType']) & Q(coverage_amount__amount = request.POST['coverage_amount'])).values()
+    
         newFees = list(fees)
 
         for i in newFees:
             return JsonResponse({"fees":i})
-    else:
-        return HttpResponse("Error occur.")
+    
 

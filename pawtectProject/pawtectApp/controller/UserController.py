@@ -7,6 +7,7 @@ from pawtectApp import utils
 
 class UserController():
     def userSignup(self,userInfo):
+        print("USER INFO IS HERE--->>>",userInfo)
         user = User()
         user.first_name = userInfo['fname']
         user.last_name = userInfo['lname']
@@ -19,6 +20,8 @@ class UserController():
         up = UserProfile()
         up.user_id = user.id
         up.mobile = userInfo['mobile']
+        up.pincode = userInfo['pincode']
+        up.selfRefer = userInfo['selfRefer']
         up.save()
 
         return user
@@ -39,11 +42,11 @@ class UserController():
             userprofile.mobile = userInfo.get('mobile',userprofile.mobile)
             userprofile.gender = userInfo.get('gender',userprofile.gender)
             userprofile.avatar = imageUrl
-            userprofile.address1 = userInfo.get('address1',userprofile.address1)
-            userprofile.area = userInfo.get('area',userprofile.area)
-            userprofile.city = userInfo.get('city',userprofile.city)
-            userprofile.country = userInfo.get('country',userprofile.country)
+            userprofile.address = userInfo.get('address',userprofile.address)
             userprofile.pincode = userInfo.get('pincode',userprofile.pincode)
+            userprofile.city = userInfo.get('city',userprofile.city)
+            userprofile.state = userInfo.get('state',userprofile.state)
+            userprofile.country = userInfo.get('country',userprofile.country)
             userprofile.profession = userInfo.get('profession',userprofile.profession)
             userprofile.save()
             return userprofile

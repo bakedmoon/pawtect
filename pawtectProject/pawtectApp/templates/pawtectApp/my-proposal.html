@@ -176,7 +176,7 @@
               <div class="my-pet-col-referral-inp-wrap">
                 <label>Referral Code</label>
                 <div class="relative">
-                  <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none" onblur="checkCode(this)">
+                  <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none">
                   <button class="btn btn-link input-cancel-btn absolute right-center" onclick="closeCode(event)">
                     <img src="/assets/img/common-icons/close-button.svg" >
                   </button>
@@ -225,7 +225,7 @@
 
 <!-- tab js start -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
 <script>
   $(function() {
     var selectedClass = "";
@@ -284,12 +284,7 @@
   // Function For check plan fees
   var count = 0;
   var amountArray = []
-  const disPercentage = 10;
-  const vetcoins = 50
-  $("#vetcoinId").html("₹"+vetcoins)
-  function getPlan(amount,petId,breed,birthDate){
-    var plan = document.getElementById('redRibbon').value
-    var obj = {}
+  var obj = {}
     var age_Period = ''
     var start_age = 0
     var start_age_unit = ''
@@ -302,6 +297,11 @@
       'M':30,
       'Y':365
     }
+  const disPercentage = 10;
+  const vetcoins = 100
+  $("#vetcoinId").html("₹"+vetcoins)
+  function getPlan(amount,petId,breed,birthDate){
+    var plan = document.getElementById('redRibbon');
     obj = breedItem.find(o => o.name === breed);
     let actualDate = moment(birthDate);
     let today = moment(new Date());
@@ -335,9 +335,10 @@
       "coverage_amount":Number(amount.value)
     }
 
+    console.log("THE DATA TO SEND IS HERE--->>>>",dataToSend)
       $.ajax({
       type:"POST",
-      url:"/planFees/",
+      url:"planFees/",
       data:dataToSend,
       success:function(result){
         let feePlan = result.fees.fees
@@ -378,19 +379,19 @@
       }
     })
   
-function sumofArray(numbers) { 
-  var sum = 0;
+      function sumofArray(numbers) { 
+        var sum = 0;
            for (var i = 0; i < numbers.length; i++) {
-  sum += numbers[i]
+                sum += numbers[i]
+    }
+    return sum;
+    }
 }
-return sum;
-}
-    
-    
-  }
 
   </script>
   <script>
+  var checked = false
+  var checkBox = document.getElementById("myCheck");
   function answer(petId,questionId,answer){
   var queryData = {
     "petId":petId,
@@ -418,12 +419,8 @@ function closeCode(event){
   $(".my-pet-col-referral-section").removeClass("show-referral-inp-section");
 }
 
-function checkCode(referCode){
-  return referCode.value
-}
 
-var checked = false
-var checkBox = document.getElementById("myCheck");
+
 $("#myCheck").click(()=>{
  checked = true
  if(checkBox.checked == true){

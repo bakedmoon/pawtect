@@ -7,7 +7,7 @@ from pawtectApp import utils
 class PetsController():
     def create_pet(self,petInfo,userProfile,myfile):
             birthDate = datetime.strptime(petInfo['birthDate'], '%B %d, %Y')
-            imageUrl = '/media/avatar.png'
+            imageUrl = '/assets/img/common-images/avatars/avatars-07.svg'
             if myfile:
                 imageUrl = utils.make_image_url(myfile)
             petObj = Pet()

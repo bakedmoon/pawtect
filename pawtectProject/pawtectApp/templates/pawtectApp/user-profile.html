@@ -13,7 +13,7 @@
               <div class="upload-profile-wrap text-center p-tb-20">
                 <div class="relative">
                   <img
-                  {% if user %}src="{{user.userprofile.avatar}}" {% else %} onError="this.onerror=null;this.src='/assets/img/common-images/avatar.png'" {% endif %}
+                  {% if user %}src="{{user.userprofile.avatar}}" {% else %} onError="this.onerror=null;this.src='/assets/img/common-images/avatars/avatars-01.svg'" {% endif %}
                     class="upload-profile-img"
                     id="image"
                   />
@@ -97,13 +97,13 @@
                 type="text"
                 placeholder="Address"
                 class="input-small"
-                name="address1"
-                id="address1"
-                value="{{user.userprofile.address1 | default:""}}"
+                name="address"
+                id="address"
+                value="{{user.userprofile.address | default:""}}"
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
-              <input type="text" placeholder="City" class="input-small" name="area" id="area" value="{{user.userprofile.area | default:""}}" />
+              <input type="text" placeholder="City" onkeypress=" return isChar(event)" class="input-small" name="city" id="city" value="{{user.userprofile.city | default:""}}" />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <input
@@ -121,9 +121,10 @@
                 type="text"
                 placeholder="State"
                 class="input-small"
-                name="city"
-                id="city"
-                value="{{user.userprofile.city | default:"India"}}"
+                name="state"
+                onkeypress=" return isChar(event)"
+                id="state"
+                value="{{user.userprofile.state | default:""}}"
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
@@ -131,8 +132,8 @@
                 <input
                   id="country"
                   placeholder="Enter country"
-                  class="input-small"
-                  name="country" value="{{user.userprofile.country | default:""}}"
+                  class="input-small" onkeypress=" return isChar(event)"
+                  name="country" value="{{user.userprofile.country | default:"India"}}"
                   />
                 
                 <img

@@ -11,16 +11,17 @@ QUESTION_TYPE_CHOICES = [
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
+    avatar = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatars/avatars-03.svg')
     mobile = models.BigIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=50,blank=True, null=True)
-    address1= models.CharField(max_length=100,blank=True, null=True)
-    address2= models.CharField(max_length=100,blank=True, null=True)
-    area= models.CharField(max_length=50,blank=True, null=True)
-    city= models.CharField(max_length=50,blank=True, null=True)
+    address= models.CharField(max_length=100,blank=True, null=True)
+    state= models.CharField(max_length=100,blank=True, null=True)
+    city= models.CharField(max_length=100,blank=True, null=True)
     country= models.CharField(max_length=100,blank=True, null=True)
-    pincode=models.CharField(max_length=10,blank=True, null=True)
+    pincode=models.CharField(max_length=20,blank=True, null=True)
     profession= models.TextField(blank=True, null=True)
+    selfRefer = models.CharField(max_length=50,blank=True, null=True)
+    otherRefer = models.CharField(max_length=50,blank=True, null=True)
 
 
     def __str__(self):
@@ -96,7 +97,7 @@ class Questions(UpdateBaseModel):
 class Pet(UpdateBaseModel):
     name = models.CharField(max_length=50,blank=True, null=True)
     catagory = models.CharField(max_length=50,blank=True, null=True)
-    picture = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatar.png')
+    picture = models.ImageField(upload_to = 'media/', default = '/assets/img/common-images/avatars/avatars-07.svg')
     microchip_Number = models.CharField(max_length=50,blank=True, null=True)
     species = models.CharField(max_length=100, blank=True, null=True)
     breed = models.CharField(max_length=100,blank=True, null=True)
