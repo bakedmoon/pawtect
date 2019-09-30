@@ -20,6 +20,7 @@ from pawtectProject import settings
 from . import utils
 from . import const
 
+today = date.today()
     
 # Home Page
 def home(request):
@@ -219,7 +220,6 @@ def user_profile(request):
 @login_required(login_url='login')
 def my_pets(request): 
     user_profile = request.user.userprofile
-    today = date.today()
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
     petsCount = pets.count()
     for petBirth in pets:
@@ -331,6 +331,14 @@ def my_proposal(request):
         pets = [selectedPet]
     else:
         pets = myPets
+
+    for petBirth in pets:
+        diffrence = today - petBirth.birthDate
+        actualDays = diffrence.days
+        if actualDays < 56 or actualDays > 2190:
+            petBirth.disabledClass = True
+        else:
+            petBirth.disabledClass = False
     questions = Questions.objects.all().order_by('id')
     return render(request,"pawtectApp/my-proposal.html",{"pets":pets,"questions":questions,"myPets":myPets,"selectedPet":selectedPet})
 

@@ -1,7 +1,5 @@
 {% extends "pawtectApp/base.html" %} 
 {% load custom_filter %}
-
-
 {% block body_block %}
 
 
@@ -62,7 +60,9 @@
                     </a>
                   </div>
                 </div>
+                
               </div>
+              
               <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 padd-left-none u-proposal-amt-col-wrap  pt-32">
                 <label class="my-pet-col-label">Plans *</label>
                 <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
@@ -96,9 +96,10 @@
                     </label>
                   </li>
                 </ul>
+                 
                 <lable class="my-pet-col-label">Coverage amount *</lable>
                 <div class="ui-widget relative width-full mt-8" id="select_dog_age">
-                  <input id="coverageAmount" class="set-amount" onblur="getPlan(this,'{{pet.id}}','{{pet.breed}}','{{pet.birthDate}}')" placeholder="Select cover amount" />
+                  <input id="coverageAmount" class="set-amount" onblur="getPlan(this,'{{pet.id}}','{{pet.breed}}','{{pet.birthDate}}')" placeholder="Select cover amount" {% if pet.disabledClass %} disabled{% endif %} />
                   <img
                   src="/assets/img/common-icons/expand-button.svg"
                   class="dropdown-arrow"
@@ -141,6 +142,9 @@
                   </div>
                 </div>
               </div>
+              {% if pet.disabledClass %}
+            <span class="my-pet-col-bottom-err-text brand-color ml-12 mt-8">Age criteria do not match</span>
+            {% endif %}
               {% endif %}
             </div>
           </div>
