@@ -67,7 +67,7 @@
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
-            <input id="tags1" class="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %}/>
+            <input id="tags1" class="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %} onkeypress=" return isChar(event)"/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -76,7 +76,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none ">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_cover_amt">
-            <input id="tags2" class="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} />
+            <input id="tags2" class="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} onkeypress=" return isNumber(event)"/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -86,18 +86,20 @@
         <div
           class="col-lg-2 col-md-3 col-sm-2 padd-h-none get-quote-top-btn-wrapper">
           <button class="btn btn-primary searchId" id="searchId">
-            Apply
+            Apply{{types.length}}
           </button>
           <a href="{% url 'quotation' %}"><button class="btn ghost-btn-light-gray pull-right">Clear All</button></a>
         </div>
       </div>
     </div>
 
+  {% if planCount == 0 %}
     <div class="empty-screen-wrapper mb-64">
       <img src="/assets/img/common-images/empty-screen-images/get-quote-empty-img.png" class="empty-screen-img">
       <h2>Get a quote</h2>
       <p>Oops!This search is not available</p>
     </div>
+  {% endif %}
 
     {% for key,value in types %} 
     {% if value.plans|length > 0%}
@@ -294,7 +296,7 @@
     </div>
   </div>
 </footer>
-
+<script src="/assets/js/validation.js"></script>
 <script>
 
   $(function() {
@@ -403,7 +405,7 @@
       query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit+"&age="+age_item.age_range;
     }
     if (breed.length >= 1) {
-      query += "&category__icontains="+breed_item.category+"&name="+breed_item.name;
+      query += "&category__icontains="+breed_item.category+"&name="+breed;
     }
     if (amount.length >= 1) {
       query += "&coverage_amount__amount=" + amount;
