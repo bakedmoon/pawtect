@@ -40,7 +40,7 @@
         <div id="portfolio">
            {% for pet in pets %}
           <div class="tile scale-anm jacky all">
-            <div class="my-pet-cols clearfix relative mr-8 mb-48 p-16">
+            <div class="my-pet-cols my-pet-proposal-col clearfix relative mr-8 mb-48 p-16">
            
               <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16 ">
                 <img
@@ -142,9 +142,10 @@
                   </div>
                 </div>
               </div>
+              <div class="clearfix"></div>
               {% if pet.disabledClass %}
-            <span class="my-pet-col-bottom-err-text brand-color ml-12 mt-8">Age criteria do not match</span>
-            {% endif %}
+              <span class="my-pet-col-bottom-err-text brand-color ml-12 mt-8">Age criteria do not match</span>
+              {% endif %}
               {% endif %}
             </div>
           </div>
