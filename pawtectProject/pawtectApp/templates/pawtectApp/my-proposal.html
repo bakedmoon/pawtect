@@ -225,7 +225,7 @@
 
 <!-- tab js start -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+
 <script>
   $(function() {
     var selectedClass = "";
@@ -300,6 +300,7 @@
   const disPercentage = 10;
   const vetcoins = 100
   $("#vetcoinId").html("₹"+vetcoins)
+
   function getPlan(amount,petId,breed,birthDate){
     var plan = document.getElementById('redRibbon');
     obj = breedItem.find(o => o.name === breed);
@@ -328,19 +329,19 @@
           }
     }
 
-    let dataToSend = {
+    var dataToSend = {
       "category":obj.category,
       "age":age_Period,
-      "planType":plan,
+      "planType":plan.value,
       "coverage_amount":Number(amount.value)
     }
 
-    console.log("THE DATA TO SEND IS HERE--->>>>",dataToSend)
       $.ajax({
+      url:"/planFees/",
       type:"POST",
-      url:"planFees/",
       data:dataToSend,
       success:function(result){
+        console.log("INSIDE RESULT IS HERE---->>>>>",result)
         let feePlan = result.fees.fees
         count++;
         $("#"+petId).html("₹"+(feePlan).toFixed(2));

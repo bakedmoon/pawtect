@@ -23,23 +23,23 @@
               <div class="login-right-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" onkeypress=" return isChar(event);"  oninvalid="this.setCustomValidity('Please fill first name field.')"
-                  onchange="this.setCustomValidity(''); " required/>
+                  onchange="this.setCustomValidity('');" ondrop="return false;" onpaste="return false;" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
                   <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small" onkeypress=" return isChar(event);"
-                 required oninvalid="this.setCustomValidity('Please fill last name field.')" onchange="this.setCustomValidity('')"/>
+                 required oninvalid="this.setCustomValidity('Please fill last name field.')" onchange="this.setCustomValidity('')" ondrop="return false;" onpaste="return false;"/>
                 </div>
                 
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
                   <input type="text" name="mobile" placeholder="Mobile Number *" class="input-small"  autocomplete="mobile" minlength="10" maxlength="13" onkeypress=" return isNumber(event)" required oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
-                  onchange="this.setCustomValidity('')" />
+                  onchange="this.setCustomValidity('')" ondrop="return false;" onpaste="return false;"/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="email" name="email" placeholder="Email ID *" class="input-small" autocomplete="new-password" required oninvalid="this.setCustomValidity('Please fill email filed')" onchange="this.setCustomValidity('')"/>
+                  <input type="email" name="email" placeholder="Email ID *" class="input-small" autocomplete="new-password" required oninvalid="this.setCustomValidity('Please fill email filed')" onchange="this.setCustomValidity('')" ondrop="return false;" onpaste="return false;"/>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="pincode" placeholder="Zip Code*" autocomplete="pincode" class="input-small" onkeypress=" return isNumber(event)"  required oninvalid="this.setCustomValidity('Please fill zip code.')" onchange="this.setCustomValidity('')" />
+                  <input type="text" name="pincode" placeholder="Zip Code*" maxlength="8" autocomplete="pincode" class="input-small" onkeypress=" return isNumber(event)"  required oninvalid="this.setCustomValidity('Please fill zip code.')" onchange="this.setCustomValidity('')" ondrop="return false;" onpaste="return false;"/>
                 </div>
 
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
@@ -92,12 +92,12 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="login-otp-wrapper">
-                <input type="text" class="inputs" name="num1" maxlength="1" autofocus required>
-                <input type="text" class="inputs" name="num2" maxlength="1" required>
-                <input type="text" class="inputs" name="num3" maxlength="1" required>
-                <input type="text" class="inputs" name="num4" maxlength="1" required>
-                <input type="text" class="inputs" name="num5" maxlength="1" required>
-                <input type="text" class="inputs" name="num6" maxlength="1" required>
+                <input type="text" class="inputs" name="num1" maxlength="1" onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;" autofocus required>
+                <input type="text" class="inputs" name="num2" maxlength="1" onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;" required>
+                <input type="text" class="inputs" name="num3" maxlength="1" onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;" required>
+                <input type="text" class="inputs" name="num4" maxlength="1" onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;" required>
+                <input type="text" class="inputs" name="num5" maxlength="1" onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;" required>
+                <input type="text" class="inputs" name="num6" maxlength="1" onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;" required>
                 <input type="hidden" class="inputs" name="mobile" value={{mobileNumber}}>
               </div>
             </div>
@@ -129,6 +129,6 @@ $(".inputs").keyup(function () {
           $(this).blur();
     }
 });
-</script>
 
+</script>
 {% endblock %}

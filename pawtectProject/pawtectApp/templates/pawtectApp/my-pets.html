@@ -139,7 +139,7 @@
 </footer>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+
 <script>
 function getQuote(event,breed,birthdate){
   event.preventDefault()
@@ -151,6 +151,7 @@ function getQuote(event,breed,birthdate){
     var end_age = 0
     var end_age_unit = ''
     var age_obj = {}
+    var breedCategory = ''
     var dict = {
       'D':1,
       'W':7,
@@ -167,6 +168,7 @@ function getQuote(event,breed,birthdate){
         var age_Type = data.ages
         obj = breedItem.find(o => o.name === breed);
 
+        
         let actualDate = moment(birthdate);
         let today = moment(new Date());
         let diffDays = today.diff(actualDate, 'days')
@@ -191,7 +193,13 @@ function getQuote(event,breed,birthdate){
             return true
           }
     }
-          query += "&category__icontains="+obj.category+"&age__start_age__in="+start_age+"&age__start_age_unit__in="+start_age_unit+"&age__end_age__in="+end_age+"&age__end_age_unit__in="+end_age_unit+"&age="+age_Period+"&name="+breed;
+
+          if(obj == undefined){
+              breedCategory = breed
+          }else{
+             breedCategory = obj.category
+          }
+          query += "&category__icontains="+breedCategory+"&age__start_age__in="+start_age+"&age__start_age_unit__in="+start_age_unit+"&age__end_age__in="+end_age+"&age__end_age_unit__in="+end_age_unit+"&age="+age_Period+"&name="+breed;
 
           location.href = "/quotation/" + query;
 

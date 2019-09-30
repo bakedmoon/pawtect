@@ -41,7 +41,6 @@ def signup(request):
             existUser = User.objects.filter(Q(email=request.POST['email']) | Q(username=request.POST['mobile'])).exists()
             if existUser:
                 user = User.objects.get(Q(email=request.POST['email']) | Q(username=request.POST['mobile']))
-                print("USER IS IN SIGN UP PAGE-->>>>>",user.is_active)
                 if user.is_active:
                     messages.error(request,'User already exist for email or mobile number.')
                     return HttpResponseRedirect(reverse('register'))
@@ -79,7 +78,7 @@ def otp(request):
             user.save()
 
         else:
-            return HttpResponse("Something went wrong. Please try again.")
+            return HttpResponseRedirect(reverse('404'))
         return HttpResponseRedirect(reverse('my-pets'))
 
     
@@ -167,6 +166,7 @@ def quotation(request):
     query_filter = {}
     type_dict = {}
     breedInfo = ''
+
     types = Type.objects.all().order_by('id')
     age_group = Age.objects.all().order_by('id')
 
@@ -178,6 +178,7 @@ def quotation(request):
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
         
         planCount = plans.count()
+
         type_dict[t.name] = {'type':t,'plans':plans}
     name = request.GET.get('name','')
     age_Period = request.GET.get('age','')
@@ -243,7 +244,6 @@ def my_pets_new(request):
     if request.method == "GET":
         return render(request,"pawtectApp/pet-profile.html",{})
     elif request.method == "POST":
-        print("THE LENGTH IS HERE",len(request.POST['microchip_Number']))
         if len(request.POST['microchip_Number']) > 0:
             #Check if exist or not microchip number
             ifExist = utils.checkMicrochipNumber(request.POST['microchip_Number'])
@@ -359,7 +359,6 @@ def get_country_data(request):
 # Save answers of health questions
 @csrf_exempt
 def saveAnswer(request):
-    print("INSIDE SAVE ANSWER FUNCTION",request.POST)
     if request.method == "POST":
         try:
             que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
@@ -375,14 +374,15 @@ def saveAnswer(request):
 # To get plan fees
 @csrf_exempt
 def planFees(request):
-    print("ISNIDE PLAN FEES FUNCTION")
     if request.method == "POST":
-        print("INSIDE PLAN FEES CALL",request.POST)
         fees = Plans.objects.filter(Q(category=request.POST['category']) & Q(age__age_range=request.POST['age']) & Q(type__name = request.POST['planType']) & Q(coverage_amount__amount = request.POST['coverage_amount'])).values()
-    
-        newFees = list(fees)
-
-        for i in newFees:
-            return JsonResponse({"fees":i})
+        if fees:
+            newFees = list(fees)
+            for i in newFees:
+                return JsonResponse({"fees":i})
+        else:
+            return HttpResponse("NOT FOUND.")
+    else:
+        return HttpResponse("NOT POST METHOD.")
     
 
