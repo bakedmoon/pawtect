@@ -225,7 +225,7 @@ def my_pets(request):
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56 or actualDays > 2190:
+        if actualDays < 56 or actualDays > 2191:
             petBirth.disabledClass = True
         else:
             petBirth.disabledClass = False
@@ -352,7 +352,7 @@ def my_proposal(request):
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56 or actualDays > 2190:
+        if actualDays < 56 or actualDays > 2191:
             petBirth.disabledClass = True
         else:
             petBirth.disabledClass = False
