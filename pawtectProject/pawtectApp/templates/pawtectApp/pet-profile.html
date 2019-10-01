@@ -151,7 +151,7 @@
                 onkeypress=" return isNumber(event)"
                 minlength="10" maxlength="13" onkeypress=" return isNumber(event)" oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
                   onchange="this.setCustomValidity('')"
-                value="{{pet.consult_mobileNumber}}"
+                value="{{pet.consult_mobileNumber}}" ondrop="return false;" onpaste="return false;"
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
