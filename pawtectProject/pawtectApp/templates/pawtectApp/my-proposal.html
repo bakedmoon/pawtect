@@ -68,7 +68,7 @@
                 <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
                   <li>
                     <label class="radio-button-wrapper">
-                      <input type="radio" class="radioCheck" id="redRibbon" name="ribbon-types" value="Red Ribbon" checked>
+                      <input type="radio" class="{{pet.id}}" name="{{pet.id}}" value="Red Ribbon">
                       <span class="checkmark small-checkmark"></span>
                       <div class="radio-button-label inline-block">
                           <img src="/assets/img/common-icons/red-ribbon.svg">
@@ -77,7 +77,7 @@
                       <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
                     </label>
                     <label class="radio-button-wrapper">
-                      <input type="radio" class="radioCheck" name="ribbon-types" value="Yellow Ribbon">
+                      <input type="radio" class="{{pet.id}}" name="{{pet.id}}" value="Yellow Ribbon">
                       <span class="checkmark small-checkmark"></span>
                       <div class="radio-button-label inline-block">
                           <img src="/assets/img/common-icons/yellow-ribbon.svg">
@@ -86,7 +86,7 @@
                       <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
                     </label>
                     <label class="radio-button-wrapper">
-                      <input type="radio" class="radioCheck" name="ribbon-types" value="Blue Ribbon">
+                      <input type="radio" class="{{pet.id}}" name="{{pet.id}}" value="Blue Ribbon">
                       <span class="checkmark small-checkmark"></span>
                       <div class="radio-button-label inline-block">
                           <img src="/assets/img/common-icons/blue-ribbon.svg">
@@ -307,7 +307,17 @@
   $("#vetcoinId").html("₹"+vetcoins)
 
   function getPlan(amount,petId,breed,birthDate){
-    var plan = document.getElementById('redRibbon');
+    var plan ='';
+    
+    if($("input[type='radio']."+petId).is(':checked')){
+      plan = $("input[type='radio']."+petId+":checked").val()
+    }
+
+      if(plan.length === 0){
+          alert("Please select plan.")
+          return false;
+      }
+
     obj = breedItem.find(o => o.name === breed);
     let actualDate = moment(birthDate);
     let today = moment(new Date());
@@ -337,7 +347,7 @@
     var dataToSend = {
       "category":obj.category,
       "age":age_Period,
-      "planType":plan.value,
+      "planType":plan,
       "coverage_amount":Number(amount.value)
     }
 

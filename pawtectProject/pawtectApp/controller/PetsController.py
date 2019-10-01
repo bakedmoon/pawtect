@@ -35,7 +35,6 @@ class PetsController():
             else:
                 imageUrl = myfile
             petObj = Pet.objects.get(id=petId)
-            print("PET INFO IS HERE->>",petInfo.get('name'),petId)
             petObj.name = petInfo.get('name',petObj.name)
             petObj.picture = imageUrl
             petObj.microchip_Number = petInfo.get('microchip_Number',petObj.microchip_Number)

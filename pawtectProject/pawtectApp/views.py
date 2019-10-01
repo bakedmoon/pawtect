@@ -260,6 +260,12 @@ def my_pets_new(request):
                     myfile = request.FILES["picture"]
                 create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
                 return HttpResponseRedirect(reverse("my-pets"))
+        else:
+                ctrl = PetsController()
+                if request.FILES:
+                    myfile = request.FILES["picture"]
+                create_pet = ctrl.create_pet(request.POST,user_profile,myfile)
+                return HttpResponseRedirect(reverse("my-pets"))
 
     return render(request,"pawtectApp/pet-profile.html",pet)
 
@@ -284,6 +290,17 @@ def my_pets_edit(request,petId):
                 #To stay same page call edit url again. For this send petId to url.
                 url = reverse('my-pets-edit', kwargs={'petId': petId})
                 return HttpResponseRedirect(url)
+
+            else:
+                user_profile = request.user.userprofile
+                myfile = pet.picture
+                uploadImage = False
+                ctrl = PetsController()
+                if request.FILES:
+                    myfile = request.FILES["picture"]
+                    uploadImage = True
+                update_pet = ctrl.update_pet(request.POST,user_profile,petId,myfile,uploadImage)
+                return HttpResponseRedirect(reverse('my-pets'))
 
         else:
             user_profile = request.user.userprofile
