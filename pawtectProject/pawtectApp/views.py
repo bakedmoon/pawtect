@@ -167,7 +167,7 @@ def quotation(request):
     query_filter = {}
     type_dict = {}
     breedInfo = ''
-
+    planCount = []
     types = Type.objects.all().order_by('id')
     age_group = Age.objects.all().order_by('id')
 
@@ -178,14 +178,16 @@ def quotation(request):
     for t in types:
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
         
-        planCount = plans.count()
-
+        planNumber = plans.count()
+        planCount.append(planNumber)
+        listCount = sum(planCount)
+        print("COUNT IS HERE--->>>",listCount)
         type_dict[t.name] = {'type':t,'plans':plans}
     name = request.GET.get('name','')
     age_Period = request.GET.get('age','')
     coverage_amount = request.GET.get('coverage_amount__amount','')
 
-    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period,"coverage_amount":coverage_amount,"planCount":planCount})
+    return render(request,'pawtectApp/quotation.html',{"types":type_dict.items,"name":name,"age_Period":age_Period,"coverage_amount":coverage_amount,"planCount":listCount})
     
 def ter_of_use(request):
     return render(request,'pawtectApp/terms.html')
