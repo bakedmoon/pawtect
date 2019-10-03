@@ -36,3 +36,13 @@ function isSpecialAge(evt){
         }
         return true;
         }   
+
+function isSpacebar(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if(charCode == 32){
+        return false;
+    }else{
+        return true;
+    }
+}

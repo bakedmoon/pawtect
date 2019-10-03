@@ -386,24 +386,35 @@ def get_country_data(request):
 def saveAnswer(request):
     if request.method == "POST":
         allOptions = ''
+        arr = []
         try:
             queObj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
             queObj.answer = request.POST['answer']
             queObj.save()
-            allAnswers = PetQuestion.objects.filter(pet_id=request.POST['petId'])
-            for i in allAnswers:
-                allOptions = i.questions.option
-                for j in allOptions:
-                    if j["name"] == request.POST['answer']:
-                        print("INSIDE J LOOP==>>>>",j["is_insurance_allowed"])
-            return HttpResponse(allOptions)
+            healthAnswers = PetQuestion.objects.filter(pet_id=request.POST['petId'])
+            for ans in healthAnswers:
+                allOptions = ans.questions.option
+                allQAns = ans.answer
+                for op in allOptions:
+                    if allQAns == op['name']:
+                        arr.append(op["is_insurance_allowed"])
+                        sumarray = sum(arr)
+            return JsonResponse({"sumarray":sumarray,"petId":request.POST['petId']})
+
         except PetQuestion.DoesNotExist:
             new_values = {'pet_id':request.POST['petId'],'questions_id':request.POST['questionId'],'answer':request.POST['answer']}
             queObj = PetQuestion(**new_values)
             queObj.save()
-            sendObj = queObj.questions.option
-            print("THE QUESTION OBJ IS HERE INSIDE TRY--->>>",queObj)
-            return HttpResponse(sendObj)
+            healthAnswers = PetQuestion.objects.filter(pet_id=request.POST['petId'])
+            print("THE HEALTH ANSWER IS HERE--->>>",healthAnswers)
+            for ans in healthAnswers:
+                allOptions = ans.questions.option
+                allQAns = ans.answer
+                for op in allOptions:
+                    if allQAns == op['name']:
+                        arr.append(op["is_insurance_allowed"])
+                        sumarray = sum(arr)
+            return JsonResponse({"sumarray":sumarray,"petId":request.POST['petId']})
 
 # To get plan fees
 @csrf_exempt
@@ -418,5 +429,7 @@ def planFees(request):
             return HttpResponse("NOT FOUND.")
     else:
         return HttpResponse("NOT POST METHOD.")
+
+
     
 

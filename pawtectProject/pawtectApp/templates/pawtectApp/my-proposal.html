@@ -99,7 +99,7 @@
                  
                 <lable class="my-pet-col-label">Coverage amount *</lable>
                 <div class="ui-widget relative width-full mt-8" id="select_dog_age">
-                  <input id="coverageAmount" class="set-amount" onblur="getPlan(this,'{{pet.id}}','{{pet.breed}}','{{pet.birthDate}}')" placeholder="Select cover amount" {% if pet.disabledClass %} disabled{% endif %} />
+                  <input id="{{pet.id}}" class="set-amount" onblur="getPlan(this,'{{pet.id}}','{{pet.breed}}','{{pet.birthDate}}')" placeholder="Select cover amount" {% if pet.disabledClass %} disabled{% endif %} />
                   <img
                   src="/assets/img/common-icons/expand-button.svg"
                   class="dropdown-arrow"
@@ -419,7 +419,13 @@
     url:"/saveAnswer/",
     data:queryData,
     success:function(data){
-      console.log("INSIDE SUCCESS DATA IS HERE-->>>",data)
+      console.log("DATA AFTER NEW CREATE---->>>>",data)
+      if(Number(data.sumarray) === 4 ){
+        document.getElementById(petId).disabled = false;
+      }
+      else if(Number(data.sumarray) !=4 ) {
+        document.getElementById(petId).disabled = true;
+      }
     }
   })
 }
