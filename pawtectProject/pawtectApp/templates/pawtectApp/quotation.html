@@ -56,7 +56,7 @@
             <img src="/assets/img/get-quote/filter-icon.svg" />
           </div>
           <div class="ui-widget inline-block pull-right relative" id="select_dog_age">
-            <input id="tags" class="tags" placeholder="Select dog's age" onkeypress=" return isSpecialAge(event)" {% if age_Period %} value="{{age_Period}}"{% endif %} />
+            <input id="tags" class="tags" placeholder="Select dog's age" onkeypress=" return isSpecialAge(event)" {% if age_Period %} value="{{age_Period}}"{% endif %} ondrop="return false;" onpaste="return false;"/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow" />
@@ -67,7 +67,7 @@
         </div>
         <div class="col-lg-4 col-md-3 col-sm-4">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_dog_breed">
-            <input id="tags1" class="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %} onkeypress=" return isChar(event)"/>
+            <input id="tags1" class="tags1" placeholder="Select dog's breed" {% if name %} value="{{name}}"{% endif %} onkeypress=" return isChar(event)" ondrop="return false;" onpaste="return false;"/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
@@ -76,7 +76,7 @@
         </div>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1 padd-left-none ">
           <div class="ui-widget inline-block pull-right relative width-full" id="select_cover_amt">
-            <input id="tags2" class="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} onkeypress=" return isNumber(event)"/>
+            <input id="tags2" class="tags2" placeholder="Select coverage amount" {% if coverage_amount %} value="{{coverage_amount}}"{% endif %} onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;"/>
             <img
             src="/assets/img/common-icons/expand-button.svg"
             class="dropdown-arrow"
