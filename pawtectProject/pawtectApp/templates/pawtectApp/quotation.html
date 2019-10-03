@@ -403,9 +403,11 @@
     if (age.length >= 1) {
       query += "&age__start_age__in="+age_item.start_age+"&age__start_age_unit__in="+age_item.start_age_unit+"&age__end_age__in="+age_item.end_age+"&age__end_age_unit__in="+age_item.end_age_unit+"&age="+age;
     }
+    
     if (breed.length >= 1) {
       query += "&category__icontains="+breed_item.category+"&name="+breed;
     }
+
     if (amount.length >= 1) {
       query += "&coverage_amount__amount=" + amount;
     }

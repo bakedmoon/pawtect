@@ -1,1 +1,3 @@
 ADMIN_MAIL='sagar.crive@gmail.com'
+SMALL_AGE_LIMIT=56
+MAX_AGE_LIMIT=2191

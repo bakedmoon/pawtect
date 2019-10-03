@@ -130,5 +130,3 @@ class PetQuestion(models.Model):
     pet = models.ForeignKey(Pet,on_delete=models.CASCADE)
     questions = models.ForeignKey(Questions,on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.pet)

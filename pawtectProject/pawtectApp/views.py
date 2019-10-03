@@ -181,7 +181,6 @@ def quotation(request):
         planNumber = plans.count()
         planCount.append(planNumber)
         listCount = sum(planCount)
-        print("COUNT IS HERE--->>>",listCount)
         type_dict[t.name] = {'type':t,'plans':plans}
     name = request.GET.get('name','')
     age_Period = request.GET.get('age','')
@@ -227,13 +226,12 @@ def my_pets(request):
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56 or actualDays > 2191:
+        if actualDays < const.SMALL_AGE_LIMIT or actualDays > const.MAX_AGE_LIMIT:
             petBirth.disabledClass = True
         else:
             petBirth.disabledClass = False
 
     return render(request,"pawtectApp/my-pets.html",{"pets":pets,"petsCount":petsCount})
-
 
 # Create New Pet
 @login_required(login_url='login')
@@ -354,7 +352,7 @@ def my_proposal(request):
     for petBirth in pets:
         diffrence = today - petBirth.birthDate
         actualDays = diffrence.days
-        if actualDays < 56 or actualDays > 2191:
+        if actualDays < const.SMALL_AGE_LIMIT or actualDays > const.MAX_AGE_LIMIT:
             petBirth.disabledClass = True
         else:
             petBirth.disabledClass = False
@@ -387,16 +385,25 @@ def get_country_data(request):
 @csrf_exempt
 def saveAnswer(request):
     if request.method == "POST":
+        allOptions = ''
         try:
-            que_obj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
-            que_obj.answer = request.POST['answer']
-            que_obj.save()
-            return HttpResponse("Success")
+            queObj = PetQuestion.objects.get(Q(pet_id=request.POST['petId']) & Q(questions_id=request.POST['questionId']))
+            queObj.answer = request.POST['answer']
+            queObj.save()
+            allAnswers = PetQuestion.objects.filter(pet_id=request.POST['petId'])
+            for i in allAnswers:
+                allOptions = i.questions.option
+                for j in allOptions:
+                    if j["name"] == request.POST['answer']:
+                        print("INSIDE J LOOP==>>>>",j["is_insurance_allowed"])
+            return HttpResponse(allOptions)
         except PetQuestion.DoesNotExist:
             new_values = {'pet_id':request.POST['petId'],'questions_id':request.POST['questionId'],'answer':request.POST['answer']}
-            que_obj = PetQuestion(**new_values)
-            que_obj.save()
-            return HttpResponse("Success")
+            queObj = PetQuestion(**new_values)
+            queObj.save()
+            sendObj = queObj.questions.option
+            print("THE QUESTION OBJ IS HERE INSIDE TRY--->>>",queObj)
+            return HttpResponse(sendObj)
 
 # To get plan fees
 @csrf_exempt

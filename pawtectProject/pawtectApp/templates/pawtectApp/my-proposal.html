@@ -125,10 +125,10 @@
                       {% if question.type == 'radio'%}
                           {% for op in question.option %}
                         <label class="radio-button-wrapper inline-block">
-                          <input type="radio" id='ans-{{question.id}}' name="answer-{{pet.id}}-{{question.id}}" {% if pet|get_answer:question.id|lower == op|lower %}  checked {% endif %}  value="{{op}}" onclick="answer('{{pet.id}}','{{question.id}}','{{op}}')">
+                          <input type="radio" id='ans-{{question.id}}' name="answer-{{pet.id}}-{{question.id}}" {% if pet|get_answer:question.id|lower == op.name|lower %}  checked {% endif %}  value="{{op.name}}" onclick="answer('{{pet.id}}','{{question.id}}','{{op.name}}')">
                           <span class="checkmark small-checkmark"></span>
                           <div class="radio-button-label inline-block">
-                            <span class="padd-left-none">{{op}}</span>
+                            <span class="padd-left-none">{{op.name}}</span>
                           </div> 
                         </label>
                           {% endfor %}
@@ -144,7 +144,7 @@
               </div>
               <div class="clearfix"></div>
               {% if pet.disabledClass %}
-              <span class="my-pet-col-bottom-err-text brand-color ml-12 mt-8">Age criteria do not match</span>
+              <span class="my-pet-col-bottom-err-text danger-color ml-12 mt-8">Age criteria do not match.</span>
               {% endif %}
               {% endif %}
             </div>

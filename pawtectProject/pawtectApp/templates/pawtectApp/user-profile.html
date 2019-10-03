@@ -113,7 +113,7 @@
                 name="pincode"
                 id="pincode"
                 maxlength="8"
-                onkeypress=" return isNumber(event)"
+                onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;"
                 value="{{user.userprofile.pincode}}"
               />
             </div>

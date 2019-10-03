@@ -56,7 +56,7 @@ def afterErrorPetData(petInfo):
     pet['species'] = petInfo['species']
     pet['breed'] = petInfo['breed']
     pet['birthDate'] = petInfo['birthDate']
-    pet['gender'] = petInfo['gender']
+    pet['gender'] = petInfo.get('gender', '')
     pet['consult_Name'] = petInfo['consult_Name']
     pet['consult_Email'] = petInfo['consult_Email']
     pet['consult_mobileNumber'] = petInfo['consult_mobileNumber']
