@@ -406,7 +406,6 @@ def saveAnswer(request):
             queObj = PetQuestion(**new_values)
             queObj.save()
             healthAnswers = PetQuestion.objects.filter(pet_id=request.POST['petId'])
-            print("THE HEALTH ANSWER IS HERE--->>>",healthAnswers)
             for ans in healthAnswers:
                 allOptions = ans.questions.option
                 allQAns = ans.answer
@@ -430,6 +429,27 @@ def planFees(request):
     else:
         return HttpResponse("NOT POST METHOD.")
 
+
+def getAllAnswers():
+    arr = []
+    pets = Pet.objects.all()
+    for i in pets:
+        allAnswers = PetQuestion.objects.filter(pet_id=i.id)
+        for ans in allAnswers:
+            allOptions = ans.questions.option
+            allQAns = ans.answer
+            print("THE DOG NAME IS HERE-->>>", i.name,allQAns)
+            for op in allOptions:
+                if allQAns in op["name"]:
+                    arr.append(op["is_insurance_allowed"])
+                # if allQAns == op["name"]:
+                #     arr.append(op["is_insurance_allowed"])
+                # print("THE DOG NAME IS HERE-->>>",op["name"])
+                # print("THE OPTION IS HERE-->>>",arr)
+                print("THE SUM IS HERE--->>",arr)
+        
+
+getAllAnswers()
 
     
 

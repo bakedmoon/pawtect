@@ -15,16 +15,17 @@
                 <div class="relative">
                 {% if pet.picture %}
                 <img
-                   {% if pet %} src="{{pet.picture}}" {% else %} onError="this.onerror=null;this.src='/assets/img/common-images/avatars/avatars-07.svg'"{% endif %} 
+                   {% if pet %} src="{{pet.picture}}" {% else %} onError="this.src='/assets/img/common-images/avatars/avatars-07.svg'"{% endif %} 
                     class="upload-profile-img"
-                    id="image" />
+                    id="image"
+                     />
                 {% else %}
                 <img
                     src='/assets/img/common-images/avatars/avatars-07.svg'
                     class="upload-profile-img"
-                    id="image" />
+                    id="image"
+                     />
                 {% endif %}
-                  
                 </div>
                 <input
                   type="file"
