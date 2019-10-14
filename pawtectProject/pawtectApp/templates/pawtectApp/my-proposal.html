@@ -107,7 +107,7 @@
                 </div>
                 <div class="my-pet-col-plan-fee mb-4">
                   <span>Plan Fees</span>
-                  <span class="pull-right set-amount-plan" id="{{pet.id}}">₹ 0</span>
+                  <span class="pull-right set-amount-plan {{pet.id}}">₹ 0</span>
                 </div>
               </div>
               {% if questions.count > 0 %}
@@ -230,7 +230,7 @@
 
 <!-- tab js start -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="/assets/js/const.js"></script>
 <script>
   $(function() {
     var selectedClass = "";
@@ -356,10 +356,9 @@
       type:"POST",
       data:dataToSend,
       success:function(result){
-        console.log("INSIDE RESULT IS HERE---->>>>>",result)
         let feePlan = result.fees.fees
         count++;
-        $("#"+petId).html("₹"+(feePlan).toFixed(2));
+        $('.'+petId).html("₹"+(feePlan).toFixed(2));
        
         amountArray.push(feePlan);
 
@@ -419,11 +418,10 @@
     url:"/saveAnswer/",
     data:queryData,
     success:function(data){
-      console.log("DATA AFTER NEW CREATE---->>>>",data)
-      if(Number(data.sumarray) === 4 ){
+      if(Number(data.sumarray) === queAdd ){
         document.getElementById(petId).disabled = false;
       }
-      else if(Number(data.sumarray) !=4 ) {
+      else if(Number(data.sumarray) !=queAdd ) {
         document.getElementById(petId).disabled = true;
       }
     }

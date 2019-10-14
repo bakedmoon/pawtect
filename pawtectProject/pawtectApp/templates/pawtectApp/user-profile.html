@@ -272,18 +272,21 @@ window.onload = function(){
 </script>
 <script src="/assets/js/validation.js"></script>
 <script>
-var imageUrl = ''
 function readURL(input) {
+   var allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
   if (input.files && input.files[0]) {
     var reader = new FileReader();
-    
+     var data = input.files[0]
+     var mimetype = data.type;
     reader.onload = function(e) {
+      if (allowedFileTypes.indexOf(mimetype) > -1) {
       $('#image').attr('src', e.target.result);
-      imageUrl = e.target.result
+     }else{
+       $('#image').attr('src', '/assets/img/common-images/avatars/avatars-03.svg');
+       alert("Image format not valid.");
+     }
     }
-    
-    let avatar = reader.readAsDataURL(input.files[0]);
-    
+   reader.readAsDataURL(input.files[0]);
   }
 }
 
