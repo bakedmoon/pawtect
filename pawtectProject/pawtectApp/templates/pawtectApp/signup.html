@@ -22,11 +22,11 @@
               {% csrf_token %}
               <div class="login-right-box">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-right-6 u-mob-col-padd-h-none">
-                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" onkeypress=" return isChar(event);"  oninvalid="this.setCustomValidity('Please fill first name field.')"
+                  <input type="text" name="fname" placeholder="First Name *" autocomplete="fname" class="input-small" onkeypress=" return isSpecial(event);"  oninvalid="this.setCustomValidity('Please fill first name field.')"
                   onchange="this.setCustomValidity('');" ondrop="return false;" onpaste="return false;" required/>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 u-col-padd-left-6 u-mob-col-padd-h-none">
-                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small" onkeypress=" return isChar(event);"
+                  <input type="text" name="lname" placeholder="Last Name *" autocomplete="lname" class="input-small" onkeypress=" return isSpecial(event);"
                  required oninvalid="this.setCustomValidity('Please fill last name field.')" onchange="this.setCustomValidity('')" ondrop="return false;" onpaste="return false;"/>
                 </div>
                 

@@ -42,7 +42,7 @@
                 name="fname"
                 id="fname"
                 class="input-small"
-                onkeypress=" return isChar(event);"
+                onkeypress=" return isSpecial(event);"
                 value="{{user.userprofile.user.first_name}}"
                 required
               />
@@ -54,7 +54,7 @@
                 class="input-small"
                 name="lname"
                 id="lname"
-                onkeypress=" return isChar(event);"
+                onkeypress=" return isSpecial(event);"
                 value="{{user.userprofile.user.last_name}}"
               />
             </div>
@@ -103,7 +103,7 @@
               />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
-              <input type="text" placeholder="City" onkeypress=" return isChar(event)" class="input-small" name="city" id="city" value="{{user.userprofile.city | default:""}}" />
+              <input type="text" placeholder="City" onkeypress=" return isSpecial(event)" class="input-small" name="city" id="city" value="{{user.userprofile.city | default:""}}" />
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
               <input
@@ -123,7 +123,7 @@
                 placeholder="State"
                 class="input-small"
                 name="state"
-                onkeypress=" return isChar(event)"
+                onkeypress=" return isSpecial(event)"
                 id="state"
                 value="{{user.userprofile.state | default:""}}"
               />
@@ -133,7 +133,7 @@
                 <input
                   id="country"
                   placeholder="Enter country"
-                  class="input-small" onkeypress=" return isChar(event)"
+                  class="input-small" onkeypress=" return isSpecial(event)"
                   name="country" value="{{user.userprofile.country | default:"India"}}"
                   />
                 
@@ -283,7 +283,11 @@ function readURL(input) {
       $('#image').attr('src', e.target.result);
      }else{
        $('#image').attr('src', '/assets/img/common-images/avatars/avatars-03.svg');
-       alert("Image format not valid.");
+       swal({
+        title: "Ohhh...",
+        text: "Image format not valid.",
+        icon: "warning",
+        });
      }
     }
    reader.readAsDataURL(input.files[0]);

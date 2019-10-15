@@ -262,7 +262,11 @@ function readURL(input) {
       $('#image').attr('src', e.target.result);
      }else{
        $('#image').attr('src', '/assets/img/common-images/avatars/avatars-07.svg');
-       alert("Image format not valid.");
+       swal({
+        title: "Ohhh...",
+        text: "Image format not valid.",
+        icon: "warning",
+        });
      }
     }
     
