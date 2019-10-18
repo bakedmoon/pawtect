@@ -107,12 +107,12 @@ def login(request):
                 return HttpResponseRedirect(reverse('my-pets'))
         else:
             messages.error(request,"User does not exist.")
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('user_login'))
     else:
         return render(request, 'pawtectApp/login.html')
 
 # User Logout
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def user_logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('home'))
@@ -124,7 +124,11 @@ def reset_password(request):
     return render(request,'pawtectApp/reset-password.html')
 
 def change_password(request):
-    return render(request,'pawtectApp/change-password.html')
+    print("INSIDE CHANGE PASSWORD")
+    if request.method == "GET":
+        return render(request,'pawtectApp/change-password.html')
+    elif request.method == "POST":
+        print("THE REQUEST POST IS HERE--->>>",request.POST)
 
 # Contact 
 def contact(request):
@@ -199,7 +203,7 @@ def privacy_policy(request):
 
 
 # User Profile Update
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def user_profile(request):
     
     if request.method == "GET":
@@ -218,7 +222,7 @@ def user_profile(request):
 
 
 # Show All Pets 
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def my_pets(request): 
     user_profile = request.user.userprofile
     pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
@@ -234,7 +238,7 @@ def my_pets(request):
     return render(request,"pawtectApp/my-pets.html",{"pets":pets,"petsCount":petsCount})
 
 # Create New Pet
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def my_pets_new(request):
     myfile = ''
     microchipNumber = ''
@@ -271,7 +275,7 @@ def my_pets_new(request):
 
 
 # Update/Edit Exist Pet
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def my_pets_edit(request,petId):
     pet = Pet.objects.get(id=petId)
     if request.method == "GET":
@@ -317,7 +321,7 @@ def my_pets_edit(request,petId):
 
 
 # Delete Exist Pet
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def my_pets_delete(request,petId):
     try:
         if petId:
@@ -337,7 +341,7 @@ def page_not_found(request):
 
 
 # Get All Proposal
-@login_required(login_url='login')
+@login_required(login_url='user_login')
 def my_proposal(request):
     user_profile = request.user.userprofile
     petId = request.GET.get('petId',None)

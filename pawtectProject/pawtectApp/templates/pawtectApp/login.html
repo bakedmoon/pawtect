@@ -17,7 +17,7 @@
                 <h1 class="login-right-section-heading u-mob-large-heading">Login</h1>
                 <p class="login-right-section-para">Welcome back! Login to view your dog's safety details.</p>
               </div>
-              <form method="post" action="{% url 'login' %}" class="relative">
+              <form method="post" action="{% url 'user_login' %}" class="relative">
                  
                 {% csrf_token %}
                 <div class="login-right-box">
@@ -42,7 +42,7 @@
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center m-tb-12">
                     <button class="btn btn-link forgot-pass-link">
-                      <a href="" class="brand-color">Forgot Password?</a>
+                      <a href="{% url 'password_reset' %}" class="brand-color">Forgot Password?</a>
                     </button>
                   </div>
                 </div>

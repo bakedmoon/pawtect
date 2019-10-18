@@ -3,6 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.urls import path
 from django.conf.urls import url,include
+from django.contrib.auth.views import PasswordResetView,PasswordResetDoneView,PasswordResetConfirmView,\
+    PasswordResetCompleteView,LoginView,PasswordChangeView
 from django.conf.urls.static import static
 from pawtectProject  import settings
 from django.views.static import serve
@@ -13,10 +15,10 @@ urlpatterns = [
     url(r'^$',views.home,name='home'),
     url(r'^contact/',views.contact,name='contact'),
     url(r'^register/',views.signup,name='register'),
-    url(r'^login/',views.login,name='login'),
-    url(r'^forgot_password/',views.forgot_password,name='forgot_password'),
-    url(r'^reset_password/',views.reset_password,name='reset_password'),
-    url(r'^change_password/',views.change_password,name='change_password'),
+    url(r'^login/$',views.login,name='user_login'),
+    url(r'^forgot_password/$',views.forgot_password,name='forgot_password'),
+    url(r'^reset_password/$',views.reset_password,name='reset_password'),
+    url(r'^change_password/$',views.change_password,name='change_password'),
     url(r'^plans/',views.plans,name='plans'),
     url(r'^otp/',views.otp,name='otp'),
     url(r'^review/',views.review,name='review'),
@@ -33,10 +35,22 @@ urlpatterns = [
     url(r'^aboutUs/$',views.aboutUs,name='aboutUs'),
     url(r'^saveAnswer/$',views.saveAnswer,name='saveAnswer'),
     url(r'^planFees/$',views.planFees, name="planFees"),
+    url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^terms/$',views.ter_of_use,name='terms'),
     url(r'^pawtect_terms/$',views.pawtect_terms,name='pawtect_terms'),
     url(r'^privacy/',views.privacy_policy,name='privacy'),
-    url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^login/', LoginView.as_view(template_name="pawtectApp/login.html"), name='login'),
+    url(r'^password_reset/$', PasswordResetView.as_view(template_name="registration/password_reset_form.html"),
+        name='password_reset'),
+    url(r'^password_reset/done/$',PasswordResetDoneView.as_view(template_name="registration/password_reset_done.html") ,
+        name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        PasswordResetConfirmView.as_view(template_name="registration/password_reset_confirm.html"),
+        name='password_reset_confirm'),
+    url(r'^reset/done/$', PasswordResetCompleteView.as_view(template_name="registration/password_reset_complete.html"),
+        name='password_reset_complete'),
+    url(r'^change-password/$', PasswordChangeView.as_view(template_name="registration/change-password.html"),
+        name='change_password'),
     url(r'^page_not_found/$',views.page_not_found,name='page_not_found'),
     url(r'^assets/(?P<path>.*)$', serve,{'document_root': settings.ASSETS}),
     url(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
