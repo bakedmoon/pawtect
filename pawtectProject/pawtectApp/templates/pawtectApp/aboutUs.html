@@ -1,1 +1,99 @@
-{% extends "pawtectApp/coming-soon.html" %}
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper about-content-wrapper">
+  <div class="wrapper ">
+    <div class="col-lg-12 xol-md-12 col-sm-12 col-xs-12 padd-h-none ">
+      <div class="section-heading">
+        <h3 class="h1 text-left">About Us</h3>
+      </div>
+    </div>
+    <div
+      class="visible-xs visible-sm col-sm-12 col-xs-12 padd-h-none u-mob-col-padd-h-none"
+    >
+      <img
+        src="/assets/img/about/about-right-img/about-right-img.png"
+        class="ab-right-img"
+      />
+    </div>
+    <div
+      class="col-lg-7 col-md-8 col-sm-12 col-xs-12 padd-left-none u-mob-col-padd-h-none"
+    >
+      <p class="margin-v-none">
+        Pet Registry ™ is enabling tool for the benefit of Pet Owners to get
+        everything that they need to take care of his/ her beloved Pet,
+        important among these includes
+      </p>
+      <ul class="pw-about-list padd-left-none">
+        <li>
+          <span class="pw-about-list-img-sec text-center">
+            <img src="/assets/img/about/about-list-images/product.svg" />
+          </span>
+          <p class="pw-about-list-content">
+            Identification and Registration of Pet on Pet Registry ™ with Pet
+            photograph & Microchip ID to assist the owner to locate Pet in case
+            of Pet goes missing.
+          </p>
+        </li>
+        <li>
+          <span class="pw-about-list-img-sec text-center">
+            <img src="/assets/img/about/about-list-images/registration.svg" />
+          </span>
+          <p class="pw-about-list-content">
+            Information about the Expert Vet Services in the vicinity.
+          </p>
+        </li>
+        <li>
+          <span class="pw-about-list-img-sec text-center">
+            <img src="/assets/img/about/about-list-images/nurse.svg" />
+          </span>
+          <p class="pw-about-list-content">
+            Information about the assistance related to all needs of your Pet.
+          </p>
+        </li>
+        <li>
+          <span class="pw-about-list-img-sec text-center">
+            <img src="/assets/img/about/about-list-images/knowledge.svg" />
+          </span>
+          <p class="pw-about-list-content">
+            Knowledge sharing.
+          </p>
+        </li>
+      </ul>
+      <p class="mt-24">
+        Pet Registry is powered by VETINA Healthcare LLP., a leading provider of
+        Animal Health Care products in India. For more details about the Product
+        range please visit our website
+        <a
+          class="about-vetina-link"
+          href="http://www.vetina.com/"
+          target="_blank"
+          >"Vetina"</a
+        >
+      </p>
+    </div>
+    <div class="col-lg-5 col-md-4 hidden-sm hidden-xs padd-right-none ">
+      <img
+        src="/assets/img/about/about-right-img/about-right-img.png"
+        class="ab-right-img"
+      />
+    </div>
+  </div>
+</div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+{% endblock %}
