@@ -1667,3 +1667,139 @@ ul.dropdown-menu {
 .ab-right-img {
 }
 //about page css end
+
+//plan page css start
+.plan-main-content-wrapper {
+  margin-top: (@space * 4) + 4;
+}
+.plan-top-fold-img {
+  height: 440px;
+  width: 100%;
+  object-fit: cover;
+}
+.plan-top-col-wrapper {
+  margin-top: -150px;
+  margin-bottom: @space * 5;
+}
+.plan-top-fold-col {
+  border-radius: 13px;
+  box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.13);
+  background-color: rgb(238, 248, 255);
+  height: 320px;
+}
+
+.plan-top-col-heading {
+  background-color: @light-color;
+  padding: @space - 4 0px;
+  border-top-right-radius: 13px;
+  border-top-left-radius: 13px;
+
+  img,
+  h3 {
+    vertical-align: middle;
+  }
+  h3 {
+    padding-left: @space - 2;
+  }
+}
+
+.plan-top-col-content {
+  padding: @space / 2 0px;
+  max-width: 240px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plan-top-col-price {
+  padding-bottom: @space - 4;
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    .size(113px, 1px);
+    border-bottom: 1px solid #1674b9;
+  }
+  h5 {
+    font-size: @font-size + 4;
+  }
+}
+.plan-top-col-list-heading,
+.plan-top-col-list {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.plan-top-col-list {
+  padding-left: @space + 2;
+  li {
+    list-style-type: initial;
+    margin-bottom: @space / 2 + 1;
+  }
+}
+
+.u-plan-top-fold-col-padd {
+  padding: 0px @space / 2 + 1;
+}
+
+.plan-features-list-col {
+  margin-bottom: @space * 2;
+}
+.plan-about-pw-heading {
+  font-size: 22px;
+}
+.plan-features-bottom-none {
+  font-weight: bold;
+}
+.plan-about-pw-section {
+  margin-bottom: @space * 4;
+}
+
+.plan-service-table-wrapper {
+  border: 1px solid #c6c2c2;
+  margin-bottom: 45px;
+  border-bottom: none;
+}
+.plan-service-table-heading {
+  background-color: #ddeefa;
+  padding: 10px;
+}
+.plan-service-table-col-1 {
+  width: 33% !important;
+  background-color: #f8f8f8;
+}
+.plan-service-table {
+  width: 100%;
+  margin-bottom: 40px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
+  th,
+  td {
+    width: 22.33%;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #c6c2c2;
+    border-collapse: collapse;
+  }
+  th {
+    border-top: none;
+  }
+  th:first-child,
+  td:first-child {
+    border-left: none;
+  }
+  th:last-child,
+  td:last-child {
+    border-right: none;
+  }
+  tr:last-child {
+    td,
+    th {
+      // border-bottom: none;
+    }
+  }
+}
+
+//plan page css end
