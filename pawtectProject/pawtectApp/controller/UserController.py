@@ -7,7 +7,6 @@ from pawtectApp import utils
 
 class UserController():
     def userSignup(self,userInfo):
-        print("USER INFO IS HERE--->>>",userInfo)
         user = User()
         user.first_name = userInfo['fname']
         user.last_name = userInfo['lname']
