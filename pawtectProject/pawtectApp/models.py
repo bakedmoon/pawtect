@@ -132,6 +132,13 @@ class SalesforceSettings(models.Model):
 
 
 class SalesforceLogs(models.Model):
+    status = models.CharField(max_length=50, blank=True, null=True)
+    username = models.CharField(max_length=100,blank=True, null=True)
+    email = models.CharField(max_length=100,blank=True,null=True)
+    mobile = models.BigIntegerField(blank=True, null=True)
     successLog = models.TextField(blank=True, null=True)
     errorLog = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.status

@@ -80,10 +80,15 @@ def otp(request):
                 accessData = sfObj.getAccessToken(sfInfo)
                 if accessData['access_token']:
                     addInSF = sfObj.createnewuser(accessData, user.id)
+                    print("THE SF CONNECTION IS HERE--->>",addInSF)
                     if addInSF[0]['isSuccess']:
                         for rCode in addInSF:
                             if type(rCode) == dict:
                                 up.selfRefer = rCode['outputValues']['output']['REFERRAL_CODE__c']
+                                logObj.status = "Success"
+                                logObj.username = user.first_name+" "+user.last_name
+                                logObj.email = user.email
+                                logObj.mobile = user.username
                                 logObj.successLog = addInSF
                                 user.is_active = True
                                 user.backend = settings.AUTHENTICATION_BACKENDS[0]
@@ -95,6 +100,10 @@ def otp(request):
                             else:
                                 return HttpResponseRedirect(reverse('page_not_found'))
                     else:
+                        logObj.status = "Error"
+                        logObj.username = user.first_name + " " + user.last_name
+                        logObj.email = user.email
+                        logObj.mobile = user.username
                         logObj.errorLog = accessData
                         logObj.save()
                         return HttpResponseRedirect(reverse('page_not_found'))
