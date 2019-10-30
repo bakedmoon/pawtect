@@ -129,7 +129,8 @@ class SalesforceSettings(models.Model):
     password = models.CharField(max_length=600, blank=True, null=True)
     clientId = models.CharField(max_length=600, blank=True, null=True)
     clientSecret = models.CharField(max_length=600, blank=True, null=True)
-
+    tokenUrl = models.CharField(max_length=200,blank=True,null=True)
+    serviceUrl = models.CharField(max_length=300,blank=True,null=True)
 
 class SalesforceLogs(models.Model):
     status = models.CharField(max_length=50, blank=True, null=True)

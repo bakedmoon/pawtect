@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import ContactForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect, HttpResponse,JsonResponse,HttpRequest
+from django.http import HttpResponseRedirect, HttpResponse,JsonResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect,csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -71,48 +71,26 @@ def otp(request):
         mobile = request.POST['mobile']
         otp = num1+num2+num3+num4+num5+num6
         user = User.objects.get(username=mobile)
-        up = UserProfile.objects.get(user__id=user.id)
         if mob_otp == otp:
             sfObj = SalesforceService()
             sfInfo = SalesforceSettings.objects.get()
-            logObj = SalesforceLogs()
+
             if sfInfo:
-                accessData = sfObj.getAccessToken(sfInfo)
-                if accessData['access_token']:
-                    addInSF = sfObj.createnewuser(accessData, user.id)
-                    print("THE SF CONNECTION IS HERE--->>",addInSF)
-                    if addInSF[0]['isSuccess']:
-                        for rCode in addInSF:
-                            if type(rCode) == dict:
-                                up.selfRefer = rCode['outputValues']['output']['REFERRAL_CODE__c']
-                                logObj.status = "Success"
-                                logObj.username = user.first_name+" "+user.last_name
-                                logObj.email = user.email
-                                logObj.mobile = user.username
-                                logObj.successLog = addInSF
-                                user.is_active = True
-                                user.backend = settings.AUTHENTICATION_BACKENDS[0]
-                                auth.logout(request)
-                                auth.login(request, user)
-                                logObj.save()
-                                up.save()
-                                user.save()
-                            else:
-                                return HttpResponseRedirect(reverse('page_not_found'))
-                    else:
-                        logObj.status = "Error"
-                        logObj.username = user.first_name + " " + user.last_name
-                        logObj.email = user.email
-                        logObj.mobile = user.username
-                        logObj.errorLog = accessData
-                        logObj.save()
-                        return HttpResponseRedirect(reverse('page_not_found'))
+                accessData = sfObj.getAccessToken(sfInfo,user.id)
+
+                if accessData.status_code == 200:
+                    user.is_active = True
+                    user.backend = settings.AUTHENTICATION_BACKENDS[0]
+                    auth.logout(request)
+                    auth.login(request, user)
+                    user.save()
+                    return HttpResponseRedirect(reverse('my-pets'))
                 else:
                     return HttpResponseRedirect(reverse('page_not_found'))
+
             else:
                 return HttpResponseRedirect(reverse('page_not_found'))
 
-            return HttpResponseRedirect(reverse('my-pets'))
         else:
             return HttpResponseRedirect(reverse('page_not_found'))
 
