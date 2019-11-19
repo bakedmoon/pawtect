@@ -20,7 +20,7 @@ class SalesforceService():
 
     def createNewUser(self, accessData, sfInfo, userId):
         print("INSIDE HERE IS --->>",accessData['instance_url'])
-        make_user_url = accessData['instance_url'] + "/" + sfInfo.serviceUrl
+        make_user_url = accessData['instance_url'] + "/" + "services/data/v42.0/actions/custom/apex/LMS_AccountSignupAction"
         userInfo = UserProfile.objects.get(user__id=userId)
 
         dataString = {"inputs": [

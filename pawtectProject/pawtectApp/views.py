@@ -193,6 +193,7 @@ def quotation(request):
     query_filter = utils.get_filter_params(request.GET,{},['pawtect-quote','age','name'])
     
     # Take type for fiter search result with types.(RED,YELLOW,BLUE)
+    listCount = []
     for t in types:
         plans = Plans.objects.filter(**query_filter,type_id=t.id)
         
