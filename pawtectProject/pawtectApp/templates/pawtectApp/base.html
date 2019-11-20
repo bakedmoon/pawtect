@@ -212,7 +212,7 @@
                 <h6 class="mobile-nav-slider-heading">Menu</h6>
                 <menu class="mobile-menu-list padd-left-none">
                   <li>
-                    <span class="header-vetcoin-tag">100 Vetcoins Available</span>
+                    <span class="header-vetcoin-tag">{{user.userprofile.vetcoins}} Vetcoins Available</span>
                   </li>
                   <li class="{% if request.resolver_match.url_name != "my-pets" %}active{% endif %}"><a href="{% url 'my_proposal' %}">My Pawtect Proposals</a></li>
                   <li class="{% if request.resolver_match.url_name == "my-pets" %}active{% endif %}"><a href="{% url 'my-pets' %}">My Pets</a></li>

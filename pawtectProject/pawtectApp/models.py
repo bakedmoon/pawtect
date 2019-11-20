@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.postgres.fields import JSONField, ArrayField
+from django.contrib.postgres.fields.jsonb import JSONField as JSONBField
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -19,6 +20,8 @@ class UserProfile(models.Model):
     profession = models.TextField(blank=True, null=True)
     selfRefer = models.CharField(max_length=50, blank=True, null=True)
     otherRefer = models.CharField(max_length=50, blank=True, null=True)
+    vetcoins = models.FloatField(blank=True,null=True)
+    vetcoinObj = JSONBField(null=True,blank=True)
 
     def __str__(self):
         return self.user.username

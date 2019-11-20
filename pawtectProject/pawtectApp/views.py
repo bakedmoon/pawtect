@@ -76,14 +76,15 @@ def otp(request):
             sfInfo = SalesforceSettings.objects.get()
 
             if sfInfo:
-                accessData = sfObj.getAccessToken(sfInfo,user.id)
-
+                accessData = sfObj.createNewUser(sfInfo,user.id)
+                
                 if accessData.status_code == 200:
                     user.is_active = True
                     user.backend = settings.AUTHENTICATION_BACKENDS[0]
                     auth.logout(request)
                     auth.login(request, user)
                     user.save()
+
                     return HttpResponseRedirect(reverse('my-pets'))
                 else:
                     return HttpResponseRedirect(reverse('page_not_found'))
@@ -238,17 +239,22 @@ def user_profile(request):
 
 # Show All Pets 
 @login_required(login_url='user_login')
-def my_pets(request): 
+def my_pets(request):
+    sfObj = SalesforceService()
     user_profile = request.user.userprofile
-    pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
-    petsCount = pets.count()
-    for petBirth in pets:
-        diffrence = today - petBirth.birthDate
-        actualDays = diffrence.days
-        if actualDays < const.SMALL_AGE_LIMIT or actualDays > const.MAX_AGE_LIMIT:
-            petBirth.disabledClass = True
-        else:
-            petBirth.disabledClass = False
+    vetcoins = sfObj.getVetcoinsDetails(user_profile)
+    print("VETCOINS ARE-->>",vetcoins)
+
+    if vetcoins:
+        pets = Pet.objects.filter(user_profile=user_profile).order_by('id')
+        petsCount = pets.count()
+        for petBirth in pets:
+            diffrence = today - petBirth.birthDate
+            actualDays = diffrence.days
+            if actualDays < const.SMALL_AGE_LIMIT or actualDays > const.MAX_AGE_LIMIT:
+                petBirth.disabledClass = True
+            else:
+                petBirth.disabledClass = False
 
     return render(request,"pawtectApp/my-pets.html",{"pets":pets,"petsCount":petsCount})
 
