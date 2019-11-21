@@ -1,7 +1,7 @@
 import requests, json
 from django.http import JsonResponse
 from pawtectApp.models import UserProfile, SalesforceLogs, SalesforceSettings
-from pawtectApp.const import SERVICE_URL
+from pawtectApp.const import SIGNUP_URL,VETCOIN_URL
 
 
 class SalesforceService():
@@ -26,13 +26,11 @@ class SalesforceService():
         payload = json.dumps(dataString)
 
         accessData = self.getAccessToken(sfInfo)
-
-        make_user_url = accessData['instance_url'] + "/" + SERVICE_URL
+        make_user_url = accessData['instance_url']+SIGNUP_URL
         headers = {'Content-Type': "application/json",
-                   'Authorization': accessData['token_type'] + " " + accessData['access_token'], }
+                   'Authorization': accessData['token_type'] + " " + accessData['access_token']}
         response = requests.request("POST", make_user_url, headers=headers, data=payload)
         addSfInfo = response.json()
-       
         if addSfInfo[0]['isSuccess']:
             logObj = SalesforceLogs()
             for rCode in addSfInfo:
@@ -63,19 +61,16 @@ class SalesforceService():
         sfInfo = SalesforceSettings.objects.get()
         accessData = self.getAccessToken(sfInfo)
         userInfo = UserProfile.objects.get(user__id=userInfo.user_id)
-        print("USER INFO UNDER--->>>",userInfo)
-        url = accessData['instance_url'] + "/" + SERVICE_URL
+        url = accessData['instance_url']+VETCOIN_URL
 
         dataString = {"inputs": [
             {"customer_mobile": str(userInfo.mobile), "event": "RETRIEVE_REWARD_POINTS"}]}
 
         payload = json.dumps(dataString)
-        print("PAYLOAD IS HERE-->>>",payload,accessData)
         headers = {'Content-Type': "application/json",
                    'Authorization': accessData['token_type'] + " " + accessData['access_token'], }
         response = requests.request("POST", url, data=payload, headers=headers)
         vetCoinResponse = response.json()
-        print("Vetcoin Response is here-->>>",vetCoinResponse)
         if vetCoinResponse[0]['isSuccess']:
             print("INSIDE IF SERVICE",vetCoinResponse[0])
             userInfo.vetcoins = vetCoinResponse[0]['outputValues']['reward_points']

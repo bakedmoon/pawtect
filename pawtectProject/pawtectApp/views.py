@@ -243,7 +243,6 @@ def my_pets(request):
     sfObj = SalesforceService()
     user_profile = request.user.userprofile
     vetcoins = sfObj.getVetcoinsDetails(user_profile)
-    print("VETCOINS ARE-->>",vetcoins)
 
     if vetcoins:
         pets = Pet.objects.filter(user_profile=user_profile).order_by('id')

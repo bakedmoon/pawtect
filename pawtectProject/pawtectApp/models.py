@@ -20,7 +20,7 @@ class UserProfile(models.Model):
     profession = models.TextField(blank=True, null=True)
     selfRefer = models.CharField(max_length=50, blank=True, null=True)
     otherRefer = models.CharField(max_length=50, blank=True, null=True)
-    vetcoins = models.FloatField(blank=True,null=True)
+    vetcoins = models.IntegerField(blank=True,null=True)
     vetcoinObj = JSONBField(null=True,blank=True)
 
     def __str__(self):

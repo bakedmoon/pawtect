@@ -163,7 +163,7 @@
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-right-none">
           <ul class="header-list nav pull-right hidden-sm hidden-xs ">
             <li>
-              <span class="header-vetcoin-tag">100 Vetcoins Available</span>
+              <span class="header-vetcoin-tag">{{user.userprofile.vetcoins | default:0}} Vetcoins Available</span>
             </li>
             <li class="{% if request.resolver_match.url_name == "my_proposal" %}active{% endif %}"><a href="{% url 'my_proposal' %}">My Pawtect Proposals</a></li>
             <li class="{% if request.resolver_match.url_name != "my_proposal" %}active{% endif %}"><a href="{% url 'my-pets' %}">My Pets</a></li>
