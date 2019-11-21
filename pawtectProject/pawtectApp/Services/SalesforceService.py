@@ -15,7 +15,7 @@ class SalesforceService():
         if accessData:
             return accessData
         else:
-            return JsonResponse({"Error": "Something Went Wrong."})
+            return None
 
     def createNewUser(self, sfInfo, userId):
         userInfo = UserProfile.objects.get(user__id=userId)
@@ -26,6 +26,8 @@ class SalesforceService():
         payload = json.dumps(dataString)
 
         accessData = self.getAccessToken(sfInfo)
+        if not accessData:
+            return None
         make_user_url = accessData['instance_url']+SIGNUP_URL
         headers = {'Content-Type': "application/json",
                    'Authorization': accessData['token_type'] + " " + accessData['access_token']}
@@ -42,7 +44,7 @@ class SalesforceService():
                     logObj.successLog = addSfInfo
                     logObj.save()
                     userInfo.save()
-                    return JsonResponse({"success": "Saved successfully."})
+                    return addSfInfo
 
 
                 else:
@@ -52,15 +54,17 @@ class SalesforceService():
                     logObj.mobile = userInfo.user.username
                     logObj.errorLog = accessData
                     logObj.save()
-                    return JsonResponse({"Error": "Something went wrong."})
+                    return None
         else:
-            return JsonResponse({"Error": "Something went wrong."})
+            return None
 
         
     def getVetcoinsDetails(self,userInfo):
         sfInfo = SalesforceSettings.objects.get()
         accessData = self.getAccessToken(sfInfo)
         userInfo = UserProfile.objects.get(user__id=userInfo.user_id)
+        if not accessData:
+            return None
         url = accessData['instance_url']+VETCOIN_URL
 
         dataString = {"inputs": [
@@ -74,10 +78,10 @@ class SalesforceService():
         if vetCoinResponse[0]['isSuccess']:
             print("INSIDE IF SERVICE",vetCoinResponse[0])
             userInfo.vetcoins = vetCoinResponse[0]['outputValues']['reward_points']
-            userInfo.selfRefer = vetCoinResponse[0]['outputValues']['referral_code']
+            #userInfo.selfRefer = vetCoinResponse[0]['outputValues']['referral_code']
             userInfo.vetcoinObj = vetCoinResponse
             userInfo.save()
             return vetCoinResponse
         else:
-            return JsonResponse({"Error": "Something went wrong."})
+            return None
     

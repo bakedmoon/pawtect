@@ -12,25 +12,17 @@
         <th>Debit</th>
         <th>Credit</th>
       </tr>
+      {% for statement in details %}
       <tr>
-        <td>1</td>
-        <td>Aug 21, 2019 12:30</td>
+        <td>{{forloop.counter}}</td>
+        <td>{{statement.DATE__c}}</td>
         <td class="my-vet-coin-description">
-          000107-Redemption for Vet Fees by Pawtect agent Aarti Gujarati at
-          mitra talokar
+          {{statement.NARRATION__c}}
         </td>
-        <td>10</td>
-        <td>0</td>
+        <td>{{statement.DEBIT__c}}</td>
+        <td>{{statement.CREDIT__c}}</td>
       </tr>
-      <tr>
-        <td>2</td>
-        <td>Aug 7, 2019 11:40</td>
-        <td class="my-vet-coin-description">
-          Referral reward points
-        </td>
-        <td>0</td>
-        <td>50</td>
-      </tr>
+      {% endfor %}
     </table>
   </div>
 </div>

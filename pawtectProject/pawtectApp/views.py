@@ -78,7 +78,7 @@ def otp(request):
             if sfInfo:
                 accessData = sfObj.createNewUser(sfInfo,user.id)
                 
-                if accessData.status_code == 200:
+                if accessData and  accessData[0]['isSuccess']:
                     user.is_active = True
                     user.backend = settings.AUTHENTICATION_BACKENDS[0]
                     auth.logout(request)
@@ -254,6 +254,9 @@ def my_pets(request):
                 petBirth.disabledClass = True
             else:
                 petBirth.disabledClass = False
+    else:
+        messages.error(request,"Something went wrong. Please try again.")
+        return None
 
     return render(request,"pawtectApp/my-pets.html",{"pets":pets,"petsCount":petsCount})
 
@@ -354,7 +357,12 @@ def my_pets_delete(request,petId):
 
 
 def my_vetcoins(request):
-    return render(request,'pawtectApp/my-vetcoins.html')
+    user_profile = request.user.userprofile
+    details = user_profile.vetcoinObj[0]['outputValues']['details']
+    data = {}
+    if details:
+        data = details
+    return render(request,'pawtectApp/my-vetcoins.html',{"details":data})
 
 def page_not_found(request):
     return render(request,'pawtectApp/404.html')
