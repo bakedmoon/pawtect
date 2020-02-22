@@ -1,0 +1,46 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper u-mob-my-vetcoin-cont-wrap">
+  <div class="wrapper">
+    <h1 class="u-mob-large-heading text-center">My Vetcoins Statement</h1>
+
+    <table class="my-vetcoins-table mt-24 mb-48 clearfix">
+      <tr>
+        <th>Sr. No.</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Debit</th>
+        <th>Credit</th>
+      </tr>
+      {% for statement in details %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{statement.DATE__c}}</td>
+        <td class="my-vet-coin-description">
+          {{statement.NARRATION__c}}
+        </td>
+        <td>{{statement.DEBIT__c}}</td>
+        <td>{{statement.CREDIT__c}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+{% endblock %}

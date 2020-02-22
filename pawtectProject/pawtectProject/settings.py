@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pawtectApp',
     'rest_framework',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -53,10 +54,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'pawtectProject.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'pawtectApp/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +72,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pawtectProject.wsgi.application'
-
+DB_NAME = os.environ.get('DB_NAME', 'pawtect')
+DB_USER = os.environ.get('DB_USER', 'postgres')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', '')
+DB_HOST = os.environ.get('DB_HOST', 'localhost')
+DB_PORT = os.environ.get('DB_PORT', 5431)
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -78,11 +84,11 @@ WSGI_APPLICATION = 'pawtectProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'pawtect',
-        'USER': 'pawtectapp',
-        'PASSWORD': 'pawtect',
-        'HOST': 'localhost',
-        'PORT': 5432,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': DB_HOST,
+        'PORT':DB_PORT,
     }
 }
 
@@ -105,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+APPEND_SLASH=False
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -119,17 +125,21 @@ USE_L10N = True
 
 USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'sagar.crive@gmail.com'
+SERVER_EMAIL = 'sagar.crive@gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sagar.crive@gmail.com'
-EMAIL_HOST_PASSWORD = 'Sagar@973065'
+EMAIL_HOST_PASSWORD = ''
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = '/pawtectApp/user_login/'
+LOGIN_URL = '/pawtectApp/login/'
 ASSETS = os.path.join(BASE_DIR, 'pawtectApp/assets')
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

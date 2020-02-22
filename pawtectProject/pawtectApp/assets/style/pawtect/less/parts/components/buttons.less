@@ -93,9 +93,12 @@
   border-style: dashed;
 }
 .ghost-btn-light-gray {
-  .ghost-button-variant(#cccccc);
   border-color: #cccc;
   border-width: 1px;
+  color: #999999;
+  a {
+    color: #999999;
+  }
 }
 // ---------------------------------------------------------- Button Input
 // We use this button inline with input so input and buttons have same height
@@ -153,7 +156,7 @@
 .btn-md,
 .btn-medium {
   min-height: 40px;
-  .button-size(4px, 20px, @font-size-small - 1, 1.5, 4px);
+  .button-size(4px, 20px, @font-size-small, 1.5, 4px);
 }
 .btn-sm,
 .btn-small {
@@ -176,7 +179,11 @@
   width: 100%;
   padding-top: @space / 2;
 }
-
+.btn-link {
+  min-height: auto;
+  min-width: auto;
+  padding: 0px;
+}
 //.btn-block + .btn-block{
 //	margin-top: @space/3;
 //}

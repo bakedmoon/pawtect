@@ -1,0 +1,348 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper">
+  <div class="wrapper">
+      <div class="profile-form-wrapper mb-64 clearfix">
+          <div class="text-center">
+            <h1 class="margin-bottom-none u-mob-large-heading ">My Profile</h1>
+            <p class="user-pro-ref-id mt-12">My Reference ID: {{user.userprofile.id}}</p>
+          </div>
+          <form class="clearfix" method="post"  enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="upload-profile-wrap text-center p-tb-20">
+                <div class="relative">
+                  <img
+                  {% if user %}src="{{user.userprofile.avatar}}" {% else %} onError="this.src='/assets/img/common-images/avatars/avatars-01.svg'" {% endif %}
+                    class="upload-profile-img"
+                    id="image"
+                  />
+                </div>
+                <input
+                  type="file"
+                  name="avatar"
+                  id="avatar"
+                  class="img-upload-input"
+                  accept="image/*"
+                /><label for="avatar" class="pt-4"
+                  ><img src="/assets/img/common-icons/camera.svg" /><span
+                    >Change Image</span
+                  ></label
+                >
+              </div>
+              <!-- End of settings-general-image -->
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+                
+             </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                placeholder="First Name"
+                name="fname"
+                id="fname"
+                class="input-small"
+                onkeypress=" return isSpecial(event);"
+                value="{{user.userprofile.user.first_name}}"
+                required
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                placeholder="Last Name"
+                class="input-small"
+                name="lname"
+                id="lname"
+                onkeypress=" return isSpecial(event);"
+                value="{{user.userprofile.user.last_name}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                placeholder="Mobile Number"
+                class="input-small"
+                name="mobile"
+                id="mobile"
+                value="{{user.userprofile.mobile}}" disabled
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="email"
+                placeholder="Email"
+                class="input-small"
+                name="email"
+                id="email"
+                value="{{user.userprofile.user.email}}" disabled
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <div class="ui-widget relative">
+                <select placeholder="Gender" name="gender" id="gender" class="input-small margin-bottom-none" value="{{user.userprofile.gender}}">
+                {% if not user.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
+                  {% if  user.gender %}<option>Select Gender</option>{% endif %}
+                  <option value="male" {% if user.userprofile.gender == 'male' %}selected {% endif %}>Male</option>
+                  <option value="female" {% if user.userprofile.gender == 'female' %}selected {% endif %}>Female</option>
+                </select>
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                placeholder="Address"
+                class="input-small"
+                name="address"
+                id="address"
+                value="{{user.userprofile.address | default:""}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input type="text" placeholder="City" onkeypress=" return isSpecial(event)" class="input-small" name="city" id="city" value="{{user.userprofile.city | default:""}}" />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                placeholder="Pincode"
+                class="input-small"
+                name="pincode"
+                id="pincode"
+                maxlength="8"
+                onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;"
+                value="{{user.userprofile.pincode}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                placeholder="State"
+                class="input-small"
+                name="state"
+                onkeypress=" return isSpecial(event)"
+                id="state"
+                value="{{user.userprofile.state | default:""}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <div class="ui-widget relative ">
+                <input
+                  id="country"
+                  placeholder="Enter country"
+                  class="input-small" onkeypress=" return isSpecial(event)"
+                  name="country" value="{{user.userprofile.country | default:"India"}}"
+                  />
+                
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+              <div
+                class="ui-widget width-full small-ui-widget inline-block pull-right relative mb-8"
+              >
+                <input
+                  id="pet_user_type"
+                  placeholder="I am..."
+                  class="input-small"
+                  name="user_type"
+                />
+                <img
+                  src="https://img.icons8.com/material-two-tone/48/000000/plus.png"
+                  class="dropdown-arrow u-add-profession-icon" onclick="addProfession()"
+                />
+              </div>
+              <ul class="user-pro-owner-type padd-left-none" id="professionId">
+              </ul>
+              <input type="hidden" name="profession" id="hideId" value="{{user.userprofile.profession | default:""}}"/>
+            
+            </div>
+            <div class="clearfix"></div>
+            {% if messages %}
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+                  <span class="alert-section error-alert width-full" id="errorId">
+                    {% for message in  messages%}
+                    <span>{{message}}</span>
+                    {% endfor %}
+                  </span>
+                </div>
+                {% endif %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-32">
+              <button class="btn btn-md text-left brand-color u-mob-change-pass-margin  padd-h-none "><a href="{% url 'change_password' %}">
+                Change Password?</a>
+              </button>
+              <div class="profile-bottom-btn-wrap pull-right inline-block">
+                <a href="{{request.META.HTTP_REFERER}}"><button type="button" class="btn ghost-btn-light-gray btn-md">Cancel</button></a>
+               <button class="btn btn-primary btn-md ml-8" type="submit">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+  </div>
+  
+</div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/validation.js"></script>
+<script>
+var professsionArray= []
+ 
+var reloadProfession = function(){
+  var professionData = document.getElementById("hideId").value;
+  let splitData = professionData.split(',')
+  $('#professionId').empty()
+  professsionArray = []
+  
+  for(var i=0;i<splitData.length;i++){
+    var p = splitData[i]
+    if(splitData[0].length > 0){
+      $('#professionId').append('<li><span>' + p + '</span><img onclick="removeFromDepartment(this,'+i+')" src="/assets/img/common-icons/close-button-light.svg" /></label>')
+      professsionArray.push(p)
+    }
+ }
+}
+
+removeProfession = function(index){
+    professsionArray.splice(index,1)
+    $('#hideId').val(professsionArray.join(','))
+ reloadProfession()
+    
+}
+
+window.onload = function(){
+ reloadProfession()
+}
+
+  $(function() {
+    var countries = [];
+    $.ajax({
+      type: "GET",
+      url: "/get-country-data/",
+      success: function(data) {
+        countries = data.country
+
+        $("#country").autocomplete({
+        source: countries
+      });
+    }
+    });
+
+    var availableTags = [
+      "Pet Owner",
+      "Veterinary Doctor",
+      "Pet Shop",
+      "Groomers",
+      "Pet Hostels / Pet Sitters",
+      "Animal Behaviorist",
+      "Dog Trainers",
+      "Breeders",
+      "Pet Diagnostic Center",
+      "NGO",
+      "Ambulance",
+      "Kennel / Feline Clubs"
+    ];
+    $("#pet_user_type").autocomplete({
+      source: availableTags
+    });
+
+
+  });
+</script>
+<script src="/assets/js/validation.js"></script>
+<script>
+function readURL(input) {
+   var allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+     var data = input.files[0]
+     var mimetype = data.type;
+    reader.onload = function(e) {
+      if (allowedFileTypes.indexOf(mimetype) > -1) {
+      $('#image').attr('src', e.target.result);
+     }else{
+       $('#image').attr('src', '/assets/img/common-images/avatars/avatars-03.svg');
+       swal({
+        title: "Ohhh...",
+        text: "Image format not valid.",
+        icon: "warning",
+        });
+     }
+    }
+   reader.readAsDataURL(input.files[0]);
+  }
+}
+
+$("#avatar").change(function() {
+  readURL(this);
+});
+
+var timeOutFunc = setTimeout(()=>{
+$(document).ready(function(){
+  $('form').keydown(function (e) {
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+    $('body').on("keyup",'#pet_user_type', function(event){
+        if(event.which == 13){
+          let profession = $("#pet_user_type").val()
+          var checkLength = profession.trim();
+          console.log("THE LENGTH IS HERE--->>>",checkLength.length)
+          if(checkLength.length > 0){
+            professsionArray.push(profession)
+             $('#hideId').val(professsionArray.join(','))
+             reloadProfession()
+             $("#pet_user_type").val('')
+          }
+          else{
+            return
+          }
+        }
+    });
+});
+    clearTimeout(timeOutFunc)
+},2000)
+
+function removeFromDepartment(element,index){
+    removeProfession(index)
+}
+
+function addProfession(){
+  let profession = $("#pet_user_type").val()
+  var checkLength = profession.trim();
+          if(checkLength.length>0){
+            professsionArray.push(profession)
+             $('#hideId').val(professsionArray.join(','))
+             reloadProfession()
+             $("#pet_user_type").val('')
+        }else{
+          return
+        }
+}
+</script>
+
+{% endblock %}

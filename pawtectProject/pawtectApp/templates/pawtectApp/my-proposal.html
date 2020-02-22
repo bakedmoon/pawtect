@@ -1,0 +1,499 @@
+{% extends "pawtectApp/base.html" %} 
+{% load custom_filter %}
+{% block body_block %}
+
+
+<div class="main-content-wrapper ">
+  <!-- empty screen start -->
+  {% if not pets %}
+  <div class="wrapper">
+    <h1 class="u-mob-large-heading">My Pawtect Proposals</h1>
+    <div class="empty-screen-wrapper mt-32">
+      <img src="/assets/img/common-images/empty-screen-images/quotation-empty-img2.png" class="empty-screen-img">
+      <h2>Quotation</h2>
+      <p>Enter your pet's information and get the required quotation.</p>
+    </div>
+  </div>
+  {% endif %}
+  <!-- empty screen end -->
+  {% if pets %}
+  <div class="wrapper">
+    <h1 class="u-mob-large-heading">My Pawtect Proposals</h1>
+    <p class="my-proposal-top-para">
+      We have created a Pawtect plan proposal for you and have included all your
+      pets registered with us in proposal for your convenience.
+    </p>
+
+    <div class="my-proposal-content-wrapper clearfix mt-20">
+      <div class="col-lg-9 col-md-8 col-sm-7 col-xs-12 padd-left-none u-mob-col-padd-right-none">
+        <ul class="toolbar mb-48 my-proposal-tab-list padd-left-none">
+          <li class="fil-cat {% if not selectedPet %}selected {% endif %}" href="" data-rel="all" onclick="allPet()">
+            All
+          </li>
+          {% for pet in myPets %}
+         <li class="fil-cat {% if  selectedPet and selectedPet.id == pet.id %} selected {% endif %}" data-rel="{{pet.name}}" 
+         onclick="singlePet({{pet.id}})">{{pet.name}}</li>
+          {% endfor %}
+        </ul>
+
+        <div style="clear:both;"></div>
+        <div id="portfolio">
+           {% for pet in pets %}
+          <div class="tile scale-anm jacky all">
+            <div class="my-pet-cols my-pet-proposal-col clearfix relative mr-8 mb-48 p-16">
+           
+              <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16 ">
+                <img
+                  {% if pet %}src="{{pet.picture}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %} 
+                  class="absolute left-center my-pet-col-pet-pro-img"
+                />
+                <div class="my-pet-col-pet-pro-details large-width-details inline-block ml-32 pl-32 ">
+                  <span class="">{{pet.name}}</span>
+                  <div class="inline-block pull-right">
+                   <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-link">
+                      <img src="/assets/img/common-icons/edit-icon.svg">
+                    </button>
+                    </a>
+                   <a href="{% url 'my_pets_delete' pet.id%}"> <button class="btn btn-link">
+                      <img src="/assets/img/common-icons/delete-icon.svg">
+                    </button>
+                    </a>
+                  </div>
+                </div>
+                
+              </div>
+              
+              <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 padd-left-none u-proposal-amt-col-wrap  pt-32">
+                <label class="my-pet-col-label">Plans *</label>
+                <ul class="my-pet-col-ribbon-list padd-left-none mb-24 mt-12">
+                  <li>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" class="{{pet.id}}" name="{{pet.id}}" value="Red Ribbon">
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/red-ribbon.svg">
+                          <span>Red Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" class="{{pet.id}}" name="{{pet.id}}" value="Yellow Ribbon">
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/yellow-ribbon.svg">
+                          <span>Yellow Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                    <label class="radio-button-wrapper">
+                      <input type="radio" class="{{pet.id}}" name="{{pet.id}}" value="Blue Ribbon">
+                      <span class="checkmark small-checkmark"></span>
+                      <div class="radio-button-label inline-block">
+                          <img src="/assets/img/common-icons/blue-ribbon.svg">
+                          <span>Blue Ribbon</span>
+                      </div> 
+                      <img src="/assets/img/common-icons/help.svg" class="my-pet-col-help-icon">
+                    </label>
+                  </li>
+                </ul>
+                 
+                <lable class="my-pet-col-label">Coverage amount *</lable>
+                <div class="ui-widget relative width-full mt-8" id="select_dog_age">
+                  <input id="{{pet.id}}" class="set-amount" onblur="getPlan(this,'{{pet.id}}','{{pet.breed}}','{{pet.birthDate}}')" placeholder="Select cover amount" {% if pet.disabledClass %} disabled{% endif %} onkeypress=" return isNumber(event)" ondrop="return false;" onpaste="return false;"/>
+                  <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+                </div>
+                <div class="my-pet-col-plan-fee mb-4">
+                  <span>Plan Fees</span>
+                  <span class="pull-right set-amount-plan {{pet.id}}">₹ 0</span>
+                </div>
+              </div>
+              {% if questions.count > 0 %}
+              <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 padd-h-none">
+                <div class="my-pet-col-right-box">
+                  <h6 class="inline-block margin-v-none">Health Information *</h6>
+                  <div class="inline-block pull-right">
+                    <img src="/assets/img/common-icons/circle-with-check-symbol.svg">
+                    <span class="my-pet-col-que-ans-count">{{questions.count}}/{{questions.count}}</span>
+                  </div>
+                  <div class="my-pet-col-que-section width-full">
+                  {% for question in questions %}
+                    <div class="my-pet-col-ques">
+                      <p>{{question.question}}</p>
+                      {% if question.type == 'radio'%}
+                          {% for op in question.option %}
+                        <label class="radio-button-wrapper inline-block">
+                          <input type="radio" id='ans-{{question.id}}' name="answer-{{pet.id}}-{{question.id}}" {% if pet|get_answer:question.id|lower == op.name|lower %}  checked {% endif %}  value="{{op.name}}" onclick="answer('{{pet.id}}','{{question.id}}','{{op.name}}')">
+                          <span class="checkmark small-checkmark"></span>
+                          <div class="radio-button-label inline-block">
+                            <span class="padd-left-none">{{op.name}}</span>
+                          </div> 
+                        </label>
+                          {% endfor %}
+                      {% elif question.type == 'text' %}
+                         <label class="radio-button-wrapper inline-block">
+                          <input type="text" id='ans-{{question.id}}' name="answer-{{pet.id}}-{{question.id}}"  value="{{pet|get_answer:question.id}}" onclick="answer('{{pet.id}}','{{question.id}}')">
+                        </label>
+                      {% endif%}
+                    </div>
+                  {% endfor %}
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              {% if pet.disabledClass %}
+              <span class="my-pet-col-bottom-err-text danger-color ml-12 mt-8">Age criteria do not match.</span>
+              {% endif %}
+              {% endif %}
+            </div>
+          </div>
+      {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12 padd-h-none my-proposal-payment-section">
+        <div class="my-proposal-plan-summary-col">
+          <div class="my-proposal-plan-content relative">
+            <h6 class="margin-v-none">Plan Fees Summary</h6>
+            <span class="close-payment-slider-btn absolute right top mr-16 mt-12  "><img src="/assets/img/common-icons/close-button.svg"><span class="pl-4">Close</span></span>
+            <ul class="my-proposal-plan-fee-list padd-left-none mt-16">
+              <li>
+                <span>Total Plan Fees</span>
+                <span id="totalId">₹ 0</span>
+              </li>
+              <li>
+                <span>Multiple Pet Discount (10%)</span>
+                <span id="discountId">₹ 0</span>
+              </li>
+              <li>
+                <span>GST</span>
+                <span id="gstId">₹ 0</span>
+              </li>
+              <li>
+                <span>Vetcoins</span>
+                <span id="vetcoinId">₹ 0</span>
+              </li>
+            </ul>
+            <!-- add class show-referral-inp-section to my-pet-col-referral-section to enable referral input field -->
+            <div class="my-pet-col-referral-section">
+              <a href="" onclick="referCode(event)">Have a referral code?</a>
+              <div class="my-pet-col-referral-inp-wrap">
+                <label>Referral Code</label>
+                <div class="relative">
+                  <input type="text" name="referral_code" placeholder="Add referral code" class="margin-bottom-none">
+                  <button class="btn btn-link input-cancel-btn absolute right-center" onclick="closeCode(event)">
+                    <img src="/assets/img/common-icons/close-button.svg" >
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="my-pet-col-plan-fee mt-16">
+              <span>Net Payable</span>
+              <span class="pull-right" id="netPaymentId">₹ 0</span>
+            </div>
+            <div class="my_proposal_terms_checkbox">
+              <label class="checkbox-container">
+                <input type="checkbox" name="accept_policy" id="myCheck">
+                <span class="checkbox-checkmark"></span>
+                <span>I have read and agreed with <a href="{% url 'terms' %}">Terms and 
+                    Conditions</a>  of Pawtect Plan</span>
+              </label>
+            </div>
+          </div>
+          <button class="btn btn-primary btn-md width-full mt-12 u-mob-pay-button" id="paymentId" disabled>Proceed to Payment</button>
+        </div>
+        <button class="btn btn-primary btn-md width-full u-mob-pay-button" id="u-mob-bottom-pay-button">Continue</button>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- tab js start -->
+<script src="/assets/js/const.js"></script>
+<script>
+  $(function() {
+    var selectedClass = "";
+    $(".fil-cat").click(function() {
+      $(".fil-cat").removeClass("selected");
+      $(this).addClass("selected");
+      selectedClass = $(this).attr("data-rel");
+      $("#portfolio").fadeTo(100, 0.1);
+      $("#portfolio .tile")
+        .not("." + selectedClass)
+        .fadeOut()
+        .removeClass("scale-anm");
+      setTimeout(function() {
+        $("." + selectedClass)
+          .fadeIn()
+          .addClass("scale-anm");
+        $("#portfolio").fadeTo(300, 1);
+      }, 300);
+    });
+  });
+</script>
+<!-- tab js end -->
+
+
+<script>
+    var breedItem = {}
+    var age_Type = []
+    $(function() {
+    var amountData = [];
+    $.ajax({
+      type: "GET",
+      url: "/get-filter-quote-data/",
+      success: function(data) {
+
+        let amountItem = data.amounts
+        breedItem = data.breed.breeds
+        age_Type = data.ages
+
+        for(let i in amountItem){
+          var item = amountItem[i]
+          item.label = item.amount
+          amountData.push(item)
+        }
+
+     $(".set-amount").autocomplete({
+        source: amountData,
+        minLength:0
+        }).bind('focus', function() {      
+          if(!$(this).val().trim())
+                $(this).keydown();
+        });
+      }
+    });
+});
+
+  // Function For check plan fees
+  var count = 0;
+  var amountArray = []
+  var obj = {}
+    var age_Period = ''
+    var start_age = 0
+    var start_age_unit = ''
+    var end_age = 0
+    var end_age_unit = ''
+    var age_obj = {}
+    var dict = {
+      'D':1,
+      'W':7,
+      'M':30,
+      'Y':365
+    }
+  const disPercentage = 10;
+  const vetcoins = 100
+  $("#vetcoinId").html("₹"+vetcoins)
+
+  function getPlan(amount,petId,breed,birthDate){
+    var plan ='';
+    
+    if($("input[type='radio']."+petId).is(':checked')){
+      plan = $("input[type='radio']."+petId+":checked").val()
+    }
+
+      if(plan.length === 0){
+          alert("Please select plan.")
+          return false;
+      }
+
+    obj = breedItem.find(o => o.name === breed);
+    let actualDate = moment(birthDate);
+    let today = moment(new Date());
+    let diffDays = today.diff(actualDate, 'days')
+    
+    for(let i=0;i<age_Type.length;i++){
+        let start = age_Type[i].start_age*dict[age_Type[i].start_age_unit]
+        let end = age_Type[i].end_age*dict[age_Type[i].end_age_unit]
+            age_obj =age_Type[i]
+            if (between(diffDays,start,end)) {
+             start_age = age_obj.start_age;
+             end_age = age_obj.end_age;
+             start_age_unit = age_obj.start_age_unit;
+             end_age_unit = age_obj.end_age_unit;
+             age_Period = age_obj.age_range;
+             break;
+            }
+    }
+
+      function between(x, min, max) {
+        console.log(x, min, max)
+          if(x >= min && x <= max){
+            return true
+          }
+    }
+
+    var dataToSend = {
+      "category":obj.category,
+      "age":age_Period,
+      "planType":plan,
+      "coverage_amount":Number(amount.value)
+    }
+
+      $.ajax({
+      url:"/planFees/",
+      type:"POST",
+      data:dataToSend,
+      success:function(result){
+        let feePlan = result.fees.fees
+        count++;
+        $('.'+petId).html("₹"+(feePlan).toFixed(2));
+       
+        amountArray.push(feePlan);
+
+        if(count > 1){
+        feePlan = sumofArray(amountArray)
+
+        total = ((feePlan*100)/118).toFixed(2)
+        $("#totalId").html("₹"+total)
+
+        discountValue = (total*(disPercentage/100)).toFixed(2)
+        $("#discountId").html("₹"+discountValue)
+       
+        gst = (feePlan - total).toFixed(2)
+        $("#gstId").html("₹"+gst)
+
+
+        finalAmount  = (Number(total) + Number(gst) - Number(discountValue) - Number(vetcoins)).toFixed(2)
+  
+        $("#netPaymentId").html("₹"+finalAmount)
+  }
+      else{
+        total = ((feePlan*100)/118).toFixed(2)
+        $("#totalId").html("₹"+total)
+
+        gst = (feePlan - total).toFixed(2)
+        $("#gstId").html("₹"+gst)
+
+        finalAmount  = (Number(total) + Number(gst) - Number(vetcoins)).toFixed(2)
+  
+        $("#netPaymentId").html("₹"+finalAmount)
+  }
+        
+      }
+    })
+  
+      function sumofArray(numbers) { 
+        var sum = 0;
+           for (var i = 0; i < numbers.length; i++) {
+                sum += numbers[i]
+    }
+    return sum;
+    }
+}
+
+  </script>
+  <script>
+  var checked = false
+  var checkBox = document.getElementById("myCheck");
+  function answer(petId,questionId,answer){
+  var queryData = {
+    "petId":petId,
+    "questionId":questionId,
+    "answer":answer
+  }
+  $.ajax({
+    type:"POST",
+    url:"/saveAnswer/",
+    data:queryData,
+    success:function(data){
+      if(Number(data.sumarray) === queAdd ){
+        document.getElementById(petId).disabled = false;
+      }
+      else if(Number(data.sumarray) !=queAdd ) {
+        document.getElementById(petId).disabled = true;
+      }
+    }
+  })
+}
+ 
+
+function referCode(event){
+  event.preventDefault()
+  $(".my-pet-col-referral-section").addClass("show-referral-inp-section");
+}
+
+function closeCode(event){
+  event.preventDefault()
+  $(".my-pet-col-referral-section").removeClass("show-referral-inp-section");
+}
+
+
+
+$("#myCheck").click(()=>{
+ checked = true
+ if(checkBox.checked == true){
+  document.getElementById("paymentId").disabled = false;
+ }else{
+   document.getElementById("paymentId").disabled = true;
+ }
+})
+
+
+$("#paymentId").click((event)=>{
+    event.preventDefault()
+    var amountLength = $("#netPaymentId").html().length
+   
+    if(amountLength > 3){
+        swal({
+        title: "Good job!",
+        text: "Payment Successfull.",
+        icon: "success",
+        });
+      }else{
+        swal({
+        title: "Ohhh...",
+        text: "Please select coverage amount.",
+        icon: "warning",
+        });
+}
+})
+  </script>
+
+  <script>
+    function singlePet(petId){
+    var query = "?petId="+petId
+    location.href = "/my_proposal/" + query;
+}
+
+function allPet(){
+    location.href = "/my_proposal/";
+}
+  </script>
+
+  <script>
+    $(document).ready(function(){
+      $('#u-mob-bottom-pay-button').click(function(){
+        $(this).css("display","none");
+        $('.my-proposal-payment-section').addClass('open-payment-slider')
+      });
+      $('.close-payment-slider-btn').click(function(){
+        $("#u-mob-bottom-pay-button").css("display","block");
+        $('.my-proposal-payment-section').removeClass('open-payment-slider')
+      })
+    })
+  </script>
+  <script>
+  
+  </script>
+{% endblock %}

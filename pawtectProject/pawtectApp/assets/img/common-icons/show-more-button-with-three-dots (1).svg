@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="4" height="16" viewBox="0 0 4 16">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{clip-path:url(#clip-path)}.cls-3{fill:#1e1e1e}
+        </style>
+        <clipPath id="clip-path">
+            <path d="M0 0h4v16H0z" class="cls-1"/>
+        </clipPath>
+    </defs>
+    <g id="show-more-button-with-three-dots" class="cls-2">
+        <g id="more-vert">
+            <path id="Path_11" d="M155 4a2 2 0 1 0-2-2 2.006 2.006 0 0 0 2 2zm0 2a2 2 0 1 0 2 2 2.006 2.006 0 0 0-2-2zm0 6a2 2 0 1 0 2 2 2.006 2.006 0 0 0-2-2z" class="cls-3" data-name="Path 11" transform="translate(-153)"/>
+        </g>
+    </g>
+</svg>

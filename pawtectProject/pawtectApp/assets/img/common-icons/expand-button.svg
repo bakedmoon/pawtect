@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6.167" viewBox="0 0 10 6.167">
+    <defs>
+        <style>
+            .cls-1{fill:#999}
+        </style>
+    </defs>
+    <g id="expand-button">
+        <g id="expand-more">
+            <path id="Path_1" d="M8.833 58.65L5 62.483 1.167 58.65 0 59.817l5 5 5-5z" class="cls-1" data-name="Path 1" transform="translate(0 -58.65)"/>
+        </g>
+    </g>
+</svg>

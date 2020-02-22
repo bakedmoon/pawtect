@@ -1,0 +1,212 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+
+<div class="main-content-wrapper mb-48">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+      <h1 class="margin-v-none">My Pets</h1>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+      <a href="{% url 'my_pets_new' %}"><button class="btn btn-primary btn-md pull-right">Add New Pet</button></a>
+    </div>
+
+    <div class="clearfix"></div>
+    
+    <!-- empty screen start -->
+   {% if not pets %}
+    <div class="empty-screen-wrapper">
+      <img src="/assets/img/common-images/empty-screen-images/empty-pet-img.png" class="empty-screen-img">
+      <h2> Add your pet's information</h2>
+      <p>You can add your pet's information and create a proper profile over here.</p>
+    </div>
+   {% endif %}
+    <!-- empty screen end -->
+    
+    <div class="my-pet-col-wrapper clearfix">
+    {% for pet in pets %}
+   
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+        <div class="my-pet-cols clearfix relative mr-8 mb-48">
+          <div class="my-pet-col-pet-pro-wrap absolute top left-right ml-16">
+            <img
+            {% if pet %}src="{{pet.picture}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %}
+              class="absolute left-center my-pet-col-pet-pro-img" />
+            <div class="my-pet-col-pet-pro-details inline-block ml-32 pl-32 ">
+              <span class="">{{pet.name}}</span>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+            <ul class="my-pet-col-list padd-left-none">
+              <li>
+                <span>Species</span>
+                <p>{{pet.species}}</p>
+              </li>
+              <li>
+                <span>Microchip No</span>
+                <p>{{pet.microchip_Number}}</p>
+              </li>
+              <li>
+                <span>Consulting Veterinarian</span>
+                <p>{{pet.consult_Name}}</p>
+              </li>
+              <li>
+                <span>Contact Number</span>
+                <p>{{pet.consult_mobileNumber}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 padd-h-none">
+            <ul class="my-pet-col-list padd-right-none">
+              <li>
+                <span>Breed Name</span>
+                <p>{{pet.breed}}</p>
+              </li>
+              <li>
+                <span>Gender</span>
+                <p>{{pet.gender}}</p>
+              </li>
+              <li>
+                <span>Email Id</span>
+                <p >{{pet.consult_Email}}</p>
+              </li>
+              <li>
+                <span>Consulting Address</span>
+                <p class="text-ellipsis sm-ellipsis" 
+                >{{pet.consult_Address}}</p>
+              </li>
+            </ul>
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none absolute bottom-center mb-12">
+           {% if pet.disabledClass %}
+            <span class="my-pet-col-bottom-err-text brand-color ml-12 mt-8">Age criteria do not match</span>
+            {% endif %}
+            <div class="pull-right my-pet-col-bottom-btn-wrap mr-12 ">
+              <a href="{% url 'my-pets-edit' pet.id%}"><button class="btn btn-md ghost-btn-orange ml-8">Edit Pet</button></a>
+              {% if pet.disabledClass %}
+               <button class="btn btn-md btn-primary ml-8" type="button" disabled>Get Quote</button>
+               {% else %}
+                <button class="btn btn-md btn-primary ml-8" type="button" onclick="getQuote(event,'{{pet.breed}}','{{pet.birthDate}}')">Get Quote</button>
+              {% endif %}
+              
+              {% comment %} <div
+                class="button-dropdown my-pet-col-dropdown relative inline-block ml-8">
+              
+                <a href="javascript:void(0)" class="dropdown-toggle">
+                  <span class="dropdown-menu-icon text-center">
+                    <img
+                      src="/assets/img/common-icons/show-more-button-with-three-dots (1).svg"
+                    />
+                  </span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">
+                      Report Lost
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      For Adoption
+                    </a>
+                  </li>
+                </ul>
+              </div> {% endcomment %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+{% endfor %}
+    </div>
+  </div>
+</div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+function getQuote(event,breed,birthdate){
+  event.preventDefault()
+    var calculated_Days_start = 0
+    var calculated_Days_end = 0
+    var age_Period = ''
+    var start_age = 0
+    var start_age_unit = ''
+    var end_age = 0
+    var end_age_unit = ''
+    var age_obj = {}
+    var breedCategory = ''
+    var dict = {
+      'D':1,
+      'W':7,
+      'M':30,
+      'Y':365
+    }
+    var query = "?pawtect-quote=1";
+    var obj = {}
+      $.ajax({
+      type: "GET",
+      url: "/get-filter-quote-data/",
+      success: function(data) {
+        let breedItem = data.breed.breeds
+        var age_Type = data.ages
+        obj = breedItem.find(o => o.name === breed);
+
+        
+        let actualDate = moment(birthdate);
+        let today = moment(new Date());
+        let diffDays = today.diff(actualDate, 'days')
+        
+        for(let i=0;i<age_Type.length;i++){
+        let start = age_Type[i].start_age*dict[age_Type[i].start_age_unit]
+        let end = age_Type[i].end_age*dict[age_Type[i].end_age_unit]
+            age_obj =age_Type[i]
+            if (between(diffDays,start,end)) {
+             start_age = age_obj.start_age;
+             end_age = age_obj.end_age;
+             start_age_unit = age_obj.start_age_unit;
+             end_age_unit = age_obj.end_age_unit;
+             age_Period = age_obj.age_range;
+             break;
+            }
+    }
+
+      function between(x, min, max) {
+        console.log(x, min, max)
+          if(x >= min && x <= max){
+            return true
+          }
+    }
+
+          if(obj == undefined){
+              breedCategory = breed
+          }else{
+             breedCategory = obj.category
+          }
+          query += "&category__icontains="+breedCategory+"&age__start_age__in="+start_age+"&age__start_age_unit__in="+start_age_unit+"&age__end_age__in="+end_age+"&age__end_age_unit__in="+end_age_unit+"&age="+age_Period+"&name="+breed;
+
+          location.href = "/quotation/" + query;
+
+      }
+  });
+}
+</script>
+
+
+{% endblock %}

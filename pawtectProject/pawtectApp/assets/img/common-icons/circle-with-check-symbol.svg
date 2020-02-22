@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="circle-with-check-symbol" width="12" height="12" viewBox="0 0 12 12">
+    <defs>
+        <style>
+            .cls-1{fill:#f49e22}
+        </style>
+    </defs>
+    <g id="check-circle">
+        <path id="Path_18" d="M6 0a6 6 0 1 0 6 6 6.018 6.018 0 0 0-6-6zM4.8 9l-3-3 .84-.84L4.8 7.32l4.56-4.56.84.84z" class="cls-1" data-name="Path 18"/>
+    </g>
+</svg>

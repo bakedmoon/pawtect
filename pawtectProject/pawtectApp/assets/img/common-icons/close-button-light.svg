@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{clip-path:url(#clip-path)}.cls-3{fill:#fff}
+        </style>
+        <clipPath id="clip-path">
+            <path d="M0 0h8v8H0z" class="cls-1"/>
+        </clipPath>
+    </defs>
+    <g id="close-button" class="cls-2">
+        <g id="close">
+            <path id="Path_21" d="M8 .8L7.2 0 4 3.2.8 0 0 .8 3.2 4 0 7.2l.8.8L4 4.8 7.2 8l.8-.8L4.8 4z" class="cls-3" data-name="Path 21"/>
+        </g>
+    </g>
+</svg>

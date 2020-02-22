@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+    <defs>
+        <style>
+            .cls-1{fill:#f2f2f2}.cls-2{fill:#999}
+        </style>
+    </defs>
+    <g id="Group_81" data-name="Group 81" transform="translate(-1174 -19)">
+        <circle id="Ellipse_3" cx="14.5" cy="14.5" r="14.5" class="cls-1" data-name="Ellipse 3" transform="translate(1174 19)"/>
+        <g id="user-shape" transform="translate(1183 28)">
+            <g id="person">
+                <path id="Path_12" d="M5.5 5.5a2.75 2.75 0 1 0-2.75-2.75A2.758 2.758 0 0 0 5.5 5.5zm0 1.375c-1.856 0-5.5.894-5.5 2.75V11h11V9.625c0-1.856-3.644-2.75-5.5-2.75z" class="cls-2" data-name="Path 12"/>
+            </g>
+        </g>
+    </g>
+</svg>

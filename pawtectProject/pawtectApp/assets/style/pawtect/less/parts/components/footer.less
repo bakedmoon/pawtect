@@ -3,10 +3,18 @@
 
 // ----------------------------- Footer
 footer {
-  background-color: #001b2d;
+  background-color: #001b2e;
   padding: @space + @space / 2 0px;
 }
-
+.footer2 {
+  padding: @space - 4 0px;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: @zindex-small;
+}
 .copy-text {
   font-size: 11px;
   color: @light-color;
@@ -38,4 +46,20 @@ footer {
 
 .u-footer-list-margin-top {
   margin-top: (@space * 3) - 6;
+}
+
+.footer-list2 {
+  li {
+    display: inline-block;
+    font-size: @font-size-small;
+    padding-left: @space + @space / 2;
+    a {
+      color: @light-color;
+    }
+  }
+}
+
+.copy-text2 {
+  color: @light-color;
+  font-size: @font-size-small;
 }

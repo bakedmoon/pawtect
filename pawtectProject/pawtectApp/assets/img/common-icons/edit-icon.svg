@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <style>
+            .cls-1{fill:none}.cls-2{clip-path:url(#clip-path)}.cls-3{fill:#f49e22}.cls-4{fill:#fff}
+        </style>
+        <clipPath id="clip-path">
+            <path d="M0 0h22v22H0z" class="cls-1"/>
+        </clipPath>
+    </defs>
+    <g id="Component_8_1" class="cls-2" data-name="Component 8 – 1">
+        <circle id="Ellipse_7" cx="11" cy="11" r="11" class="cls-3" data-name="Ellipse 7"/>
+        <g id="edit_2_" data-name="edit (2)" transform="translate(7 7)">
+            <g id="Group_105" data-name="Group 105">
+                <g id="Group_104" data-name="Group 104">
+                    <path id="Union_3" d="M0 8V6.333l4.918-4.918 1.667 1.667L1.667 8zM5.39.943L6.2.13a.445.445 0 0 1 .629 0L7.87 1.168a.445.445 0 0 1 0 .629l-.813.813z" class="cls-4" data-name="Union 3"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

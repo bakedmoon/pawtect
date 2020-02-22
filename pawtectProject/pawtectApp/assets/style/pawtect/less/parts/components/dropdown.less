@@ -204,63 +204,68 @@
 }
 
 .dropdown-menu {
-  position: absolute;
-  top: 46px;
-  margin-right: -14px;
-  right: 0;
-  z-index: @zindex-extra-small;
   display: none;
+  position: absolute;
+  right: 0;
+  padding: 0px @space / 2;
+  margin: 0;
+  margin-top: 3px;
+  text-align: left;
+  box-shadow: 0 3px 14px 0 rgba(0, 0, 0, 0.16);
+  width: auto;
+  z-index: @zindex-extra-small;
   background-color: @light-color;
-  box-shadow: 4px 10px 9px 0 rgba(0, 0, 0, 0.08);
-  background-color: @light-color;
-  border: 1px solid #d8d8d8;
   background-clip: padding-box;
   .border-radius(4px);
-  padding: @space / 2 0px;
-  width: 118px;
   .transition();
-
   &.pull-right {
     right: 0;
     left: auto;
   }
-
   > li {
     display: block;
-    padding: @space / 4 @space - 4 !important;
+    margin: 0px !important;
+    border-bottom: 1px solid #e5e5e5;
+    padding: @space - 4 0px !important;
+    &:last-child {
+      border-bottom: none;
+    }
   } // li
-
   > li > a {
     display: block;
-    //padding: @space - 4 0px;
-    //padding: @space/4 @space * 2;
     padding-bottom: 0px;
-    font-size: @font-size-small;
+    font-size: @font-size;
     clear: both;
     line-height: @line-height;
-    color: #777d85;
+    color: #1e1e1e;
     white-space: nowrap; // prevent links from randomly breaking onto new lines
-    //border-bottom: 1px solid @gray-color;
     display: block;
   }
   > li:last-child > a {
     border-bottom: none;
   }
-
-  &:before {
+  &:before,
+  &:after {
     content: " ";
     position: absolute;
-    width: 12px;
-    height: 12px;
-    border: 1px solid #d8d8d8;
-    top: 0;
-    margin-top: -7px;
+    width: 8px;
+    height: 8px;
+    // border: 1px solid #d8d8d8;
     transform: rotate(45deg);
+    background: @light-color;
+  }
+  &:before {
+    top: 0;
+    margin-top: -5px;
     right: 0;
     margin-right: 22px;
     border-right: none;
     border-bottom: none;
-    background: @light-color;
+  }
+  &:after {
+    display: none;
+    left: 24px;
+    bottom: -4px;
   }
 } // dropdown menu
 
@@ -270,7 +275,6 @@
   &:focus {
     text-decoration: none;
     color: lighten(@dark-color, 30%);
-    background-color: lighten(@gray-color, 2%);
   }
 }
 
@@ -282,7 +286,7 @@
     color: darken(@link-color, 10%);
     text-decoration: none;
     outline: 0;
-    background-color: lighten(@gray-color, 5%);
+    // background-color: lighten(@gray-color, 5%);
   }
 }
 
@@ -348,29 +352,89 @@
 
 //-------------------------------dropdown on consult page end
 
-//------------------------------dropdown on detail page css end
-
-.doctor-view-col-right-list .dropdown-menu {
+//-------------------------------onclick nav dropdown css start
+//--used on header
+.nav {
+  display: block;
+  margin: 0;
+  padding: 0;
   li {
-    display: block;
-    position: relative;
-    span {
-      vertical-align: middle;
-      padding-left: @space / 2;
-      font-size: @font-size-small - 2;
-      color: #616263;
+    // display: inline-block;
+    // list-style: none;
+    vertical-align: middle;
+    // padding: @space / 2 0px;
+    // margin: 0px @space / 2 + 2;
+    &.active {
+      &:after {
+        top: -19px;
+      }
     }
   }
-  //width: 350px;
-}
-.doctor-view-col-share-list {
-  //width: 350px;
-  //margin-right: -72px !important;
-  img {
-    vertical-align: middle;
-    //padding-top: @space/4;
-  }
-  li {
-    //padding: 0px 16px !important;
+  .dropdown-menu {
+    margin-right: -25px;
   }
 }
+
+.button-dropdown {
+  position: relative;
+  vertical-align: middle;
+}
+
+.nav li a {
+  display: block;
+  color: #1e1e1e;
+  text-decoration: none;
+}
+
+.nav li a span {
+  display: inline-block;
+  margin-left: 5px;
+  // font-size: 10px;
+  color: #999;
+}
+
+.nav li a:hover,
+.nav li a.dropdown-toggle.active {
+  // background-color: #289dcc;
+  // color: #fff;
+}
+
+.nav li a:hover span,
+.nav li a.dropdown-toggle.active span {
+  // color: #fff;
+}
+
+.nav li .dropdown-menu.active {
+  display: block;
+}
+
+.nav li .dropdown-menu a {
+  // width: 150px;
+  font-size: 16px;
+}
+
+.dropdown-menu-icon {
+  .size(40px, 40px);
+  .border-radius(8px);
+  background-color: #f2f2f2;
+  line-height: 36px;
+}
+
+.my-pet-col-dropdown {
+  .dropdown-menu {
+    left: 0;
+    right: auto;
+    top: -105px;
+    margin-left: -8px;
+    width: 185px;
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: block;
+      border: none;
+    }
+  }
+}
+
+//-------------------------------onclick nav dropdown css end

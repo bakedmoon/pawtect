@@ -1,0 +1,326 @@
+{% extends "pawtectApp/base.html" %} {% block body_block %}
+<div class="main-content-wrapper">
+  <div class="wrapper">
+      <ul class="breadcrumb-list text-center padd-left-none">
+          <li class="light-list"><h2 class="h1 margin-v-none u-mob-large-heading">My Pets</h2></li>
+          {% if pet %}
+          <li><h2 class="h1 margin-v-none u-mob-large-heading">{{pet.name}}</h2></li>
+          {% endif %}
+        </ul>
+        <div class="profile-form-wrapper relative mb-48 clearfix">
+          <form class="clearfix" method="post"    enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <div class="upload-profile-wrap text-center p-tb-20">
+                <div class="relative">
+                {% if pet.picture %}
+                <img
+                   {% if pet %} src="{{pet.picture}}" {% else %} onError="this.src='/assets/img/common-images/avatars/avatars-07.svg'"{% endif %} 
+                    class="upload-profile-img"
+                    id="image"
+                     />
+                {% else %}
+                <img
+                    src='/assets/img/common-images/avatars/avatars-07.svg'
+                    class="upload-profile-img"
+                    id="image"
+                     />
+                {% endif %}
+                </div>
+                <input
+                  type="file"
+                  name="picture"
+                  id="picture"
+                  class="img-upload-input"
+                  accept="image/*"
+                /><label for="picture" class="pt-4"
+                  ><img src="/assets/img/common-icons/camera.svg" /><span
+                    >Change Image</span
+                  ></label>
+                
+              </div>
+              <!-- End of settings-general-image -->
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input type="text" placeholder="Pet Name*" id="name" name="name" class="input-small" value="{{pet.name}}" required/>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                placeholder="Microchip number"
+                class="input-small restrict"
+                id="microchipNumber"
+                name="microchip_Number"
+                onkeypress=" return isSpacebar(event)"
+                value="{{pet.microchip_Number}}"/>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none clearfix">
+              <div
+                class="ui-widget width-full small-ui-widget inline-block pull-right relative"
+              >
+                <input
+                  id="species"
+                  placeholder="Species*"
+                  class="input-small"
+                  name="species" 
+                  value="{{pet.species}}"
+                  onkeypress=" return isSpecial(event)" 
+                  required
+                 />
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none clearfix">
+              <div
+                class="ui-widget width-full small-ui-widget inline-block pull-right relative"
+              >
+                <input
+                  id="pet_profile_breed"
+                  placeholder="Breed*"
+                  class="input-small"
+                  name="breed"
+                  value="{{pet.breed}}"
+                  onkeypress=" return isSpecial(event)" 
+                  required
+                  />
+                
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <!-- <input
+                type="text"
+                id="date"
+                name="birthDate"
+                aria-required="true"
+                placeholder="Enter Birthdate"
+                class="input-small"
+                value="{{pet.birthDate | date:"F j, Y"}}"
+                readonly
+                required
+              /> -->
+              <input type="text" name="birthDate" id="datepicker"  placeholder="Enter Birthdate*" class="input-small" value="{{pet.birthDate | date:"F j, Y"}}" onchange="validateDate()" data-maxdate="today" required />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <div class="ui-widget relative">
+                <select placeholder="Gender" name="gender" class="input-small margin-bottom-none" value="{{pet.gender}}">
+                  {% if not pet.gender %}<option selected="selected" disabled>Select Gender</option>{% endif %}
+                  {% if  pet.gender %}<option>Select Gender</option>{% endif %}
+                  <option value="male"  {% if pet.gender == 'male' %}selected {% endif %} >Male</option>
+                  <option value="female" {% if pet.gender == 'female' %}selected {% endif %}>Female</option>
+                </select>
+                <img
+                  src="/assets/img/common-icons/expand-button.svg"
+                  class="dropdown-arrow"
+                />
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                id="clinic_name"
+                name="consult_Name"
+                placeholder="Consulting vet / Clinic name"
+                class="input-small"
+                value="{{pet.consult_Name}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="email"
+                id="clinic_email"
+                name="consult_Email"
+                placeholder="Consulting vet email"
+                class="input-small"
+                value="{{pet.consult_Email}}"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-left-none pr-6 u-mob-col-padd-right-none">
+              <input
+                type="text"
+                id="clinic_mobileNumber"
+                name="consult_mobileNumber"
+                placeholder="Consulting mobile number"
+                class="input-small"
+                onkeypress=" return isNumber(event)"
+                minlength="10" maxlength="13" onkeypress=" return isNumber(event)" oninvalid="this.setCustomValidity('Please fill mobile number field which has minimum 10 digit required.')"
+                  onchange="this.setCustomValidity('')"
+                value="{{pet.consult_mobileNumber}}" ondrop="return false;" onpaste="return false;"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-right-none pl-6 u-mob-col-padd-left-none">
+              <input
+                type="text"
+                id="clinic_address"
+                name="consult_Address"
+                placeholder="Consulting vet address"
+                class="input-small"
+                value="{{pet.consult_Address}}"
+              />
+            </div>
+            <div class="clearfix"></div>
+            {% if messages %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">  
+              <span class="alert-section error-alert width-full" id="errorId">
+                {% for message in  messages%}
+                <span>{{message}}</span>
+                {% endfor %}
+              </span>
+            </div>
+            {% endif %}
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 padd-h-none mt-16">
+              <div class="profile-bottom-btn-wrap pull-right">
+                <a href="{% url 'my-pets' %}"><button type="button" class="btn ghost-btn-light-gray btn-md">Cancel</button></a>
+                <button class="btn btn-primary btn-md ml-8" id="saveId" type="submit">Save</button>
+                
+              </div>
+            </div>
+            
+          </form>
+        </div>
+  </div>
+  
+</div>
+
+<div class="clearfix"></div>
+
+<footer class="footer2">
+  <div class="wrapper">
+    <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 padd-h-none">
+      <ul class="footer-list2 pull-right padd-left-none">
+        <li><a href="{% url 'terms' %}">Terms of Usage</a></li>
+        <li><a href="{% url 'privacy' %}">Privacy Policy</a></li>
+      </ul>
+    </div>
+    <div class="col-xs-12 visible-xs padd-h-none">
+      <p class="copy-text2 margin-v-none">Copyright {% now "Y" %} © Vetina</p>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/validation.js"></script>
+<script>
+  $(function() {
+    var breedData = [];
+    $.ajax({
+      type: "GET",
+      url: "/get-filter-quote-data/",
+      success: function(data) {
+       let breedItem = data.breed.breeds
+        for(let i in breedItem){
+          var item = breedItem[i]
+          item.label = item.name
+          breedData.push(item)
+        }
+      }
+    });
+
+    var species = [
+      "Canine / Dog",
+      "Feline / Cat"
+    ];
+    $("#species").autocomplete({
+      source: species,
+      minLength:0
+    }).bind('focus', function() {     
+      if(!$(this).val().trim())
+            $(this).keydown();
+    });
+
+    setTimeout(() => {
+      $("#pet_profile_breed").autocomplete({
+        source: breedData,
+        minLength:0
+      }).bind('focus', function() {     
+        if(!$(this).val().trim())
+              $(this).keydown();
+      });
+    
+  },500)
+    
+  });
+</script>
+<script>
+function readURL(input) {
+  var allowedFileTypes = ["image/png", "image/jpeg", "image/gif"];
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    var data = input.files[0]
+    var mimetype = data.type;
+    reader.onload = function(e) {
+      if (allowedFileTypes.indexOf(mimetype) > -1) {
+      $('#image').attr('src', e.target.result);
+     }else{
+       $('#image').attr('src', '/assets/img/common-images/avatars/avatars-07.svg');
+       swal({
+        title: "Ohhh...",
+        text: "Image format not valid.",
+        icon: "warning",
+        });
+     }
+    }
+    
+    let datahere = reader.readAsDataURL(input.files[0]);
+
+  }
+}
+
+$("#picture").change(function() {
+  readURL(this);
+});
+
+</script>
+<script>
+function isNumber(evt){
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true; 
+    }
+</script>
+
+<script>
+    $(document).ready(function(){
+      $('#datepicker').duDatepicker({
+        auto: true,
+        format: 'mmmm dd, yyyy',
+        clearBtn: true
+      }); //Initializes the date picker
+    });
+</script>
+
+<script>
+  window.onload = dateLength();
+
+  function dateLength(){
+    var input_length = document.getElementById('datepicker').value;
+  if(input_length.length > 0){
+    document.getElementById("saveId").disabled = false
+  }else{
+    document.getElementById("saveId").disabled = true
+  }
+  }
+
+    function validateDate() {
+      var inputLength = document.getElementById('datepicker').value;
+      if (inputLength.length > 0) {
+        document.getElementById("saveId").disabled = false
+        return false;
+      }else{
+        document.getElementById("saveId").disabled = true
+      }
+    }
+</script>
+{% endblock %}

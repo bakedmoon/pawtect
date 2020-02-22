@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <title>Pawtect</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
       rel="icon"
       type="image/png"
@@ -14,50 +16,70 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"/>
+    <link
+      href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css"
+      rel="Stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/country-select-js/2.0.1/css/countrySelect.min.css"
+      rel="Stylesheet"
+    />
     <!-- Owl Stylesheets -->
     <link
       rel="stylesheet"
       href="/assets/style/vendor/owl-carousel/owl.carousel.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="/assets/style/vendor/owl-carousel/owl.theme.default.css"
+    />
+
+    <!-- slick carousel  -->
+    
+    <link rel="stylesheet" href="/assets/style/vendor/animate.css" />
+    <link rel="stylesheet" href="/assets/style/vendor/slick.css" />
+
+    <link rel="stylesheet" type="text/css" href="/assets/style/vendor/duDatepicker.min.css">
+
 
     <!-- common style -->
     <link rel="stylesheet" href="/assets/style/pawtect/css/style.css" />
   </head>
   <body>
-    <header>
+  {% if not user.is_authenticated %}
+    <header class="p-tb-12">
       <div class="wrapper">
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none">
-          <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4 padd-h-none">
-            <a href="{% url 'index' %}">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-left-none d-flex align-center">
+          <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6 padd-h-none">
+            <a href="{% url 'home' %}">
               <img
-                src="/assets/img/brand/main-logo.png"
+                src="/assets/img/brand/Pawtect-Logo.jpg"
                 alt="main-logo"
                 class="main-logo"
               />
             </a>
           </div>
-          <div class="col-lg-10 col-md-8 col-sm-8 hidden-xs">
+          <div class="col-lg-10 col-md-9 hidden-sm hidden-xs">
             <ul class="header-list">
-              <li class="{% if request.resolver_match.url_name == "index" %}active{% endif %}"><a href="{% url 'index' %}">Home</a></li>
+              <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
               <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
               <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
-              <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li>
+              <!-- <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li> -->
               <li class="{% if request.resolver_match.url_name == "aboutUs" %}active{% endif %}"><a href="{% url 'aboutUs' %}">About us</a></li>
             </ul>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs padd-right-none">
-          <ul class="header-right-list pull-right">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  padd-right-none">
+          <ul class="header-right-list pull-right padd-left-none hidden-sm hidden-xs">
             <li class="header-right-list-icons">
-              <a href=""><i class="fa fa-phone" aria-hidden="true"></i></a>
+              <a href="tel:9922934952"><i class="fa fa-phone" aria-hidden="true"></i></a>
             </li>
             <li class="header-right-list-icons mail-icon">
-              <a href=""><i class="fa fa-envelope" aria-hidden="true"></i></a>
+              <a href="mailto:sagar@bakedmoon.studio"><i class="fa fa-envelope" aria-hidden="true"></i></a>
             </li>
             <li>
-              <a href="{% url 'login' %}">
+              <a href="{% url 'user_login' %}">
                 <button class="btn ghost-btn-grey">Login</button>
               </a>
             </li>
@@ -67,12 +89,218 @@
               </a>
             </li>
           </ul>
+
+          <nav class="mobile-menu visible-sm visible-xs">
+						<input id="nav" type="checkbox" />
+						
+						<label for="nav">
+							<div class="menu-trigger">
+								<i></i><i></i><i></i>
+							</div>
+						</label>
+						<div class="mobile-nav-slider">
+              <div class="slider-backdrop absolute-center"></div>
+              <div class="mobile-nav-slider-list">
+                <h6 class="mobile-nav-slider-heading">Menu</h6>
+                <menu class="mobile-menu-list padd-left-none">
+                  <li class="{% if request.resolver_match.url_name == "home" %}active{% endif %}"><a href="{% url 'home' %}">Home</a></li>
+                  <li class="{% if request.resolver_match.url_name == "plans" %}active{% endif %}"><a href="{% url 'plans' %}">Plans</a></li>
+                  <li class="{% if request.resolver_match.url_name == "quotation" %}active{% endif %}"><a href="{% url 'quotation' %}">Get Quote</a></li>
+                  <!-- <li class="{% if request.resolver_match.url_name == "review" %}active{% endif %}"><a href="{% url 'review' %}">Review</a></li> -->
+                  <li class="{% if request.resolver_match.url_name == "aboutUs" %}active{% endif %}"><a href="{% url 'aboutUs' %}">About us</a></li>
+                  <li>
+                    <a href="{% url 'user_login' %}">
+                      <button class="btn ghost-btn-grey">Login</button>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'register' %}">
+                      <button class="btn btn-primary">Sign up</button>
+                    </a>
+                  </li>
+                  <li>
+                    <span class="header-right-list-icons mr-8">
+                      <a href="tel:9922934952"><i class="fa fa-phone" aria-hidden="true"></i></a>
+                    </span>
+                    <span class="header-right-list-icons mail-icon">
+                      <a href="mailto:sagar@bakedmoon.studio"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                    </span>
+                  </li>
+                </menu>
+              </div>
+            </div>
+					</nav>
         </div>
       </div>
     </header>
+    {% endif %}
+ {% if user.is_authenticated %}
+    <header>
+      <div class="wrapper">
+        <div
+          class="col-lg-4 col-md-4 col-sm-4 col-xs-4 padd-h-none d-flex align-center"
+        >
+          <a href="{% url 'home' %}">
+            <img
+              src="/assets/img/brand/Pawtect-Logo.jpg"
+              alt="main-logo"
+              class="main-logo"
+            />
+          </a>
+          {% comment %} <div class="header-search-inp-wrap relative inline-block ml-20">
+            <img
+              src="/assets/img/common-icons/searching-magnifying-glass.svg"
+              class="search-icon absolute left-center ml-12"
+            />
+            <input
+              type="text"
+              placeholder="Search anything..."
+              class="margin-bottom-none"
+            />
+          </div> {% endcomment %}
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 padd-right-none">
+          <ul class="header-list nav pull-right hidden-sm hidden-xs ">
+            <li>
+              <span class="header-vetcoin-tag">{{user.userprofile.vetcoins | default:0}} Vetcoins Available</span>
+            </li>
+            <li class="{% if request.resolver_match.url_name == "my_proposal" %}active{% endif %}"><a href="{% url 'my_proposal' %}">My Pawtect Proposals</a></li>
+            <li class="{% if request.resolver_match.url_name != "my_proposal" %}active{% endif %}"><a href="{% url 'my-pets' %}">My Pets</a></li>
+            <li class="button-dropdown relative">
+              <a href="javascript:void(0)" class="dropdown-toggle">
+                <img
+                {% if user.is_authenticated %}src="{{user.userprofile.avatar}}" {% else %} src="/assets/img/common-images/avatar.png"{% endif %} 
+                  src="/assets/img/common-icons/avatar.svg"
+                  class="header-profile-pic mr-4"
+                />
+                <img
+                  src="/assets/img/common-icons/show-more-button-with-three-dots.svg"
+                />
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="{% url 'user_profile' %}">
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'my_vetcoins' %}">
+                    My Vetcoins Statement
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'logout' %}">
+                    Logout
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <nav class="mobile-menu visible-sm visible-xs">
+						<input id="nav" type="checkbox" />
+						
+						<label for="nav">
+							<div class="menu-trigger">
+								<i></i><i></i><i></i>
+							</div>
+						</label>
+						<div class="mobile-nav-slider">
+              <div class="slider-backdrop absolute-center"></div>
+              <div class="mobile-nav-slider-list">
+                <h6 class="mobile-nav-slider-heading">Menu</h6>
+                <menu class="mobile-menu-list padd-left-none">
+                  <li>
+                    <span class="header-vetcoin-tag">{{user.userprofile.vetcoins}} Vetcoins Available</span>
+                  </li>
+                  <li class="{% if request.resolver_match.url_name != "my-pets" %}active{% endif %}"><a href="{% url 'my_proposal' %}">My Pawtect Proposals</a></li>
+                  <li class="{% if request.resolver_match.url_name == "my-pets" %}active{% endif %}"><a href="{% url 'my-pets' %}">My Pets</a></li>
+                  <li>
+                    <a href="{% url 'user_profile' %}">
+                      My Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'my_vetcoins' %}">
+                      My Vetcoins Statement
+                    </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'logout' %}">
+                      Logout
+                    </a>
+                  </li>
+                </menu>
+              </div>
+            </div>
+					</nav>
+        </div>
+      </div>
+    </header> 
+ {% endif %}
+
     <script src="/assets/js/vendor/jquery.min.js"></script>
     <script src="/assets/js/vendor/owl.carousel.min.js"></script>
-    
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.js"></script>
+    <script type="text/javascript" src="/assets/js/vendor/duDatepicker.min.js"></script>
+    <script>
+      jQuery(document).ready(function(e) {
+        function t(t) {
+          e(t).bind("click", function(t) {
+            t.preventDefault();
+            e(this)
+              .parent()
+              .fadeOut();
+          });
+        }
+        e(".dropdown-toggle").click(function() {
+          var t = e(this)
+            .parents(".button-dropdown")
+            .children(".dropdown-menu")
+            .is(":hidden");
+          e(".button-dropdown .dropdown-menu").hide();
+          e(".button-dropdown .dropdown-toggle").removeClass("active");
+          if (t) {
+            e(this)
+              .parents(".button-dropdown")
+              .children(".dropdown-menu")
+              .toggle()
+              .parents(".button-dropdown")
+              .children(".dropdown-toggle")
+              .addClass("active");
+          }
+        });
+        e(document).bind("click", function(t) {
+          var n = e(t.target);
+          if (!n.parents().hasClass("button-dropdown"))
+            e(".button-dropdown .dropdown-menu").hide();
+        });
+        e(document).bind("click", function(t) {
+          var n = e(t.target);
+          if (!n.parents().hasClass("button-dropdown"))
+            e(".button-dropdown .dropdown-toggle").removeClass("active");
+        });
+      });
+    </script>
+
+    <script>
+      $(document).ready(function(){
+        $('.mobile-menu input[type="checkbox"]').click(function(){
+          if($(this).is(":checked")){
+              $('.mobile-menu').addClass('open-slider');
+          }
+          else if($(this).is(":not(:checked)")){
+            $('.mobile-menu').removeClass('open-slider');
+          }
+      });
+      $('.slider-backdrop').click(function(){
+        $('.mobile-menu').removeClass('open-slider');
+      })
+      });
+    </script>
     {% block body_block %} {% endblock %}
   </body>
 </html>
